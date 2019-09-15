@@ -6,10 +6,7 @@
 /// <para>This class can Play, ToggleMute, ChangeVolume, ChangeVolumeToHalf and ChangeVolumeToOne.</para>
 /// <para> All functions take a parameter called (sfxName) is one of the three audio sources in audio manager prefab(Background, UI, Activity)</para>
 /// </remarks>
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
@@ -123,7 +120,6 @@ public class AudioManager : MonoBehaviour
                 break;
             default:
                 return false;
-                break;
         }
         return true;
     }
