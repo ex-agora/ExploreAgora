@@ -1,102 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
+﻿using UnityEngine;
 
 public class DistanceHandler : MonoBehaviour
 {
+    #region Fields
+    [SerializeField] private Transform ARCamera;
+    [SerializeField] private Transform Target;
+    [SerializeField] private GameEvent correctDistance_event;
+    [SerializeField] private bool isOnce;
+    [SerializeField] private float maximumDistance;
+    [SerializeField] private GameEvent MaximumDistance_event;
+    [SerializeField] private float minimumDistance;
+    [SerializeField] private GameEvent MinimumDistance_event;
 
-    float calculatedDistance;
-    bool correctCheck = true, minCheck = true, maxCheck = true;
-    Vector3 finalDistance;
+    private Vector3 finalDistance;
+    private float calculatedDistance;
+    private bool correctCheck = true, minCheck = true, maxCheck = true;
+    private System.Action state;
 
-    delegate void StateDelegate ();
-    StateDelegate state;
+    #endregion Fields
 
-    [SerializeField] Transform Target;
-    [SerializeField] Transform ARcamera;
-    [SerializeField] bool isOnce;
-    [SerializeField] float minimumDistance;
-    [SerializeField] float maximumDistance;
-    [SerializeField] GameEvent correctDistance_event;
-    [SerializeField] GameEvent MaximumDistance_event;
-    [SerializeField] GameEvent MinimumDistance_event;
-   
+    #region Methods
 
-    // Start is called before the first frame update
-    void Start ()
+    private void CorrectDistance_Behavior()
     {
-        minimumDistance *= minimumDistance;
-        maximumDistance *= maximumDistance;
+        print("CorrectDistance     Main Functionality");
+        correctDistance_event.Raise();
     }
 
-    // Update is called once per frame
-    void Update ()
+    private void MaximumDistance__Behavior()
     {
-        if (Target.hasChanged || ARcamera.hasChanged)
-        {
-            finalDistance = ARcamera.position - Target.position;
-            calculatedDistance = finalDistance.sqrMagnitude;
-
-            if (isOnce)
-            {
-                if (calculatedDistance > maximumDistance && maxCheck)
-                {
-                    print ("max    oneTime");
-                    state = MaximumDistance__Behavior;
-                    maxCheck = false;
-                    minCheck = true;
-                    correctCheck = true;
-                    state?.Invoke ();
-                }
-                else if (calculatedDistance < minimumDistance && minCheck)
-                {
-                    print ("min     oneTime");
-                    state = MinimumDistance_Behavior;
-                    minCheck = false;
-                    maxCheck = true;
-                    correctCheck = true;
-                    state?.Invoke ();
-                }
-                else if (calculatedDistance < maximumDistance && calculatedDistance > minimumDistance && correctCheck)
-                {
-                    print ("correct        oneTime");
-                    state = CorrectDistance_Behavior;
-                    correctCheck = false;
-                    minCheck = true;
-                    maxCheck = true;
-                    state?.Invoke ();
-                }
-
-            }
-            else
-            {
-                if (calculatedDistance >= maximumDistance)
-                {
-                    print ("max        Not Once");
-                    state = MaximumDistance__Behavior;
-                }
-                else if (calculatedDistance <= minimumDistance)
-                {
-                    print ("min       Not Once");
-                    state = MinimumDistance_Behavior;
-                }
-                else if (calculatedDistance <= maximumDistance && calculatedDistance >= minimumDistance)
-                {
-                    print ("correct          Not Once");
-                    state = CorrectDistance_Behavior;
-                }
-                state?.Invoke ();
-            }
-            Target.hasChanged = false;
-            ARcamera.hasChanged = false;
-
-        }
-
+        print("MaxDistance      Main Functionality");
+        MaximumDistance_event.Raise();
     }
-   
-    private void OnValidate ()
+
+    private void MinimumDistance_Behavior()
+    {
+        print("MinDistance      Main Functionality");
+        MinimumDistance_event.Raise();
+    }
+
+    private void OnValidate()
     {
         if (minimumDistance == maximumDistance)
         {
@@ -109,22 +52,78 @@ public class DistanceHandler : MonoBehaviour
             minimumDistance = t;
         }
 
-        if (!ARcamera || !Target)
-            Debug.LogError ("AR-camera or target fields cannot be empty");
+        if (!ARCamera || !Target)
+            Debug.LogError("AR-camera or target fields cannot be empty");
     }
-    void CorrectDistance_Behavior ()
+
+    // Start is called before the first frame update
+    private void Start()
     {
-        print ("CorrectDistance     Main Functionality");
-        correctDistance_event.Raise ();
+        minimumDistance *= minimumDistance;
+        maximumDistance *= maximumDistance;
     }
-    void MinimumDistance_Behavior ()
+
+    // Update is called once per frame
+    private void Update()
     {
-        print ("MinDistance      Main Functionality");
-        MinimumDistance_event.Raise ();
+        if (Target.hasChanged || ARCamera.hasChanged)
+        {
+            finalDistance = ARCamera.position - Target.position;
+            calculatedDistance = finalDistance.sqrMagnitude;
+
+            if (isOnce)
+            {
+                if (calculatedDistance > maximumDistance && maxCheck)
+                {
+                    print("max    oneTime");
+                    state = MaximumDistance__Behavior;
+                    maxCheck = false;
+                    minCheck = true;
+                    correctCheck = true;
+                    state?.Invoke();
+                }
+                else if (calculatedDistance < minimumDistance && minCheck)
+                {
+                    print("min     oneTime");
+                    state = MinimumDistance_Behavior;
+                    minCheck = false;
+                    maxCheck = true;
+                    correctCheck = true;
+                    state?.Invoke();
+                }
+                else if (calculatedDistance < maximumDistance && calculatedDistance > minimumDistance && correctCheck)
+                {
+                    print("correct        oneTime");
+                    state = CorrectDistance_Behavior;
+                    correctCheck = false;
+                    minCheck = true;
+                    maxCheck = true;
+                    state?.Invoke();
+                }
+            }
+            else
+            {
+                if (calculatedDistance >= maximumDistance)
+                {
+                    print("max        Not Once");
+                    state = MaximumDistance__Behavior;
+                }
+                else if (calculatedDistance <= minimumDistance)
+                {
+                    print("min       Not Once");
+                    state = MinimumDistance_Behavior;
+                }
+                else if (calculatedDistance <= maximumDistance && calculatedDistance >= minimumDistance)
+                {
+                    print("correct          Not Once");
+                    state = CorrectDistance_Behavior;
+                }
+                state?.Invoke();
+            }
+            Target.hasChanged = false;
+            ARCamera.hasChanged = false;
+        }
     }
-    void MaximumDistance__Behavior ()
-    {
-        print ("MaxDistance      Main Functionality");
-        MaximumDistance_event.Raise ();
-    }
+
+    #endregion Methods
 }
