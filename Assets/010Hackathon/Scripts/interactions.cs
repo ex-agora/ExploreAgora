@@ -37,6 +37,7 @@ public class interactions : MonoBehaviour
     {
         GameObject obj = Instantiate (objectToPlace, targetPose.position, targetPose.rotation);
         obj.transform.localScale = new Vector3 (targetSize.x, 0.2f, targetSize.y);
+
     }
 
     private void UpdateTargetPoSe ()
@@ -72,10 +73,4 @@ public class interactions : MonoBehaviour
 
         }
     }
-
-    public void HideMarker()
-    {
-        planeTarget.SetActive(false);
-    }
-
 }
