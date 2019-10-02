@@ -7,6 +7,7 @@
 /// <para> All functions take a parameter called (sfxName) is one of the three audio sources in audio manager prefab(Background, UI, Activity)</para>
 /// </remarks>
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource backgroundSource;
     [SerializeField] AudioSource uiSource;
     [SerializeField] AudioSource activitySource;
-
 
     /// <summary>
     /// AudioClipsContainers are ScriptableObject contains dictionary of clip name and audio clip
@@ -33,6 +33,11 @@ public class AudioManager : MonoBehaviour
     AudioClipsContainer tempAudioContainer;
     AudioClip tempAudioClip;
 
+    //-----------------------------------------------------------------------
+    public int audioCounter = 0;
+    public List<AudioSource> backgroundSources = new List<AudioSource>();
+    public List<AudioSource> sfxSources = new List<AudioSource>();
+    //-----------------------------------------------------------------------
 
     /// <value>static instance of AudioManager to access it easily</value>
     public static AudioManager Instance { get => instance; set => instance = value; }
@@ -40,6 +45,14 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
     }
+
+    private void Start()
+    {
+        backgroundSources.Add(backgroundSource);
+        sfxSources.Add(uiSource);
+        sfxSources.Add(activitySource);
+    }
+
     /// <summary>
     /// Play the sound and needs two parameters audioClipName, sfxName
     /// Create a new Audio Clips Container event scriptable object and 
@@ -122,5 +135,54 @@ public class AudioManager : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    private void AudioController(int counterIncrement = -1)
+    {
+        audioCounter = counterIncrement == -1 ? audioCounter : counterIncrement;
+        switch (audioCounter)
+        {
+            case 0:
+                for (int i = 0; i < backgroundSources.Count; i++)
+                {
+                    backgroundSources[i].mute = false;
+                }
+                for (int i = 0; i < sfxSources.Count; i++)
+                {
+                    sfxSources[i].mute = false;
+                }
+                break;
+            case 1:
+                for (int i = 0; i < backgroundSources.Count; i++)
+                {
+                    backgroundSources[i].mute = true;
+                }
+                for (int i = 0; i < sfxSources.Count; i++)
+                {
+                    sfxSources[i].mute = true;
+                }
+                break;
+            case 2:
+                for (int i = 0; i < backgroundSources.Count; i++)
+                {
+                    backgroundSources[i].mute = true;
+                }
+                for (int i = 0; i < sfxSources.Count; i++)
+                {
+                    sfxSources[i].mute = false;
+                }
+                break;
+            case 3:
+                for (int i = 0; i < backgroundSources.Count; i++)
+                {
+                    backgroundSources[i].mute = false;
+                }
+                for (int i = 0; i < sfxSources.Count; i++)
+                {
+                    sfxSources[i].mute = true;
+                }
+                break;
+        }
+        audioCounter = (audioCounter + 1) % 4;
     }
 }
