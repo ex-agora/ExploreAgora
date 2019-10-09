@@ -16,6 +16,7 @@ public class DTimePassed : Decision
         var timePassedHandler = controllersManager.GetController<TimePassedController>();
         if (timePassedHandler == null)
             return false;
+        Debug.Log(timePassedHandler.Duration);
         return (timePassedHandler.Duration <= stateMachine.ElpTime);
     }
 }
