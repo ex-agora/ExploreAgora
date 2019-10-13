@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b0fe383837f404eb4f404e25755631, type: 3}
-  m_Name: SCharacterEnterence
+  m_Name: CB
   m_EditorClassIdentifier: 
   behviour:
-    stateEnterActions: []
+    stateEnterActions:
+    - {fileID: 11400000, guid: 0dd2cf434afb4fd4d95243c61b395450, type: 2}
     stateExitActions: []
     stateStayActions: []
     stateFixedStayActions: []
     stateLateStayActions: []
     stateResetActions: []
-  transition:
-  - decision: {fileID: 11400000, guid: c202084a783dcb449b7684b3de2438bf, type: 2}
-    trueState: {fileID: 11400000, guid: d3ae12c38db89db42a784b69a3965213, type: 2}
-    falseState: {fileID: 11400000, guid: 5abebaa0e504f9443826806129459447, type: 2}
+  transition: []

@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b0fe383837f404eb4f404e25755631, type: 3}
-  m_Name: SCharacterEnterence
+  m_Name: CharByCharHndlerState
   m_EditorClassIdentifier: 
   behviour:
-    stateEnterActions: []
+    stateEnterActions:
+    - {fileID: 11400000, guid: b5b83f787941f5b44b9a8017ad0f4376, type: 2}
+    - {fileID: 11400000, guid: a5959c76e0783b3489aa85bcc866c47f, type: 2}
     stateExitActions: []
     stateStayActions: []
     stateFixedStayActions: []
     stateLateStayActions: []
     stateResetActions: []
   transition:
-  - decision: {fileID: 11400000, guid: c202084a783dcb449b7684b3de2438bf, type: 2}
-    trueState: {fileID: 11400000, guid: d3ae12c38db89db42a784b69a3965213, type: 2}
-    falseState: {fileID: 11400000, guid: 5abebaa0e504f9443826806129459447, type: 2}
+  - decision: {fileID: 11400000, guid: 8dd0e60c9b98ff542a25c802ac0541f6, type: 2}
+    trueState: {fileID: 11400000, guid: 98e7a5db2630a2e4fa1049a4c4a8b98d, type: 2}
+    falseState: {fileID: 11400000, guid: 40a99d62f116f3b4698af24b323a0c51, type: 2}
