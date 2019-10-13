@@ -45,6 +45,7 @@ public class LanguageAdditionWindow : EditorWindow
         }
         
     }
+   
     bool CheckLanguages() {
         string[] aFilePaths = Directory.GetFiles("Assets/Resources/SO/Language/");
         foreach (string sFilePath in aFilePaths)
