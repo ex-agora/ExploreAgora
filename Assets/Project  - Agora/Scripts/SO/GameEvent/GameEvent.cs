@@ -20,6 +20,7 @@ public class GameEvent : ScriptableObject
 
     public void Raise()
     {
+        
         foreach (var i in listeners)
         {
             i.Fire();

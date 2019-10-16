@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
-using UnityEngine.UI;
-
+/// <summary>
+/// Holdes the CharByChar and TimePassed Controllers
+/// </summary> 
 public class CharByCharHndlerStateController : MonoBehaviour, IStateController
 {
-
     [SerializeField] CharByCharController charByCharController;
     [SerializeField] TimePassedController timePassedController;
 

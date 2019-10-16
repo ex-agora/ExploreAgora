@@ -12,6 +12,8 @@ namespace StateMachine
         //use it if will not go to next state
         [SerializeField] State remainState;
         [SerializeField] State currentState;
+        [SerializeField] State previousState;
+        [SerializeField] State autoPreviousState;
         [SerializeField] StateControllersManager controllersManager;
         bool isWorking;
         bool isPause;
@@ -77,12 +79,23 @@ namespace StateMachine
             if (nextState != remainState)
             {
                 currentState.OnExitState<IStateController>(controllersManager);
+                if (currentState.StateType == StateType.PrimaryState)
+                    previousState = currentState;
                 currentState = nextState;
                 currentState.OnEnterState<IStateController>(controllersManager);
                 ElpTime = 0.0f;
                 return true;
             }
             return false;
+        }
+        public void GoToPrevious()
+        {
+            if (currentState == autoPreviousState)
+            {
+            currentState = previousState;
+            currentState.OnEnterState<IStateController>(controllersManager);
+            ElpTime = 0.0f;
+            }
         }
     }
 }

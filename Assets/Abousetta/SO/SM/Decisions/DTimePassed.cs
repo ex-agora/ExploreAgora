@@ -8,10 +8,10 @@ public class DTimePassed : Decision
 {
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
-        return CheckTime<T>(stateMachine, controllersManager);
+        return CheckClick<T>(stateMachine, controllersManager);
     }
 
-    bool CheckTime<T>(StateMachineManager stateMachine, StateControllersManager controllersManager) where T : IStateController
+    bool CheckClick<T>(StateMachineManager stateMachine, StateControllersManager controllersManager) where T : IStateController
     {
         var timePassedHandler = controllersManager.GetController<TimePassedController>();
         if (timePassedHandler == null)
