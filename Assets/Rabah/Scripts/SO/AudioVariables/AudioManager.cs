@@ -137,7 +137,7 @@ public class AudioManager : MonoBehaviour
         return true;
     }
 
-    private void AudioController(int counterIncrement = -1)
+    public void AudioController(int counterIncrement = -1)
     {
         audioCounter = (audioCounter + 1) % 4;
         audioCounter = counterIncrement == -1 ? audioCounter : counterIncrement;

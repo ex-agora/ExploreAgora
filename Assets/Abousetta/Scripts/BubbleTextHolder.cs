@@ -8,6 +8,10 @@ public class BubbleTextHolder : MonoBehaviour
     int index = -1;
     public BubbleTextInfo[] BubbleTextInfoHolder { get => bubbleTextInfoHolder; set => bubbleTextInfoHolder = value; }
 
+    /// <summary>
+    /// Hold speech bubble content [Command, Speech, Hint Blink]
+    /// </summary>
+    /// <returns></returns>
     public BubbleTextInfo GetNextInfo()
     {
         if (bubbleTextInfoHolder.Length <= 0)

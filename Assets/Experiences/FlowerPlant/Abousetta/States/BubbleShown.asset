@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b0fe383837f404eb4f404e25755631, type: 3}
+  m_Name: BubbleShown
+  m_EditorClassIdentifier: 
+  behviour:
+    stateEnterActions:
+    - {fileID: 11400000, guid: 2acbac9b588f767408f31d2ffc2b7d01, type: 2}
+    stateExitActions: []
+    stateStayActions: []
+    stateFixedStayActions: []
+    stateLateStayActions: []
+    stateResetActions: []
+  transition:
+  - decision: {fileID: 11400000, guid: 20baef8b6c138224f91b710ad1e38815, type: 2}
+    trueState: {fileID: 11400000, guid: 53a19084e3a4cb545bf61b00e527fe4d, type: 2}
+    falseState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}

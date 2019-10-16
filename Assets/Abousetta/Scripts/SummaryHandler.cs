@@ -15,27 +15,36 @@ public class SummaryHandler : MonoBehaviour
 
     public Sprite ContentSprite { get => contentSprite; set { contentSprite = value; HandleContent(); } }
 
+    /// Set bubble summary tittle
+    /// Called in ViewSummary function.
     void HandleTittle()
     {
         tittleText.text = TittleString;
     }
 
+    /// Set bubble summary content
+    /// Called in ViewSummary function.
     void HandleContent()
     {
         contentImage.sprite = contentSprite;
         contentImage.SetNativeSize();
     }
 
+    /// Open summary panel.
     void OpenSummary()
     {
         bubbleAnimator.SetTrigger("IsShown");
     }
 
+    /// Close summary panel.
     void CloseSummary()
     {
         bubbleAnimator.SetTrigger("IsClosed");
     }
 
+    /// Set bubble summary tittle
+    /// Set bubble summary content
+    /// Called whenever needed to open Summary.
     public void ViewSummary()
     {
         HandleTittle();
@@ -43,6 +52,7 @@ public class SummaryHandler : MonoBehaviour
         OpenSummary();
     }
 
+    /// Called whenever needed to close summary panel.
     public void ConfirmationAction()
     {
         CloseSummary();
