@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b0fe383837f404eb4f404e25755631, type: 3}
+  m_Name: Timer
+  m_EditorClassIdentifier: 
+  behviour:
+    stateEnterActions:
+    - {fileID: 11400000, guid: 7843b8f91ef88a245a88ce5bd2379786, type: 2}
+    stateExitActions: []
+    stateStayActions:
+    - {fileID: 11400000, guid: 7843b8f91ef88a245a88ce5bd2379786, type: 2}
+    stateFixedStayActions: []
+    stateLateStayActions: []
+    stateResetActions: []
+  transition:
+  - decision: {fileID: 11400000, guid: 6fb62214988886b418e97af8a93bb5ef, type: 2}
+    trueState: {fileID: 11400000, guid: 2cf0c1fe9372a1a459c60cdbac2f3d21, type: 2}
+    falseState: {fileID: 11400000, guid: 2564ef672bf9bc144992a0426696f209, type: 2}
