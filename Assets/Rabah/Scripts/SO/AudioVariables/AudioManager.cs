@@ -139,10 +139,11 @@ public class AudioManager : MonoBehaviour
 
     private void AudioController(int counterIncrement = -1)
     {
+        audioCounter = (audioCounter + 1) % 4;
         audioCounter = counterIncrement == -1 ? audioCounter : counterIncrement;
         switch (audioCounter)
         {
-            case 0:
+            case 0: // On all.
                 for (int i = 0; i < backgroundSources.Count; i++)
                 {
                     backgroundSources[i].mute = false;
@@ -152,30 +153,30 @@ public class AudioManager : MonoBehaviour
                     sfxSources[i].mute = false;
                 }
                 break;
-            case 1:
+            case 1: // Sound effects only.
                 for (int i = 0; i < backgroundSources.Count; i++)
                 {
                     backgroundSources[i].mute = true;
+                }
+                for (int i = 0; i < sfxSources.Count; i++)
+                {
+                    sfxSources[i].mute = false;
+                }
+                break;
+            case 2: // Backgrounds only.
+                for (int i = 0; i < backgroundSources.Count; i++)
+                {
+                    backgroundSources[i].mute = false;
                 }
                 for (int i = 0; i < sfxSources.Count; i++)
                 {
                     sfxSources[i].mute = true;
                 }
                 break;
-            case 2:
+            case 3: // Off all.
                 for (int i = 0; i < backgroundSources.Count; i++)
                 {
                     backgroundSources[i].mute = true;
-                }
-                for (int i = 0; i < sfxSources.Count; i++)
-                {
-                    sfxSources[i].mute = false;
-                }
-                break;
-            case 3:
-                for (int i = 0; i < backgroundSources.Count; i++)
-                {
-                    backgroundSources[i].mute = false;
                 }
                 for (int i = 0; i < sfxSources.Count; i++)
                 {
@@ -183,6 +184,5 @@ public class AudioManager : MonoBehaviour
                 }
                 break;
         }
-        audioCounter = (audioCounter + 1) % 4;
     }
 }
