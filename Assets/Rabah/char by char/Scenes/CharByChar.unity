@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727fcf4d8caac945811c79637d57281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textString: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  textDuration: 0.00001
+  textString: iam mahmoud
+  textDuration: 3
   textUI: {fileID: 963917609}
   outputText: 
 --- !u!4 &354587544
@@ -447,10 +447,10 @@ RectTransform:
   m_Father: {fileID: 405654194}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 4279.835, y: 8842.634}
-  m_SizeDelta: {x: 0, y: 684.8}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1080, y: 684.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1402288281
 GameObject:
@@ -535,6 +535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remainState: {fileID: 11400000, guid: 9053cd4aab71d9c43bd8f61167c6c12d, type: 2}
   currentState: {fileID: 11400000, guid: c91ab6716ed6e2f479d278005f23a00f, type: 2}
+  previousState: {fileID: 0}
+  autoPreviousState: {fileID: 0}
   controllersManager: {fileID: 1402288282}
 --- !u!4 &1495774950
 Transform:

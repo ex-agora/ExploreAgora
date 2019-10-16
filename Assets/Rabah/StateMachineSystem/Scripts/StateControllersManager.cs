@@ -33,9 +33,10 @@ namespace StateMachine
         }
         //Returns the IStateController according to the Action
         [TypeConstraint(typeof(IStateController))] [SerializeField] List<GameObject> controllersObj;
-        List<IStateController> controllers;
+       List<IStateController> controllers;
         public T GetController<T>() where T : class, IStateController
         {
+           
             for (int i = 0; i < controllers.Count; i++)
             {
                 if (controllers[i] is T)

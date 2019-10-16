@@ -11,10 +11,16 @@ namespace StateMachine
     [CreateAssetMenu(fileName = "State", menuName = "SO/SM/State", order = 0)]
     public class State : ScriptableObject
     {
+        [Header("State Type")]
+        [Tooltip("if State Type is primary, it will save as previous state in state machine manager after transition," +
+            "else if it is sub, it will not save as previous state in state machine manager after transition")]
+        [SerializeField] StateType stateType;
         [Header("Actions Behaviour")]
         [Tooltip("Acions are excuted in order (FIFO)")]
         [SerializeField] StateBehviour behviour;
         [SerializeField] Transition[] transition;
+
+        public StateType StateType { get => stateType; set => stateType = value; }
 
         #region State Life Cycle
         //The Start of the state
@@ -55,6 +61,7 @@ namespace StateMachine
             {
                 stateMachineManager.GoTo(transition[i].Decide<T>(stateMachineManager, controllersManager));
             }
+            stateMachineManager.GoToPrevious();
         }
     }
 }

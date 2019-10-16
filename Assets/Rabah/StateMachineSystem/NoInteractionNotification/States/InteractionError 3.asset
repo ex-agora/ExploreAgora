@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b0fe383837f404eb4f404e25755631, type: 3}
+  m_Name: InteractionError 3
+  m_EditorClassIdentifier: 
+  stateType: 1
+  behviour:
+    stateEnterActions:
+    - {fileID: 11400000, guid: 1058f51e9e371d349836e54332e7fd90, type: 2}
+    stateExitActions: []
+    stateStayActions: []
+    stateFixedStayActions: []
+    stateLateStayActions: []
+    stateResetActions: []
+  transition:
+  - decision: {fileID: 11400000, guid: c202084a783dcb449b7684b3de2438bf, type: 2}
+    trueState: {fileID: 11400000, guid: 644c4463e507b3f41901f880bf5edfea, type: 2}
+    falseState: {fileID: 11400000, guid: 8deaa742d3d1dc3429205fbaf9d0e342, type: 2}

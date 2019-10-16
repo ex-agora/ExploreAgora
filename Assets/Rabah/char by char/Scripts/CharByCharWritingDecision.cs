@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "Writing Finished", menuName = "SO/SM/Decision/Writing Finished", order = 0)]
+/// <summary>
+/// check if Writing Finished to decide write the next character or end writing then go to next state
+/// </summary>
+[CreateAssetMenu (fileName = "Writing Finished", menuName = "SO/SM/Decision/Writing Finished", order = 0)]
+//check if all text is written
 public class CharByCharWritingDecision : Decision
 {
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
-        return isWritingFinishedDecision<T>(stateMachine, controllersManager);
+        return IsWritingFinishedDecision<T>(stateMachine, controllersManager);
     }
-    bool isWritingFinishedDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager) where T : IStateController
+    bool IsWritingFinishedDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager) where T : IStateController
     {
         CharByCharController CharByCharController = controllersManager.GetController<CharByCharController>();
         if (CharByCharController == null)
