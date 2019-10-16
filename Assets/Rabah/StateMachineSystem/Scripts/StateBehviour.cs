@@ -17,7 +17,7 @@ namespace StateMachine
         public Action[] stateLateStayActions;
         public Action[] stateResetActions;
 
-        //OnEnterState this function activates all stateEnterActions
+        //OnEnterState this function activates all stateEnterActions(Start)
         public void OnExctueStateEnter<T>(StateControllersManager controllersManager) where T : IStateController
         {
             for (int i = 0; i < stateEnterActions.Length; i++)
@@ -33,7 +33,7 @@ namespace StateMachine
                 stateExitActions[i].Act<T>(controllersManager);
             }
         }
-        //OnStayState this function activates all stateStayActions
+        //OnStayState this function activates all stateStayActions(Update)
         public void OnExctueStateStay<T>(StateControllersManager controllersManager) where T : IStateController
         {
             for (int i = 0; i < stateStayActions.Length; i++)
@@ -41,7 +41,7 @@ namespace StateMachine
                 stateStayActions[i].Act<T>(controllersManager);
             }
         }
-        //OnFixedStayState this function activates all stateFixedStayActions
+        //OnFixedStayState this function activates all stateFixedStayActions(FixedUpdate)
         public void OnExctueStateFixedStay<T>(StateControllersManager controllersManager) where T : IStateController
         {
             for (int i = 0; i < stateFixedStayActions.Length; i++)
@@ -49,7 +49,7 @@ namespace StateMachine
                 stateFixedStayActions[i].Act<T>(controllersManager);
             }
         }
-        //OnLateStayState this function activates all stateLateStayActions
+        //OnLateStayState this function activates all stateLateStayActions(LateUpdate)
         public void OnExctueStateLateStay<T>(StateControllersManager controllersManager) where T : IStateController
         {
             for (int i = 0; i < stateLateStayActions.Length; i++)
@@ -57,7 +57,7 @@ namespace StateMachine
                 stateLateStayActions[i].Act<T>(controllersManager);
             }
         }
-        //OnResetState this function activates all stateResetActions
+        //OnResetState this function activates all stateResetActions(Reset)
         public void OnExctueStateReset<T>(StateControllersManager controllersManager) where T : IStateController
         {
             for (int i = 0; i < stateResetActions.Length; i++)
