@@ -10,7 +10,11 @@ public class ClosingBubbleAction : Action
     {
         CloseBubble<T>(controllersManager);
     }
-
+    /// <summary>
+    /// Close speech bubble.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="controllersManager"></param>
     void CloseBubble<T>(StateControllersManager controllersManager) where T : IStateController
     {
         var controller = controllersManager.GetController<SpeechBubbleController>();
