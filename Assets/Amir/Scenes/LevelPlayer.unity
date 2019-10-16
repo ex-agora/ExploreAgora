@@ -262,11 +262,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1995939013}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 437, y: 633}
+  m_AnchoredPosition: {x: 437, y: 770}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &662567810
@@ -493,11 +493,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1995939013}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 437, y: 500}
+  m_AnchoredPosition: {x: 437, y: 770}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1242886831
@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 1470120480}
   - component: {fileID: 1470120479}
   - component: {fileID: 1470120478}
+  - component: {fileID: 1470120481}
   m_Layer: 5
   m_Name: MainBtn
   m_TagString: Untagged
@@ -683,7 +684,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1995939013}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -784,6 +785,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470120476}
   m_CullTransparentMesh: 0
+--- !u!95 &1470120481
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470120476}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dded885f640d54e4e8ce39e21689a8e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1540942245
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,11 +952,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1995939013}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 437, y: 367}
+  m_AnchoredPosition: {x: 437, y: 770}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680449277
@@ -983,11 +1003,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1995939014}
-        m_MethodName: ClickToggleMenuPressed
-        m_Mode: 1
+        m_MethodName: HandleSoundBtn
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1680449278}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1015,7 +1035,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 320f7fcb462de5d47a871402cf283120, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab4d4415a7573ce49b37928ee3a51f33, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1033,6 +1053,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680449275}
   m_CullTransparentMesh: 0
+--- !u!1 &1752907355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752907357}
+  - component: {fileID: 1752907356}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1752907356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752907355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3cc528f2325b34cbab27efd784cbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundSource: {fileID: 0}
+  uiSource: {fileID: 0}
+  activitySource: {fileID: 0}
+  backgroundContainer: {fileID: 0}
+  uiContainer: {fileID: 0}
+  activityContainer: {fileID: 0}
+  audioCounter: 0
+  backgroundSources: []
+  sfxSources: []
+--- !u!4 &1752907357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752907355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 751.4268, y: 1663.1514, z: -237.2274}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861482692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,10 +1269,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1470120477}
   - {fileID: 662567809}
   - {fileID: 1242886830}
   - {fileID: 1680449276}
+  - {fileID: 1470120477}
   m_Father: {fileID: 1063823010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1224,6 +1296,13 @@ MonoBehaviour:
   openMenuSprite: {fileID: 21300000, guid: 45fba65f7eb75724b8b9c978560a0c1b, type: 3}
   cloesMenuSprite: {fileID: 21300000, guid: 301e891db2f3edd48be8f285896f70a1, type: 3}
   menuBtnImg: {fileID: 1470120479}
+  menuAnimator: {fileID: 1995939015}
+  menuBtnAnimator: {fileID: 1470120481}
+  audioSprites:
+  - {fileID: 21300000, guid: ab4d4415a7573ce49b37928ee3a51f33, type: 3}
+  - {fileID: 21300000, guid: b89bb50e080d20248ae966a3a4e75405, type: 3}
+  - {fileID: 21300000, guid: 320f7fcb462de5d47a871402cf283120, type: 3}
+  - {fileID: 21300000, guid: 8d9774394aedb6e45aa4d3d4be2c92d0, type: 3}
 --- !u!95 &1995939015
 Animator:
   serializedVersion: 3
