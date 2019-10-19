@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class DragToWorld : MonoBehaviour
 {
-    //starting position of the UI Element to be dragged
-	Vector2 pos;
+  
     private RaycastHit hit;
     Ray ray;
     // check if object dragged into the right place
@@ -20,12 +19,13 @@ public class DragToWorld : MonoBehaviour
     public GameObject image;
     // world space Model that will appear if dragging of UI element completed successfully
     public GameObject objectToBePlaced;
-
+    RectTransform rectTransform;
 
     private void Start()
     {
         //set starting pos of UI Element
-        pos = transform.position;
+        rectTransform = transform.GetComponent<RectTransform>();
+       
     }
 
     //wihin dragging
@@ -37,25 +37,31 @@ public class DragToWorld : MonoBehaviour
         //if current finger position hits the dedicated target 
         if (Physics.Raycast(ray, out hit))
         {
-            
+
             if (hit.collider.name == "Cube" && hit.collider.gameObject.GetComponent<triggerDetector>().placingType == placingType)
                 rightPlace = true;
-            else
+            else {
                 rightPlace = false;
+                //TODO Count number of trials
+            }
+               
         }
     }
-    
+    //void ResetTransform() {
+    //    rectTransform.offsetMax = Vector2.zero;
+    //    rectTransform.offsetMin= Vector2.zero;
+    //}
 	public void BeginDrag ()
 	{
         
 	}
 
     // when release the screen 
-	public void Deselect ()
-	{
+    public void Deselect()
+    {
         //if this is the right place activate world space components else turn back ui element to its starting pos
-		if (rightPlace)
-		{
+        if (rightPlace)
+        {
             if (placingType == PlacingType.UI)
             {
                 image.SetActive(true);
@@ -66,20 +72,22 @@ public class DragToWorld : MonoBehaviour
             }
             this.gameObject.SetActive(false);
         }
-		else
-		{
-            StartCoroutine(MoveToPosition( transform.position, pos, 0.5f));
-		}
-	}
+        else
+        {
+            StartCoroutine(MoveToPosition(0.4f));
+            //ResetTransform();
+        }
+    }
 
     // return ui element back to its starting pos smoothly
-    IEnumerator MoveToPosition(Vector3 current, Vector3 original, float duration)
+    IEnumerator MoveToPosition(float duration)
     {
         
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
-            transform.position = Vector3.Lerp(current, original, (elapsedTime / duration));
+            rectTransform.offsetMax = Vector2.Lerp(rectTransform.offsetMax, Vector2.zero , (elapsedTime / duration));
+            rectTransform.offsetMin = Vector2.Lerp(rectTransform.offsetMin, Vector2.zero, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
