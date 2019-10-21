@@ -46,7 +46,7 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.position = targetPose.position;
             objectToPlaceParent.transform.rotation = targetPose.rotation;
             GameObject obj = Instantiate(objectToPlace, targetPose.position, targetPose.rotation);
-            obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
+            //obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
             obj.transform.parent = objectToPlaceParent.transform;
             firstTime = false;
             objectedPlaced.Raise();
