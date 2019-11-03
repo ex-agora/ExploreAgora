@@ -20,7 +20,7 @@ public class OpeningBubbleAction : Action
         var controller = controllersManager.GetController<SpeechBubbleController>();
         var controller1 = controllersManager.GetController<TimePassedController>();
         if (controller == null || controller1 == null) return;
-        controller1.Duration = 3;
+        controller1.Duration = 1f;
         controller.ShowNextBubble();
     }
 }

@@ -8,19 +8,25 @@ public class LabelWorldHandler : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] TMP_Text labelText;
+    [SerializeField] bool hasExtraInfo;
+    [SerializeField] string extraInfoText;
+    [SerializeField] Canvas canvas;
     bool isOpen;
+    public string LabelTextStr { get => labelText.text; }
+    public bool HasExtraInfo { get => hasExtraInfo; }
+    public string ExtraInfoText { get => extraInfoText; }
+    private void Start()
+    {
+        canvas.worldCamera = PlantPartsGameManager.Instance.ArCamera;
+    }
     // Start is called before the first frame update
     private void OnEnable ()
     {
-        OpenLabel ();
+        SetlabelAnimState();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OpenLabel ()
+ 
+    private void SetlabelAnimState ()
     {
         anim?.SetBool ("isOpen" , isOpen);
 
@@ -28,6 +34,18 @@ public class LabelWorldHandler : MonoBehaviour
     public void ShowLabel ()
     {
         isOpen = true;
-        OpenLabel ();
+        SetlabelAnimState();
+    }
+    public void HidaLabel() {
+        isOpen = false;
+        SetlabelAnimState();
+    }
+    public void PrepaireQuiz() {
+        labelText.gameObject.SetActive(false);
+        ShowLabel();
+    }
+    public void RightAnswer()
+    {
+        labelText.gameObject.SetActive(true);
     }
 }

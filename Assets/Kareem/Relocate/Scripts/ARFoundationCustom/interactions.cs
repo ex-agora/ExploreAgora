@@ -46,7 +46,7 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.position = targetPose.position;
             objectToPlaceParent.transform.rotation = targetPose.rotation;
             GameObject obj = Instantiate(objectToPlace, targetPose.position, targetPose.rotation);
-            obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
+            //obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
             obj.transform.parent = objectToPlaceParent.transform;
             firstTime = false;
             objectedPlaced.Raise();
@@ -59,7 +59,7 @@ public class interactions : MonoBehaviour
         planeDetectionController.TogglePlaneDetection();
         planeTarget.SetActive(false);
         relocate.interactable = true;
-
+        AudioManager.Instance.Play("placeObject", "Activity");
     }
 
     private void UpdateTargetPoSe()
@@ -73,7 +73,7 @@ public class interactions : MonoBehaviour
         {
             //planeTarget.SetActive(true);
             planeTarget.transform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
-            Debug.Log(planeFound);
+            //Debug.Log(planeFound);
             targetPose = hits[0].pose;
             var cameraForward = Camera.current.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
@@ -87,7 +87,7 @@ public class interactions : MonoBehaviour
             }
             else
             {
-                Debug.Log(rrr.size);
+                //Debug.Log(rrr.size);
                 // state.text = "Lost";
                 canSet = false;
                 planeTarget.GetComponentInChildren<MeshRenderer>().material = mats[1];
