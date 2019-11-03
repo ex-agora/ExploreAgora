@@ -20,8 +20,13 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
     void OpenBubble()
     {
         bubbleAnimator.SetTrigger("IsOpened");
+        
     }
 
+    void PlaySFX() {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.Play("speechOpen", "UI");
+    }
     /// Close speech bubble.
     /// Called in HideBubble function.
     void CloseBubble()
@@ -38,11 +43,20 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
         if (!isOpened)
         {
             OpenBubble();
+            Invoke(nameof(PlaySFX), 0.554f);
             isOpened = true;
         }
     }
     /// Show next commaned.
     /// Called whenever needed to show next command.
+    public void NextBubble() {
+        //characterBtn.interactable = false;
+        var tempText = bubbleTextHolder.GetNextInfo();
+        if (tempText.BubbleType == BubbleType.Command)
+        {
+            savedBubbleInfo = tempText;
+        }
+    }
     public void ShowNextBubble()
     {
         characterBtn.interactable = false;
@@ -58,6 +72,7 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
         if (!isOpened)
         {
             OpenBubble();
+            Invoke(nameof(PlaySFX), 0.5f);
             isOpened = true;
         }
     }

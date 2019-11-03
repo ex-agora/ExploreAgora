@@ -10,7 +10,7 @@ public class SummaryHandler : MonoBehaviour
     [SerializeField] Animator bubbleAnimator;
     [SerializeField] Image contentImage;
     [SerializeField] Sprite contentSprite;
-
+    [SerializeField] GameEvent doneEvent;
     public string TittleString { get => tittleString; set { tittleString = value; HandleTittle(); } }
 
     public Sprite ContentSprite { get => contentSprite; set { contentSprite = value; HandleContent(); } }
@@ -56,5 +56,6 @@ public class SummaryHandler : MonoBehaviour
     public void ConfirmationAction()
     {
         CloseSummary();
+        doneEvent.Raise();
     }
 }
