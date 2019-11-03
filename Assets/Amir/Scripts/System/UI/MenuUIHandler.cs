@@ -11,6 +11,8 @@ public class MenuUIHandler : MonoBehaviour
     [SerializeField] Animator menuAnimator;
     [SerializeField] Animator menuBtnAnimator;
     [SerializeField] Sprite[] audioSprites;
+    [TypeConstraint(typeof(IMenuHandler))] [SerializeField] GameObject handler;
+    IMenuHandler menuHandler;
     int indexSoundSprite;
     bool isOpen;
     public bool IsOpen { get => isOpen; set { isOpen = value; HandleMenu(); } }
@@ -20,6 +22,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         indexSoundSprite = 0;
         IsOpen = false;
+        menuHandler = handler.GetComponent<IMenuHandler>();
     }
    
     // Update is called once per frame
@@ -32,18 +35,33 @@ public class MenuUIHandler : MonoBehaviour
         //else { menuBtnImg.sprite = openMenuSprite; }
         menuAnimator.SetBool("IsOpen", IsOpen);
         menuBtnAnimator.SetBool("IsOpen", IsOpen);
+
+
     }
     void HandleMenu() {
         HandleMenusprite();
     }
     public void ClickToggleMenuPressed() {
         IsOpen = !IsOpen;
+        if (AudioManager.Instance != null)
+        {
+            if (isOpen)
+            {
+                AudioManager.Instance.Play("openOption", "UI");
+            }
+            else
+            {
+                AudioManager.Instance.Play("closeOption", "UI");
+            }
+        }
     }
     public void HandleSoundBtn(Image image) {
         indexSoundSprite = (indexSoundSprite + 1) % audioSprites.Length;
         image.sprite = audioSprites[indexSoundSprite];
-        if (AudioManager.Instance == null) {
+        if (AudioManager.Instance != null) {
             AudioManager.Instance.AudioController(indexSoundSprite);
         }
     }
+    public void ResetLevel() => menuHandler.ResetLevel();
+    public void GoToHome() => menuHandler.GoTOHome();
 }

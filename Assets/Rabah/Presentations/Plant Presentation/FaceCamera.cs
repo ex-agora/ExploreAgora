@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    public Transform Target;
+    Transform target;
+    Vector3 targetPostition;
+    public Transform Target { get => target; set => target = value; }
+    private void Start ()
+    {
+        Target =  PlantPartsGameManager.Instance.ArCamera.transform;
+    }
 
     void Update()
     {
-        Vector3 targetPostition = new Vector3(Target.position.x,
-                                                transform.position.y,
-                                                Target.position.z);
-        transform.LookAt(targetPostition);
+        //targetPostition.x = -Target.position.x;
+        //targetPostition.y = transform.position.y;
+        //targetPostition.z = -Target.position.z;
+        //transform.LookAt(-targetPostition);
+        transform.LookAt(transform.position + Target.rotation * Vector3.forward, Target.rotation * Vector3.up);
     }
 }
