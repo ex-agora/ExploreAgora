@@ -28,8 +28,12 @@ public class DragToWorld : MonoBehaviour
         //set starting pos of UI Element
         rectTransform = transform.GetComponent<RectTransform>();
         canDarg = true;
+        PlantPartsGameManager.Instance.MaxQuizPart++;
     }
 
+    public void BeginDrag() {
+        AudioManager.Instance.Play("UIAction", "UI");
+    }
     //wihin dragging
     public void OnDrag ()
 	{
@@ -49,16 +53,17 @@ public class DragToWorld : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             label = hit.collider.gameObject.GetComponentInParent<LabelWorldHandler>();
-            if (label == null)
-                return;
+            if (label == null) return;
             if (label.LabelTextStr == targetLabelStr)
+            {
                 rightPlace = true;
+                PlantPartsGameManager.Instance.CorrectAnswer++;
+            }
             else
             {
                 rightPlace = false;
                 PlantPartsGameManager.Instance.WrongTrialCount++;
             }
-
         }
     }
 
@@ -72,7 +77,9 @@ public class DragToWorld : MonoBehaviour
         {
             if (placingType == PlacingType.UI)
             {
+                AudioManager.Instance.Play("placeObject", "Activity");
                 label.RightAnswer();
+                label.enabled = false;
             }
             else
             {

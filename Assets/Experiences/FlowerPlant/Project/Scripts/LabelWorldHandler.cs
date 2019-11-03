@@ -10,22 +10,22 @@ public class LabelWorldHandler : MonoBehaviour
     [SerializeField] TMP_Text labelText;
     [SerializeField] bool hasExtraInfo;
     [SerializeField] string extraInfoText;
+    [SerializeField] Canvas canvas;
     bool isOpen;
     public string LabelTextStr { get => labelText.text; }
     public bool HasExtraInfo { get => hasExtraInfo; }
     public string ExtraInfoText { get => extraInfoText; }
-
+    private void Start()
+    {
+        canvas.worldCamera = PlantPartsGameManager.Instance.ArCamera;
+    }
     // Start is called before the first frame update
     private void OnEnable ()
     {
         SetlabelAnimState();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
     private void SetlabelAnimState ()
     {
         anim?.SetBool ("isOpen" , isOpen);

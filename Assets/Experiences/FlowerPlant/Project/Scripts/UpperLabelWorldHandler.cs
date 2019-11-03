@@ -8,7 +8,10 @@ public class UpperLabelWorldHandler : MonoBehaviour
     [SerializeField] TMP_Text tMP;
     string info;
 
-    public string Info { get => info; set => info = value; }
+    public string Info { get => info; set { info = value; UpdateText(); } }
     public void Show() => anim?.SetBool("isOpen", true);
     public void Hide() => anim?.SetBool("isOpen", false);
+    void UpdateText() {
+        tMP.text = info;
+    }
 }

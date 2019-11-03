@@ -20,12 +20,15 @@ public class HotSpotGroupManager : MonoBehaviour
         {
             spotHandlers[i].Manager = this;
         }
+        PlantPartsGameManager.Instance.AddHotSpotGroupManager(this);    
     }
     public void ShowAllHotSpot() {
         for (int i = 0; i < spotHandlers.Count; i++)
         {
             spotHandlers[i].gameObject.SetActive(true);
         }
+        PlantPartsGameManager.Instance.GoToNextBubbleState();
+        PlantPartsGameManager.Instance.ShowCounter();
     }
     public void HideAllHotSpot() {
         for (int i = 0; i < spotHandlers.Count; i++)
