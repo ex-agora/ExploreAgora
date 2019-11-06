@@ -8,7 +8,7 @@ public class CoalTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.name == "FirstCoal")
+        if(other.name == "Draggable coal one piece")
         AfterDragging.Raise();
     }
 }
