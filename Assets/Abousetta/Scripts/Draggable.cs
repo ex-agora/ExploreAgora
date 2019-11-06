@@ -88,6 +88,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         offset = Vector3.zero;
         cursorScreenPoint = Vector3.zero;
         cursorPosition = Vector3.zero;
+        if(draggingMode == DraggingModes.DraggingToCorrectPosition)
         dragObjectCheck.EndDragAction (draggingMode);
     }
     #endregion
