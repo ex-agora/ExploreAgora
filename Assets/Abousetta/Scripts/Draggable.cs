@@ -59,7 +59,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 cursorPosition.x = transform.position.x;
                 break;
             case DraggableAxis.Z_Axis:
-                cursorPosition.z = cursorPosition.y;
+                cursorPosition.z += cursorPosition.y;
                 cursorPosition.x = transform.position.x;
                 cursorPosition.y = transform.position.y;
                 break;

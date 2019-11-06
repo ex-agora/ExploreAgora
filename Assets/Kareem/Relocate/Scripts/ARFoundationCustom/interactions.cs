@@ -9,11 +9,11 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 public class interactions : MonoBehaviour
 {
-
+    static interactions instance;
     [SerializeField] GameObject planeTarget, objectToPlace, objectToPlaceParent, indicator;
     // [SerializeField] Text state;
     [SerializeField] Vector2 targetSize;
-    [SerializeField] ARSessionOrigin Arcamera;
+    public  ARSessionOrigin Arcamera;
     [SerializeField] Material[] mats;
     [SerializeField] GameEvent objectedPlaced;
     public ARRaycastManager arOrigin;
@@ -25,6 +25,13 @@ public class interactions : MonoBehaviour
     public bool canSet;
     bool firstTime = true;
 
+    public static interactions Instance { get => instance; set => instance = value; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this; 
+    }
 
     private void Start()
     {

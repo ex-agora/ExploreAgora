@@ -19,6 +19,9 @@ public class FadeInOut : MonoBehaviour
     }
 
 
+
+    
+
     IEnumerator startFading(bool state, float duration)
     {
 
