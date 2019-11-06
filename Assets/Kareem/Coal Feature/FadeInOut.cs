@@ -21,10 +21,9 @@ public class FadeInOut : MonoBehaviour
 
     IEnumerator startFading(bool state, float duration)
     {
-
+        yield return new WaitForSeconds(0.5f);
         float elapsedTime = 0;
-        if (onFadeComplete != null)
-            onFadeComplete.Raise();
+
         while (elapsedTime < duration)
         {
             if (state)
@@ -35,6 +34,7 @@ public class FadeInOut : MonoBehaviour
             yield return null;
         }
         //onComplete
-
+        if (onFadeComplete != null)
+            onFadeComplete.Raise();
     }
 }

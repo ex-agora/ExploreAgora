@@ -22,6 +22,7 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] SpeechBubbleController bubbleController;
     int maxQuizPart;
     int correctAnswer;
+    bool isFirstDone;
     public static PlantPartsGameManager Instance { get => instance; set => instance = value; }
     public Camera ArCamera { get => arCamera; set => arCamera = value; }
     public int WrongTrialCount { get => wrongTrialCount; set => wrongTrialCount = value; }
@@ -39,6 +40,7 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
         AudioManager.Instance.Play("bg", "Background");
         Invoke(nameof(StartMachine), 2f);
         expolreCount = 0;
+        isFirstDone = false;
     }
 
     private void StartMachine()
@@ -100,7 +102,11 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public void StartFirstPhase()
     {
         //counterUIHandler.ShowCounter();
-        nextState = true;
+        if (!isFirstDone)
+        {
+            isFirstDone = true;
+            nextState = true;
+        }
     }
     public void StartQuiz() {
         barHandler.OpenToolBar();
