@@ -8,6 +8,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     [Tooltip ("Select the axis you want to drag object on")] [SerializeField] DraggableOnSurfaceAxes axes;
     [Tooltip ("Select the dragging mode")] [SerializeField] DraggingModes draggingMode;
     [SerializeField] DragObjectCheck dragObjectCheck;
+    [SerializeField] Camera ArCam;
     GameObject hitObject;
     public GameObject HitObject { get => hitObject; set => hitObject = value; }
     #region Private Variables
@@ -19,6 +20,10 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     private Vector3 myPosition;
     public Vector3 MyPosition { get => myPosition; set => myPosition = value; }
+    [SerializeField] GameEvent @onEndDragOnly;
+    [SerializeField] Transform clippingTargetMin;
+    [SerializeField] Transform clippingTargetMax;
+    [SerializeField] bool isclipping;
     #endregion
 
     #region Methods
@@ -29,8 +34,8 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     public void OnBeginDrag (PointerEventData eventData)
     {
         MyPosition = transform.position;
-        screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (
+        screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
+        offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
             new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
         @onBeginDrag?.Raise ();
     }
@@ -42,7 +47,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
         cursorScreenPoint.z = screenPoint.z;
 
         //-------------------------------------------------------
-        cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
+        cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
         cursorPosition.x += offset.x;
         cursorPosition.y += offset.y;
         cursorPosition.z += offset.z;
@@ -50,13 +55,34 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
         switch ( axes )
         {
             case DraggableOnSurfaceAxes.XY_Axes:
-                cursorPosition = new Vector3 (cursorPosition.x, cursorPosition.y , transform.position.z);
+                cursorPosition.z = transform.position.z;
                 break;
             case DraggableOnSurfaceAxes.YZ_Axes:
-                cursorPosition = new Vector3 (transform.position.x , cursorPosition.y , cursorPosition.z);
+                cursorPosition.z += cursorPosition.x;
+                cursorPosition.x = transform.position.x;
                 break;
             case DraggableOnSurfaceAxes.XZ_Axes:
+                cursorPosition.z += cursorPosition.y;
+                cursorPosition.y = transform.position.y;
                 break;
+        }
+        if ( isclipping )
+        {
+            switch ( axes )
+            {
+                case DraggableOnSurfaceAxes.XY_Axes:
+                    cursorPosition.x = Mathf.Clamp (cursorPosition.x , clippingTargetMin.position.x , clippingTargetMax.position.x);
+                    cursorPosition.y = Mathf.Clamp (cursorPosition.y , clippingTargetMin.position.y , clippingTargetMax.position.y);
+                    break;
+                case DraggableOnSurfaceAxes.YZ_Axes:
+                    cursorPosition.y = Mathf.Clamp (cursorPosition.y , clippingTargetMin.position.y , clippingTargetMax.position.y);
+                    cursorPosition.z = Mathf.Clamp (cursorPosition.z , clippingTargetMin.position.z , clippingTargetMax.position.z);
+                    break;
+                case DraggableOnSurfaceAxes.XZ_Axes:
+                    cursorPosition.x = Mathf.Clamp (cursorPosition.x , clippingTargetMin.position.x , clippingTargetMax.position.x);
+                    cursorPosition.z = Mathf.Clamp (cursorPosition.z , clippingTargetMin.position.z , clippingTargetMax.position.z);
+                    break;
+            }
         }
         transform.position = cursorPosition;
     }
@@ -67,7 +93,21 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
         offset = Vector3.zero;
         cursorScreenPoint = Vector3.zero;
         cursorPosition = Vector3.zero;
-        HitObject = dragObjectCheck.EndDragAction (draggingMode);
+        HitObject = EndDragAction (draggingMode);
+    }
+    public GameObject EndDragAction (DraggingModes mode)
+    {
+        switch ( mode )
+        {
+            case DraggingModes.DraggingOnly:
+                @onEndDragOnly?.Raise ();
+                print ("I am Dragging Only ");
+                return null;
+            case DraggingModes.DraggingToCorrectPosition:
+                return dragObjectCheck.CheckCorrectPosition ();
+            default:
+                return null;
+        }
     }
     #endregion
 }

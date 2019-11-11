@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] GameEvent @onBeginDrag;
-
+    [SerializeField] GameEvent @onDrag;
+    [SerializeField] Camera ArCam;
     [Tooltip ("Select the axis you want to drag object on")] [SerializeField] DraggableAxis axis;
     [Tooltip ("Select the dragging mode")] [SerializeField] DraggingModes draggingMode;
     [SerializeField] DragObjectCheck dragObjectCheck;
@@ -20,6 +21,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     [SerializeField] Transform clippingTargetMin;
     [SerializeField] Transform clippingTargetMax;
     [SerializeField] bool isclipping;
+    [SerializeField] GameEvent @onEndDragOnly;
+
 
     private Vector3 myPosition;
     #endregion
@@ -27,13 +30,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     #region Methods
     private void OnEnable ()
     {
-        
+
     }
     public void OnBeginDrag (PointerEventData eventData)
     {
         MyPosition = transform.position;
-        screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (
+        //screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
+        screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
+        //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (
+        //    new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
+        offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
             new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
         @onBeginDrag?.Raise ();
     }
@@ -45,7 +51,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         cursorScreenPoint.z = screenPoint.z;
 
         //-------------------------------------------------------
-        cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
+        //cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
+        cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
         cursorPosition.x += offset.x;
         cursorPosition.y += offset.y;
         cursorPosition.z += offset.z;
@@ -59,17 +66,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 cursorPosition.x = transform.position.x;
                 break;
             case DraggableAxis.Z_Axis:
-                cursorPosition.z = cursorPosition.y;
+                cursorPosition.z += cursorPosition.y;
                 cursorPosition.x = transform.position.x;
                 cursorPosition.y = transform.position.y;
                 break;
         }
-        if (isclipping)
+        if ( isclipping )
         {
             switch ( axis )
             {
                 case DraggableAxis.X_Axis:
-                    cursorPosition.x = Mathf.Clamp(cursorPosition.x,clippingTargetMin.position.x, clippingTargetMax.position.x);
+                    cursorPosition.x = Mathf.Clamp (cursorPosition.x , clippingTargetMin.position.x , clippingTargetMax.position.x);
                     break;
                 case DraggableAxis.Y_Axis:
                     cursorPosition.y = Mathf.Clamp (cursorPosition.y , clippingTargetMin.position.y , clippingTargetMax.position.y);
@@ -80,6 +87,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             }
         }
         transform.position = cursorPosition;
+        @onDrag?.Raise ();
     }
 
     public void OnEndDrag (PointerEventData eventData)
@@ -88,7 +96,21 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         offset = Vector3.zero;
         cursorScreenPoint = Vector3.zero;
         cursorPosition = Vector3.zero;
-        dragObjectCheck.EndDragAction (draggingMode);
+        EndDragAction (draggingMode);
+    }
+    public GameObject EndDragAction (DraggingModes mode)
+    {
+        switch ( mode )
+        {
+            case DraggingModes.DraggingOnly:
+                @onEndDragOnly?.Raise ();
+                print ("I am Dragging Only ");
+                return null;
+            case DraggingModes.DraggingToCorrectPosition:
+                return dragObjectCheck.CheckCorrectPosition ();//asdad
+            default:
+                return null;
+        }
     }
     #endregion
 }
