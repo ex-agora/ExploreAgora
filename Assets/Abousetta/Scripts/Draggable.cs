@@ -30,17 +30,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     #region Methods
     private void OnEnable ()
     {
-
     }
     public void OnBeginDrag (PointerEventData eventData)
     {
         MyPosition = transform.position;
-        //screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
-        screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
-        //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (
+        screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
+        //screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
+        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+            new Vector3(eventData.position.x, screenPoint.y, screenPoint.z));
+        //offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
         //    new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
-        offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
-            new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
         @onBeginDrag?.Raise ();
     }
 
@@ -51,13 +50,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         cursorScreenPoint.z = screenPoint.z;
 
         //-------------------------------------------------------
-        //cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
-        cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
+        cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
+        //cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
         cursorPosition.x += offset.x;
         cursorPosition.y += offset.y;
         cursorPosition.z += offset.z;
         //----------------------------------------------------------
-        switch ( axis )
+        switch (axis)
         {
             case DraggableAxis.X_Axis:
                 cursorPosition.y = transform.position.y;
@@ -70,6 +69,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 cursorPosition.x = transform.position.x;
                 cursorPosition.y = transform.position.y;
                 break;
+            
         }
         if ( isclipping )
         {

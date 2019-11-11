@@ -16,6 +16,7 @@ public class interactions : MonoBehaviour
     [SerializeField] ARSessionOrigin Arcamera;
     [SerializeField] Material[] mats;
     [SerializeField] GameEvent objectedPlaced;
+    [SerializeField] GameEvent foundSurface;
     public ARRaycastManager arOrigin;
     public ARPlaneManager aRPlaneManager;
     [SerializeField] PlaneDetectionController planeDetectionController;
@@ -24,7 +25,8 @@ public class interactions : MonoBehaviour
     bool planeFound = false;
     public bool canSet;
     bool firstTime = true;
-
+    bool isSurfaceFound;
+    [SerializeField] bool isFoundedOnce;
 
     private void Start()
     {
@@ -71,6 +73,11 @@ public class interactions : MonoBehaviour
 
         if (planeFound)
         {
+            if ((!isFoundedOnce || !isSurfaceFound) && foundSurface != null)
+            {
+                isSurfaceFound = true;
+                foundSurface?.Raise();
+            }
             //planeTarget.SetActive(true);
             planeTarget.transform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
             //Debug.Log(planeFound);
