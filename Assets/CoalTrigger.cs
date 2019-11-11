@@ -8,7 +8,8 @@ public class CoalTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Draggable coal one piece")
-        AfterDragging.Raise();
+        if (other.gameObject.GetComponent<FadeInOut>() != null)
+            AfterDragging.Raise();
+        
     }
 }

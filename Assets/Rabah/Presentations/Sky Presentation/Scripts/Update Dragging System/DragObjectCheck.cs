@@ -5,7 +5,6 @@ using UnityEngine;
 public class DragObjectCheck : MonoBehaviour
 {
     [SerializeField] CorrectDraggableObject correctDraggableObject;
-    [SerializeField] GameEvent @onEndDragOnly;
     [SerializeField] GameEvent @onEndDragToCorrectPosition;
     [SerializeField] GameEvent @onEndDragToIncorrectPosition;
     [SerializeField] GameEvent @onEndDragToAnyPosition;
@@ -48,28 +47,29 @@ public class DragObjectCheck : MonoBehaviour
         isDraggedToObject = false;
         triggeredObject = null;
     }
-    public GameObject CheckCorrectPosition()
+    public GameObject CheckCorrectPosition ()
     {
-        if (isTrueDraggableObject)
+        if ( isTrueDraggableObject )
         {
-            @onEndDragToCorrectPosition?.Raise();
-            print("I am Correct ");
+            @onEndDragToCorrectPosition?.Raise ();
+            print ("I am Correct ");
             return triggeredObject;
         }
         else
         {
-            if (isDraggedToObject)
+            if ( isDraggedToObject )
             {
-                @onEndDragToIncorrectPosition?.Raise();
-                print("I am Incorrect ");
+                @onEndDragToIncorrectPosition?.Raise ();
+                print ("I am Incorrect ");
                 return triggeredObject;
             }
             else
             {
-                @onEndDragToAnyPosition?.Raise();
-                print("I am Any Position ");
+                @onEndDragToAnyPosition?.Raise ();
+                print ("I am Any Position ");
                 return null;
             }
         }
     }
+
 }

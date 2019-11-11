@@ -58,6 +58,9 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
         }
         return tempText.TextInfo;
     }
+    public void SetHintText (int index) {
+        bubbleTextHolder.SetNextHint (index);
+    }
     public void ShowNextBubble()
     {
         characterBtn.interactable = false;
