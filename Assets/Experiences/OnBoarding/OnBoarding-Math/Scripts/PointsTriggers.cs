@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PointsTriggers : MonoBehaviour
 {
+
+    public Answers answers;  
     [SerializeField] SnappingManager snappingManager;
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("ASDASDADSA  " + transform.name);
-        if (other.name == "Cube")
+        if (other.GetComponent<IndicatorType>().type == IndicatorType.Type.indicator)
         {
             snappingManager.setCurrentPoint(transform);
             snappingManager.forwardsBackwardDetector.enabled = false;
@@ -18,7 +20,7 @@ public class PointsTriggers : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.name == "Cube")
+        if (other.GetComponent<IndicatorType>().type == IndicatorType.Type.indicator)
         {
             snappingManager.forwardsBackwardDetector.enabled = false;
             snappingManager.setCurrentPoint(transform);

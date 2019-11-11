@@ -19,6 +19,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     private Vector3 myPosition;
     public Vector3 MyPosition { get => myPosition; set => myPosition = value; }
+    [SerializeField] GameEvent @onEndDragOnly;
     #endregion
 
     #region Methods
@@ -67,7 +68,21 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
         offset = Vector3.zero;
         cursorScreenPoint = Vector3.zero;
         cursorPosition = Vector3.zero;
-        HitObject = dragObjectCheck.EndDragAction (draggingMode);
+        EndDragAction (draggingMode);
+    }
+    public GameObject EndDragAction(DraggingModes mode)
+    {
+        switch (mode)
+        {
+            case DraggingModes.DraggingOnly:
+                @onEndDragOnly?.Raise();
+                print("I am Dragging Only ");
+                return null;
+            case DraggingModes.DraggingToCorrectPosition:
+                return dragObjectCheck.CheckCorrectPosition();
+            default:
+                return null;
+        }
     }
     #endregion
 }

@@ -48,38 +48,28 @@ public class DragObjectCheck : MonoBehaviour
         isDraggedToObject = false;
         triggeredObject = null;
     }
-    public GameObject EndDragAction (DraggingModes mode)
+    public GameObject CheckCorrectPosition()
     {
-        switch ( mode )
+        if (isTrueDraggableObject)
         {
-            case DraggingModes.DraggingOnly:
-                @onEndDragOnly?.Raise ();
-                print ("I am Dragging Only ");
+            @onEndDragToCorrectPosition?.Raise();
+            print("I am Correct ");
+            return triggeredObject;
+        }
+        else
+        {
+            if (isDraggedToObject)
+            {
+                @onEndDragToIncorrectPosition?.Raise();
+                print("I am Incorrect ");
+                return triggeredObject;
+            }
+            else
+            {
+                @onEndDragToAnyPosition?.Raise();
+                print("I am Any Position ");
                 return null;
-            case DraggingModes.DraggingToCorrectPosition:
-                if ( isTrueDraggableObject )
-                {
-                    @onEndDragToCorrectPosition?.Raise ();
-                    print ("I am Correct ");
-                    return triggeredObject;
-                }
-                else
-                {
-                    if ( isDraggedToObject )
-                    {
-                        @onEndDragToIncorrectPosition?.Raise ();
-                        print ("I am Incorrect ");
-                        return triggeredObject;
-                    }
-                    else
-                    {
-                        @onEndDragToAnyPosition?.Raise ();
-                        print ("I am Any Position ");
-                        return null;
-                    }
-                }
-            default:
-                return null;
+            }
         }
     }
 }

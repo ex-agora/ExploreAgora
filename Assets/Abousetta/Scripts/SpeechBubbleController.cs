@@ -49,13 +49,14 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
     }
     /// Show next commaned.
     /// Called whenever needed to show next command.
-    public void NextBubble() {
+    public string NextBubble() {
         //characterBtn.interactable = false;
         var tempText = bubbleTextHolder.GetNextInfo();
         if (tempText.BubbleType == BubbleType.Command)
         {
             savedBubbleInfo = tempText;
         }
+        return tempText.TextInfo;
     }
     public void ShowNextBubble()
     {

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6463572062029850289}
   - component: {fileID: 6463572062029850288}
   - component: {fileID: 6463572062029850293}
-  - component: {fileID: 6463572062029850447}
   - component: {fileID: 6463572062029850446}
   m_Layer: 0
   m_Name: Sphere (1)
@@ -70,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729aad835cb125242955baca5a77386f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappingManager: {fileID: 6463572062291073719}
+  answers: 0
+  snappingManager: {fileID: 0}
 --- !u!65 &6463572062029850293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,19 +122,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.111582, y: 1, z: 1}
   m_Center: {x: -1.5557911, y: 0, z: 0}
---- !u!114 &6463572062029850447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463572062029850294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729aad835cb125242955baca5a77386f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snappingManager: {fileID: 6463572062291073719}
 --- !u!54 &6463572062029850446
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,8 +147,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6463572062291073720}
-  - component: {fileID: 6463572062291073719}
-  - component: {fileID: 6463572062291073718}
   m_Layer: 0
   m_Name: WorldSpace Slider
   m_TagString: Untagged
@@ -183,58 +169,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6463572062291073719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463572062291073721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113d08b7a5404e143986115622cd1a2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTriggeredPoint: {fileID: 0}
-  NextPointToCurrentPoint: {fileID: 0}
-  Points:
-  - {fileID: 6463572063634161420}
-  - {fileID: 6463572062029850290}
-  - {fileID: 6463572064030169763}
-  forwardsBackwardDetector: {fileID: 0}
-  ss: {fileID: 0}
-  Cube: {fileID: 0}
-  isBetween: 0
-  isForward: 0
---- !u!114 &6463572062291073718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463572062291073721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dc741d04382464daa232b6462cee73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: 56dedc308cb41b749852539c2ba19e45, type: 2}
-  eventSystem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6463572062291073719}
-        m_MethodName: EndDraggingAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6463572063506868778
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +216,6 @@ GameObject:
   - component: {fileID: 6463572063634161520}
   - component: {fileID: 6463572063634161419}
   - component: {fileID: 6463572063634161423}
-  - component: {fileID: 6463572063634161418}
   - component: {fileID: 6463572063634161417}
   m_Layer: 0
   m_Name: Sphere
@@ -338,6 +271,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -375,7 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729aad835cb125242955baca5a77386f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappingManager: {fileID: 6463572062291073719}
+  answers: 0
+  snappingManager: {fileID: 0}
 --- !u!65 &6463572063634161423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -389,19 +324,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.111582, y: 1, z: 1}
   m_Center: {x: -1.5557911, y: 0, z: 0}
---- !u!114 &6463572063634161418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463572063634161521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729aad835cb125242955baca5a77386f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snappingManager: {fileID: 6463572062291073719}
 --- !u!54 &6463572063634161417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -487,6 +409,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -537,7 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729aad835cb125242955baca5a77386f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappingManager: {fileID: 6463572062291073719}
+  answers: 0
+  snappingManager: {fileID: 0}
 --- !u!54 &6463572064030169761
 Rigidbody:
   m_ObjectHideFlags: 0

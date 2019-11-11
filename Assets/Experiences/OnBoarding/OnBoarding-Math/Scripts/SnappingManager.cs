@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class SnappingManager : MonoBehaviour
 {
+    
+    public Answers answers;
     public Transform currentTriggeredPoint;
     public Transform NextPointToCurrentPoint;
     [SerializeField] List<Transform> Points;
     public ForwardsBackwardDetector forwardsBackwardDetector;
-    public Transform ss , Cube;
+    public Transform ss , indicator;
     public bool isBetween, isForward;
     int index;
-
+    [SerializeField] GameEvent EndQuiz;
     public void setCurrentPoint(Transform point)
     {
         currentTriggeredPoint = point;
@@ -50,20 +52,34 @@ public class SnappingManager : MonoBehaviour
             if ((DistanceToCenter - currentDistance) > currentDistance)
             {
                 Debug.Log("snap To next: " + NextPointToCurrentPoint.name);
-                Cube.position = new Vector3(Cube.position.x, Cube.position.y, NextPointToCurrentPoint.position.z);
+                indicator.position = new Vector3(indicator.position.x, indicator.position.y, NextPointToCurrentPoint.position.z);
             }
             else
             {
                 Debug.Log("snap To current: "+ currentTriggeredPoint.name);
-                Cube.position = new Vector3(Cube.position.x, Cube.position.y, currentTriggeredPoint.position.z);
+                indicator.position = new Vector3(indicator.position.x, indicator.position.y, currentTriggeredPoint.position.z);
             }
         }
         else
         {
             Debug.Log("snap To current NotBetween: " + currentTriggeredPoint.name);
-            Cube.position = new Vector3(Cube.position.x, Cube.position.y, currentTriggeredPoint.position.z);
+            indicator.position = new Vector3(indicator.position.x, indicator.position.y, currentTriggeredPoint.position.z);
         }
     }
 
+    public void answerCheck()
+    {
+        
+        if (currentTriggeredPoint.GetComponent<PointsTriggers>().answers != answers)
+            return;
+        else
+        {
+            OnBoardingMathGameManager.Instance.score++;
+            indicator.GetComponent<Draggable>().enabled = false;
+            EndQuiz?.Raise();
+            GetComponent<GameEventListener>().enabled = false;
+        }
+        
+    }
    
 }

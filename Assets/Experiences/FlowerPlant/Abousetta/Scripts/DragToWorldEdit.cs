@@ -82,13 +82,15 @@ public class DragToWorldEdit : MonoBehaviour
                 AudioManager.Instance.Play("placeObject", "Activity");
                // label.RightAnswer();
                 //label.enabled = false;
-                TruePos?.Raise();
             }
-            else 
+            else if(placingType == PlacingType.Object)
             {
                 Instantiate(objectToBePlaced, objectToBePlaced.transform.position, Quaternion.identity);
             }
-            
+            else
+            {
+                TruePos?.Raise();
+            }
             this.gameObject.SetActive(false);
         }
         else
