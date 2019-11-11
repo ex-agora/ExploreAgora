@@ -21,20 +21,20 @@ public class FadeInOut : MonoBehaviour
 
     IEnumerator startFading(bool state, float duration)
     {
-
+        yield return new WaitForSeconds(0.5f);
         float elapsedTime = 0;
+
         while (elapsedTime < duration)
         {
             if (state)
-                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(0, 0.5f, (elapsedTime / duration)));
+                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(0, 1f, (elapsedTime / duration)));
             else
-                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(0.5f, 0, (elapsedTime / duration)));
+                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(1f, 0, (elapsedTime / duration)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         //onComplete
         if (onFadeComplete != null)
             onFadeComplete.Raise();
-
     }
 }
