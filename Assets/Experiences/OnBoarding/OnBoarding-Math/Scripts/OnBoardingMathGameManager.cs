@@ -86,7 +86,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     void hideParticle()
     {
-        powderParticleTemp.SetActive(false);
+        powderParticleParent.gameObject.SetActive(false);
     }
     #endregion
 
