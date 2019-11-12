@@ -13,7 +13,7 @@ public class interactions : MonoBehaviour
     [SerializeField] GameObject planeTarget, objectToPlace, objectToPlaceParent, indicator;
     // [SerializeField] Text state;
     [SerializeField] Vector2 targetSize;
-    [SerializeField] ARSessionOrigin Arcamera;
+    [SerializeField] ARSessionOrigin sessionOrgign;
     [SerializeField] Material[] mats;
     [SerializeField] GameEvent objectedPlaced;
     public ARRaycastManager arOrigin;
@@ -24,8 +24,17 @@ public class interactions : MonoBehaviour
     bool planeFound = false;
     public bool canSet;
     bool firstTime = true;
+    static interactions instance;
 
+    public static interactions Instance { get => instance; set => instance = value; }
+    public ARSessionOrigin SessionOrgign { get => sessionOrgign; set => sessionOrgign = value; }
 
+    private void Awake ()
+    {
+
+        if ( Instance == null )
+            Instance = this;
+    }
     private void Start()
     {
         /*  arOrigin = FindObjectOfType<ARRaycastManager> ();
@@ -64,7 +73,7 @@ public class interactions : MonoBehaviour
 
     private void UpdateTargetPoSe()
     {
-        var screenCenter = Arcamera.camera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        var screenCenter = SessionOrgign.camera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
         arOrigin.Raycast(screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
         planeFound = hits.Count > 0;
