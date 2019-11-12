@@ -13,7 +13,7 @@ public class interactions : MonoBehaviour
     [SerializeField] GameObject planeTarget, objectToPlace, objectToPlaceParent, indicator;
     // [SerializeField] Text state;
     [SerializeField] Vector2 targetSize;
-    [SerializeField] ARSessionOrigin sessionOrgign;
+    [SerializeField] ARSessionOrigin sessionOrigin;
     [SerializeField] Material [] mats;
     [SerializeField] GameEvent objectedPlaced;
     [SerializeField] GameEvent foundSurface;
@@ -27,6 +27,10 @@ public class interactions : MonoBehaviour
     bool firstTime = true;
     bool isSurfaceFound;
     [SerializeField] bool isFoundedOnce;
+    static interactions instance;
+
+    public ARSessionOrigin SessionOrigin { get => sessionOrigin; set => sessionOrigin = value; }
+    public static interactions Instance { get => instance; set => instance = value; }
 
     private void Awake ()
     {
@@ -72,7 +76,7 @@ public class interactions : MonoBehaviour
 
     private void UpdateTargetPoSe ()
     {
-        var screenCenter = SessionOrgign.camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f));
+        var screenCenter = SessionOrigin.camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f));
         var hits = new List<ARRaycastHit> ();
         arOrigin.Raycast (screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
         planeFound = hits.Count > 0;

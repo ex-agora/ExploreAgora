@@ -9,7 +9,7 @@ public class FaceCamera : MonoBehaviour
     public Transform Target { get => target; set => target = value; }
     private void Start ()
     {
-        Target =  interactions.Instance.SessionOrgign.camera.transform;
+        Target =  interactions.Instance.SessionOrigin.camera.transform;
     }
 
     void Update()
