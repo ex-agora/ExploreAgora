@@ -8,6 +8,10 @@ public class TutorialPanelController : MonoBehaviour
 {
     [SerializeField] Animator tutorialPanelAnimator;
     [SerializeField] Button okButton;
+    [SerializeField] string tutorialTextStr;
+    [SerializeField] Text tutorialText;
+
+    public string TutorialTextStr { get => tutorialTextStr; set => tutorialTextStr = value; }
 
     /// Hide tutorial panel.
     /// Called in CloseTutorial function.
@@ -48,9 +52,12 @@ public class TutorialPanelController : MonoBehaviour
     public void OpenTutorial()
     {
         DisactiveButton();
+        SetTextInfo();
         ShowTutorial();
     }
-
+    void SetTextInfo() {
+        tutorialText.text = TutorialTextStr;
+}
     /// Called whenever need to make Ok_Btn interactable.
     public void ActiveOkButton()
     {

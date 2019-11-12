@@ -28,7 +28,8 @@ public class LabelWorldHandler : MonoBehaviour
  
     private void SetlabelAnimState ()
     {
-        anim?.SetBool ("isOpen" , isOpen);
+        if (anim != null)
+            anim?.SetBool("isOpen", isOpen);
 
     }
     public void ShowLabel ()
