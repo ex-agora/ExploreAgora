@@ -50,7 +50,7 @@ public class DragToWorldEdit : MonoBehaviour
 	public void CheckDrag ()
 	{
        
-        ray = interactions.Instance.Arcamera.camera.ScreenPointToRay(transform.position);
+        ray = interactions.Instance.SessionOrigin.camera.ScreenPointToRay(transform.position);
         //if current finger position hits the dedicated target 
         if (Physics.Raycast(ray, out hit))
         {
