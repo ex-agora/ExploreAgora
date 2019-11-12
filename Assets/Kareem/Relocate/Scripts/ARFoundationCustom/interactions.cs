@@ -14,8 +14,9 @@ public class interactions : MonoBehaviour
     // [SerializeField] Text state;
     [SerializeField] Vector2 targetSize;
     [SerializeField] ARSessionOrigin sessionOrgign;
-    [SerializeField] Material[] mats;
+    [SerializeField] Material [] mats;
     [SerializeField] GameEvent objectedPlaced;
+    [SerializeField] GameEvent foundSurface;
     public ARRaycastManager arOrigin;
     public ARPlaneManager aRPlaneManager;
     [SerializeField] PlaneDetectionController planeDetectionController;
@@ -24,74 +25,77 @@ public class interactions : MonoBehaviour
     bool planeFound = false;
     public bool canSet;
     bool firstTime = true;
-    static interactions instance;
-
-    public static interactions Instance { get => instance; set => instance = value; }
-    public ARSessionOrigin SessionOrgign { get => sessionOrgign; set => sessionOrgign = value; }
+    bool isSurfaceFound;
+    [SerializeField] bool isFoundedOnce;
 
     private void Awake ()
     {
 
-        if ( Instance == null )
+        if (Instance == null)
             Instance = this;
     }
-    private void Start()
+    private void Start ()
     {
         /*  arOrigin = FindObjectOfType<ARRaycastManager> ();
           aRPlaneManager = FindObjectOfType<ARPlaneManager> ();*/
         // Arcamera.transform.localScale = new Vector3 (targetSize.x, targetSize.y, Arcamera.transform.localScale.z);
-        indicator.transform.localScale = new Vector3(targetSize.x, targetSize.y, indicator.transform.localScale.z);
+        indicator.transform.localScale = new Vector3 (targetSize.x, targetSize.y, indicator.transform.localScale.z);
     }
-    void Update()
+    void Update ()
     {
-        UpdateTargetPoSe();
+        UpdateTargetPoSe ();
     }
 
-    public void placeTheObject()
+    public void placeTheObject ()
     {
-        objectToPlaceParent.SetActive(true);
+        objectToPlaceParent.SetActive (true);
         if (firstTime)
         {
             objectToPlaceParent.transform.position = targetPose.position;
             objectToPlaceParent.transform.rotation = targetPose.rotation;
-            GameObject obj = Instantiate(objectToPlace, targetPose.position, targetPose.rotation);
+            GameObject obj = Instantiate (objectToPlace, targetPose.position, targetPose.rotation);
             //obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
             obj.transform.parent = objectToPlaceParent.transform;
             firstTime = false;
-            objectedPlaced.Raise();
+            objectedPlaced.Raise ();
         }
         else
         {
             objectToPlaceParent.transform.position = targetPose.position;
             objectToPlaceParent.transform.rotation = targetPose.rotation;
         }
-        planeDetectionController.TogglePlaneDetection();
-        planeTarget.SetActive(false);
+        planeDetectionController.TogglePlaneDetection ();
+        planeTarget.SetActive (false);
         relocate.interactable = true;
-        AudioManager.Instance.Play("placeObject", "Activity");
+        AudioManager.Instance.Play ("placeObject", "Activity");
     }
 
-    private void UpdateTargetPoSe()
+    private void UpdateTargetPoSe ()
     {
-        var screenCenter = SessionOrgign.camera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
-        var hits = new List<ARRaycastHit>();
-        arOrigin.Raycast(screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
+        var screenCenter = SessionOrgign.camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f));
+        var hits = new List<ARRaycastHit> ();
+        arOrigin.Raycast (screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
         planeFound = hits.Count > 0;
 
         if (planeFound)
         {
+            if ((!isFoundedOnce || !isSurfaceFound) && foundSurface != null)
+            {
+                isSurfaceFound = true;
+                foundSurface?.Raise ();
+            }
             //planeTarget.SetActive(true);
-            planeTarget.transform.SetPositionAndRotation(targetPose.position, targetPose.rotation);
+            planeTarget.transform.SetPositionAndRotation (targetPose.position, targetPose.rotation);
             //Debug.Log(planeFound);
-            targetPose = hits[0].pose;
+            targetPose = hits [0].pose;
             var cameraForward = Camera.current.transform.forward;
-            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
-            targetPose.rotation = Quaternion.LookRotation(cameraBearing);
-            ARPlane rrr = aRPlaneManager.GetPlane(hits[0].trackableId);
+            var cameraBearing = new Vector3 (cameraForward.x, 0, cameraForward.z).normalized;
+            targetPose.rotation = Quaternion.LookRotation (cameraBearing);
+            ARPlane rrr = aRPlaneManager.GetPlane (hits [0].trackableId);
             if (rrr.size.x >= targetSize.x && rrr.size.y >= targetSize.y)
             {
                 // state.text = "Found";
-                planeTarget.GetComponentInChildren<MeshRenderer>().material = mats[0];
+                planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [0];
                 canSet = true;
             }
             else
@@ -99,16 +103,15 @@ public class interactions : MonoBehaviour
                 //Debug.Log(rrr.size);
                 // state.text = "Lost";
                 canSet = false;
-                planeTarget.GetComponentInChildren<MeshRenderer>().material = mats[1];
+                planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [1];
             }
 
         }
     }
 
-
-    public void hideShowArComponents(bool state)
+    public void hideShowArComponents (bool state)
     {
-        objectToPlace.SetActive(state);
-        planeTarget.SetActive(state);
+        objectToPlace.SetActive (state);
+        planeTarget.SetActive (state);
     }
 }
