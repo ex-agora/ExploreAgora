@@ -12,7 +12,7 @@ public class ForwardsBackwardDetector : MonoBehaviour
     public bool isMovingForward;
     public bool isMovingBackward;
     public Vector3 LastPOS;
-    public Vector3 NeztPOS;
+    public Vector3 NextPOS;
 
     private void Start()
     {
@@ -41,21 +41,21 @@ public class ForwardsBackwardDetector : MonoBehaviour
 
     void LateUpdate()
     {
-        NeztPOS.z = transform.position.z;
-        if (LastPOS.z < NeztPOS.z)
+        NextPOS.z = transform.position.z;
+        if (LastPOS.z < NextPOS.z)
         {
             //isMovingForward = true;
             //isMovingBackward = false;
 
-            snappingManager.isForward = true;
             Debug.Log("Forward");
+            snappingManager.isForward = false;
         }
-        if (LastPOS.z > NeztPOS.z)
+        if (LastPOS.z > NextPOS.z)
         {
+            snappingManager.isForward = true;
             //isMovingBackward = true;
             //isMovingForward = false;
 
-            snappingManager.isForward = false;
             Debug.Log("backward");
 
         }
@@ -65,7 +65,7 @@ public class ForwardsBackwardDetector : MonoBehaviour
         //    isMovingBackward = false;
         //}
 
-        LastPOS.z = NeztPOS.z;
+        LastPOS.z = NextPOS.z;
     }
 
 

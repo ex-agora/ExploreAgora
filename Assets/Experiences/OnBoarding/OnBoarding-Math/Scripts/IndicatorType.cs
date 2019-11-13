@@ -6,7 +6,8 @@ public class IndicatorType : MonoBehaviour
 {
     public enum Type
     {
-        indicator
+        indicator,
+        none
     }
     public Type type;
 }
