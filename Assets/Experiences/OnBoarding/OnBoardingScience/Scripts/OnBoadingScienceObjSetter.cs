@@ -4,12 +4,30 @@ using UnityEngine;
 
 public class OnBoadingScienceObjSetter : MonoBehaviour
 {
-    [SerializeField] GameObject bookObj;
+    [SerializeField] FadeInOut bookCoverObj;
+    [SerializeField] FadeInOut bookPaperObj;
+    [SerializeField] FadeInOut bookLockCoverObj;
+    [SerializeField] FadeInOut bookP1Obj;
+    [SerializeField] FadeInOut bookP2Obj;
+    [SerializeField] FadeInOut bookP3Obj;
+    [SerializeField] FadeInOut bookP4Obj;
     [SerializeField] GameObject coalObj;
 
     public void ObjectContainSetter()
     {
-        bookObj.SetActive(false);
+        FadeOutBook();
+        Invoke(nameof(ActeiveCoalObj), 2.5f);
+    }
+    void ActeiveCoalObj() {
         coalObj.SetActive(true);
+    }
+    void FadeOutBook() {
+        bookCoverObj.fadeInOut(false);
+        bookPaperObj.fadeInOut(false);
+        bookLockCoverObj.fadeInOut(false);
+        bookP1Obj.fadeInOut(false);
+        bookP2Obj.fadeInOut(false);
+        bookP3Obj.fadeInOut(false);
+        bookP4Obj.fadeInOut(false);
     }
 }

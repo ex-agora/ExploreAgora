@@ -36,5 +36,8 @@ public class GrinderInteractions : MonoBehaviour
     {
         Invoke(nameof(PlaceCoalPowder), 0.65f);
     }
+    public void MoveUp() {
+        coalGrinderAnim.SetTrigger("Move");
+    }
 
 }

@@ -487,22 +487,22 @@ PrefabInstance:
     - target: {fileID: 8521315293755027705, guid: 628ea17716c1bb248b9edda2abe7d318,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4
+      value: 0.299
       objectReference: {fileID: 0}
     - target: {fileID: 8521315293755027705, guid: 628ea17716c1bb248b9edda2abe7d318,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: -0.191
       objectReference: {fileID: 0}
     - target: {fileID: 7150262818293096594, guid: 628ea17716c1bb248b9edda2abe7d318,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 0.323
       objectReference: {fileID: 0}
     - target: {fileID: 7150262818293096594, guid: 628ea17716c1bb248b9edda2abe7d318,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: -0.0035
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 628ea17716c1bb248b9edda2abe7d318, type: 3}
@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 191604667}
   - component: {fileID: 191604668}
   - component: {fileID: 191604669}
+  - component: {fileID: 191604670}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -670,6 +671,35 @@ MonoBehaviour:
   eventSystem:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &191604670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191604663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 8148aa3ffb32f1c4eac262bea61307da, type: 2}
+  eventSystem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 191604666}
+        m_MethodName: Test
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &245719235
@@ -1205,22 +1235,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 151312915}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &391295549
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391295548}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &391295550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,19 +1244,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 391295548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077f31d24355990498da812a742bfba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97117e3a83f008e49b45e83f83773694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBeginDrag: {fileID: 0}
-  onDrag: {fileID: 0}
-  ArCam: {fileID: 0}
-  axis: 0
-  draggingMode: 0
-  dragObjectCheck: {fileID: 0}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  Target: {fileID: 0}
+  Snap: 0
+  TriggerEventsOnMouseUp: 0
+  axis: 3
+  OnTargetHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnTargetMiss:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isReturn: 1
+  onDragEnd: {fileID: 11400000, guid: 8148aa3ffb32f1c4eac262bea61307da, type: 2}
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
-  isclipping: 0
-  onEndDragOnly: {fileID: 0}
 --- !u!65 &391295553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1944,6 +1969,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682121357}
   m_CullTransparentMesh: 0
+--- !u!1 &705584696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705584697}
+  - component: {fileID: 705584700}
+  - component: {fileID: 705584699}
+  - component: {fileID: 705584698}
+  m_Layer: 8
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705584697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705584696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0956, z: 0}
+  m_LocalScale: {x: 0.12308325, y: 0.12308325, z: 0.12308325}
+  m_Children: []
+  m_Father: {fileID: 1689599147}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &705584698
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705584696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &705584699
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705584696}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &705584700
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705584696}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &716838305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,6 +2312,11 @@ PrefabInstance:
       propertyPath: isFoundedOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4396628156767085688, guid: 83054ffa48062f24bbe129ce2321a81c,
+        type: 3}
+      propertyPath: sessionOrigin
+      value: 
+      objectReference: {fileID: 4509415}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83054ffa48062f24bbe129ce2321a81c, type: 3}
 --- !u!114 &784749274 stripped
@@ -2231,7 +2354,7 @@ MonoBehaviour:
   onEndDragToIncorrectPosition: {fileID: 0}
   onEndDragToAnyPosition: {fileID: 0}
   isDraggableAgain: 0
---- !u!114 &846579376
+--- !u!114 &846579377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2240,35 +2363,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 846579374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077f31d24355990498da812a742bfba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97117e3a83f008e49b45e83f83773694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBeginDrag: {fileID: 0}
-  onDrag: {fileID: 0}
-  ArCam: {fileID: 0}
-  axis: 0
-  draggingMode: 0
-  dragObjectCheck: {fileID: 0}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  Target: {fileID: 0}
+  Snap: 0
+  TriggerEventsOnMouseUp: 0
+  axis: 3
+  OnTargetHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnTargetMiss:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isReturn: 1
+  onDragEnd: {fileID: 11400000, guid: 8148aa3ffb32f1c4eac262bea61307da, type: 2}
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
-  isclipping: 0
-  onEndDragOnly: {fileID: 0}
---- !u!54 &846579377
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846579374}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &846579379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2444,23 +2562,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 151312915}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1268903889
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268903888}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1268903890
+--- !u!114 &1268903889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2469,19 +2571,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268903888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077f31d24355990498da812a742bfba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97117e3a83f008e49b45e83f83773694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBeginDrag: {fileID: 0}
-  onDrag: {fileID: 0}
-  ArCam: {fileID: 0}
-  axis: 0
-  draggingMode: 0
-  dragObjectCheck: {fileID: 0}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  Target: {fileID: 0}
+  Snap: 0
+  TriggerEventsOnMouseUp: 0
+  axis: 3
+  OnTargetHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnTargetMiss:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isReturn: 1
+  onDragEnd: {fileID: 11400000, guid: 8148aa3ffb32f1c4eac262bea61307da, type: 2}
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
-  isclipping: 0
-  onEndDragOnly: {fileID: 0}
 --- !u!65 &1268903893
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3048,6 +3161,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!4 &1689599147 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5360046017743768930, guid: 628ea17716c1bb248b9edda2abe7d318,
+    type: 3}
+  m_PrefabInstance: {fileID: 151312915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1821359184
 GameObject:
   m_ObjectHideFlags: 0

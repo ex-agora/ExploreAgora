@@ -106,7 +106,7 @@ public class OldDragable : MonoBehaviour
     private void OnMouseUp()
     {
         onDragEnd?.Raise();
-        //Exit();
+        Exit();
         /* if (TriggerEventsOnMouseUp && insideDraggingArea)
          {
              if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);

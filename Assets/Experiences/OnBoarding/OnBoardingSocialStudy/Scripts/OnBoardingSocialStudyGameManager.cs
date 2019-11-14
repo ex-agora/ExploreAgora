@@ -84,5 +84,6 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
         groundIndicatorTutorialHandler.OpenIndicator();
         InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
     }
+    public void Test() { Debug.Log("Test Drag"); }
     #endregion Methods
 }

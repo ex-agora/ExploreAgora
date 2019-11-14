@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
-    private MeshRenderer gameObjecMat;
+    private Material gameObjecMat;
     [SerializeField] GameEvent onFadeComplete;
+    [SerializeField] float fadeDuration = 0.5f;
+    MeshRenderer meshRenderer;
+    SkinnedMeshRenderer skinnedMeshRenderer;
+    public GameEvent OnFadeComplete { get => onFadeComplete; set => onFadeComplete = value; }
 
     private void Awake()
     {
-        gameObjecMat = GetComponent<MeshRenderer>();
+
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer != null) {
+            gameObjecMat = meshRenderer.material;
+            return;
+        }
+        skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        if (skinnedMeshRenderer != null) {
+            gameObjecMat = skinnedMeshRenderer.material;
+        }
     }
 
     // false means fade out  
     public void fadeInOut(bool state)
     {
-        StartCoroutine(startFading(state, 0.5f));
+        StartCoroutine(startFading(state, fadeDuration));
     }
-
-
-
-    
 
     IEnumerator startFading(bool state, float duration)
     {
@@ -30,14 +39,15 @@ public class FadeInOut : MonoBehaviour
         while (elapsedTime < duration)
         {
             if (state)
-                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(0, 1f, (elapsedTime / duration)));
+                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(0, 1f, (elapsedTime / duration)));
             else
-                gameObjecMat.material.SetFloat("_Transparency", Mathf.Lerp(1f, 0, (elapsedTime / duration)));
+                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(1f, 0, (elapsedTime / duration)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        gameObjecMat.SetFloat("_Transparency", state ? 1 : 0);
         //onComplete
-        if (onFadeComplete != null)
-            onFadeComplete.Raise();
+        if (OnFadeComplete != null)
+            OnFadeComplete.Raise();
     }
 }
