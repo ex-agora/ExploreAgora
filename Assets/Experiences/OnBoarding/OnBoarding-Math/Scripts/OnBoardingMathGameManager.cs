@@ -22,7 +22,8 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] Texture bookPuzzleTex;
     [SerializeField] ToolBarHandler barHandler;
     [SerializeField] TutorialPanelController tutorial;
-
+    [SerializeField] SummaryHandler finalSummary;
+    [SerializeField] RecapImgHandler imgHandler;
     [SerializeField] Transform[] HotSpots;
     [SerializeField] List<Transform> hotSpotsPivots;
     [SerializeField] List<OldDragable> Draggables;
@@ -234,13 +235,19 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
             AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
             //final summary 
+            finalSummary.ViewSummary();
+            Invoke(nameof(StartAnim), 2f);
         }
     }
-
+    void StartAnim() {
+        imgHandler.PlayAnimation();
+    }
     public void testttt()
     {
         AudioManager.Instance.Play("openLock", "Activity");
         BookAnimator.SetTrigger("openClip");
+        finalSummary.ViewSummary();
+        Invoke(nameof(StartAnim), 2f);
         //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
         //ookParticleTemp.transform.localPosition = Vector3.zero;
         //bookParticleTemp.GetComponent<ParticleSystem>().Play();

@@ -10,6 +10,7 @@ public class OldDragable : MonoBehaviour
     public Collider Target;
     public bool Snap;
     public bool TriggerEventsOnMouseUp = false;
+    Vector3 hitpPointVec;
     [SerializeField] DraggableAxis axis;
     public UnityEvent OnTargetHit; //When the draggable object is dragged to the target position.
     public UnityEvent OnTargetMiss; //When the draggable object is dragged to a wrong position.
@@ -54,24 +55,33 @@ public class OldDragable : MonoBehaviour
         {
 
             Ray ray = interactions.Instance.SessionOrigin.camera.ScreenPointToRay(Input.mousePosition);
+            Vector3 origin = interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint(Input.mousePosition);
             /*  if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, ~GroundLayers))
                   return;*/
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, GroundLayers))
             {
+                Debug.Log("ffffffffffffff");
+
+                //hitpPointVec = transform.worldToLocalMatrix.MultiplyPoint3x4(hitInfo.point);
+                //hitpPointVec = hitInfo.collider.transform.InverseTransformPoint(hitInfo.point);
+                float ang = Vector3.Angle(hitInfo.transform.forward, Vector3.forward);
+                hitpPointVec = Quaternion.AngleAxis(ang, Vector3.up) * hitInfo.point;
+                Debug.LogError(ang);
+                
                 switch (axis)
                 {
                     case DraggableAxis.X_Axis:
-                        transform.position = new Vector3(hitInfo.point.x, transform.position.y, transform.position.z);
+                        transform.position = new Vector3(hitpPointVec.x, transform.position.y, transform.position.z);
                         break;
                     case DraggableAxis.Y_Axis:
-                        transform.position = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
+                        transform.position = new Vector3(transform.position.x, hitpPointVec.y, transform.position.z);
                         break;
                     case DraggableAxis.Z_Axis:
-                        transform.position = new Vector3(transform.position.x, transform.position.y, hitInfo.point.z);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, hitpPointVec.z);
                         //transform.position = Mathf.Clamp(cursorPosition.z, clippingTargetMin.position.z, clippingTargetMax.position.z);
                         break;
                     case DraggableAxis.XZ_Surface:
-                        transform.position = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
+                        transform.position = new Vector3(hitpPointVec.x, transform.position.y, hitpPointVec.z);
                         break;
                 }
                 //transform.position = new Vector3(transform.position.x, transform.position.y, hitInfo.point.z);
