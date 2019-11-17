@@ -12,6 +12,8 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
     [SerializeField] List<HotSpotGroupManager> spotGroupManagers;
     [SerializeField] HeaderBarHandler headerBarHandler;
     [SerializeField] SummaryHandler finalSummary;
+    [SerializeField] SpeechBubbleController bubbleController;
+    [SerializeField] MenuUIHandler menuUI;
     static OnBoardingGameManager instance;
     private bool isFirstDone;
     private bool nextState;
@@ -27,6 +29,9 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
     {
         AudioManager.Instance.Play("bg", "Background");
         Invoke(nameof(StartMachine), 2f);
+    }
+    public void GoToNextState() {
+        nextState = true;
     }
 
     private void StartMachine()
@@ -56,6 +61,8 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
     public void EndSecondPhase()
     {
         headerBarHandler.CloseBar();
+        bubbleController.StopSpeech();
+        menuUI.StopMenuInteraction();
         finalSummary.ViewSummary();
     }
 

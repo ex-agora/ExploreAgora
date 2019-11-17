@@ -6,7 +6,9 @@ public class GrinderInteractions : MonoBehaviour
 {
     [SerializeField] GameEvent afterGrinderComplete;
     [SerializeField] GameObject coalPowder;
+    [SerializeField] GameObject coalPowderHotSpot;
     [SerializeField] Animator coalGrinderAnim;
+    [SerializeField] ParticleSystem particle;
     float updateRate = 1;
     float duration = 5;
 
@@ -21,9 +23,12 @@ public class GrinderInteractions : MonoBehaviour
         if (duration <= 0)
         {
             CancelInvoke(nameof(CustomUpdate));
-            afterGrinderComplete?.Raise();
             coalGrinderAnim.SetTrigger("Fire");
+            Invoke(nameof(AfterComplete), 0.788322f);
         }
+    }
+    void AfterComplete() {
+        afterGrinderComplete?.Raise();
     }
     public void StartGrinder()
     {
@@ -38,6 +43,18 @@ public class GrinderInteractions : MonoBehaviour
     }
     public void MoveUp() {
         coalGrinderAnim.SetTrigger("Move");
+        Invoke(nameof(PlayPS), 4.5f);
+    }
+    public void PlayPS() {
+        particle.gameObject.SetActive(true);
+        particle.Play();
+    }
+    void ShowFinalSpot() {
+        OnBoardingGameManager.Instance.GoToNextState();
+        coalPowderHotSpot.SetActive(true);
+    }
+    public void PlayPlaceSFX() {
+
     }
 
 }

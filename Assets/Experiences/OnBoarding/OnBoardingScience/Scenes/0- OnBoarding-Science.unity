@@ -240,10 +240,10 @@ MonoBehaviour:
   - bubbleType: 1
     textInfo: Find an Exploratory Zone
   - bubbleType: 1
-    textInfo: "There\u2019s a Wise Dot somewhere here! Move around until you find
+    textInfo: "There\u2019s a Wise Dot somewhere here! Walk around until you find
       it to reveal the clue."
   - bubbleType: 1
-    textInfo: As described in the clue, use the grinder to turn the coal into powder.
+    textInfo: The clue will help you turn the coal into powder
   - bubbleType: 1
     textInfo: Now we have the coal powder. TAP to take it to our next mission.
 --- !u!4 &72801671
@@ -415,7 +415,7 @@ PrefabInstance:
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
@@ -487,6 +487,16 @@ PrefabInstance:
       propertyPath: handler
       value: 
       objectReference: {fileID: 319991291}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: relocateBtn
+      value: 
+      objectReference: {fileID: 1460455027}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: menuBtn
+      value: 
+      objectReference: {fileID: 317582904}
     - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_Colors.m_ColorMultiplier
@@ -504,6 +514,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee23c5f9f93d524997ead257a2e6d6f, type: 3}
+--- !u!114 &317582904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2617313999121404872, guid: cee23c5f9f93d524997ead257a2e6d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 317582903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319991291
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +563,8 @@ MonoBehaviour:
   spotGroupManagers: []
   headerBarHandler: {fileID: 1778250357}
   finalSummary: {fileID: 5393014111791694818}
+  bubbleController: {fileID: 5393014111397541931}
+  menuUI: {fileID: 0}
 --- !u!4 &319991293
 Transform:
   m_ObjectHideFlags: 0
@@ -1994,7 +2018,7 @@ RectTransform:
   - {fileID: 1283461066}
   - {fileID: 904592769}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2382,7 +2406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 247}
+  m_AnchoredPosition: {x: 3, y: -79}
   m_SizeDelta: {x: 341.9, y: 151.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119261291
@@ -2398,7 +2422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2407,7 +2431,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 073fbc4b9a10f454bb4e8629b93c029c, type: 3}
-    m_FontSize: 49
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2778,10 +2802,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 952864494}
   - {fileID: 5393014110715688395}
   - {fileID: 5393014111791694828}
   - {fileID: 1778250353}
+  - {fileID: 952864494}
   m_Father: {fileID: 5393014112273991795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2986,7 +3010,7 @@ RectTransform:
   - {fileID: 5393014111997166895}
   - {fileID: 5393014111397541911}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3504,7 +3528,7 @@ RectTransform:
   m_Children:
   - {fileID: 5393014110675719230}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

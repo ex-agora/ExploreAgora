@@ -9,7 +9,10 @@ public class CoalTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<FadeInOut>() != null)
+        {
+            AudioManager.Instance.Play("placeObject", "Activity");
             AfterDragging.Raise();
+        }
         
     }
 }

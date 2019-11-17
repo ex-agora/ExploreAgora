@@ -11,6 +11,7 @@ public class OnBoadingScienceObjSetter : MonoBehaviour
     [SerializeField] FadeInOut bookP2Obj;
     [SerializeField] FadeInOut bookP3Obj;
     [SerializeField] FadeInOut bookP4Obj;
+    [SerializeField] FadeInOut bookP5Obj;
     [SerializeField] GameObject coalObj;
 
     public void ObjectContainSetter()
@@ -29,5 +30,6 @@ public class OnBoadingScienceObjSetter : MonoBehaviour
         bookP2Obj.fadeInOut(false);
         bookP3Obj.fadeInOut(false);
         bookP4Obj.fadeInOut(false);
+        bookP5Obj.fadeInOut(false);
     }
 }
