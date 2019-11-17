@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MenuUIHandler : MonoBehaviour
 {
+    [SerializeField] Button menuBtn;
+    [SerializeField] Button relocateBtn;
     [SerializeField] Sprite openMenuSprite;
     [SerializeField] Sprite cloesMenuSprite;
     [SerializeField] Image menuBtnImg;
@@ -61,6 +63,11 @@ public class MenuUIHandler : MonoBehaviour
         if (AudioManager.Instance != null) {
             AudioManager.Instance.AudioController(indexSoundSprite);
         }
+    }
+    public void StopMenuInteraction() {
+        IsOpen = false;
+        menuBtn.interactable = false;
+        relocateBtn.interactable = false;
     }
     public void ResetLevel() => menuHandler.ResetLevel();
     public void GoToHome() => menuHandler.GoTOHome();

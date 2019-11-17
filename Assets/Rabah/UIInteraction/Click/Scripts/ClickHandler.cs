@@ -10,5 +10,6 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         AfterClick.Raise();
+        AudioManager.Instance?.Play("UIAction", "UI");
     }
 }

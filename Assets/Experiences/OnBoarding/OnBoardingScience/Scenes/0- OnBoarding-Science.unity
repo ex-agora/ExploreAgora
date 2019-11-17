@@ -238,12 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextInfoHolder:
   - bubbleType: 1
-    textInfo: Find a flat surface
+    textInfo: Find an Exploratory Zone
   - bubbleType: 1
-    textInfo: "There\u2019s a Wise Dot somewhere here. Move around until you find
-      it then tap on it."
+    textInfo: "There\u2019s a Wise Dot somewhere here! Walk around until you find
+      it to reveal the clue."
   - bubbleType: 1
-    textInfo: As described in the clue, use the grinder to turn the coal into powder.
+    textInfo: The clue will help you turn the coal into powder
   - bubbleType: 1
     textInfo: Now we have the coal powder. TAP to take it to our next mission.
 --- !u!4 &72801671
@@ -415,7 +415,7 @@ PrefabInstance:
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
@@ -487,6 +487,16 @@ PrefabInstance:
       propertyPath: handler
       value: 
       objectReference: {fileID: 319991291}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: relocateBtn
+      value: 
+      objectReference: {fileID: 1460455027}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: menuBtn
+      value: 
+      objectReference: {fileID: 317582904}
     - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_Colors.m_ColorMultiplier
@@ -504,6 +514,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee23c5f9f93d524997ead257a2e6d6f, type: 3}
+--- !u!114 &317582904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2617313999121404872, guid: cee23c5f9f93d524997ead257a2e6d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 317582903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319991291
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +563,8 @@ MonoBehaviour:
   spotGroupManagers: []
   headerBarHandler: {fileID: 1778250357}
   finalSummary: {fileID: 5393014111791694818}
+  bubbleController: {fileID: 5393014111397541931}
+  menuUI: {fileID: 0}
 --- !u!4 &319991293
 Transform:
   m_ObjectHideFlags: 0
@@ -974,6 +998,11 @@ PrefabInstance:
       propertyPath: m_Pitch
       value: 1.34
       objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Priority
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -983,6 +1012,26 @@ PrefabInstance:
         type: 3}
       propertyPath: Loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Priority
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426328245678, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Priority
+      value: 154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426328245678, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.776
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2e8f503748622429623909fa188f46, type: 3}
@@ -1969,7 +2018,7 @@ RectTransform:
   - {fileID: 1283461066}
   - {fileID: 904592769}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2323,6 +2372,87 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!1 &2119261289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119261290}
+  - component: {fileID: 2119261292}
+  - component: {fileID: 2119261291}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2119261290
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119261289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5393014110254899948}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: -79}
+  m_SizeDelta: {x: 341.9, y: 151.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2119261291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119261289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 073fbc4b9a10f454bb4e8629b93c029c, type: 3}
+    m_FontSize: 35
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 251
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Coal
+
+    Powder'
+--- !u!222 &2119261292
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119261289}
+  m_CullTransparentMesh: 0
 --- !u!114 &5393014110254899938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2373,6 +2503,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5393014111950765518}
+  - {fileID: 2119261290}
   m_Father: {fileID: 5393014110675719230}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2605,9 +2736,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8101f0eac982a6f4380bee4bac172f12, type: 3}
-    m_FontSize: 28
+    m_FontSize: 43
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 62
     m_Alignment: 0
@@ -2671,10 +2802,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 952864494}
   - {fileID: 5393014110715688395}
   - {fileID: 5393014111791694828}
   - {fileID: 1778250353}
+  - {fileID: 952864494}
   m_Father: {fileID: 5393014112273991795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2879,7 +3010,7 @@ RectTransform:
   - {fileID: 5393014111997166895}
   - {fileID: 5393014111397541911}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3397,7 +3528,7 @@ RectTransform:
   m_Children:
   - {fileID: 5393014110675719230}
   m_Father: {fileID: 5393014110646193297}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
