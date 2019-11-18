@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloudAfterDargging : MonoBehaviour
+public class PSSCloudAfterDargging : MonoBehaviour
 {
     [SerializeField] RainTextureHandler rain;
     public void PlayRainAnim ()

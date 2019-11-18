@@ -34,9 +34,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public void OnBeginDrag (PointerEventData eventData)
     {
         MyPosition = transform.position;
-        screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
+        screenPoint = interactions.Instance.SessionOrigin.camera.WorldToScreenPoint (gameObject.transform.position);
         //screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+        offset = gameObject.transform.position - interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint(
             new Vector3(eventData.position.x, screenPoint.y, screenPoint.z));
         //offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
         //    new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
@@ -50,7 +50,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         cursorScreenPoint.z = screenPoint.z;
 
         //-------------------------------------------------------
-        cursorPosition = Camera.main.ScreenToWorldPoint (cursorScreenPoint);
+        cursorPosition = interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint (cursorScreenPoint);
         //cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
         cursorPosition.x += offset.x;
         cursorPosition.y += offset.y;

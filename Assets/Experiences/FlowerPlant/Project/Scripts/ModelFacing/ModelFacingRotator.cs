@@ -7,16 +7,17 @@ public class ModelFacingRotator : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] bool isFaceOnEnble;
     Vector3 taregPos;
-    private void OnEnable()
+    private void OnEnable ()
     {
-        target = target == null ? PlantPartsGameManager.Instance.ArCamera.transform : target;
-        if (isFaceOnEnble)
-            Face();
+        target = target == null ? interactions.Instance.SessionOrigin.camera.transform : target;
+        if ( isFaceOnEnble )
+            Face ();
     }
-    public void Face() {
-        taregPos.x = target.position.x; 
-        taregPos.y = transform.position.y; 
-        taregPos.z = target.position.z;                       
-        transform.LookAt(taregPos);
+    public void Face ()
+    {
+        taregPos.x = target.position.x;
+        taregPos.y = transform.position.y;
+        taregPos.z = target.position.z;
+        transform.LookAt (taregPos);
     }
 }

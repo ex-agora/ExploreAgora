@@ -7,7 +7,6 @@ public class PSSPlantTransitionHandler : MonoBehaviour
     float duration;
     float repeatRate = 0.05f;
     float step;
-    [SerializeField] Animator plantAnimator;
     [SerializeField] BlendShapeHandler plantTransition;
     //plantTransition
     public void PlantTransition ()
@@ -15,7 +14,6 @@ public class PSSPlantTransitionHandler : MonoBehaviour
         duration = 2.5f;
         step = 7.5f / ( duration / repeatRate );
         InvokeRepeating (nameof (CustomUpdate) , 0 , repeatRate);
-        plantAnimator.SetBool ("PlantTransition" , true);
     }
     void CustomUpdate ()
     {
@@ -27,7 +25,6 @@ public class PSSPlantTransitionHandler : MonoBehaviour
         print ("Sugar And O2 Animation");
         if ( duration <= 0.0f )
         {
-            PhotosynthesisGameManager.Instance.FinalSmallSummary.ViewSummary ();
             CancelInvoke (nameof (CustomUpdate));
         }
     }
