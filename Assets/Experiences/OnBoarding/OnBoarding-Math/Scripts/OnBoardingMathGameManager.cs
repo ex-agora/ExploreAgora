@@ -31,7 +31,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] RuntimeAnimatorController[] animators;
     [SerializeField] Transform powderParticle, bookParticle;
     [SerializeField] SpeechBubbleController bubbleController;
-
+    [SerializeField] MenuUIHandler menu;
     [SerializeField] GameEvent onTutorialReadyPressed;
     public int score;
     GameObject canvas;
@@ -105,7 +105,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
 
     public void tutorialSteps()
-    { 
+    {
         if (phases != Phases.FirstPhase)
             return;
         else
@@ -159,7 +159,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         hotSpotsPivots.Add(pivot);
     }
-    
+
     public void AddDraggables(OldDragable d)
     {
         Draggables.Add(d);
@@ -168,12 +168,12 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void activateDeactivateDraggables(bool state)
     {
+        Debug.Log("QQWWWSSSZZZ");
         foreach (var item in Draggables)
         {
-            if (state)
-                item.enabled = true;
-            else
-                item.enabled = false;
+
+        Debug.Log("QQWWWSSSZZZ 0000");
+            item.enabled = state;
         }
     }
 
@@ -235,18 +235,27 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
             AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
             //final summary 
-            finalSummary.ViewSummary();
+            Invoke(nameof(FinalSummary), 6);
+            //finalSummary.ViewSummary();
             Invoke(nameof(StartAnim), 2f);
         }
     }
-    void StartAnim() {
+    void StartAnim()
+    {
         imgHandler.PlayAnimation();
+    }
+
+    void FinalSummary()
+    {
+        bubbleController.StopSpeech();
+        menu.StopMenuInteraction();
+        finalSummary.ViewSummary();
     }
     public void testttt()
     {
         AudioManager.Instance.Play("openLock", "Activity");
         BookAnimator.SetTrigger("openClip");
-        finalSummary.ViewSummary();
+        Invoke(nameof(FinalSummary), 6);
         Invoke(nameof(StartAnim), 2f);
         //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
         //ookParticleTemp.transform.localPosition = Vector3.zero;
