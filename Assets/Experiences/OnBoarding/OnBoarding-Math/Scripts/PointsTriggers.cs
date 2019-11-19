@@ -9,7 +9,7 @@ public class PointsTriggers : MonoBehaviour
     [SerializeField] SnappingManager snappingManager;
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ASDASDADSA  " + transform.name);
+        Debug.Log("ASDASDADSA  " + transform.name + "  " + other.name);
         if (other.GetComponent<IndicatorType>().type == IndicatorType.Type.indicator)
         {
             snappingManager.setCurrentPoint(transform);
@@ -20,6 +20,8 @@ public class PointsTriggers : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+
+        Debug.Log("stay  " + transform.name + "  " + other.name);
         if (other.GetComponent<IndicatorType>().type == IndicatorType.Type.indicator)
         {
             snappingManager.forwardsBackwardDetector.enabled = false;

@@ -50,6 +50,7 @@ public class SummaryHandler : MonoBehaviour
         HandleTittle();
         HandleContent();
         OpenSummary();
+        AudioManager.Instance?.Play("openSummary","UI");
     }
 
     /// Called whenever needed to close summary panel.

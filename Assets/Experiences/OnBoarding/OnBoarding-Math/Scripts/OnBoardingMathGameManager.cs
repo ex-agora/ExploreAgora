@@ -22,19 +22,21 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] Texture bookPuzzleTex;
     [SerializeField] ToolBarHandler barHandler;
     [SerializeField] TutorialPanelController tutorial;
-
+    [SerializeField] SummaryHandler finalSummary;
+    [SerializeField] RecapImgHandler imgHandler;
     [SerializeField] Transform[] HotSpots;
     [SerializeField] List<Transform> hotSpotsPivots;
+    [SerializeField] List<OldDragable> Draggables;
 
     [SerializeField] RuntimeAnimatorController[] animators;
     [SerializeField] Transform powderParticle, bookParticle;
     [SerializeField] SpeechBubbleController bubbleController;
-
+    [SerializeField] MenuUIHandler menu;
     [SerializeField] GameEvent onTutorialReadyPressed;
     public int score;
-    public GameObject canvas;
+    GameObject canvas;
+    RectTransform canvasRect;
     public GameObject powderParticleTemp, bookParticleTemp;
-    public RectTransform canvasRect;
 
 
     public Animator BookAnimator;
@@ -103,7 +105,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
 
     public void tutorialSteps()
-    { 
+    {
         if (phases != Phases.FirstPhase)
             return;
         else
@@ -118,8 +120,6 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     public void showCommands()
     {
-
-        //nextState = true;
         if (phases == Phases.FirstPhase)
         {
             foreach (var item in hotSpotsPivots)
@@ -140,11 +140,8 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
                 {
                     canvas = Instantiate(HotSpots[0].gameObject, Vector3.zero, HotSpots[0].rotation, item);
                 }
-
             }
-
             tutorial.GetComponent<Animator>().runtimeAnimatorController = animators[1];
-
         }
         canvasRect = canvas.GetComponent<RectTransform>();
         canvasRect.localPosition = new Vector3(0, 0.04f, 0);
@@ -153,8 +150,6 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void Tutorial()
     {
-        //nextState = true;
-
         Invoke(nameof(StartTutorial), 2f);
     }
 
@@ -165,12 +160,27 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         hotSpotsPivots.Add(pivot);
     }
 
+    public void AddDraggables(OldDragable d)
+    {
+        Draggables.Add(d);
+    }
+
+
+    public void activateDeactivateDraggables(bool state)
+    {
+        Debug.Log("QQWWWSSSZZZ");
+        foreach (var item in Draggables)
+        {
+
+        Debug.Log("QQWWWSSSZZZ 0000");
+            item.enabled = state;
+        }
+    }
 
     public void HideFinishedHotSpot()
     {
         if (phases == Phases.FirstPhase)
         {
-
             foreach (var item in hotSpotsPivots)
             {
                 if (item.name.Contains("Powder"))
@@ -179,7 +189,6 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         }
         else if (phases == Phases.SecondPhase)
         {
-
             foreach (var item in hotSpotsPivots)
             {
                 if (item.name.Contains("Snapping"))
@@ -194,13 +203,13 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void MoveToSecondPhases()
     {
-        // nextState = true;
         //play Particle
         powderParticleTemp = Instantiate(powderParticle.gameObject, powderParticle.position, powderParticle.rotation, powderParticleParent);
         powderParticleTemp.transform.localPosition = Vector3.zero;
         powderParticle.GetComponent<ParticleSystem>().Play();
         phases = Phases.SecondPhase;
         //play swoosh sound
+        AudioManager.Instance.Play("swoosh", "Activity");
         //unlock Dragging 
         bookMat.EnableKeyword("_MainTex");
         bookMat.SetTexture("_MainTex", bookPuzzleTex);
@@ -219,21 +228,38 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         else
         {
 
-            bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
-            bookParticleTemp.transform.localPosition = Vector3.zero;
-            bookParticleTemp.GetComponent<ParticleSystem>().Play();
+            //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
+            //bookParticleTemp.transform.localPosition = Vector3.zero;
+            //bookParticleTemp.GetComponent<ParticleSystem>().Play();
             //play last sound 
+            AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
             //final summary 
+            Invoke(nameof(FinalSummary), 6);
+            //finalSummary.ViewSummary();
+            Invoke(nameof(StartAnim), 2f);
         }
     }
+    void StartAnim()
+    {
+        imgHandler.PlayAnimation();
+    }
 
+    void FinalSummary()
+    {
+        bubbleController.StopSpeech();
+        menu.StopMenuInteraction();
+        finalSummary.ViewSummary();
+    }
     public void testttt()
     {
+        AudioManager.Instance.Play("openLock", "Activity");
         BookAnimator.SetTrigger("openClip");
-        bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
-        bookParticleTemp.transform.localPosition = Vector3.zero;
-        bookParticleTemp.GetComponent<ParticleSystem>().Play();
+        Invoke(nameof(FinalSummary), 6);
+        Invoke(nameof(StartAnim), 2f);
+        //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
+        //ookParticleTemp.transform.localPosition = Vector3.zero;
+        //bookParticleTemp.GetComponent<ParticleSystem>().Play();
     }
 
     #endregion

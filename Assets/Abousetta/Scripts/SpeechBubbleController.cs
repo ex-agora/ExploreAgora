@@ -34,7 +34,10 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
         bubbleAnimator.SetTrigger("IsClosed");
         characterBtn.interactable = true;
     }
-
+    public void StopSpeech() {
+        HideBubble();
+        characterBtn.interactable = false;
+    }
     /// Show saved commaned.
     /// Called in CommandBubbleToggle.   
     void ShowCommandBubble()

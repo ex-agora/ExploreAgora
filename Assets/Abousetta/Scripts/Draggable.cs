@@ -40,6 +40,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             new Vector3(eventData.position.x, screenPoint.y, screenPoint.z));
         //offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
         //    new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
+        AudioManager.Instance.Play("UIAction", "UI");
         @onBeginDrag?.Raise ();
     }
 
