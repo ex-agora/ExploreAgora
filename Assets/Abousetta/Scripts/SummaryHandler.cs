@@ -8,9 +8,11 @@ public class SummaryHandler : MonoBehaviour
     [SerializeField] Text tittleText;
     [SerializeField] string tittleString;
     [SerializeField] Animator bubbleAnimator;
+    [SerializeField] Animator contentAnimator;
     [SerializeField] Image contentImage;
     [SerializeField] Sprite contentSprite;
     [SerializeField] GameEvent doneEvent;
+    [SerializeField] bool isContentAnimPlace;
     public string TittleString { get => tittleString; set { tittleString = value; HandleTittle(); } }
 
     public Sprite ContentSprite { get => contentSprite; set { contentSprite = value; HandleContent(); } }
@@ -34,12 +36,18 @@ public class SummaryHandler : MonoBehaviour
     void OpenSummary()
     {
         bubbleAnimator.SetTrigger("IsShown");
+        if (isContentAnimPlace)
+            Invoke(nameof(PlayContentAnim), 2.3f);
     }
-
+    void PlayContentAnim() {
+        contentAnimator.enabled = true;
+    }
     /// Close summary panel.
     void CloseSummary()
     {
         bubbleAnimator.SetTrigger("IsClosed");
+        if (isContentAnimPlace)
+            contentAnimator.enabled = false;
     }
 
     /// Set bubble summary tittle
