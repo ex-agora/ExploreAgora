@@ -51,7 +51,7 @@ public class OldDragable : MonoBehaviour
 
     void OnMouseDrag()
     {
-       
+
         if (CanBeDragged)
         {
 
@@ -61,35 +61,35 @@ public class OldDragable : MonoBehaviour
                   return;*/
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, GroundLayers))
             {
-                Debug.Log("ffffffffffffff");
-
                 //hitpPointVec = transform.worldToLocalMatrix.MultiplyPoint3x4(hitInfo.point);
                 //hitpPointVec = hitInfo.collider.transform.InverseTransformPoint(hitInfo.point);
                 float ang = Vector3.Angle(hitInfo.transform.forward, Vector3.forward);
                 hitpPointVec = hitInfo.point;
+                hitpPointVec.x -= hitInfo.transform.position.x;
+                hitpPointVec.y -= hitInfo.transform.position.y;
+                hitpPointVec.z -= hitInfo.transform.position.z;
                 hitpPointVec = Quaternion.Euler(ang * Vector3.up) * hitpPointVec;
                 //hitpPointVec.Scale(-dir);
-                Debug.LogError(ang);
-                
+                //Debug.LogError(ang);
+                //Debug.Log(hitpPointVec.z);
                 switch (axis)
                 {
                     case DraggableAxis.X_Axis:
-                        hitpPointVec = new Vector3(hitpPointVec.x, transform.localPosition.y, transform.localPosition.z);
+                        hitpPointVec = new Vector3(hitpPointVec.x - hitInfo.transform.position.x, transform.localPosition.y - hitInfo.transform.position.y, transform.localPosition.z - hitInfo.transform.position.z);
                         //transform.Rotate(Vector3.forward, ang);
                         //transform.Rotate(Vector3.forward, -ang);
                         //hitpPointVec = Quaternion.Euler(-ang * Vector3.up) * hitpPointVec;
-
                         //hitpPointVec.Scale(dir);
                         //var f = hitInfo.normal;
                         transform.localPosition = hitpPointVec;
                         break;
                     case DraggableAxis.Y_Axis:
-                        hitpPointVec = new Vector3(transform.localPosition.x, hitpPointVec.y, transform.localPosition.z);
+                        hitpPointVec = new Vector3(transform.localPosition.x - hitInfo.transform.position.x, hitpPointVec.y - hitInfo.transform.position.y, transform.localPosition.z - hitInfo.transform.position.z);
                         //hitpPointVec = Quaternion.AngleAxis(ang, Vector3.right) * hitpPointVec;
                         transform.localPosition = hitpPointVec;
                         break;
                     case DraggableAxis.Z_Axis:
-                        hitpPointVec = new Vector3(transform.localPosition.x, transform.localPosition.y, hitpPointVec.z);
+                        hitpPointVec = new Vector3(transform.localPosition.x, transform.localPosition.y, hitpPointVec.z - hitInfo.transform.localPosition.z);
                         //hitpPointVec = Quaternion.AngleAxis(ang, Vector3.up) * hitpPointVec;
                         //transform.position = Mathf.Clamp(cursorPosition.z, clippingTargetMin.position.z, clippingTargetMax.position.z);
                         transform.localPosition = hitpPointVec;
@@ -100,7 +100,7 @@ public class OldDragable : MonoBehaviour
                         transform.position = hitpPointVec;
                         break;
                 }
-                       
+
 
                 //transform.position = hitpPointVec;
                 //transform.position = new Vector3(transform.position.x, transform.position.y, hitInfo.point.z);
@@ -112,7 +112,7 @@ public class OldDragable : MonoBehaviour
 
     public void Exit()
     {
-        
+
         if ((TriggerEventsOnMouseUp && insideDraggingArea))
         {
             if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
@@ -124,8 +124,8 @@ public class OldDragable : MonoBehaviour
         else if (!dragged && CanBeDragged)
         {
             if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
-            if(isReturn)
-            ReturnToPositionCoroutine = StartCoroutine(returnToPosition(initialPosition));
+            if (isReturn)
+                ReturnToPositionCoroutine = StartCoroutine(returnToPosition(initialPosition));
             OnTargetMiss.Invoke();
         }
     }
