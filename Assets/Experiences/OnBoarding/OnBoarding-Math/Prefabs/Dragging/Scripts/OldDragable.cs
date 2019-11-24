@@ -71,7 +71,7 @@ public class OldDragable : MonoBehaviour
                 hitpPointVec = Quaternion.Euler(ang * Vector3.up) * hitpPointVec;
                 //hitpPointVec.Scale(-dir);
                 //Debug.LogError(ang);
-                Debug.Log(hitpPointVec.z);
+                //Debug.Log(hitpPointVec.z);
                 switch (axis)
                 {
                     case DraggableAxis.X_Axis:
