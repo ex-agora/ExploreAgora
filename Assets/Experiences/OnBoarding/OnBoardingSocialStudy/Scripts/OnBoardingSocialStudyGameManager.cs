@@ -58,8 +58,9 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
         nextState = true;
         showHotspotEvent?.Raise();
     }
-    public void TutorialStep() {
-        Invoke(nameof(ShowTutorial), 1.5f);   
+    public void TutorialStep()
+    {
+        Invoke(nameof(ShowTutorial), 1.5f);
     }
     private void CustomUpdate()
     {
@@ -72,10 +73,13 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
             elapsedTime = 0;
         }
     }
-    public void ShowSummary() {
+    private void ShowSummary()
+    {
         summary.ViewSummary();
     }
-    void ShowTutorial() {
+    void ShowTutorial()
+    {
+        tutorial.TutorialTextStr = speechBubbleController.NextBubble();
         tutorial.OpenTutorial();
     }
     private void Start()
@@ -84,6 +88,6 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
         groundIndicatorTutorialHandler.OpenIndicator();
         InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
     }
-    public void Test() { Debug.Log("Test Drag"); }
+    public void FinalPhase() { Invoke(nameof(ShowSummary), 2f); }
     #endregion Methods
 }

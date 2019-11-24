@@ -9,7 +9,7 @@ public class TreeObjHnadler : MonoBehaviour
     [SerializeField] ParticleSystem particle;
 
     public void StratVFX() {
-        meshTree.material = afterMatTree;
+        
         particle.gameObject.SetActive(true);
         particle.Play();
         AudioManager.Instance.Play("factory", "Activity");
@@ -17,5 +17,6 @@ public class TreeObjHnadler : MonoBehaviour
     }
     void StopVFX() {
         particle.Stop();
+        meshTree.material = afterMatTree;
     }
 }

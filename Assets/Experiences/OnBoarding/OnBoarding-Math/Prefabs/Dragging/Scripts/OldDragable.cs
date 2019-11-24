@@ -136,51 +136,51 @@ public class OldDragable : MonoBehaviour
         if (onDragEnd != null)
             onDragEnd.Raise();
         Exit();
-        /* if (TriggerEventsOnMouseUp && insideDraggingArea)
-         {
-             if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
-             dragged = true;
-             canBeDragged = false;
-             OnTargetHit.Invoke();
-             if (Snap) transform.position = Target.transform.position;
-         }
-         else if (!dragged && canBeDragged)
-         {
-             if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
-             ReturnToPositionCoroutine = StartCoroutine(returnToPosition(initialPosition));
-             OnTargetMiss.Invoke();
-         }*/
+        //if (TriggerEventsOnMouseUp && insideDraggingArea)
+        //{
+        //    if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
+        //    dragged = true;
+        //    canBeDragged = false;
+        //    OnTargetHit.Invoke();
+        //    if (Snap) transform.position = Target.transform.position;
+        //}
+        //else if (!dragged && canBeDragged)
+        //{
+        //    if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
+        //    ReturnToPositionCoroutine = StartCoroutine(returnToPosition(initialPosition));
+        //    OnTargetMiss.Invoke();
+        //}
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (TriggerEventsOnMouseUp)
-    //    {
-    //        if (other.gameObject.Equals(Target.gameObject) && CanBeDragged)
-    //        {
-    //            insideDraggingArea = true;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (other.gameObject.Equals(Target.gameObject) && CanBeDragged)
-    //        {
-    //            if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
-    //            dragged = true;
-    //            CanBeDragged = false;
-    //            OnTargetHit.Invoke();
-    //            if (Snap) transform.position = Target.transform.position;
-    //        }
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (TriggerEventsOnMouseUp)
+        {
+            if (other.gameObject.Equals(Target.gameObject) && CanBeDragged)
+            {
+                insideDraggingArea = true;
+            }
+        }
+        else
+        {
+            if (other.gameObject.Equals(Target.gameObject) && CanBeDragged)
+            {
+                if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
+                dragged = true;
+                CanBeDragged = false;
+                OnTargetHit.Invoke();
+                if (Snap) transform.position = Target.transform.position;
+            }
+        }
+    }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.Equals(Target.gameObject))
-    //    {
-    //        insideDraggingArea = false;
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.Equals(Target.gameObject))
+        {
+            insideDraggingArea = false;
+        }
+    }
 
     IEnumerator returnToPosition(Vector3 pos)
     {
