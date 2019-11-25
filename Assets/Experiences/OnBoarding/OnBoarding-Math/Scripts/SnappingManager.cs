@@ -13,7 +13,13 @@ public class SnappingManager : MonoBehaviour
     public Transform ss , indicator;
     public bool isBetween, isForward;
     int index;
-    [SerializeField] GameEvent EndQuiz;
+    bool isRightAns;
+    [SerializeField] GameEvent checkQuiz;
+
+    public bool IsRightAns { get => isRightAns; set => isRightAns = value; }
+    public void StopDrag() {
+        indicator.GetComponent<OldDragable>()?.StopDrag();
+    }
     public void setCurrentPoint(Transform point)
     {
         currentTriggeredPoint = point;
@@ -65,20 +71,22 @@ public class SnappingManager : MonoBehaviour
            // Debug.Log("snap To current NotBetween: " + currentTriggeredPoint.name);
             indicator.position = new Vector3(indicator.position.x, indicator.position.y, currentTriggeredPoint.position.z);
         }
+
     }
 
     public void answerCheck()
     {
-        
+        IsRightAns = false;
         if (currentTriggeredPoint.GetComponent<PointsTriggers>().answers != answers)
             return;
         else
         {
-            OnBoardingMathGameManager.Instance.score++;
-            // indicator.GetComponent<OldDragable>().enabled = false;
-            Destroy(indicator.GetComponent<OldDragable>());
-            EndQuiz?.Raise();
-            GetComponent<GameEventListener>().enabled = false;
+            IsRightAns = true;
+            //OnBoardingMathGameManager.Instance.score++;
+            //indicator.GetComponent<OldDragable>().enabled = false;
+            //indicator.GetComponent<OldDragable>().enabled = false;
+            checkQuiz?.Raise();
+            //GetComponent<GameEventListener>().enabled = false;
         }
         
     }

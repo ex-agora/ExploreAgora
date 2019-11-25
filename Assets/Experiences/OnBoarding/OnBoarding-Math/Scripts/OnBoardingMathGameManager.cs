@@ -210,6 +210,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         phases = Phases.SecondPhase;
         //play swoosh sound
         AudioManager.Instance.Play("swoosh", "Activity");
+        AudioManager.Instance.Play("placeObject", "Activity");
         //unlock Dragging 
         bookMat.EnableKeyword("_MainTex");
         bookMat.SetTexture("_MainTex", bookPuzzleTex);

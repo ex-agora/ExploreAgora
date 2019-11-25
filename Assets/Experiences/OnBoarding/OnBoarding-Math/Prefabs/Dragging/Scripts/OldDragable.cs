@@ -29,7 +29,7 @@ public class OldDragable : MonoBehaviour
     private bool insideDraggingArea;
     private bool canBeDragged = true;
     private Coroutine ReturnToPositionCoroutine;
-
+    bool isDragStop  = false;
     public bool CanBeDragged
     {
         get
@@ -48,9 +48,13 @@ public class OldDragable : MonoBehaviour
     {
         initialPosition = transform.localPosition;
     }
-
+    public void StopDrag() {
+        isDragStop = true;
+    }
     void OnMouseDrag()
     {
+        if (isDragStop)
+            return;
 
         if (CanBeDragged)
         {
@@ -133,6 +137,8 @@ public class OldDragable : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (isDragStop)
+            return;
         if (onDragEnd != null)
             onDragEnd.Raise();
         Exit();
@@ -154,6 +160,8 @@ public class OldDragable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (Target == null)
+            return;
         if (TriggerEventsOnMouseUp)
         {
             if (other.gameObject.Equals(Target.gameObject) && CanBeDragged)
@@ -176,6 +184,8 @@ public class OldDragable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (Target == null)
+            return;
         if (other.gameObject.Equals(Target.gameObject))
         {
             insideDraggingArea = false;
