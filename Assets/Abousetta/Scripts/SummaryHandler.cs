@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SummaryHandler : MonoBehaviour
 {
     [SerializeField] Text tittleText;
+    [SerializeField] Button activationButton;
     [SerializeField] string tittleString;
     [SerializeField] Animator bubbleAnimator;
     [SerializeField] Animator contentAnimator;
@@ -59,11 +60,13 @@ public class SummaryHandler : MonoBehaviour
         HandleContent();
         OpenSummary();
         AudioManager.Instance?.Play("openSummary","UI");
+        activationButton.interactable = true;
     }
 
     /// Called whenever needed to close summary panel.
     public void ConfirmationAction()
     {
+        activationButton.interactable = false;
         CloseSummary();
         doneEvent.Raise();
     }

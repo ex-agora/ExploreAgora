@@ -157,11 +157,14 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void PrepareSecondPhase()
     {
+
+        Invoke(nameof(CreateSecondPhase), 2f);
+    }
+    void CreateSecondPhase() {
         prepareSecondPhase.Raise();
         nextState = true;
         barHandler.OpenToolBar();
         secondPhaseBtn.OpenToolBar();
-
     }
 
     public void ResetLevel()
