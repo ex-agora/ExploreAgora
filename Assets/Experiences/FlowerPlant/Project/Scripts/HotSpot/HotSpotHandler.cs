@@ -27,7 +27,7 @@ public class HotSpotHandler : MonoBehaviour
         label.HidaLabel();
     }
     public void Open() {
-        AudioManager.Instance.Play("notification", "Activity");
+        //AudioManager.Instance.Play("notification", "Activity");
         Collect();
         isOpened = true;
         outline.ShowOutline();

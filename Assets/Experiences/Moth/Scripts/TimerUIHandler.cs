@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerUIHandler : MonoBehaviour
 {
     float duration;
-    float updateRate;
+    float updateRate = 0.1f;
     float elapseTime;
 
     [SerializeField] Animator timerAnim;
@@ -18,7 +18,7 @@ public class TimerUIHandler : MonoBehaviour
     private void ShowTimerBar()
     {
         timerImgae.fillAmount = 1;
-        timerAnim.SetTrigger("IsOpen");
+        timerAnim.SetTrigger("IsOpened");
     }
 
     private void HideTimerBar()
@@ -37,8 +37,8 @@ public class TimerUIHandler : MonoBehaviour
         timerImgae.fillAmount = Mathf.Clamp(((duration - elapseTime) / duration), 0f, 1f);
         if (elapseTime >= duration)
         {
-            CancelInvoke(nameof(CustomUpdate));
             onTimerEnd.Raise();
+            CancelInvoke(nameof(CustomUpdate));
         }
     }
 
@@ -48,8 +48,8 @@ public class TimerUIHandler : MonoBehaviour
     }
     public void HideBar()
     {
+        HideTimerBar();
         if (IsInvoking(nameof(CustomUpdate)))
             CancelInvoke(nameof(CustomUpdate));
-        HideTimerBar();
     }
 }

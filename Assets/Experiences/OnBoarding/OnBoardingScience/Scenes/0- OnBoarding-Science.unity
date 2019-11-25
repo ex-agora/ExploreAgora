@@ -564,7 +564,7 @@ MonoBehaviour:
   headerBarHandler: {fileID: 1778250357}
   finalSummary: {fileID: 5393014111791694818}
   bubbleController: {fileID: 5393014111397541931}
-  menuUI: {fileID: 0}
+  menuUI: {fileID: 1859426735}
 --- !u!4 &319991293
 Transform:
   m_ObjectHideFlags: 0
@@ -2171,6 +2171,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1859426735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 317582903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f41192fb9f940041b95c960db1a4bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1875280275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,11 +3522,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014110974856674}
+  activationButton: {fileID: 5393014111525083937}
   tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111950765519}
   contentSprite: {fileID: 21300000, guid: 426a14a197966e44b8e486b05ba04b2c, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
+  isContentAnimPlace: 0
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0

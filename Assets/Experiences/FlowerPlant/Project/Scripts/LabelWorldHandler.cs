@@ -17,7 +17,7 @@ public class LabelWorldHandler : MonoBehaviour
     public string ExtraInfoText { get => extraInfoText; }
     private void Start()
     {
-        canvas.worldCamera = PlantPartsGameManager.Instance.ArCamera;
+        canvas.worldCamera = interactions.Instance.SessionOrigin.camera;
     }
     // Start is called before the first frame update
     private void OnEnable ()

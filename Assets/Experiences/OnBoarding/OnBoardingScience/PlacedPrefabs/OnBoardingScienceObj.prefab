@@ -105,6 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 11400000, guid: aaf68863c2a373e4aaae9b61bd24d897, type: 2}
   fadeDuration: 1.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &5116409980318723476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 0.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &7933967423917024402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 0.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!1 &2139487956492508130
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 0.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!1 &3888969202540738397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &4579398602478939369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &3888969202466974731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,6 +1125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 11400000, guid: d02770a4ba8ff2e40aa078f8feec2f08, type: 2}
   fadeDuration: 1
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!65 &3888969203786200304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1140,6 +1154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 11400000, guid: 923b55c0858b2304d821b5b1a3e1e682, type: 2}
   fadeDuration: 0.01
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &3888969203786200306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 11400000, guid: c6811824614dce441b29b1e4863ebc5e, type: 2}
   fadeDuration: 0.2
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &3971003660796790263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,6 +1237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &4548894402025498534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,6 +1253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &7009584092763276670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,6 +1269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &7707730200932898248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,6 +1298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 0.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!114 &2739168944635946716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,6 +1314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFadeComplete: {fileID: 0}
   fadeDuration: 1.5
+  mat: {fileID: 0}
+  isMaterialPlaced: 0
 --- !u!1001 &2602340271977181942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1466,16 +1494,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3888339156655193860}
     m_Modifications:
-    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_Name
-      value: Hot SpotCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3656490171779035346, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3656490171779035359, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1596,6 +1614,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.0000993755
       objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035346, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_Name
+      value: Hot SpotCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 3656490171526390172, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}
       propertyPath: AfterClick
@@ -1623,11 +1651,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3888969203842583151}
     m_Modifications:
-    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_Name
-      value: Hot SpotCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 3656490171779035359, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1747,6 +1770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.00005587285
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_Name
+      value: Hot SpotCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3656490171526390172, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}
@@ -1959,7 +1987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1163261039214188, guid: 63a30101eb6d80a4caaa44ccc2c1424f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4141059637107902, guid: 63a30101eb6d80a4caaa44ccc2c1424f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2145,6 +2173,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 171696669858340800, guid: 628ea17716c1bb248b9edda2abe7d318,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8700645447178866276, guid: 628ea17716c1bb248b9edda2abe7d318,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2255,11 +2288,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 171696669858340800, guid: 628ea17716c1bb248b9edda2abe7d318,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 628ea17716c1bb248b9edda2abe7d318, type: 3}
 --- !u!1 &4113704882758648641 stripped
@@ -2329,21 +2357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3888840698502874741}
     m_Modifications:
-    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_Name
-      value: Hot SpotCanvas (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3656490171779035346, guid: 02665ede33a62864ba7dffe6daad10f0,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3656490171779035359, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2463,6 +2476,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.011664186
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035346, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_Name
+      value: Hot SpotCanvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656490171779035358, guid: 02665ede33a62864ba7dffe6daad10f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3656490171526390172, guid: 02665ede33a62864ba7dffe6daad10f0,
         type: 3}

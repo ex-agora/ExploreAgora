@@ -20,6 +20,7 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
     int wrongTrialCount;
     [SerializeField] bool nextState;
     [SerializeField] SpeechBubbleController bubbleController;
+    [SerializeField] MenuUIHandler menu;
     int maxQuizPart;
     int correctAnswer;
     bool isFirstDone;
@@ -67,7 +68,11 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
             }
         }
     }
-    void EndFirstPhase() { midSummary.ViewSummary(); }
+    void EndFirstPhase() {
+        menu.StopMenuInteraction();
+        bubbleController.StopSpeech();
+        midSummary.ViewSummary();
+    }
     public void UpdateUICounter()
     {
         int maxSpot = 0;
@@ -89,6 +94,8 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
     void EndSecondPhase() {
         barHandler.CloseToolBar();
         uICounterHandler.HideCounter();
+        menu.StopMenuInteraction();
+        bubbleController.StopSpeech();
         finalSummary.ViewSummary();
     }
     void PrepaireQuiz()
@@ -109,6 +116,8 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
         }
     }
     public void StartQuiz() {
+        menu.RunMenuInteraction();
+        bubbleController.RunSpeech();
         barHandler.OpenToolBar();
     }
 

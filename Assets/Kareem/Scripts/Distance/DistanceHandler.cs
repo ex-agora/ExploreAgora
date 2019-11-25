@@ -54,13 +54,15 @@ public class DistanceHandler : MonoBehaviour
             minimumDistance = t;
         }
 
-        if ( !ARCamera || !Target )
-            Debug.LogError ("AR-camera or target fields cannot be empty");
+        //if ( !ARCamera || !Target )
+        //    Debug.LogError ("AR-camera or target fields cannot be empty");
     }
 
     // Start is called before the first frame update
     private void Start ()
     {
+        if (ARCamera == null)
+            ARCamera = interactions.Instance.SessionOrigin.camera.transform;
         minimumDistance *= minimumDistance;
         maximumDistance *= maximumDistance;
     }

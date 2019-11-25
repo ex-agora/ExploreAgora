@@ -38,6 +38,9 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
         HideBubble();
         characterBtn.interactable = false;
     }
+    public void RunSpeech() {
+        characterBtn.interactable = true;
+    }
     /// Show saved commaned.
     /// Called in CommandBubbleToggle.   
     void ShowCommandBubble()

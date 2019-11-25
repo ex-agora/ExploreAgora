@@ -7,6 +7,8 @@ public class FadeInOut : MonoBehaviour
     private Material gameObjecMat;
     [SerializeField] GameEvent onFadeComplete;
     [SerializeField] float fadeDuration = 0.5f;
+    [SerializeField] Material mat;
+    [SerializeField] bool isMaterialPlaced;
     MeshRenderer meshRenderer;
     SkinnedMeshRenderer skinnedMeshRenderer;
     public GameEvent OnFadeComplete { get => onFadeComplete; set => onFadeComplete = value; }
@@ -14,6 +16,10 @@ public class FadeInOut : MonoBehaviour
     private void Awake()
     {
 
+        if (isMaterialPlaced) {
+            gameObjecMat = mat;
+            return;
+        }
         meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer != null) {
             gameObjecMat = meshRenderer.material;

@@ -69,6 +69,10 @@ public class MenuUIHandler : MonoBehaviour
         menuBtn.interactable = false;
         relocateBtn.interactable = false;
     }
+    public void RunMenuInteraction() {
+        menuBtn.interactable = true;
+        relocateBtn.interactable = true;
+    }
     public void ResetLevel() => menuHandler.ResetLevel();
     public void GoToHome() => menuHandler.GoTOHome();
 }

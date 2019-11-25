@@ -1169,6 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 944377482}
   - component: {fileID: 944377483}
+  - component: {fileID: 944377484}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2105,6 +2106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1733430813}
+  - component: {fileID: 1733430814}
+  - component: {fileID: 1733430816}
+  - component: {fileID: 1733430815}
   m_Layer: 5
   m_Name: UpperBar
   m_TagString: Untagged
@@ -4160,11 +4164,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014110491459426}
+  activationButton: {fileID: 5393014110735358206}
   tittleString: Summary
   bubbleAnimator: {fileID: 5393014111546377998}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014112208368714}
   contentSprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
+  isContentAnimPlace: 0
 --- !u!114 &5393014111716195860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4407,11 +4414,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014110974856674}
+  activationButton: {fileID: 5393014111525083937}
   tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111950765519}
   contentSprite: {fileID: 21300000, guid: bbd2e79e8c51ac74b8eb51cd46a5ec0f, type: 3}
   doneEvent: {fileID: 0}
+  isContentAnimPlace: 0
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4975,11 +4985,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014111817864939}
+  activationButton: {fileID: 5393014112005815868}
   tittleString: Recap
   bubbleAnimator: {fileID: 5393014112064107431}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111756576183}
   contentSprite: {fileID: 21300000, guid: ffd6ff12a20f94847bd070776b3cc8e0, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
+  isContentAnimPlace: 0
 --- !u!224 &5393014112064107430
 RectTransform:
   m_ObjectHideFlags: 0
