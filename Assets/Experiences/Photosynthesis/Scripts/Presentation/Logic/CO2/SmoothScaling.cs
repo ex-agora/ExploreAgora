@@ -6,6 +6,7 @@ public class SmoothScaling : MonoBehaviour
 
     bool state;
     Coroutine C_StartScaling;
+    [SerializeField] GameEvent afterScalingEvent;
     public bool State { get => state; set => state = value; }
 
     Vector3 endScale;
@@ -26,7 +27,9 @@ public class SmoothScaling : MonoBehaviour
     }
     public void EndScaling ()
     {
+       
         State = false;
+        afterScalingEvent?.Raise ();
         if ( C_StartScaling != null )
             StopCoroutine (C_StartScaling);
     }

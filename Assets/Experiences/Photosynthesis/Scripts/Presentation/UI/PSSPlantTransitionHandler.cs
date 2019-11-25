@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PSSPlantTransitionHandler : MonoBehaviour
 {
-    float duration;
+    [SerializeField]float duration = 2.5f;
     float repeatRate = 0.05f;
     float step;
     [SerializeField] BlendShapeHandler plantTransition;
     //plantTransition
     public void PlantTransition ()
     {
-        duration = 2.5f;
-        step = 7.5f / ( duration / repeatRate );
+        step = 5 / ( duration / repeatRate );
         InvokeRepeating (nameof (CustomUpdate) , 0 , repeatRate);
     }
     void CustomUpdate ()

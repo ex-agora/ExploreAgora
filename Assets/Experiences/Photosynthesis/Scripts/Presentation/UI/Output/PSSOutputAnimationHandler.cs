@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PSSOutputAnimationHandler : MonoBehaviour
 {
-    [SerializeField] float outputAnimationsDuration = 3;
+    [SerializeField] float outputAnimationsDuration = 5;
     [SerializeField] List<Animator> outputAnimations;
     public void StartOutputAnimations ()
     {
