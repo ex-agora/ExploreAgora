@@ -1286,6 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 944377482}
   - component: {fileID: 944377483}
+  - component: {fileID: 944377484}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1331,6 +1332,36 @@ MonoBehaviour:
   bubbleController: {fileID: 5393014111397541931}
   stateMachine: {fileID: 379250327}
   finalSmallSummary: {fileID: 5393014111791694818}
+  upperBar: {fileID: 1733430816}
+--- !u!114 &944377484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944377481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 8f93fc5df2baee14caf966eb6be66fac, type: 2}
+  eventSystem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 944377483}
+        m_MethodName: StartExplore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!224 &952864494 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
@@ -1788,6 +1819,7 @@ MonoBehaviour:
   tutorial: {fileID: 0}
   nextState: 0
   bubbleController: {fileID: 5393014111397541931}
+  menu: {fileID: 0}
 --- !u!4 &1179033110
 Transform:
   m_ObjectHideFlags: 0
@@ -2594,6 +2626,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1733430813}
+  - component: {fileID: 1733430814}
+  - component: {fileID: 1733430816}
+  - component: {fileID: 1733430815}
   m_Layer: 5
   m_Name: UpperBar
   m_TagString: Untagged
@@ -2622,6 +2657,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 836}
   m_SizeDelta: {x: 1080, y: 255.6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1733430814
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733430812}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &1733430815
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733430812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d61903a1fa4780d4d9ef7bd98872845f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1733430816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733430812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c0bef68df30584faec88c40bdce865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiSnapAnimator: {fileID: 1733430815}
 --- !u!1 &1821359184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,6 +3401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PSSArObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539836440203270380, guid: 34923f0b9dbcb814da46887323f9d7a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 620860849, guid: 34923f0b9dbcb814da46887323f9d7a6, type: 3}
       propertyPath: ArCam
@@ -5138,11 +5222,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014110491459426}
+  activationButton: {fileID: 5393014110735358206}
   tittleString: Summary
   bubbleAnimator: {fileID: 5393014111546377998}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014112208368714}
   contentSprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
+  isContentAnimPlace: 0
 --- !u!114 &5393014111716195860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5385,11 +5472,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014110974856674}
+  activationButton: {fileID: 5393014111525083937}
   tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111950765519}
   contentSprite: {fileID: 21300000, guid: bbd2e79e8c51ac74b8eb51cd46a5ec0f, type: 3}
   doneEvent: {fileID: 0}
+  isContentAnimPlace: 0
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5953,11 +6043,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tittleText: {fileID: 5393014111817864939}
+  activationButton: {fileID: 5393014112005815868}
   tittleString: Recap
   bubbleAnimator: {fileID: 5393014112064107431}
+  contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111756576183}
   contentSprite: {fileID: 21300000, guid: ffd6ff12a20f94847bd070776b3cc8e0, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
+  isContentAnimPlace: 0
 --- !u!224 &5393014112064107430
 RectTransform:
   m_ObjectHideFlags: 0
