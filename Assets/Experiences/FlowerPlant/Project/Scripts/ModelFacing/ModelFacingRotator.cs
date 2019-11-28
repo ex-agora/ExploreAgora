@@ -11,7 +11,7 @@ public class ModelFacingRotator : MonoBehaviour
     Vector3 taregPos;
     private void OnEnable ()
     {
-        target = target == null ? PlantPartsGameManager.Instance.ArCamera.transform : target;
+        target = target == null ? interactions.Instance.SessionOrigin.camera.transform : target;
         if (isFaceOnEnble)
             Face ();
         if (fade != null)
