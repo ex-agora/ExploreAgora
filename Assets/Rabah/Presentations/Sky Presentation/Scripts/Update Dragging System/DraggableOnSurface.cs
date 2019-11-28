@@ -8,7 +8,6 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     [Tooltip ("Select the axis you want to drag object on")] [SerializeField] DraggableOnSurfaceAxes axes;
     [Tooltip ("Select the dragging mode")] [SerializeField] DraggingModes draggingMode;
     [SerializeField] DragObjectCheck dragObjectCheck;
-    [SerializeField] Camera ArCam;
     GameObject hitObject;
     public GameObject HitObject { get => hitObject; set => hitObject = value; }
     #region Private Variables
@@ -34,8 +33,8 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     public void OnBeginDrag (PointerEventData eventData)
     {
         MyPosition = transform.position;
-        screenPoint = ArCam.WorldToScreenPoint (gameObject.transform.position);
-        offset = gameObject.transform.position - ArCam.ScreenToWorldPoint (
+        screenPoint = interactions.Instance.SessionOrigin.camera.WorldToScreenPoint (gameObject.transform.position);
+        offset = gameObject.transform.position - interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint (
             new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
         @onBeginDrag?.Raise ();
     }
@@ -47,7 +46,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
         cursorScreenPoint.z = screenPoint.z;
 
         //-------------------------------------------------------
-        cursorPosition = ArCam.ScreenToWorldPoint (cursorScreenPoint);
+        cursorPosition = interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint (cursorScreenPoint);
         cursorPosition.x += offset.x;
         cursorPosition.y += offset.y;
         cursorPosition.z += offset.z;

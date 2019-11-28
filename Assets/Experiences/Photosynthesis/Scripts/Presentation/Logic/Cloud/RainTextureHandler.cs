@@ -12,13 +12,14 @@ public class RainTextureHandler : MonoBehaviour
     {
         StopRain ();
     }
-    public void StartRain() {
-        rainMat.SetFloat("_MoveFactor", rainSpeed);
-        rainMat.SetFloat("_Cutoff", 0.7f);     
-    }
-    public void StopRain()
+    public void StartRain ()
     {
-        rainMat.SetFloat("_MoveFactor", 0);
-        rainMat.SetFloat("_Cutoff", 1.0f);
+        rainMat.SetFloat ("_MoveFactor" , rainSpeed);
+        rainMat.SetFloat ("_Cutoff" , 0.7f);
+    }
+    public void StopRain ()
+    {
+        rainMat.SetFloat ("_MoveFactor" , 0);
+        rainMat.SetFloat ("_Cutoff" , 1.0f);
     }
 }

@@ -6,19 +6,20 @@ public class SmoothScaling : MonoBehaviour
 
     bool state;
     Coroutine C_StartScaling;
-
+    [SerializeField] GameEvent afterScalingEvent;
     public bool State { get => state; set => state = value; }
+
     Vector3 endScale;
     private void Start ()
     {
         endScale = transform.localScale;
     }
-    public void StartScaling ()
+    public void StartScaling (float duration)
     {
         State = true;
         if ( C_StartScaling != null )
             StopCoroutine (C_StartScaling);
-        C_StartScaling = StartCoroutine (startScaling (2.5f));
+        C_StartScaling = StartCoroutine (Scaling (duration));
     }
     public void IncorrectAtom ()
     {
@@ -26,14 +27,15 @@ public class SmoothScaling : MonoBehaviour
     }
     public void EndScaling ()
     {
+       
         State = false;
+        afterScalingEvent?.Raise ();
         if ( C_StartScaling != null )
             StopCoroutine (C_StartScaling);
     }
-    IEnumerator startScaling (float duration)
+    IEnumerator Scaling (float duration)
     {
         float elapsedTime = 0;
-
         while ( elapsedTime < duration )
         {
             if ( state )

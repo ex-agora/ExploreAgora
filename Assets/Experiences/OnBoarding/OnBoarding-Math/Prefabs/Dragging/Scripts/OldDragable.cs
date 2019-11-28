@@ -79,7 +79,7 @@ public class OldDragable : MonoBehaviour
                 switch (axis)
                 {
                     case DraggableAxis.X_Axis:
-                        hitpPointVec = new Vector3(hitpPointVec.x - hitInfo.transform.position.x, transform.localPosition.y - hitInfo.transform.position.y, transform.localPosition.z - hitInfo.transform.position.z);
+                        hitpPointVec = new Vector3(hitpPointVec.x - hitInfo.transform.position.x, transform.localPosition.y , transform.localPosition.z);
                         //transform.Rotate(Vector3.forward, ang);
                         //transform.Rotate(Vector3.forward, -ang);
                         //hitpPointVec = Quaternion.Euler(-ang * Vector3.up) * hitpPointVec;
@@ -88,9 +88,9 @@ public class OldDragable : MonoBehaviour
                         transform.localPosition = hitpPointVec;
                         break;
                     case DraggableAxis.Y_Axis:
-                        hitpPointVec = new Vector3(transform.localPosition.x - hitInfo.transform.position.x, hitpPointVec.y - hitInfo.transform.position.y, transform.localPosition.z - hitInfo.transform.position.z);
+                        hitpPointVec = new Vector3(transform.position.x, hitpPointVec.y+ hitInfo.transform.position.y , transform.position.z);
                         //hitpPointVec = Quaternion.AngleAxis(ang, Vector3.right) * hitpPointVec;
-                        transform.localPosition = hitpPointVec;
+                        transform.position = hitpPointVec;
                         break;
                     case DraggableAxis.Z_Axis:
                         hitpPointVec = new Vector3(transform.localPosition.x, transform.localPosition.y, hitpPointVec.z - hitInfo.transform.localPosition.z);

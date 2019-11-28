@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloudAfterDargging : MonoBehaviour
+public class PSSCloudAfterDargging : MonoBehaviour
 {
     [SerializeField] RainTextureHandler rain;
+    [SerializeField] GameObject cloudSystem;
     public void PlayRainAnim ()
     {
         print ("Raining Raining Raining Raining Raining Raining Raining ");
         rain.StartRain ();
+        Invoke (nameof(EndRaining) , 2);
     }
     public void ResetCloudPosition ()
     {
         transform.position = GetComponent<Draggable> ().MyPosition;
+    }
+    void EndRaining ()
+    {
+        rain.StopRain ();
+        cloudSystem.SetActive (false);
     }
 }
