@@ -8,6 +8,7 @@ public class DragObjectCheck : MonoBehaviour
     [SerializeField] GameEvent @onEndDragToCorrectPosition;
     [SerializeField] GameEvent @onEndDragToIncorrectPosition;
     [SerializeField] GameEvent @onEndDragToAnyPosition;
+    [SerializeField] Lean.Touch.LeanSelectable selectable = null;
     [SerializeField] bool isDraggableAgain = false;
     bool isTrueDraggableObject;
     bool isDraggedToObject;
@@ -17,13 +18,13 @@ public class DragObjectCheck : MonoBehaviour
     public bool IsDraggableAgain { get => isDraggableAgain; set => isDraggableAgain = value; }
     public Vector3 DraggingObjectPosition { get => draggingObjectPosition; set => draggingObjectPosition = value; }
 
-    void UpdateDraggableObjectCheck (Collider draggableObjectCollider)
+    void UpdateDraggableObjectCheck(Collider draggableObjectCollider)
     {
-        if ( draggableObjectCollider.GetComponent<CorrectDraggableObject> () )
+        if (draggableObjectCollider.GetComponent<CorrectDraggableObject>())
         {
             isDraggedToObject = true;
             triggeredObject = draggableObjectCollider.gameObject;
-            if ( draggableObjectCollider.GetComponent<CorrectDraggableObject> ().isTrueObject && draggableObjectCollider.GetComponent<CorrectDraggableObject> () == correctDraggableObject )
+            if (draggableObjectCollider.GetComponent<CorrectDraggableObject>().isTrueObject && draggableObjectCollider.GetComponent<CorrectDraggableObject>() == correctDraggableObject)
             {
                 isTrueDraggableObject = true;
             }
@@ -33,43 +34,48 @@ public class DragObjectCheck : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        UpdateDraggableObjectCheck (other);
+        UpdateDraggableObjectCheck(other);
     }
-    private void OnTriggerStay (Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        UpdateDraggableObjectCheck (other);
+        UpdateDraggableObjectCheck(other);
     }
-    private void OnTriggerExit (Collider other)
+    private void OnTriggerExit(Collider other)
     {
         isTrueDraggableObject = false;
         isDraggedToObject = false;
         triggeredObject = null;
     }
-    public GameObject CheckCorrectPosition ()
+    public GameObject CheckCorrectPosition()
     {
-        if ( isTrueDraggableObject )
+        if (isTrueDraggableObject)
         {
-            @onEndDragToCorrectPosition?.Raise ();
-            print ("I am Correct ");
+            AudioManager.Instance?.Play("placeObject", "Activity");
+            @onEndDragToCorrectPosition?.Raise();
+            print("I am Correct ");
             return triggeredObject;
         }
         else
         {
-            if ( isDraggedToObject )
+            if (isDraggedToObject)
             {
-                @onEndDragToIncorrectPosition?.Raise ();
-                print ("I am Incorrect ");
+                if (selectable == null || selectable.IsSelected)
+                    @onEndDragToIncorrectPosition?.Raise();
+
+
+                print("I am Incorrect ");
                 return triggeredObject;
             }
             else
             {
-                @onEndDragToAnyPosition?.Raise ();
-                print ("I am Any Position ");
+                if (selectable == null || selectable.IsSelected)
+                    @onEndDragToAnyPosition?.Raise();
+                print("I am Any Position ");
                 return null;
             }
         }
     }
-
+    public void CheckPosition() { CheckCorrectPosition(); }
 }
