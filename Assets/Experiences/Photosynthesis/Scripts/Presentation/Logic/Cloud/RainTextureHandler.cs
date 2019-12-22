@@ -14,6 +14,7 @@ public class RainTextureHandler : MonoBehaviour
     }
     public void StartRain ()
     {
+        AudioManager.Instance?.Play("rain", "Activity");
         rainMat.SetFloat ("_MoveFactor" , rainSpeed);
         rainMat.SetFloat ("_Cutoff" , 0.7f);
     }

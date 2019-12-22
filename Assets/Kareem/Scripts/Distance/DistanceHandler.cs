@@ -61,6 +61,9 @@ public class DistanceHandler : MonoBehaviour
     // Start is called before the first frame update
     private void Start ()
     {
+        maxCheck = true;
+        minCheck = true;
+        correctCheck = true;
         if (ARCamera == null)
             ARCamera = interactions.Instance.SessionOrigin.camera.transform;
         minimumDistance *= minimumDistance;

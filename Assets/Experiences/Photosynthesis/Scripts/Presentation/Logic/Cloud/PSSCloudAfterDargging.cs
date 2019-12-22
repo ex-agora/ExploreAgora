@@ -10,7 +10,7 @@ public class PSSCloudAfterDargging : MonoBehaviour
     {
         print ("Raining Raining Raining Raining Raining Raining Raining ");
         rain.StartRain ();
-        Invoke (nameof(EndRaining) , 2);
+        Invoke (nameof(EndRaining) , 3);
     }
     public void ResetCloudPosition ()
     {

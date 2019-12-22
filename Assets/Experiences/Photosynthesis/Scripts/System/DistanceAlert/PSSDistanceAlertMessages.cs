@@ -6,7 +6,7 @@ public class PSSDistanceAlertMessages : MonoBehaviour
 {
     [SerializeField] int minDistanceHintIndex;
     [SerializeField] int maxDistanceHintIndex;
-    [SerializeField] List<Draggable> draggables;
+    [SerializeField] List<Lean.Touch.LeanDragTranslate> draggables;
     [SerializeField] List<DraggableOnSurface> atoms;
     // Start is called before the first frame update
     void Start ()

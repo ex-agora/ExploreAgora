@@ -32,6 +32,7 @@ public class SmoothScaling : MonoBehaviour
         afterScalingEvent?.Raise ();
         if ( C_StartScaling != null )
             StopCoroutine (C_StartScaling);
+        gameObject.SetActive(false);
     }
     IEnumerator Scaling (float duration)
     {

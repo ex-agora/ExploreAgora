@@ -15,10 +15,15 @@ public class BlendShapeHandler : MonoBehaviour
 
     void Awake()
     {
-        skinnedMesh = skinnedMeshRenderer.sharedMesh;
-    }
 
-     void HandleModel() {
+        skinnedMesh = skinnedMeshRenderer.sharedMesh;
+        
+    }
+    private void Start()
+    {
+        KayValue = MaxKeyValue;
+    }
+    void HandleModel() {
         skinnedMeshRenderer.SetBlendShapeWeight(0, kayValue);
         mat.SetFloat("_Alpha", kayValue / 100f);
     }

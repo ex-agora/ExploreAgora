@@ -51,6 +51,11 @@ public class OldDragable : MonoBehaviour
     public void StopDrag() {
         isDragStop = true;
     }
+    private void OnMouseDown()
+    {
+        AudioManager.Instance.Play ("UIAction", "UI");
+
+    }
     void OnMouseDrag()
     {
         if (isDragStop)
@@ -68,11 +73,11 @@ public class OldDragable : MonoBehaviour
                 //hitpPointVec = transform.worldToLocalMatrix.MultiplyPoint3x4(hitInfo.point);
                 //hitpPointVec = hitInfo.collider.transform.InverseTransformPoint(hitInfo.point);
                 float ang = Vector3.Angle(hitInfo.transform.forward, Vector3.forward);
+                hitpPointVec = Quaternion.Euler(ang * Vector3.up) * hitpPointVec;
                 hitpPointVec = hitInfo.point;
                 hitpPointVec.x -= hitInfo.transform.position.x;
                 hitpPointVec.y -= hitInfo.transform.position.y;
                 hitpPointVec.z -= hitInfo.transform.position.z;
-                hitpPointVec = Quaternion.Euler(ang * Vector3.up) * hitpPointVec;
                 //hitpPointVec.Scale(-dir);
                 //Debug.LogError(ang);
                 //Debug.Log(hitpPointVec.z);
@@ -99,8 +104,8 @@ public class OldDragable : MonoBehaviour
                         transform.localPosition = hitpPointVec;
                         break;
                     case DraggableAxis.XZ_Surface:
-                        hitpPointVec = Quaternion.Euler(-ang * Vector3.up) * hitpPointVec;
-                        hitpPointVec = new Vector3(hitpPointVec.x, transform.position.y, hitpPointVec.z);
+                        //hitpPointVec = Quaternion.Euler(-ang * Vector3.up) * hitpPointVec;
+                        hitpPointVec = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
                         transform.position = hitpPointVec;
                         break;
                 }
