@@ -44,6 +44,7 @@ namespace StateMachine
             if (isWorking)
             {
                 IsWorking = false;
+                isPause = false;
                 currentState.OnExitState<IStateController>(controllersManager);
             }
         }

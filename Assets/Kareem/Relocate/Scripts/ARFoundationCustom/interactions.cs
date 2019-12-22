@@ -71,6 +71,7 @@ public class interactions : MonoBehaviour
         planeDetectionController.TogglePlaneDetection ();
         planeTarget.SetActive (false);
         relocate.interactable = true;
+        relocate.GetComponent<RelocateEventEnableDisableAction>()?.FireEvent();
         AudioManager.Instance.Play ("placeObject", "Activity");
     }
 

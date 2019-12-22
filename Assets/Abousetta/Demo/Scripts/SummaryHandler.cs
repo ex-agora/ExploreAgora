@@ -41,6 +41,7 @@ public class SummaryHandler : MonoBehaviour
             Invoke(nameof(PlayContentAnim), 2.3f);
     }
     void PlayContentAnim() {
+        contentAnimator.Rebind();
         contentAnimator.enabled = true;
     }
     /// Close summary panel.

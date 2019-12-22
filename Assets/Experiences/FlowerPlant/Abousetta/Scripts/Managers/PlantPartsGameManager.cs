@@ -128,6 +128,7 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
         Invoke(nameof(StartTutorial), 4f);
     }
     void StartTutorial() {
+        tutorial.TutorialTextStr = bubbleController.NextBubble();
         tutorial.OpenTutorial();
         bubbleController.NextBubble();
     }

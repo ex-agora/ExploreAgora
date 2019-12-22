@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class ModelFacingRotator : MonoBehaviour
@@ -8,18 +9,19 @@ public class ModelFacingRotator : MonoBehaviour
     [SerializeField] bool isFaceOnEnble;
     [SerializeField] FadeInOut fade;
     Vector3 taregPos;
-    private void OnEnable()
+    private void OnEnable ()
     {
-        target = target == null ? PlantPartsGameManager.Instance.ArCamera.transform : target;
+        target = target == null ? interactions.Instance.SessionOrigin.camera.transform : target;
         if (isFaceOnEnble)
-            Face();
+            Face ();
         if (fade != null)
-            fade.fadeInOut(true);
+            fade.fadeInOut (true);
     }
-    public void Face() {
-        taregPos.x = target.position.x; 
-        taregPos.y = transform.position.y; 
-        taregPos.z = target.position.z;                       
-        transform.LookAt(taregPos);
+    public void Face ()
+    {
+        taregPos.x = target.position.x;
+        taregPos.y = transform.position.y;
+        taregPos.z = target.position.z;
+        transform.LookAt (taregPos);
     }
 }
