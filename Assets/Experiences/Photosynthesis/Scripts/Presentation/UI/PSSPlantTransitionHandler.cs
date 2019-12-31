@@ -24,11 +24,7 @@ public class PSSPlantTransitionHandler : MonoBehaviour
     void CustomUpdate ()
     {
         duration -= repeatRate;
-        //TODO Smooth Blend Shapes Of Plant and Sugar/O2 Animation
-
         plantTransition.KayValue = Mathf.Lerp (plantTransition.KayValue , 1 , step);
-
-        //print ("Sugar And O2 Animation");
         if ( duration <= 0.0f )
         {
             CancelInvoke (nameof (CustomUpdate));
