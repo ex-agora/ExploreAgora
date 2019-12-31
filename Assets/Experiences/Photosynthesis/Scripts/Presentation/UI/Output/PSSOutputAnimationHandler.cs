@@ -7,7 +7,7 @@ public class PSSOutputAnimationHandler : MonoBehaviour
     [SerializeField] float outputAnimationsDuration = 5;
     [SerializeField] List<Animator> outputAnimations;
     float elpTime;
-    float updateRate = 2.65f;
+    float updateRate = 2.65f/2f;
     public void StartOutputAnimations ()
     {
         Invoke(nameof(PlayAnim), 4f); 

@@ -27,6 +27,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] private StateMachineManager stateMachine;
     [SerializeField] private TimerUIHandler timerUIHandler;
     [SerializeField] private TutorialPanelController tutorialPanelController;
+    [SerializeField] MenuUIHandler menu;
     private int whiteMoothCount;
     bool isRelocatePressed;
     bool isSecondBuffer;
@@ -72,7 +73,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         else if (whiteMoothCount >= blackMoothCount)
         {
             timerUIHandler.HideBar();
-            mothScoreHandler.ShowSummary(false, "Before Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more black moths than white moths as they are easier to see. Let's see how this happens.");
+            mothScoreHandler.ShowSummary(false, "Before Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more black moths than white moths because the black ones are easier to see. Let's see how this happens.");
         }
         else if (blackMoothCount > whiteMoothCount)
         {
@@ -114,7 +115,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         else if (whiteMoothCount <= blackMoothCount)
         {
             timerUIHandler.HideBar();
-            mothScoreHandler.ShowSummary(false, "After Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more white moths than black moths as they are easier to see. Let's see how this happens.");
+            mothScoreHandler.ShowSummary(false, "After Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more white moths than black moths because the white ones are easier to see. Let's see how this happens.");
         }
         else if (blackMoothCount < whiteMoothCount)
         {
@@ -134,6 +135,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         Invoke(nameof(ShowFinalSummary), 1f);
     }
     void ShowFinalSummary() {
+        StopMenuInteraction();
         finalSummary.ViewSummary();
     }
 
@@ -207,11 +209,13 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void ShowFirstSummary()
     {
+        //StopMenuInteraction();
         bubbleBefore.ViewSummary();
     }
 
     public void ShowSecondSummary()
     {
+        //StopMenuInteraction();
         bubbleAfter.ViewSummary();
     }
 
@@ -222,6 +226,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
             isFirstStartBuffer = true;
             return;
         }
+        
         isFirstStartBuffer = false;
         isFirstPhase = true;
         whiteMoothCount = 0;
@@ -281,7 +286,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     private void Start()
     {
-        AudioManager.Instance.Play("birds", "Background");
+        AudioManager.Instance.Play("bg", "Background");
         isRelocatePressed = true;
         Invoke(nameof(StartMachine), 2f);
     }
@@ -292,6 +297,14 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     private void StartMachine()
     {
         stateMachine.StartSM();
+    }
+    void StopMenuInteraction() {
+        bubbleController.StopSpeech();
+        menu.StopMenuInteraction();
+    }
+    void StartMenuInteraction() {
+        bubbleController.RunSpeech();
+        menu.StopMenuInteraction();
     }
     #endregion Methods
 }

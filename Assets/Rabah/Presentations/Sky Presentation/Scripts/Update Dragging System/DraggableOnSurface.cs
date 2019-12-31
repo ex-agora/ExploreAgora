@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
@@ -23,24 +25,31 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     [SerializeField] Transform clippingTargetMin;
     [SerializeField] Transform clippingTargetMax;
     [SerializeField] bool isclipping;
+    private bool canBeDragged = true;
+    private Vector3 initialPosition;
     #endregion
 
     #region Methods
-    private void OnEnable ()
+    private void OnEnable()
     {
-
+        initialPosition = transform.localPosition;
     }
     public void OnBeginDrag (PointerEventData eventData)
     {
+        if (!canBeDragged)
+            return;
         MyPosition = transform.position;
         screenPoint = interactions.Instance.SessionOrigin.camera.WorldToScreenPoint (gameObject.transform.position);
         offset = gameObject.transform.position - interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint (
             new Vector3 (eventData.position.x , screenPoint.y , screenPoint.z));
+        AudioManager.Instance?.Play("UIAction", "UI");
         @onBeginDrag?.Raise ();
     }
 
     public void OnDrag (PointerEventData eventData)
     {
+        if (!canBeDragged)
+            return;
         cursorScreenPoint.x = eventData.position.x;
         cursorScreenPoint.y = eventData.position.y;
         cursorScreenPoint.z = screenPoint.z;
@@ -88,11 +97,32 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag (PointerEventData eventData)
     {
+        if (!canBeDragged)
+            return;
         screenPoint = Vector3.zero;
         offset = Vector3.zero;
         cursorScreenPoint = Vector3.zero;
         cursorPosition = Vector3.zero;
         HitObject = EndDragAction (draggingMode);
+    }
+    public void ResetPosition()
+    {
+        StartCoroutine(ReturnToPosition(MyPosition));
+    }
+    IEnumerator ReturnToPosition(Vector3 pos)
+    {
+        canBeDragged = false;
+        float duration = 0.5f;
+        float startTime = Time.time;
+        Vector3 currPosition = transform.localPosition;
+        while (Time.time < startTime + duration)
+        {
+            float t = (Time.time - startTime) / duration;
+            transform.localPosition = Vector3.Lerp(currPosition, pos, t);
+            yield return null;
+        }
+        transform.localPosition = pos;
+        canBeDragged = true;
     }
     public GameObject EndDragAction (DraggingModes mode)
     {
@@ -108,5 +138,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
                 return null;
         }
     }
+
+   
     #endregion
 }

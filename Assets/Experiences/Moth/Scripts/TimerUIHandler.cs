@@ -8,7 +8,7 @@ public class TimerUIHandler : MonoBehaviour
     float duration;
     float updateRate = 0.1f;
     float elapseTime;
-
+    bool isOpen = false;
     [SerializeField] Animator timerAnim;
     [SerializeField] Image timerImgae;
     [SerializeField] GameEvent onTimerEnd;
@@ -44,11 +44,17 @@ public class TimerUIHandler : MonoBehaviour
 
     public void ViewBar()
     {
+        if (isOpen)
+            return;
         ShowTimerBar();
+        isOpen = true;
     }
     public void HideBar()
     {
+        if (!isOpen)
+            return;
         HideTimerBar();
+        isOpen = false;
         if (IsInvoking(nameof(CustomUpdate)))
             CancelInvoke(nameof(CustomUpdate));
     }
