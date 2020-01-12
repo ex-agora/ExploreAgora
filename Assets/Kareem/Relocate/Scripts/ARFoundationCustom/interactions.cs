@@ -52,7 +52,6 @@ public class interactions : MonoBehaviour
 
     public void placeTheObject ()
     {
-        objectToPlaceParent.SetActive (true);
         if (firstTime)
         {
             objectToPlaceParent.transform.position = targetPose.position;
@@ -68,6 +67,8 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.position = targetPose.position;
             objectToPlaceParent.transform.rotation = targetPose.rotation;
         }
+        objectToPlaceParent.SetActive(true);
+
         planeDetectionController.TogglePlaneDetection ();
         planeTarget.SetActive (false);
         relocate.interactable = true;

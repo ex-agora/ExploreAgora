@@ -15,7 +15,7 @@ public class MSS132ElementHandler : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start ()
+    void OnEnable ()
     {
         defaultPsoition = transform.position;
     }
@@ -31,7 +31,7 @@ public class MSS132ElementHandler : MonoBehaviour
     {
         MSS132Manager.Instance.IsAnimationWorking = true;
         duration = 0.3f;
-        step = 2.0f / ( duration / repeatRate );
+        step = 2.0f / (duration / repeatRate);
         InvokeRepeating (nameof (CustomUpdate) , 0 , repeatRate);
 
     }

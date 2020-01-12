@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -251,11 +251,9 @@ MonoBehaviour:
     textInfo: "The coal wasn\u2019t here before! TAP to collect it, we might need
       it later. "
   - bubbleType: 2
-    textInfo: Ana Element 5
+    textInfo: Make sure its not too bright or too dark
   - bubbleType: 2
-    textInfo: Bla Bla Bla 2
-  - bubbleType: 2
-    textInfo: Bla Bla Bla 3
+    textInfo: Avoid transparent and reflective surfaces
 --- !u!4 &72801671
 Transform:
   m_ObjectHideFlags: 0
@@ -471,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  groundIndicatorIndecies: 050000000600000007000000
+  groundIndicatorIndecies: 0500000006000000
   groundIndicatorTutorialHandler: {fileID: 317065178}
   realTimeTutorialHandler: {fileID: 682121359}
   showHotspotEvent: {fileID: 11400000, guid: c3f898861742d4a4fb526cbac769620a, type: 2}

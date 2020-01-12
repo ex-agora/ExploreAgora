@@ -28,7 +28,7 @@ public class OnBoardingSocialStudyObjHandler : MonoBehaviour
     {
         for (int i = 0; i < puzzles.Length; i++)
         {
-            puzzles[i].enabled = false;
+            puzzles[i].IsDragStop = true;
         }
 
     }
@@ -42,7 +42,7 @@ public class OnBoardingSocialStudyObjHandler : MonoBehaviour
         for (int i = 0; i < puzzles.Length; i++)
         {
             puzzles[i].gameObject.SetActive(true);
-            puzzles[i].enabled = true; 
+            puzzles[i].IsDragStop = false;
         }
         hotspotCanvas.gameObject.SetActive(false);
     }
@@ -60,8 +60,8 @@ public class OnBoardingSocialStudyObjHandler : MonoBehaviour
         coalShowEvent?.Raise();
     }
     public void StopVFX() {
-        effect.Stop();
-        effect.gameObject.SetActive(false);
+        effect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        //effect.gameObject.SetActive(false);
     }
 
 }

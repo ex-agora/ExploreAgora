@@ -13,11 +13,12 @@ public class OnBoadingScienceObjSetter : MonoBehaviour
     [SerializeField] FadeInOut bookP4Obj;
     [SerializeField] FadeInOut bookP5Obj;
     [SerializeField] GameObject coalObj;
-
+    [SerializeField] GameObject book;
     public void ObjectContainSetter()
     {
-        FadeOutBook();
-        Invoke(nameof(ActeiveCoalObj), 2.5f);
+        //FadeOutBook();
+        book.SetActive(false); 
+        Invoke(nameof(ActeiveCoalObj), 0.1f);
     }
     void ActeiveCoalObj() {
         coalObj.SetActive(true);

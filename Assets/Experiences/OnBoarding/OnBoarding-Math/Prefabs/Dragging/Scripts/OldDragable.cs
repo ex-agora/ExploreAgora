@@ -42,14 +42,16 @@ public class OldDragable : MonoBehaviour
             canBeDragged = value;
         }
     }
+
+    public bool IsDragStop { get => isDragStop; set => isDragStop = value; }
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         initialPosition = transform.localPosition;
     }
     public void StopDrag() {
-        isDragStop = true;
+        IsDragStop = true;
     }
     private void OnMouseDown()
     {
@@ -58,7 +60,7 @@ public class OldDragable : MonoBehaviour
     }
     void OnMouseDrag()
     {
-        if (isDragStop)
+        if (IsDragStop)
             return;
 
         if (CanBeDragged)
@@ -142,7 +144,7 @@ public class OldDragable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (isDragStop)
+        if (IsDragStop)
             return;
         if (onDragEnd != null)
             onDragEnd.Raise();

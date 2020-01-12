@@ -39,11 +39,11 @@ public class GrinderInteractions : MonoBehaviour
     }
    public void ShowPowder()
     {
-        Invoke(nameof(PlaceCoalPowder), 0.65f);
+        Invoke(nameof(PlaceCoalPowder), 0.1f);
     }
     public void MoveUp() {
         coalGrinderAnim.SetTrigger("Move");
-        Invoke(nameof(PlayPS), 4.5f);
+        Invoke(nameof(PlayPS), 0.4f);
     }
     public void PlayPS() {
         particle.gameObject.SetActive(true);

@@ -20,6 +20,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     [SerializeField] StateMachineManager stateMachine;
     [SerializeField] Texture bookPuzzleTex;
+    [SerializeField] Texture bookCurrentTex;
     [SerializeField] ToolBarHandler barHandler;
     [SerializeField] TutorialPanelController tutorial;
     [SerializeField] SummaryHandler finalSummary;
@@ -33,6 +34,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] SpeechBubbleController bubbleController;
     [SerializeField] MenuUIHandler menu;
     [SerializeField] GameEvent onTutorialReadyPressed;
+    [SerializeField] GameObject dragHnadler;
     public int score;
     GameObject canvas;
     RectTransform canvasRect;
@@ -47,7 +49,11 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         if (Instance == null)
             Instance = this;
     }
-
+    private void OnDisable()
+    {
+        bookMat.EnableKeyword("_Albedo");
+        bookMat.SetTexture("_Albedo", bookCurrentTex);
+    }
     private void Start()
     {
         AudioManager.Instance.Play("bg", "Background");
@@ -168,6 +174,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void activateDeactivateDraggables(bool state)
     {
+        dragHnadler.SetActive(true);
         Debug.Log("QQWWWSSSZZZ");
         foreach (var item in Draggables)
         {
@@ -212,8 +219,8 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         AudioManager.Instance.Play("swoosh", "Activity");
         AudioManager.Instance.Play("placeObject", "Activity");
         //unlock Dragging 
-        bookMat.EnableKeyword("_MainTex");
-        bookMat.SetTexture("_MainTex", bookPuzzleTex);
+        bookMat.EnableKeyword("_Albedo");
+        bookMat.SetTexture("_Albedo", bookPuzzleTex);
         Invoke(nameof(hideParticle), 2);
         TestButton.interactable = true;
     }
@@ -236,7 +243,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
             AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
             //final summary 
-            Invoke(nameof(FinalSummary), 6);
+            Invoke(nameof(FinalSummary), 12f);
             //finalSummary.ViewSummary();
             Invoke(nameof(StartAnim), 2f);
         }
@@ -252,16 +259,16 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         menu.StopMenuInteraction();
         finalSummary.ViewSummary();
     }
-    public void testttt()
-    {
-        AudioManager.Instance.Play("openLock", "Activity");
-        BookAnimator.SetTrigger("openClip");
-        Invoke(nameof(FinalSummary), 6);
-        Invoke(nameof(StartAnim), 2f);
-        //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
-        //ookParticleTemp.transform.localPosition = Vector3.zero;
-        //bookParticleTemp.GetComponent<ParticleSystem>().Play();
-    }
+    //public void testttt()
+    //{
+    //    AudioManager.Instance.Play("openLock", "Activity");
+    //    BookAnimator.SetTrigger("openClip");
+    //    Invoke(nameof(FinalSummary), 6);
+    //    Invoke(nameof(StartAnim), 2f);
+    //    //bookParticleTemp = Instantiate(bookParticle.gameObject, Vector3.zero, bookParticle.rotation, bookParticleParent);
+    //    //ookParticleTemp.transform.localPosition = Vector3.zero;
+    //    //bookParticleTemp.GetComponent<ParticleSystem>().Play();
+    //}
 
     #endregion
 

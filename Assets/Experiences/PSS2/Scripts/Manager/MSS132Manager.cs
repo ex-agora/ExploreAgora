@@ -104,6 +104,7 @@ public class MSS132Manager : MonoBehaviour
         if ( currentBottle == null || currentBulb == null || currentGasTube == null )
         {
             PlantState = MSS132PlantStates.None;
+            return;
         }
         else if ( currentBottle == elements.WaterBottle && currentBulb == elements.WhiteBulb && currentGasTube == elements.CarbonDioxideOxygenGasTube )
         {
@@ -112,7 +113,7 @@ public class MSS132Manager : MonoBehaviour
             MSS132GameManager.Instance.BarHandler.ActiveThriving ();
             if ( !isSummaryShown )
             {
-                MSS132GameManager.Instance.Summary.ViewSummary ();
+                MSS132GameManager.Instance.ShowFinalSummery();
                 isSummaryShown = true;
             }
         }
@@ -168,7 +169,6 @@ public class MSS132Manager : MonoBehaviour
                     PlantDying ();
                 }
                 PlantState = MSS132PlantStates.Dying;
-                PlantState = MSS132PlantStates.Alive;
                 MSS132GameManager.Instance.BarHandler.ActiveDying ();
             }
         }

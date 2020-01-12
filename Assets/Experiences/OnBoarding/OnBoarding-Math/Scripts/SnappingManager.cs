@@ -13,7 +13,7 @@ public class SnappingManager : MonoBehaviour
     public Transform ss , indicator;
     public bool isBetween, isForward;
     int index;
-    bool isRightAns;
+    [SerializeField]bool isRightAns;
     [SerializeField] GameEvent checkQuiz;
 
     public bool IsRightAns { get => isRightAns; set => isRightAns = value; }

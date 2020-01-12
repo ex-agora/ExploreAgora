@@ -29,24 +29,25 @@ public class MSS132PlantAnimations : MonoBehaviour
     {
         durationCounter = duration;
         MSS132Manager.Instance.IsAnimationWorking = true;
-        step = 2.0f / ( durationCounter / repeatRate );
+        step = ((EndKayValue - plantTransition.KayValue) / duration) * repeatRate;
         InvokeRepeating (nameof (CustomUpdate) , 0 , repeatRate);
     }
     void CustomUpdate ()
     {
         durationCounter -= repeatRate;
-        plantTransition.KayValue = Mathf.Lerp (plantTransition.KayValue , EndKayValue , step);
+        plantTransition.KayValue+= step;
         if ( durationCounter <= 0.0f )
         {
-            CancelInvoke (nameof (CustomUpdate));
+            plantTransition.KayValue = EndKayValue;
             MSS132Manager.Instance.IsAnimationWorking = false;
+            CancelInvoke (nameof (CustomUpdate));
         }
     }
     public void StartPlantTransitionSameState ()
     {
         durationCounter = duration;
         MSS132Manager.Instance.IsAnimationWorking = true;
-        step = 2.0f / ( Duration / repeatRate );
+        step = (((EndKayValue - plantTransition.KayValue) / duration) * repeatRate) / 2.0f;
         InvokeRepeating (nameof (CustomUpdateSameState) , 0 , repeatRate);
     }
     void CustomUpdateSameState ()
@@ -54,15 +55,16 @@ public class MSS132PlantAnimations : MonoBehaviour
         durationCounter -= repeatRate;
         if ( durationCounter >= Duration / 2 )
         {
-            plantTransition.KayValue = Mathf.Lerp (plantTransition.KayValue , EndKayValue , step);
+            plantTransition.KayValue += step;
         }
         else if ( durationCounter < Duration / 2 && durationCounter  > 0)
         {
-            plantTransition.KayValue = Mathf.Lerp (plantTransition.KayValue , StartKayValue , step);
+            plantTransition.KayValue -= step;
         }
         else if ( durationCounter <= 0.0f )
         {
-            CancelInvoke (nameof (CustomUpdate));
+            plantTransition.KayValue = StartKayValue;
+            CancelInvoke (nameof (CustomUpdateSameState));
             MSS132Manager.Instance.IsAnimationWorking = false;
         }
     }

@@ -1,19 +1,104 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class MSS132GameManager : MonoBehaviour
+using UnityEngine.SceneManagement;
+using StateMachine;
+public class MSS132GameManager : MonoBehaviour, ITriggable, IMenuHandler
 {
     #region singletone
     static MSS132GameManager instance;
     public static MSS132GameManager Instance { get => instance; set => instance = value; }
-    public SummaryHandler Summary { get => summary; set => summary = value; }
     public MSS132BarHandler BarHandler { get => barHandler; set => barHandler = value; }
+    public SummaryHandler Summary { get => summary; set => summary = value; }
     #endregion
-    private void Awake ()
-    {
-        Instance = this;
-    }
+    #region Fields
     [SerializeField] MSS132BarHandler barHandler;
+
+    private bool nextState;
+    [SerializeField] GameEvent firstPhaseEvent = null;
     [SerializeField] SummaryHandler summary;
+    [SerializeField] StateMachineManager stateMachine;
+    [SerializeField] SpeechBubbleController bubbleController;
+    [SerializeField] MenuUIHandler menu;
+    [SerializeField] ToolBarHandler toolBar;
+    [SerializeField] TutorialPanelController tutorial;
+    [SerializeField] GameObject draggingManager;
+    [SerializeField] ToolBarHandler gotItBtn;
+    #endregion Fields
+
+    #region Methods
+    public bool GetTrigger()
+    {
+        bool up = nextState;
+        nextState = false;
+        return up;
+    }
+
+    public void GoTOHome()
+    {
+        //TODO
+    }
+
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+    private void Start()
+    {
+        AudioManager.Instance.Play("bg", "Background");
+        Invoke(nameof(StartMachine), 2f);
+    }
+    private void StartMachine()
+    {
+        stateMachine.StartSM();
+    }
+    void StopMenuInteraction()
+    {
+        bubbleController.StopSpeech();
+        menu.StopMenuInteraction();
+    }
+    void StartMenuInteraction()
+    {
+        bubbleController.RunSpeech();
+        menu.StopMenuInteraction();
+    }
+    public void FarAlert()
+    {
+        bubbleController.SetHintText(4);
+        nextState = true;
+    }
+    public void NearAlert()
+    {
+        bubbleController.SetHintText(5);
+        nextState = true;
+    }
+    public void StartFirstPhase() {
+        firstPhaseEvent?.Raise();
+        nextState = true;
+        Invoke(nameof(StartTutorial), 8f);
+    }
+    void StartTutorial() {
+        tutorial.TutorialTextStr = bubbleController.NextBubble();
+        tutorial.OpenTutorial();
+    }
+    public void ContinueFirstPhase() {
+        draggingManager.SetActive(true);
+        toolBar.OpenToolBar();
+    }
+    public void ShowGotiTBtn() {
+        gotItBtn.OpenToolBar();
+    }
+    public void ShowFinalSummery() {
+        Invoke(nameof(OpenSummery), 4f);
+    }
+    void OpenSummery() {
+        Summary.ViewSummary();
+    }
+    #endregion Methods
 }

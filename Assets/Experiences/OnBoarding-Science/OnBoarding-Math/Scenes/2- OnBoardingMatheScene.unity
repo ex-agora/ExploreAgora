@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1052,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &614768215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2632,7 +2632,8 @@ MonoBehaviour:
   phases: 0
   TestButton: {fileID: 521721848}
   stateMachine: {fileID: 379250327}
-  bookPuzzleTex: {fileID: 2800000, guid: 7a15400b3b545c64fa2ee533f61434f4, type: 3}
+  bookPuzzleTex: {fileID: 2800000, guid: 264231fd1c7ef0e49a68d6366d13fdaf, type: 3}
+  bookCurrentTex: {fileID: 2800000, guid: d1a48b59a0c77934e9319a38cbcd3d3b, type: 3}
   barHandler: {fileID: 2933763376663904871}
   tutorial: {fileID: 5393014112106333879}
   finalSummary: {fileID: 5393014112064107428}
@@ -2652,6 +2653,7 @@ MonoBehaviour:
   menu: {fileID: 35244510}
   onTutorialReadyPressed: {fileID: 11400000, guid: aa448015504bbd54993f5ef3e63dcc46,
     type: 2}
+  dragHnadler: {fileID: 614768214}
   score: 0
   powderParticleTemp: {fileID: 0}
   bookParticleTemp: {fileID: 0}
@@ -2659,7 +2661,7 @@ MonoBehaviour:
     type: 3}
   powderParticleParent: {fileID: 0}
   bookParticleParent: {fileID: 0}
-  bookMat: {fileID: 0}
+  bookMat: {fileID: 2100000, guid: 9f3c01fe31174f241bb69f3fb1be7268, type: 2}
 --- !u!4 &2002577202
 Transform:
   m_ObjectHideFlags: 0
