@@ -106,6 +106,9 @@ namespace Lean.Touch
                 case DraggableAxis.XY_Surface:
                     remainingTranslation.z = 0;
                     break;
+                case DraggableAxis.YZ_Surface:
+                    remainingTranslation.x = 0;
+                    break;
             }
             // Shift this transform by the change in delta
             transform.localPosition = oldPosition + remainingTranslation - newRemainingTranslation;

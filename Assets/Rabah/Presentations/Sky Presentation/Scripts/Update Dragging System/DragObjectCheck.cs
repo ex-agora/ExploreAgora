@@ -78,4 +78,12 @@ public class DragObjectCheck : MonoBehaviour
         }
     }
     public void CheckPosition() { CheckCorrectPosition(); }
+    public void CheckTruePoisition() {
+        if (isTrueDraggableObject)
+        {
+            AudioManager.Instance?.Play("placeObject", "Activity");
+            @onEndDragToCorrectPosition?.Raise();
+            print("I am Correct ");
+        }
+    }
 }
