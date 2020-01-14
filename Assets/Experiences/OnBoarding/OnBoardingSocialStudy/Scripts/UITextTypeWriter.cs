@@ -28,6 +28,11 @@ public class UITextTypeWriter : MonoBehaviour
     }
     private void CustoumUpdate()
     {
+        if (index >= story.Length) {
+            txt.text = story;
+            CancelInvoke(nameof(CustoumUpdate));
+            return;
+        }
         txt.text += story[index];
         index++;
         elpTime += updateRate;

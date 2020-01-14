@@ -11,6 +11,7 @@ public class BlendShapeHandler : MonoBehaviour
     [Range(1,100)][SerializeField]float kayValue = 0f;
     [SerializeField] int maxKeyValue;
     [SerializeField] bool notSetMax;
+    [SerializeField] bool notSetMat;
     public float KayValue { get => kayValue; set {kayValue = value; HandleModel(); } }
     public int MaxKeyValue { get => maxKeyValue; set => maxKeyValue = value; }
 
@@ -27,7 +28,8 @@ public class BlendShapeHandler : MonoBehaviour
     }
     void HandleModel() {
         skinnedMeshRenderer.SetBlendShapeWeight(0, kayValue);
-        mat.SetFloat("_Alpha", kayValue / 100f);
+        if (!notSetMat)
+            mat.SetFloat("_Alpha", kayValue / 100f);
     }
     private void OnValidate()
     {
