@@ -8,11 +8,9 @@ public class MSS132ElementHandler : MonoBehaviour
     float repeatRate = 0.05f;
     float step;
     Vector3 defaultPsoition;
-    [SerializeField]
-    Transform destination;
+    [SerializeField] Transform destination;
 
     public Transform Destination { get => destination; set => destination = value; }
-
 
     // Start is called before the first frame update
     void OnEnable ()
@@ -21,7 +19,7 @@ public class MSS132ElementHandler : MonoBehaviour
     }
     public void ResetPosition ()
     {
-        ResetPositionSmoothly ();
+        ResetPositionSmoothly();
     }
     public void SnaptoDestination ()
     {

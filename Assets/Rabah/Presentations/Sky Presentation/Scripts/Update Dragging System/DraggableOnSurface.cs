@@ -25,6 +25,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     [SerializeField] Transform clippingTargetMin;
     [SerializeField] Transform clippingTargetMax;
     [SerializeField] bool isclipping;
+    [SerializeField] bool isStartDargging;
     private bool canBeDragged = true;
     private Vector3 initialPosition;
     #endregion
@@ -36,7 +37,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     }
     public void OnBeginDrag (PointerEventData eventData)
     {
-        if (!canBeDragged)
+        if (!canBeDragged || !isStartDargging)
             return;
         MyPosition = transform.position;
         screenPoint = interactions.Instance.SessionOrigin.camera.WorldToScreenPoint (gameObject.transform.position);
@@ -48,7 +49,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public void OnDrag (PointerEventData eventData)
     {
-        if (!canBeDragged)
+        if (!canBeDragged|| isStartDargging)
             return;
         cursorScreenPoint.x = eventData.position.x;
         cursorScreenPoint.y = eventData.position.y;
@@ -97,7 +98,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag (PointerEventData eventData)
     {
-        if (!canBeDragged)
+        if (!canBeDragged|| isStartDargging)
             return;
         screenPoint = Vector3.zero;
         offset = Vector3.zero;
@@ -107,7 +108,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
     }
     public void ResetPosition()
     {
-        StartCoroutine(ReturnToPosition(MyPosition));
+        StartCoroutine(ReturnToPosition(initialPosition));
     }
     IEnumerator ReturnToPosition(Vector3 pos)
     {

@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 505137701}
   - component: {fileID: 505137704}
   - component: {fileID: 505137703}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: O2 Game Listener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615707680}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
   m_Name: 
@@ -1208,8 +1208,8 @@ MonoBehaviour:
   eventSystem:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1593536897}
-        m_MethodName: ResetAtomPosition
+      - m_Target: {fileID: 1593536895}
+        m_MethodName: ResetPosition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615707680}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
   m_Name: 
@@ -1237,8 +1237,8 @@ MonoBehaviour:
   eventSystem:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1593536897}
-        m_MethodName: ResetAtomPosition
+      - m_Target: {fileID: 1593536895}
+        m_MethodName: ResetPosition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1402,7 +1402,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1593536894}
-        m_MethodName: CheckPosition
+        m_MethodName: CheckTruePoisition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1473,6 +1473,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &620860848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,7 +1553,9 @@ GameObject:
   - component: {fileID: 628340417}
   - component: {fileID: 628340420}
   - component: {fileID: 628340421}
-  m_Layer: 0
+  - component: {fileID: 190949964392194922}
+  - component: {fileID: 9137821893095759963}
+  m_Layer: 2
   m_Name: "O\u2082"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,6 +1600,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &628340418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1666,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   co2Atoms: {fileID: 0}
   scalingDuration: 0
+--- !u!114 &190949964392194922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628340415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeselectOnUp: 1
+  HideWithFinger: 0
+  IsolateSelectingFingers: 0
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSelectSet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5270148449686743803}
+        m_MethodName: TapSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSelectUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 628340418}
+        m_MethodName: CheckPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isSelected: 0
+--- !u!114 &9137821893095759963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628340415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eda371e5375f454490a86f21559ee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Use:
+    Filter: 0
+    IgnoreStartedOverGui: 1
+    RequiredFingerCount: 0
+    RequiredMouseButtons: 0
+    RequiredSelectable: {fileID: 190949964392194922}
+  Camera: {fileID: 0}
+  axis: 4
+  Dampening: -1
+  remainingTranslation: {x: 0, y: 0, z: 0}
 --- !u!1 &684448938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1790,7 @@ GameObject:
   - component: {fileID: 687930631}
   - component: {fileID: 687930633}
   - component: {fileID: 687930632}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oxygen_Atom_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1862,7 +1946,7 @@ GameObject:
   - component: {fileID: 824648668}
   - component: {fileID: 824648670}
   - component: {fileID: 824648669}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oxygen_Atom_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2180,7 @@ GameObject:
   - component: {fileID: 839897057}
   - component: {fileID: 839897059}
   - component: {fileID: 839897058}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bond_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2536,6 +2620,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &1044730240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,7 +2697,7 @@ GameObject:
   - component: {fileID: 1047631943}
   - component: {fileID: 1047631946}
   - component: {fileID: 1047631945}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: N2 Game Listener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3038,7 +3123,9 @@ GameObject:
   - component: {fileID: 1234908388}
   - component: {fileID: 1234908386}
   - component: {fileID: 1234908387}
-  m_Layer: 0
+  - component: {fileID: 4765565570811240461}
+  - component: {fileID: 555825015789904061}
+  m_Layer: 2
   m_Name: "N\u2082"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3083,6 +3170,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &1234908389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,6 +3236,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   co2Atoms: {fileID: 0}
   scalingDuration: 0
+--- !u!114 &4765565570811240461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234908384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeselectOnUp: 1
+  HideWithFinger: 0
+  IsolateSelectingFingers: 0
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSelectSet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5270148449686743803}
+        m_MethodName: TapSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onSelectUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1234908389}
+        m_MethodName: CheckPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isSelected: 0
+--- !u!114 &555825015789904061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234908384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eda371e5375f454490a86f21559ee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Use:
+    Filter: 0
+    IgnoreStartedOverGui: 1
+    RequiredFingerCount: 0
+    RequiredMouseButtons: 0
+    RequiredSelectable: {fileID: 4765565570811240461}
+  Camera: {fileID: 0}
+  axis: 4
+  Dampening: -1
+  remainingTranslation: {x: 0, y: 0, z: 0}
 --- !u!1 &1301515771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,7 +3327,7 @@ GameObject:
   - component: {fileID: 1301515772}
   - component: {fileID: 1301515774}
   - component: {fileID: 1301515773}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3479,7 +3647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593536890}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82895c939e4d5084f80d92e791ce5186, type: 3}
   m_Name: 
@@ -3492,6 +3660,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &1593536894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3624,7 +3793,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   onDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1593536894}
+        m_MethodName: CheckPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   isSelected: 0
@@ -3660,7 +3840,7 @@ MonoBehaviour:
     RequiredMouseButtons: 0
     RequiredSelectable: {fileID: 2270375827096040896}
   Camera: {fileID: 0}
-  axis: 3
+  axis: 4
   Dampening: -1
   remainingTranslation: {x: 0, y: 0, z: 0}
 --- !u!1 &1616098646
@@ -3674,7 +3854,7 @@ GameObject:
   - component: {fileID: 1616098647}
   - component: {fileID: 1616098649}
   - component: {fileID: 1616098648}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3752,7 +3932,7 @@ GameObject:
   - component: {fileID: 1622178049}
   - component: {fileID: 1622178051}
   - component: {fileID: 1622178050}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7245,6 +7425,7 @@ MonoBehaviour:
   clippingTargetMin: {fileID: 0}
   clippingTargetMax: {fileID: 0}
   isclipping: 0
+  isStartDargging: 0
 --- !u!114 &7539836439263479146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9063,12 +9244,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50f8af42f21dee49bcd200b8f63836e, type: 3}
---- !u!4 &8942984759103625352 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6154162656515345218, guid: a50f8af42f21dee49bcd200b8f63836e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2989307227330368458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2896427981842126145 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 94024679382795915, guid: a50f8af42f21dee49bcd200b8f63836e,
@@ -9081,6 +9256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb590e01b1a618c4d96dd2128ea80201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8942984759103625352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6154162656515345218, guid: a50f8af42f21dee49bcd200b8f63836e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2989307227330368458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5350422151214951067 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7150770132598700369, guid: a50f8af42f21dee49bcd200b8f63836e,
@@ -9365,12 +9546,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1777876c6d3f44a9894d739f4ef043, type: 3}
---- !u!1 &8793562901694027214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6013754433395097226, guid: 3e1777876c6d3f44a9894d739f4ef043,
-    type: 3}
-  m_PrefabInstance: {fileID: 2989307227731880772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2447896027721551002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 613768703629699038, guid: 3e1777876c6d3f44a9894d739f4ef043,
@@ -9380,6 +9555,12 @@ GameObject:
 --- !u!4 &5499558178549950429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7290901269674658969, guid: 3e1777876c6d3f44a9894d739f4ef043,
+    type: 3}
+  m_PrefabInstance: {fileID: 2989307227731880772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8793562901694027214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6013754433395097226, guid: 3e1777876c6d3f44a9894d739f4ef043,
     type: 3}
   m_PrefabInstance: {fileID: 2989307227731880772}
   m_PrefabAsset: {fileID: 0}
@@ -9396,14 +9577,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
-      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
@@ -9461,6 +9634,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.0555806
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
