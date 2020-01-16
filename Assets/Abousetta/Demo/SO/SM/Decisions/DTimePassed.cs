@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "DTimePassed", menuName = "SO/SM/Decision/TimeHelper/DTimePassed", order = 0)]
 public class DTimePassed : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return CheckClick<T>(stateMachine, controllersManager);
@@ -19,4 +20,5 @@ public class DTimePassed : Decision
         //Debug.Log(timePassedHandler.Duration);
         return (timePassedHandler.Duration <= stateMachine.ElpTime);
     }
+    #endregion Methods
 }

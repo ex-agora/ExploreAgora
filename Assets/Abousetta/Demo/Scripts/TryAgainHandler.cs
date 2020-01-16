@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class TryAgainHandler : MonoBehaviour
 {
+    #region Fields
     [SerializeField] Animator tryAgainAnimator;
+    #endregion Fields
 
-    /// Open try again panel.
-    /// Called in ShowBubble function.
-    void OpenBubble()
+    #region Methods
+    /// Called to close try again bubble.
+    public void HideBubble()
     {
-        tryAgainAnimator.SetTrigger("IsOpened");
+        CloseBubble();
+    }
+
+    /// Called to open try again bubble.
+    public void ShowBubble()
+    {
+        OpenBubble();
     }
 
     /// Close try again panel.
@@ -20,15 +28,11 @@ public class TryAgainHandler : MonoBehaviour
         tryAgainAnimator.SetTrigger("IsClosed");
     }
 
-    /// Called to open try again bubble.
-    public void ShowBubble()
+    /// Open try again panel.
+    /// Called in ShowBubble function.
+    void OpenBubble()
     {
-        OpenBubble();
+        tryAgainAnimator.SetTrigger("IsOpened");
     }
-
-    /// Called to close try again bubble.
-    public void HideBubble()
-    {
-        CloseBubble();
-    }
+    #endregion Methods
 }

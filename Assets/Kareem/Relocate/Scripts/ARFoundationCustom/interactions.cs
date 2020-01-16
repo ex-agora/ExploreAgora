@@ -24,8 +24,8 @@ public class interactions : MonoBehaviour
     private Pose targetPose;
     bool planeFound = false;
     public bool canSet;
-    bool firstTime = true;
     bool isSurfaceFound;
+    bool firstTime = true;
     [SerializeField] bool isFoundedOnce;
     static interactions instance;
 

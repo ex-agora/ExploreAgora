@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CollectableStateInfo : MonoBehaviour
 {
-    [SerializeField]Sprite collectableSprite;
-    string description;
+    #region Fields
     string collectableName;
+    [SerializeField] Sprite collectableSprite;
+    string description;
+    #endregion Fields
 
+    #region Properties
+    public string CollectableName { get => collectableName; set => collectableName = value; }
     public Sprite CollectableSprite { get => collectableSprite; set => collectableSprite = value; }
     public string Description { get => description; set => description = value; }
-    public string CollectableName { get => collectableName; set => collectableName = value; }
-
+    #endregion Properties
 }

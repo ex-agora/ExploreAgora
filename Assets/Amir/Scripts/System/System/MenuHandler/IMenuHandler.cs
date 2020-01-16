@@ -4,6 +4,9 @@ using UnityEngine;
 
 public interface IMenuHandler 
 {
-    void ResetLevel();
+    #region Methods
     void GoTOHome();
+
+    void ResetLevel();
+    #endregion Methods
 }

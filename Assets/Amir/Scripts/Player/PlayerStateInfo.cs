@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerStateInfo : MonoBehaviour
 {
+    #region Fields
     [SerializeField] PlayerProfile profile;
+    #endregion Fields
+
+    #region Methods
     void Start()
     {
         
@@ -13,6 +17,7 @@ public class PlayerStateInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    #endregion Methods
 }

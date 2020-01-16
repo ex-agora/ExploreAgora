@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class testSSS : MonoBehaviour
 {
-   public void testtt()
+    #region Methods
+    public void testtt()
     {
         Debug.Log(Random.Range(0, 500));
     }
+    #endregion Methods
 }

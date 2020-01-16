@@ -10,13 +10,16 @@ namespace StateMachine
     [System.Serializable]
     public class StateBehviour
     {
+        #region Fields
         public Action[] stateEnterActions;
         public Action[] stateExitActions;
-        public Action[] stateStayActions;
         public Action[] stateFixedStayActions;
         public Action[] stateLateStayActions;
         public Action[] stateResetActions;
+        public Action[] stateStayActions;
+        #endregion Fields
 
+        #region Methods
         //OnEnterState this function activates all stateEnterActions(Start)
         public void OnExctueStateEnter<T>(StateControllersManager controllersManager) where T : IStateController
         {
@@ -33,14 +36,6 @@ namespace StateMachine
                 stateExitActions[i].Act<T>(controllersManager);
             }
         }
-        //OnStayState this function activates all stateStayActions(Update)
-        public void OnExctueStateStay<T>(StateControllersManager controllersManager) where T : IStateController
-        {
-            for (int i = 0; i < stateStayActions.Length; i++)
-            {
-                stateStayActions[i].Act<T>(controllersManager);
-            }
-        }
         //OnFixedStayState this function activates all stateFixedStayActions(FixedUpdate)
         public void OnExctueStateFixedStay<T>(StateControllersManager controllersManager) where T : IStateController
         {
@@ -49,6 +44,7 @@ namespace StateMachine
                 stateFixedStayActions[i].Act<T>(controllersManager);
             }
         }
+
         //OnLateStayState this function activates all stateLateStayActions(LateUpdate)
         public void OnExctueStateLateStay<T>(StateControllersManager controllersManager) where T : IStateController
         {
@@ -57,6 +53,7 @@ namespace StateMachine
                 stateLateStayActions[i].Act<T>(controllersManager);
             }
         }
+
         //OnResetState this function activates all stateResetActions(Reset)
         public void OnExctueStateReset<T>(StateControllersManager controllersManager) where T : IStateController
         {
@@ -65,5 +62,15 @@ namespace StateMachine
                 stateResetActions[i].Act<T>(controllersManager);
             }
         }
+
+        //OnStayState this function activates all stateStayActions(Update)
+        public void OnExctueStateStay<T>(StateControllersManager controllersManager) where T : IStateController
+        {
+            for (int i = 0; i < stateStayActions.Length; i++)
+            {
+                stateStayActions[i].Act<T>(controllersManager);
+            }
+        }
+        #endregion Methods
     }
 }

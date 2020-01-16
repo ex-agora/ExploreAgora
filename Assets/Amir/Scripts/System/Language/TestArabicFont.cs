@@ -7,10 +7,30 @@ using ArabicSupport;
 public class TestArabicFont : MonoBehaviour
 {
 
+    #region Fields
     Text myText; //You can also make this public and attach your UI text here.
 
     string sampleString = "امير طارق";
-    
+    #endregion Fields
+
+    #region Methods
+    public static string Reverse(string s)
+    {
+
+        string reverse = String.Empty;
+        for (int i = s.Length - 1; i > -1; i--)
+        {
+            reverse += (char)(1 * s[i]);
+        }
+        return reverse;
+    }
+
+    public static CharacterInfo[] ReverseFont(CharacterInfo[] infos)
+    {
+        Array.Reverse(infos);
+        return infos;
+    }
+
     void Awake()
     {
         myText = GetComponent<Text>();
@@ -23,7 +43,7 @@ public class TestArabicFont : MonoBehaviour
         myText.text = ArabicFixer.Fix(sampleString, false, false);
 
         //Font f = myText.font;
-        
+
         //myText.font.characterInfo = ReverseFont(f.characterInfo);
         //foreach (string s in listofWords)
         //{
@@ -31,19 +51,5 @@ public class TestArabicFont : MonoBehaviour
         //}
 
     }
-    public static CharacterInfo[] ReverseFont(CharacterInfo[] infos) {
-        Array.Reverse(infos);
-        return infos;
-    }
-
-    public static string Reverse(string s)
-    {
-        
-        string reverse = String.Empty;
-        for (int i = s.Length - 1; i > -1; i--)
-        {
-            reverse += (char)(1*s[i]);
-        }
-        return reverse;
-    }
+    #endregion Methods
 }

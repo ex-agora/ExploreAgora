@@ -7,6 +7,7 @@ using UnityEngine;
 //check if all text is written
 public class CharByCharWritingDecision : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return IsWritingFinishedDecision<T>(stateMachine, controllersManager);
@@ -20,4 +21,5 @@ public class CharByCharWritingDecision : Decision
         }
         return CharByCharController.isFinishedWriting();
     }
+    #endregion Methods
 }

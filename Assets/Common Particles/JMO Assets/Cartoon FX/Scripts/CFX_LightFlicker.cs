@@ -8,20 +8,22 @@ using System.Collections;
 [RequireComponent(typeof(Light))]
 public class CFX_LightFlicker : MonoBehaviour
 {
-	// Loop flicker effect
-	public bool loop;
+    #region Fields
+    /// Max intensity will be: baseIntensity + addIntensity
+    public float addIntensity = 1.0f;
+
+    // Loop flicker effect
+    public bool loop;
 	
 	// Perlin scale: makes the flicker more or less smooth
 	public float smoothFactor = 1f;
-	
-	/// Max intensity will be: baseIntensity + addIntensity
-	public float addIntensity = 1.0f;
-	
-	private float minIntensity;
-	private float maxIntensity;
-	private float baseIntensity;
-	
-	void Awake()
+    private float baseIntensity;
+    private float maxIntensity;
+    private float minIntensity;
+    #endregion Fields
+
+    #region Methods
+    void Awake()
 	{
 		baseIntensity = GetComponent<Light>().intensity;
 	}
@@ -35,5 +37,6 @@ public class CFX_LightFlicker : MonoBehaviour
 	void Update ()
 	{
 		GetComponent<Light>().intensity = Mathf.Lerp(minIntensity, maxIntensity, Mathf.PerlinNoise(Time.time * smoothFactor, 0f));
-	}
+    }
+    #endregion Methods
 }

@@ -11,5 +11,7 @@ public class ScanProperties : ScriptableObject
 {
     /* this string which contained in scriptableobject responsible of holding the name of object that 
      * need to be scanned currently */
+    #region Fields
     public string detectionObjectName;
+    #endregion Fields
 }

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class AR_Tester : MonoBehaviour
 {
+    #region Fields
     [SerializeField] Transform planeTarget;
+    #endregion Fields
+
+    #region Methods
     // Start is called before the first frame update
     void OnEnable ()
     {
@@ -20,4 +24,5 @@ public class AR_Tester : MonoBehaviour
         interactions.Instance.SessionOrigin.camera.transform.localPosition = new Vector3 (0 , 0 , -1);
         interactions.Instance.SessionOrigin.camera.transform.localEulerAngles = Vector3.zero;
     }
+    #endregion Methods
 }

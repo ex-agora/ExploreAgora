@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirstCube : MonoBehaviour
 {
+    #region Methods
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class FirstCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    #endregion Methods
 }

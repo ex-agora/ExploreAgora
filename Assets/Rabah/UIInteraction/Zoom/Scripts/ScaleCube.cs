@@ -5,8 +5,12 @@ using UnityEngine;
 public class ScaleCube : MonoBehaviour
 {
 
+    #region Fields
     Vector3 newScale;
     float scalar;
+    #endregion Fields
+
+    #region Methods
     void Update()
     {
         scalar = Zoom.instance.dis / 10000;
@@ -37,4 +41,5 @@ public class ScaleCube : MonoBehaviour
             transform.localScale -= newScale;
         }
     }
+    #endregion Methods
 }

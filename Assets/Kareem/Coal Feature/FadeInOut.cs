@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
-    private Material gameObjecMat;
-    [SerializeField] GameEvent onFadeComplete;
+    #region Fields
     [SerializeField] float fadeDuration = 0.5f;
-    [SerializeField] Material mat;
+    private Material gameObjecMat;
     [SerializeField] bool isMaterialPlaced;
+    [SerializeField] Material mat;
     MeshRenderer meshRenderer;
+    [SerializeField] GameEvent onFadeComplete;
     SkinnedMeshRenderer skinnedMeshRenderer;
+    #endregion Fields
+
+    #region Properties
     public GameEvent OnFadeComplete { get => onFadeComplete; set => onFadeComplete = value; }
+    #endregion Properties
+
+    #region Methods
+    // false means fade out  
+    public void fadeInOut(bool state)
+    {
+        StartCoroutine(startFading(state, fadeDuration));
+    }
 
     private void Awake()
     {
@@ -30,13 +42,6 @@ public class FadeInOut : MonoBehaviour
             gameObjecMat = skinnedMeshRenderer.material;
         }
     }
-
-    // false means fade out  
-    public void fadeInOut(bool state)
-    {
-        StartCoroutine(startFading(state, fadeDuration));
-    }
-
     IEnumerator startFading(bool state, float duration)
     {
         yield return new WaitForSeconds(0.5f);
@@ -56,4 +61,5 @@ public class FadeInOut : MonoBehaviour
         if (OnFadeComplete != null)
             OnFadeComplete.Raise();
     }
+    #endregion Methods
 }

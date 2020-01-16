@@ -7,10 +7,12 @@ using StateMachine;
 [CreateAssetMenu(fileName = "Tap Interaction", menuName = "SO/SM/Action/Tap Interaction", order = 0)]
 public class TapInteraction : Action
 {
+    #region Methods
     public override void Act<T>(StateControllersManager controllersManager)
     {
         InteractionController interactionController = controllersManager.GetController<InteractionController>();
         interactionController.isTappedText.text = interactionController.InteractionText;
         interactionController.isTappedText.gameObject.SetActive(true);
     }
+    #endregion Methods
 }

@@ -6,14 +6,21 @@ using LitJson;
 
 public class DetectObj : MonoBehaviour
 {
+    #region Fields
+    public GameObject Maincanvas, LoadingCanvas;
     public Text outputText;
-    public GameObject Maincanvas , LoadingCanvas;
+    JsonData jsonvale;
+
     //Output from server 
     string output;
-
-
-    JsonData jsonvale;
     [SerializeField] ScanProperties scanProperties;
+    #endregion Fields
+
+    #region Methods
+    public void Detect()
+    {
+        StartCoroutine(UploadPNG());
+    }
 
     //responsible of return string of response output of a JSON String
     string processJson(string response)
@@ -24,13 +31,6 @@ public class DetectObj : MonoBehaviour
         ObjectDetectedFormResponse = jsonvale[0]["message"].ToString();
         return ObjectDetectedFormResponse;
     }
-
-
-    public void Detect()
-    {
-        StartCoroutine(UploadPNG());
-    }
-
     // upload image to the server to get detected
     IEnumerator UploadPNG()
     {
@@ -94,4 +94,5 @@ public class DetectObj : MonoBehaviour
             Maincanvas.SetActive(true);
         }
     }
+    #endregion Methods
 }

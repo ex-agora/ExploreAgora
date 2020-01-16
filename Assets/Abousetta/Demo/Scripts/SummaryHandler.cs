@@ -5,24 +5,50 @@ using UnityEngine.UI;
 
 public class SummaryHandler : MonoBehaviour
 {
-    [SerializeField] Text tittleText;
+    #region Fields
     [SerializeField] Button activationButton;
-    [SerializeField] string tittleString;
     [SerializeField] Animator bubbleAnimator;
     [SerializeField] Animator contentAnimator;
     [SerializeField] Image contentImage;
     [SerializeField] Sprite contentSprite;
     [SerializeField] GameEvent doneEvent = null;
     [SerializeField] bool isContentAnimPlace;
-    public string TittleString { get => tittleString; set { tittleString = value; HandleTittle(); } }
+    [SerializeField] string tittleString;
+    [SerializeField] Text tittleText;
+    #endregion Fields
 
+    #region Properties
     public Sprite ContentSprite { get => contentSprite; set { contentSprite = value; HandleContent(); } }
+    public string TittleString { get => tittleString; set { tittleString = value; HandleTittle(); } }
+    #endregion Properties
+
+    #region Methods
+    /// Called whenever needed to close summary panel.
+    public void ConfirmationAction()
+    {
+        activationButton.interactable = false;
+        CloseSummary();
+        doneEvent?.Raise();
+    }
 
     /// Set bubble summary tittle
-    /// Called in ViewSummary function.
-    void HandleTittle()
+    /// Set bubble summary content
+    /// Called whenever needed to open Summary.
+    public void ViewSummary()
     {
-        tittleText.text = TittleString;
+        HandleTittle();
+        HandleContent();
+        OpenSummary();
+        AudioManager.Instance?.Play("openSummary", "UI");
+        activationButton.interactable = true;
+    }
+
+    /// Close summary panel.
+    void CloseSummary()
+    {
+        bubbleAnimator.SetTrigger("IsClosed");
+        if (isContentAnimPlace)
+            contentAnimator.enabled = false;
     }
 
     /// Set bubble summary content
@@ -33,6 +59,12 @@ public class SummaryHandler : MonoBehaviour
         contentImage.SetNativeSize();
     }
 
+    /// Set bubble summary tittle
+    /// Called in ViewSummary function.
+    void HandleTittle()
+    {
+        tittleText.text = TittleString;
+    }
     /// Open summary panel.
     void OpenSummary()
     {
@@ -44,31 +76,5 @@ public class SummaryHandler : MonoBehaviour
         contentAnimator.Rebind();
         contentAnimator.enabled = true;
     }
-    /// Close summary panel.
-    void CloseSummary()
-    {
-        bubbleAnimator.SetTrigger("IsClosed");
-        if (isContentAnimPlace)
-            contentAnimator.enabled = false;
-    }
-
-    /// Set bubble summary tittle
-    /// Set bubble summary content
-    /// Called whenever needed to open Summary.
-    public void ViewSummary()
-    {
-        HandleTittle();
-        HandleContent();
-        OpenSummary();
-        AudioManager.Instance?.Play("openSummary","UI");
-        activationButton.interactable = true;
-    }
-
-    /// Called whenever needed to close summary panel.
-    public void ConfirmationAction()
-    {
-        activationButton.interactable = false;
-        CloseSummary();
-        doneEvent?.Raise();
-    }
+    #endregion Methods
 }

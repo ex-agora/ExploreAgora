@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class ToolBarHandler : MonoBehaviour
 {
+    #region Fields
     [SerializeField] Animator uiSnapAnimator;
+    #endregion Fields
 
-    void ShowToolBar()
+    #region Methods
+    public void CloseToolBar()
     {
-        uiSnapAnimator.SetTrigger("IsOpened");
-    }
-    void HideToolBar()
-    {
-        uiSnapAnimator.SetTrigger("IsClosed");
+        HideToolBar();
     }
 
     public void OpenToolBar()
     {
         ShowToolBar();
     }
-    public void CloseToolBar()
+
+    void HideToolBar()
     {
-        HideToolBar();
+        uiSnapAnimator.SetTrigger("IsClosed");
     }
+
+    void ShowToolBar()
+    {
+        uiSnapAnimator.SetTrigger("IsOpened");
+    }
+    #endregion Methods
 }

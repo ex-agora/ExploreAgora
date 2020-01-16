@@ -10,7 +10,9 @@ namespace StateMachine
     /// </summary>
     public abstract class Action : ScriptableObject
     {
+        #region Methods
         //what the state Acts
         public abstract void Act<T>(StateControllersManager controllersManager) where T : IStateController;
+        #endregion Methods
     }
 }

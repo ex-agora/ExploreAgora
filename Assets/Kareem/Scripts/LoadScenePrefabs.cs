@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class LoadScenePrefabs : MonoBehaviour
 {
+    #region Fields
     [SerializeField] ScenesPrefabsIntializers @scenesPrefabsIntializers;
-    private void Awake ()
+    #endregion Fields
+
+    #region Methods
+    public void back()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    private void Awake()
     {
         Instantiate (@scenesPrefabsIntializers.NextSceneRequiredPrefab);
     }
-    public void back ()
-    {
-        SceneManager.LoadSceneAsync (0);
-    }
+    #endregion Methods
 }
