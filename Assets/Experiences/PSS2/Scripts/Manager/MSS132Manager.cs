@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class MSS132Manager : MonoBehaviour
 {
     #region singletone
@@ -20,14 +20,20 @@ public class MSS132Manager : MonoBehaviour
     #region serialzed field
     [SerializeField] MSS132PlantAnimations plantAnim;
     [SerializeField] Elements elements;
+    [SerializeField] TextMeshProUGUI text;
     #endregion
     #region properties
     public bool IsAnimationWorking { get => isAnimationWorking; set => isAnimationWorking = value; }
-    public MSS132PlantStates PlantState { get => plantState; set => plantState = value; }
+    public MSS132PlantStates PlantState { get => plantState; set { plantState = value; UpdateTextPanal(); } }
     #endregion
     private void Awake ()
     {
         Instance = this;
+    }
+    void UpdateTextPanal() {
+        if (plantState == MSS132PlantStates.None)
+            return;
+        text.text = plantState.ToString();
     }
     // Start is called before the first frame update
     void Start ()

@@ -10,6 +10,7 @@ public class DragObjectCheck : MonoBehaviour
     [SerializeField] GameEvent @onEndDragToAnyPosition;
     [SerializeField] Lean.Touch.LeanSelectable selectable = null;
     [SerializeField] bool isDraggableAgain = false;
+    bool isStopChecking;
     bool isTrueDraggableObject;
     bool isDraggedToObject;
     Vector3 draggingObjectPosition;
@@ -17,6 +18,7 @@ public class DragObjectCheck : MonoBehaviour
 
     public bool IsDraggableAgain { get => isDraggableAgain; set => isDraggableAgain = value; }
     public Vector3 DraggingObjectPosition { get => draggingObjectPosition; set => draggingObjectPosition = value; }
+    public bool IsStopChecking { get => isStopChecking; set => isStopChecking = value; }
 
     void UpdateDraggableObjectCheck(Collider draggableObjectCollider)
     {
@@ -50,6 +52,8 @@ public class DragObjectCheck : MonoBehaviour
     }
     public GameObject CheckCorrectPosition()
     {
+        if (IsStopChecking)
+            return null;
         if (isTrueDraggableObject)
         {
             AudioManager.Instance?.Play("placeObject", "Activity");
@@ -79,6 +83,8 @@ public class DragObjectCheck : MonoBehaviour
     }
     public void CheckPosition() { CheckCorrectPosition(); }
     public void CheckTruePoisition() {
+        if (IsStopChecking)
+            return;
         if (isTrueDraggableObject)
         {
             AudioManager.Instance?.Play("placeObject", "Activity");
