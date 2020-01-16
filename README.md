@@ -36,9 +36,7 @@ The program was developed by :
 
 Unity is a cross-platform game engine developed by Unity Technologies. The engine can be used to create three-dimensional, 
 two-dimensional, virtual reality, and augmented reality games, as well as simulations and other experiences.
-* [Vuforia](https://engine.vuforia.com/engine) 
 
-Vuforia is an augmented reality software development kit (SDK) for mobile devices that enables the creation of augmented reality applications.
 
 ## Machine Learning
 Agora uses everyday objects to trigger an Augmented Reality learning experience. That’s why we use a special Machine Learning construct called Convolutional Neural Networks (CNNs) to detect the presence of these objects in the current scenery. The presence of each specific object triggers a certain learning experience thus linking our everyday life to the app’s learning experience.
