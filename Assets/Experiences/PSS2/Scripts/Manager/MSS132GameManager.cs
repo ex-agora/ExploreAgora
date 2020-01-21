@@ -79,22 +79,33 @@ public class MSS132GameManager : MonoBehaviour, ITriggable, IMenuHandler
         nextState = true;
     }
     public void StartFirstPhase() {
-        firstPhaseEvent?.Raise();
-        nextState = true;
-        Invoke(nameof(StartTutorial), 8f);
+        toolBar.OpenToolBar();
+        Invoke(nameof(PlantAnim), 5f);
     }
+    void PlantAnim() {
+        firstPhaseEvent?.Raise();
+        barHandler.ActiveDying();
+        Invoke(nameof(ShowBubble), 2.7f);
+        Invoke(nameof(StartTutorial), 10f);
+    }
+    void ShowBubble() { nextState = true; }
     void StartTutorial() {
         tutorial.TutorialTextStr = bubbleController.NextBubble();
         tutorial.OpenTutorial();
     }
     public void ContinueFirstPhase() {
         draggingManager.SetActive(true);
-        toolBar.OpenToolBar();
+
     }
     public void ShowGotiTBtn() {
+        Invoke(nameof(OpenGotItBtn), 1f);
+    }
+    void OpenGotItBtn() {
         gotItBtn.OpenToolBar();
+        draggingManager.SetActive(true);
     }
     public void ShowFinalSummery() {
+        draggingManager.SetActive(false);
         Invoke(nameof(OpenSummery), 4f);
     }
     void OpenSummery() {

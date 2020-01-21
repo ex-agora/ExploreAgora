@@ -324,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 214.2, y: -260}
+  m_AnchoredPosition: {x: 214.2, y: -220}
   m_SizeDelta: {x: 104, y: 57}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &239649294
@@ -695,11 +695,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27fd42fd0c5e84f8ef3df7491eb800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
-  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
-  previousState: {fileID: 0}
   autoPreviousState: {fileID: 0}
   controllersManager: {fileID: 716838306}
+  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
 --- !u!4 &379250328
 Transform:
   m_ObjectHideFlags: 0
@@ -873,10 +873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727fcf4d8caac945811c79637d57281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textString: 
-  textDuration: 0.0001
-  textUI: {fileID: 5393014110575231009}
   outputText: 
+  textDuration: 0.0001
+  textString: 
+  textUI: {fileID: 5393014110575231009}
 --- !u!4 &508034026
 Transform:
   m_ObjectHideFlags: 0
@@ -1087,7 +1087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -8, y: -255.3999}
+  m_AnchoredPosition: {x: -8, y: -215.3999}
   m_SizeDelta: {x: 90, y: 65}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &637432482
@@ -1388,7 +1388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -224.6, y: -247.3999}
+  m_AnchoredPosition: {x: -224.6, y: -207.3999}
   m_SizeDelta: {x: 88, y: 84}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &904592770
@@ -1469,7 +1469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 100, y: -252.09985}
+  m_AnchoredPosition: {x: 100, y: -212.09985}
   m_SizeDelta: {x: 41, y: 75}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1265970163
@@ -1544,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -115, y: -252.3999}
+  m_AnchoredPosition: {x: -115, y: -212.3999}
   m_SizeDelta: {x: 41, y: 75}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1283461067
@@ -1895,7 +1895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -236.3999}
+  m_AnchoredPosition: {x: 0, y: -196.3999}
   m_SizeDelta: {x: 678, y: 105}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1466447120
@@ -2052,7 +2052,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778250352}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3297,9 +3297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleAnimator: {fileID: 5393014111397541908}
-  charByCharController: {fileID: 508034025}
   bubbleTextHolder: {fileID: 72801670}
   characterBtn: {fileID: 5393014110337109632}
+  charByCharController: {fileID: 508034025}
 --- !u!224 &5393014111525083936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3521,15 +3521,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014110974856674}
   activationButton: {fileID: 5393014111525083937}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111950765519}
   contentSprite: {fileID: 21300000, guid: 426a14a197966e44b8e486b05ba04b2c, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014110974856674}
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0

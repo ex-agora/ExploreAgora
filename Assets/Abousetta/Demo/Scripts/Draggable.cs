@@ -42,7 +42,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 print("I am Dragging Only ");
                 return null;
             case DraggingModes.DraggingToCorrectPosition:
-                return dragObjectCheck.CheckCorrectPosition();//asdad
+                return dragObjectCheck.CheckCorrectPosition();
             default:
                 return null;
         }

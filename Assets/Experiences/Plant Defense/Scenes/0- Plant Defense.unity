@@ -1379,11 +1379,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27fd42fd0c5e84f8ef3df7491eb800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
-  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
-  previousState: {fileID: 0}
   autoPreviousState: {fileID: 0}
   controllersManager: {fileID: 716838306}
+  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
 --- !u!4 &379250328
 Transform:
   m_ObjectHideFlags: 0
@@ -1557,10 +1557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727fcf4d8caac945811c79637d57281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textString: 
-  textDuration: 0.0001
-  textUI: {fileID: 5393014110575231009}
   outputText: 
+  textDuration: 0.0001
+  textString: 
+  textUI: {fileID: 5393014110575231009}
 --- !u!4 &508034026
 Transform:
   m_ObjectHideFlags: 0
@@ -5091,7 +5091,7 @@ GameObject:
   - component: {fileID: 1893113234}
   m_Layer: 0
   m_Name: AR Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9110,9 +9110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleAnimator: {fileID: 5393014111397541908}
-  charByCharController: {fileID: 508034025}
   bubbleTextHolder: {fileID: 72801670}
   characterBtn: {fileID: 5393014110337109632}
+  charByCharController: {fileID: 508034025}
 --- !u!224 &5393014111511645536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9404,15 +9404,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014110491459426}
   activationButton: {fileID: 5393014110735358206}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014111546377998}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014112208368714}
   contentSprite: {fileID: 21300000, guid: 6d3f18f74f6fdb24caecbcd9338540b7, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014110491459426}
 --- !u!114 &5393014111716195860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9654,15 +9654,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014110974856674}
   activationButton: {fileID: 5393014111525083937}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111950765519}
   contentSprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
   doneEvent: {fileID: 0}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014110974856674}
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10225,15 +10225,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014111817864939}
   activationButton: {fileID: 5393014112005815868}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014112064107431}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111756576183}
   contentSprite: {fileID: 21300000, guid: ffd6ff12a20f94847bd070776b3cc8e0, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014111817864939}
 --- !u!224 &5393014112064107430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10392,10 +10392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e6e4ff1e7ee4246a3feb7740dac841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPanelAnimator: {fileID: 5393014112106333878}
   okButton: {fileID: 5393014110988642214}
-  tutorialTextStr: 
+  tutorialPanelAnimator: {fileID: 5393014112106333878}
   tutorialText: {fileID: 147254088}
+  tutorialTextStr: 
 --- !u!114 &5393014112159361378
 MonoBehaviour:
   m_ObjectHideFlags: 0

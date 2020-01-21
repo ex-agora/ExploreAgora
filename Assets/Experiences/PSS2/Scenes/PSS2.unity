@@ -151,6 +151,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 897596152}
+  - {fileID: 1308566906}
   m_Father: {fileID: 492481631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -580,7 +581,7 @@ RectTransform:
   - {fileID: 1367855957}
   - {fileID: 2086478604}
   m_Father: {fileID: 1699504094}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1094,6 +1095,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1325814289}
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &342094799
@@ -1163,10 +1175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727fcf4d8caac945811c79637d57281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textString: 
-  textDuration: 0.0001
-  textUI: {fileID: 1614462329}
   outputText: 
+  textDuration: 0.0001
+  textString: 
+  textUI: {fileID: 1614462329}
 --- !u!4 &422811321
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1302,6 @@ RectTransform:
   m_Children:
   - {fileID: 927458572}
   - {fileID: 60409567}
-  - {fileID: 1308566906}
   - {fileID: 2082132306}
   m_Father: {fileID: 1154746154}
   m_RootOrder: 0
@@ -1936,15 +1947,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 1106709784}
   activationButton: {fileID: 0}
-  tittleString: Summary
   bubbleAnimator: {fileID: 770230519}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 1507387274}
   contentSprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
   isContentAnimPlace: 0
+  tittleString: Summary
+  tittleText: {fileID: 1106709784}
 --- !u!95 &770230519
 Animator:
   serializedVersion: 3
@@ -2310,7 +2321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2, b: 0, a: 1}
+  m_Color: {r: 0.10980392, g: 0.84705883, b: 0.20784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2638,7 +2649,7 @@ RectTransform:
   m_Children:
   - {fileID: 492481631}
   m_Father: {fileID: 1699504094}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2657,15 +2668,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 1264620708}
   activationButton: {fileID: 60409568}
-  tittleString: Recap
   bubbleAnimator: {fileID: 1154746156}
   contentAnimator: {fileID: 1989293088}
   contentImage: {fileID: 1989293086}
   contentSprite: {fileID: 21300000, guid: 1814bdbaf31dbed47977b507164fcf92, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
   isContentAnimPlace: 1
+  tittleString: Recap
+  tittleText: {fileID: 1264620708}
 --- !u!95 &1154746156
 Animator:
   serializedVersion: 3
@@ -3023,9 +3034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleAnimator: {fileID: 1212625677}
-  charByCharController: {fileID: 422811320}
   bubbleTextHolder: {fileID: 248435772}
   characterBtn: {fileID: 1489573338}
+  charByCharController: {fileID: 422811320}
 --- !u!95 &1212625677
 Animator:
   serializedVersion: 3
@@ -3491,12 +3502,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1643515690}
-  m_Father: {fileID: 492481631}
-  m_RootOrder: 2
+  m_Father: {fileID: 60409567}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -212, y: -88}
+  m_AnchoredPosition: {x: -438, y: 0}
   m_SizeDelta: {x: 438, y: 216}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1308566907
@@ -3627,6 +3638,7 @@ GameObject:
   - component: {fileID: 1325814287}
   - component: {fileID: 1325814286}
   - component: {fileID: 1325814288}
+  - component: {fileID: 1325814289}
   m_Layer: 5
   m_Name: StaticTutorialPanel
   m_TagString: Untagged
@@ -3666,10 +3678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e6e4ff1e7ee4246a3feb7740dac841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPanelAnimator: {fileID: 1325814287}
   okButton: {fileID: 342094798}
-  tutorialTextStr: 
+  tutorialPanelAnimator: {fileID: 1325814287}
   tutorialText: {fileID: 1539016928}
+  tutorialTextStr: 
 --- !u!95 &1325814287
 Animator:
   serializedVersion: 3
@@ -3738,6 +3750,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1325814289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325814284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90cd8b8337616645898aafc27708635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 5a2bd0a7694e401418365b47d59b9249, type: 2}
 --- !u!1 &1328170859
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2, b: 0, a: 1}
+  m_Color: {r: 0.10980392, g: 0.84705883, b: 0.20784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4133,7 +4158,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.267
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4589,11 +4614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27fd42fd0c5e84f8ef3df7491eb800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
-  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
-  previousState: {fileID: 0}
   autoPreviousState: {fileID: 0}
   controllersManager: {fileID: 1680046364}
+  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
 --- !u!4 &1533801742
 Transform:
   m_ObjectHideFlags: 0
@@ -4659,7 +4684,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Wise Dots are gone! Drag the labels to the plant.
+  m_Text: Drag one factor from each category that would help the plant thrive.
 --- !u!222 &1539016929
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4682,10 +4707,10 @@ RectTransform:
   m_Father: {fileID: 336316030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.021000002, y: 0}
+  m_AnchorMax: {x: 0.97900003, y: 1}
+  m_AnchoredPosition: {x: 0.2000122, y: 0}
+  m_SizeDelta: {x: 0.39999962, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1550532757
 GameObject:
@@ -5249,10 +5274,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 073fbc4b9a10f454bb4e8629b93c029c, type: 3}
-    m_FontSize: 14
+    m_FontSize: 53
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
+    m_BestFit: 0
+    m_MinSize: 7
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -5260,7 +5285,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: Explore more
+  m_Text: Explore more!
 --- !u!222 &1643515692
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5509,9 +5534,9 @@ RectTransform:
   - {fileID: 2036645591}
   - {fileID: 2110582413}
   - {fileID: 770230517}
+  - {fileID: 2095433594}
   - {fileID: 1154746154}
   - {fileID: 191568514}
-  - {fileID: 2095433594}
   - {fileID: 1325814285}
   - {fileID: 2075454565}
   m_Father: {fileID: 567410578}
@@ -5943,7 +5968,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Got It!
+  m_Text: Got it!
 --- !u!222 &1878497461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6711,7 +6736,7 @@ RectTransform:
   m_Children:
   - {fileID: 1989293085}
   m_Father: {fileID: 492481631}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6844,7 +6869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 17}
   m_SizeDelta: {x: 705, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086478605
@@ -6916,7 +6941,7 @@ RectTransform:
   - {fileID: 2016822629}
   - {fileID: 1212625675}
   m_Father: {fileID: 1699504094}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6953,15 +6978,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 1082939280}
   activationButton: {fileID: 1156706110}
-  tittleString: Recap
   bubbleAnimator: {fileID: 2110582412}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 693930165}
   contentSprite: {fileID: 21300000, guid: 5a650aa136b12f64ea0d701bb105b9b0, type: 3}
   doneEvent: {fileID: 0}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 1082939280}
 --- !u!95 &2110582412
 Animator:
   serializedVersion: 3
