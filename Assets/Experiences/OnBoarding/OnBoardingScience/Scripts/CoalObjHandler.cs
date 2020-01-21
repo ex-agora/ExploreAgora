@@ -9,7 +9,7 @@ public class CoalObjHandler : MonoBehaviour
     [SerializeField] FadeInOut pestal;
     [SerializeField] FadeInOut hand;
     [SerializeField] FadeInOut grinderPart;
-    private void OnEnable()
+    public void CoalFade()
     {
         pestal.fadeInOut(true);
         grinderPart.fadeInOut(true);

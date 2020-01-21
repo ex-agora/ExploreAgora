@@ -60,7 +60,7 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
 
     public void EndSecondPhase()
     {
-        Invoke(nameof(ShowFinalSummery), 0.5f);
+        Invoke(nameof(ShowFinalSummery), 2f);
     }
     void ShowFinalSummery() {
         headerBarHandler.CloseBar();

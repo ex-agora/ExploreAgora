@@ -46,6 +46,8 @@ two-dimensional, virtual reality, and augmented reality games, as well as simula
 ## Machine Learning
 Agora uses everyday objects to trigger an Augmented Reality learning experience. That’s why we use a special Machine Learning construct called Convolutional Neural Networks (CNNs) to detect the presence of these objects in the current scenery. The presence of each specific object triggers a certain learning experience thus linking our everyday life to the app’s learning experience.
 
+## App Architecture
+![AR app Arch Agora](https://user-images.githubusercontent.com/21194977/72618176-36034f00-3943-11ea-8d00-23a8bc984d84.jpg)
 ### Notes
 * This version of agora is working on Unity3d 2019.2.2f1
 * AR-Foundation version : 3.0.1

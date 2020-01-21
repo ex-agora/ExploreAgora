@@ -2756,19 +2756,8 @@ MonoBehaviour:
   eventSystem:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1234908387}
-        m_MethodName: ResetAtomPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Exit
+      - m_Target: {fileID: 1234908390}
+        m_MethodName: ResetPosition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2796,19 +2785,8 @@ MonoBehaviour:
   eventSystem:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1234908387}
-        m_MethodName: ResetAtomPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Exit
+      - m_Target: {fileID: 1234908390}
+        m_MethodName: ResetPosition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3730,10 +3708,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 3.8
+  m_Radius: 0.7299776
+  m_Height: 3.9038475
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 5.7808384e-17, y: -0.07002242, z: 0.022251533}
 --- !u!114 &1593536897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3795,17 +3773,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8537157594417631850}
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: Lean.Touch.LeanSelectable+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onSelectUp:
@@ -3818,6 +3785,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1593536894}
         m_MethodName: CheckPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8537157594417631850}
+        m_MethodName: Fire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6861,10 +6839,10 @@ MonoBehaviour:
   axis: 0
   draggingMode: 1
   dragObjectCheck: {fileID: 2228103065227888218}
-  clippingTargetMin: {fileID: 2228103064375771302}
-  clippingTargetMax: {fileID: 2228103064775450771}
-  isclipping: 1
   onEndDragOnly: {fileID: 0}
+  clippingTargetMax: {fileID: 2228103064775450771}
+  clippingTargetMin: {fileID: 2228103064375771302}
+  isclipping: 1
 --- !u!114 &3791866385339812472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6939,10 +6917,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.3443861
-  m_Height: 7.4999995
+  m_Radius: 0.8291502
+  m_Height: 3.1169744
   m_Direction: 1
-  m_Center: {x: 0.059577096, y: 3.24, z: 0}
+  m_Center: {x: -0.0086433245, y: 1.0484879, z: 0}
+--- !u!136 &4020844625150644944
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350422151214951067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.70416623
+  m_Height: 5.2739534
+  m_Direction: 1
+  m_Center: {x: 0.03110169, y: 5.1748295, z: 0}
 --- !u!114 &2228103064827863272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8728,17 +8720,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 0}
-  Target: {fileID: 8942984759103625352}
-  isOnce: 1
-  maximumDistance: 3
-  minimumDistance: 1
   correctDistance_event: {fileID: 11400000, guid: 8f93fc5df2baee14caf966eb6be66fac,
     type: 2}
+  distanceHandlerTypes: 1
+  isOnce: 1
+  maximumDistance: 3
   MaximumDistance_event: {fileID: 11400000, guid: aef6549bca9dc3b46886ab39e2969bf9,
     type: 2}
+  minimumDistance: 1
   MinimumDistance_event: {fileID: 11400000, guid: 10f8a2d1e8e142e4abbc1b4cb5248d54,
     type: 2}
-  distanceHandlerTypes: 1
+  Target: {fileID: 8942984759103625352}
 --- !u!1 &7809478110507268161
 GameObject:
   m_ObjectHideFlags: 0
@@ -9257,12 +9249,12 @@ PrefabInstance:
     - target: {fileID: 94024679382795915, guid: a50f8af42f21dee49bcd200b8f63836e,
         type: 3}
       propertyPath: kayValue
-      value: 48.2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5607914670654346350, guid: a50f8af42f21dee49bcd200b8f63836e,
         type: 3}
       propertyPath: m_BlendShapeWeights.Array.data[0]
-      value: 48.2
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50f8af42f21dee49bcd200b8f63836e, type: 3}
@@ -9574,15 +9566,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2989307227731880772}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5499558178549950429 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7290901269674658969, guid: 3e1777876c6d3f44a9894d739f4ef043,
-    type: 3}
-  m_PrefabInstance: {fileID: 2989307227731880772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8793562901694027214 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6013754433395097226, guid: 3e1777876c6d3f44a9894d739f4ef043,
+    type: 3}
+  m_PrefabInstance: {fileID: 2989307227731880772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5499558178549950429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7290901269674658969, guid: 3e1777876c6d3f44a9894d739f4ef043,
     type: 3}
   m_PrefabInstance: {fileID: 2989307227731880772}
   m_PrefabAsset: {fileID: 0}

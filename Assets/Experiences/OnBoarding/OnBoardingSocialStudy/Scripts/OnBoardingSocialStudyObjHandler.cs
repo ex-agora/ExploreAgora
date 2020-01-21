@@ -54,6 +54,7 @@ public class OnBoardingSocialStudyObjHandler : MonoBehaviour
         }
         AudioManager.Instance.Play("placeObject", "Activity");
         effect.gameObject.SetActive(true);
+        AudioManager.Instance.Play("revealObject", "Activity");
         effect.Play();
         coalFadding.gameObject.SetActive(true);
         coalFadding.fadeInOut(true);

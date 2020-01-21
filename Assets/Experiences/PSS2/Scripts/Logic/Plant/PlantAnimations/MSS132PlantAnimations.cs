@@ -49,6 +49,7 @@ public class MSS132PlantAnimations : MonoBehaviour
         durationCounter = duration;
         MSS132Manager.Instance.IsAnimationWorking = true;
         step = (((EndKayValue - plantTransition.KayValue) / duration) * repeatRate) / 2.0f;
+        AudioManager.Instance?.Play("breathing", "Activity");
         InvokeRepeating (nameof (CustomUpdateSameState) , 0 , repeatRate);
     }
     void CustomUpdateSameState ()

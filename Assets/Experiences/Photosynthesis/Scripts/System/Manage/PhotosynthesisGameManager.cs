@@ -18,6 +18,8 @@ public class PhotosynthesisGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] Image nightImageEffect;
     [SerializeField] ToolBarHandler upperBar;
     [SerializeField] MenuUIHandler menu;
+    [SerializeField] GameObject draggingHandle;
+    [SerializeField] RealTimeTutorialHandler rTTHand;
     static PhotosynthesisGameManager instance;
 
     bool nextState;
@@ -47,11 +49,20 @@ public class PhotosynthesisGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     void FirstPhase () {
         nextState = true;
-        Invoke(nameof(ShowUpperBar), 8.0f);
+        Invoke(nameof(ShowUpperBar), 4.3f);
         EnableDisableDraggable ();
+    }
+    void HideRTTHand() {
+        rTTHand.CloseIndicator();
+        draggingHandle.SetActive(true);
+    }
+    void ShowRTTHand() {
+        rTTHand.OpenIndicator();
+        Invoke(nameof(HideRTTHand), 6.4f);
     }
     void ShowUpperBar() {
         upperBar.OpenToolBar();
+        Invoke(nameof(ShowRTTHand), 2f);
     }
     public void ResetLevel ()
     {
@@ -73,11 +84,7 @@ public class PhotosynthesisGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         stateMachine.StartSM();
     }
-    // Update is called once per frame
-    void Update ()
-    {
-
-    }
+   
     void EnableDisableDraggable ()
     {
         print(Draggables.Count + " " + Atoms.Count);
