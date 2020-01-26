@@ -15,38 +15,40 @@ public class LabelWorldHandler : MonoBehaviour
     public string LabelTextStr { get => labelText.text; }
     public bool HasExtraInfo { get => hasExtraInfo; }
     public string ExtraInfoText { get => extraInfoText; }
-    private void Start()
+    private void Start ()
     {
         canvas.worldCamera = interactions.Instance.SessionOrigin.camera;
     }
     // Start is called before the first frame update
     private void OnEnable ()
     {
-        SetlabelAnimState();
+        SetlabelAnimState ();
     }
 
- 
+
     private void SetlabelAnimState ()
     {
-        if (anim != null)
-            anim?.SetBool("isOpen", isOpen);
+        if ( anim != null )
+            anim?.SetBool ("isOpen" , isOpen);
 
     }
     public void ShowLabel ()
     {
         isOpen = true;
-        SetlabelAnimState();
+        SetlabelAnimState ();
     }
-    public void HidaLabel() {
-        isOpen = false;
-        SetlabelAnimState();
-    }
-    public void PrepaireQuiz() {
-        labelText.gameObject.SetActive(false);
-        ShowLabel();
-    }
-    public void RightAnswer()
+    public void HidaLabel ()
     {
-        labelText.gameObject.SetActive(true);
+        isOpen = false;
+        SetlabelAnimState ();
+    }
+    public void PrepaireQuiz ()
+    {
+        labelText.gameObject.SetActive (false);
+        ShowLabel ();
+    }
+    public void RightAnswer ()
+    {
+        labelText.gameObject.SetActive (true);
     }
 }

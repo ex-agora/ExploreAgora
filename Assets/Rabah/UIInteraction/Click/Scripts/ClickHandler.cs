@@ -12,6 +12,10 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     #endregion Fields
 
     #region Methods
+    private void Start ()
+    {
+        
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         AfterClick.Raise();
