@@ -180,7 +180,7 @@ public class MSS132Manager : MonoBehaviour
             }
             else
             {
-                if ( PlantState == MSS132PlantStates.Dying )
+                if ( PlantState == MSS132PlantStates.Dying || PlantState == MSS132PlantStates.None)
                 {
                     PlantDyingToDying ();
                 }
@@ -194,13 +194,13 @@ public class MSS132Manager : MonoBehaviour
         }
         else
         {
-            if ( PlantState == MSS132PlantStates.Dying )
+            if (PlantState == MSS132PlantStates.Dying || PlantState == MSS132PlantStates.None)
             {
-                PlantDyingToDying ();
+                PlantDyingToDying();
             }
             else
             {
-                PlantDying ();
+                PlantDying();
             }
             PlantState = MSS132PlantStates.Dying;
             MSS132GameManager.Instance.BarHandler.ActiveDying ();

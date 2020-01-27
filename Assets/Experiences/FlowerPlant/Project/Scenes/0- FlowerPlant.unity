@@ -509,6 +509,10 @@ MonoBehaviour:
   - bubbleType: 1
     textInfo: Oh! the Wise Dots are gone. Will you DRAG the labels to the plant for
       me?
+  - bubbleType: 2
+    textInfo: You are too close. STEP back to see everything in the exploratory zone.
+  - bubbleType: 2
+    textInfo: You are too far. STEP forward to see everything in the exploratory zone.
 --- !u!4 &72801671
 Transform:
   m_ObjectHideFlags: 0
@@ -2643,6 +2647,8 @@ GameObject:
   - component: {fileID: 1179033113}
   - component: {fileID: 1179033115}
   - component: {fileID: 1179033114}
+  - component: {fileID: 1179033117}
+  - component: {fileID: 1179033116}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2742,7 +2748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: 81168d967e72a9e4ebf06d71618f3190, type: 2}
+  event: {fileID: 11400000, guid: 8f93fc5df2baee14caf966eb6be66fac, type: 2}
   eventSystem:
     m_PersistentCalls:
       m_Calls:
@@ -2806,6 +2812,64 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1179033109}
         m_MethodName: StartSecondPhase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1179033116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179033108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 10f8a2d1e8e142e4abbc1b4cb5248d54, type: 2}
+  eventSystem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1179033109}
+        m_MethodName: FarAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1179033117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179033108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cd05126101ac84e81f11c85e9115ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: aef6549bca9dc3b46886ab39e2969bf9, type: 2}
+  eventSystem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1179033109}
+        m_MethodName: NearAlert
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -55,7 +55,10 @@ public class OldDragable : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        AudioManager.Instance.Play ("UIAction", "UI");
+        if (IsDragStop)
+            return;
+        if (CanBeDragged)
+            AudioManager.Instance.Play ("UIAction", "UI");
 
     }
     void OnMouseDrag()
@@ -65,7 +68,6 @@ public class OldDragable : MonoBehaviour
 
         if (CanBeDragged)
         {
-
             Ray ray = interactions.Instance.SessionOrigin.camera.ScreenPointToRay(Input.mousePosition);
             Vector3 origin = interactions.Instance.SessionOrigin.camera.ScreenToWorldPoint(Input.mousePosition);
             /*  if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, ~GroundLayers))
@@ -111,8 +113,6 @@ public class OldDragable : MonoBehaviour
                         transform.position = hitpPointVec;
                         break;
                 }
-
-
                 //transform.position = hitpPointVec;
                 //transform.position = new Vector3(transform.position.x, transform.position.y, hitInfo.point.z);
                 //transform.up = hitInfo.normal;
@@ -123,7 +123,6 @@ public class OldDragable : MonoBehaviour
 
     public void Exit()
     {
-
         if ((TriggerEventsOnMouseUp && insideDraggingArea))
         {
             if (ReturnToPositionCoroutine != null) StopCoroutine(ReturnToPositionCoroutine);
@@ -131,6 +130,7 @@ public class OldDragable : MonoBehaviour
             CanBeDragged = false;
             OnTargetHit.Invoke();
             if (Snap) transform.position = Target.transform.position;
+            AudioManager.Instance?.Play("placeObject", "Activity");
         }
         else if (!dragged && CanBeDragged)
         {

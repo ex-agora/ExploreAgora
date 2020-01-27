@@ -731,6 +731,7 @@ MonoBehaviour:
   kayValue: 1
   maxKeyValue: 100
   notSetMax: 1
+  notSetMat: 0
 --- !u!136 &3917962695852781268
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1833,6 +1834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 5605682185454526131}
+  defaultPos: {fileID: 0}
 --- !u!114 &6718594190529487736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,6 +1941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4707418082922588540}
+  defaultPos: {fileID: 0}
 --- !u!114 &3947517194008611440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2515,6 +2518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 5605682185454526131}
+  defaultPos: {fileID: 0}
 --- !u!65 &137193096025435071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2562,6 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4707418082922588540}
+  defaultPos: {fileID: 0}
 --- !u!114 &4619414384037307307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,6 +2752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4039189131772260617}
+  defaultPos: {fileID: 0}
 --- !u!114 &8647634489728547692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2875,6 +2881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 5605682185454526131}
+  defaultPos: {fileID: 0}
 --- !u!114 &6474705367768332334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3023,6 +3030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4039189131772260617}
+  defaultPos: {fileID: 0}
 --- !u!65 &923525151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3049,6 +3057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4039189131772260617}
+  defaultPos: {fileID: 0}
 --- !u!114 &6696214893353496803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,6 +3637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 4707418082922588540}
+  defaultPos: {fileID: 0}
 --- !u!114 &3919206436531475173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3855,17 +3865,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 0}
-  Target: {fileID: 4111278382070454879}
-  isOnce: 1
-  maximumDistance: 5
-  minimumDistance: 1.5
   correctDistance_event: {fileID: 11400000, guid: 8f93fc5df2baee14caf966eb6be66fac,
     type: 2}
+  distanceHandlerTypes: 1
+  isOnce: 1
+  maximumDistance: 5
   MaximumDistance_event: {fileID: 11400000, guid: aef6549bca9dc3b46886ab39e2969bf9,
     type: 2}
+  minimumDistance: 1.5
   MinimumDistance_event: {fileID: 11400000, guid: 10f8a2d1e8e142e4abbc1b4cb5248d54,
     type: 2}
-  distanceHandlerTypes: 1
+  Target: {fileID: 4111278382070454879}
 --- !u!1 &7059626252372962928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,6 +3944,8 @@ MonoBehaviour:
     sodaBottle: {fileID: 1972653728680259693}
     waterBottle: {fileID: 5152935623061240068}
     saltWaterBottle: {fileID: 5389856403507812795}
+  text: {fileID: 0}
+  label: {fileID: 0}
 --- !u!114 &1112497256862587764
 MonoBehaviour:
   m_ObjectHideFlags: 0

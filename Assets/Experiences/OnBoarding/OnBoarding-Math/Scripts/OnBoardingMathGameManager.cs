@@ -128,6 +128,9 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     public void showCommands()
     {
+        Invoke(nameof(EnableCommands), 1.2f);
+    }
+    void EnableCommands() {
         if (phases == Phases.FirstPhase)
         {
             foreach (var item in hotSpotsPivots)
@@ -155,7 +158,6 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         canvasRect.localPosition = new Vector3(0, 0.04f, 0);
     }
 
-
     public void Tutorial()
     {
         Invoke(nameof(StartTutorial), 2f);
@@ -176,16 +178,20 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void activateDeactivateDraggables(bool state)
     {
-        dragHnadler.SetActive(true);
-        Debug.Log("QQWWWSSSZZZ");
-        foreach (var item in Draggables)
-        {
+        //Debug.Log("QQWWWSSSZZZ");
+        //foreach (var item in Draggables)
+        //{
 
-        Debug.Log("QQWWWSSSZZZ 0000");
-            item.enabled = state;
-        }
+        //Debug.Log("QQWWWSSSZZZ 0000");
+        //    item.enabled = state;
+        //}
+        Invoke(nameof(EnableDragging), 4.1f);
     }
 
+    void EnableDragging()
+    {
+        dragHnadler.SetActive(true);
+    }
     public void HideFinishedHotSpot()
     {
         if (phases == Phases.FirstPhase)
@@ -250,7 +256,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
             AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
             //final summary 
-            Invoke(nameof(FinalSummary), 14f);
+            Invoke(nameof(FinalSummary), 8f);
             //finalSummary.ViewSummary();
            
         }
