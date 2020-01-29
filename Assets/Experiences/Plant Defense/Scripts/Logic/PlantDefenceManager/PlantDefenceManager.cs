@@ -63,8 +63,8 @@ public class PlantDefenceManager : MonoBehaviour
     }
     public void ShowHotspot ()
     {
-        DisableAllElementsClick ();
         ShowRandomHotspot ();
+        DisableAllElementsClick ();
         //if (!isDefaultShowed)
         //{
         //    ShowDefaultHotspot ();
@@ -95,4 +95,9 @@ public class PlantDefenceManager : MonoBehaviour
             plantElements[i].Hotspot.DisableHotspotClick ();
         }
     }
+    /*public void RestartTimer()
+    {
+        PlantDefenceGameManager.Instance.WaitingForTab();
+        print("WaitingForTab WaitingForTab WaitingForTab WaitingForTab");
+    }*/
 }

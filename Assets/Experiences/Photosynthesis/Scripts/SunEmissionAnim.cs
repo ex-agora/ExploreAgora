@@ -22,6 +22,7 @@ public class SunEmissionAnim : MonoBehaviour
         up = true;
         intensity = 1;
         step = ((maxEmission - minEmission)/duration) * 2 * updateRate;
+        AudioManager.Instance?.Play("sunRaise", "Activity");
         InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
     }
     void CustomUpdate() {

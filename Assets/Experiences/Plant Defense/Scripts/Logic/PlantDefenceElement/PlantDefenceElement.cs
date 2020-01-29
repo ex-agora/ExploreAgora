@@ -10,6 +10,7 @@ public class PlantDefenceElement : MonoBehaviour
     bool isLabelOpened = false;
     bool isSheildUpdated = false;
     PDInformationPanel pDInformation;
+    bool isSummaryViewed;
     public PlantDefenceHotspot Hotspot { get => hotspot; set => hotspot = value; }
     public LabelWorldHandler Label { get => label; set => label = value; }
 
@@ -36,25 +37,30 @@ public class PlantDefenceElement : MonoBehaviour
     {
         if ( isLabelOpened )
         {
-            label.ShowLabel ();
+            label.HidaLabel ();
             isLabelOpened = false;
         }
         else
         {
-            label.HidaLabel ();
+            label.ShowLabel ();
             isLabelOpened = true;
         }
     }
-    public void StopTapHint ()
+    public void PlayBubbleAnimator(string animator)
     {
-        PlantDefenceGameManager.Instance.ResetTapHint ();
+        pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController(animator);
+        Invoke(nameof (PlayBubbleAfterTime) , PlantDefenceGameManager.Instance.flowDurations.beforeSummaryTime);
     }
-    public void PlayBubbleAnimator (string animator)
+    void PlayBubbleAfterTime()
     {
-        pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController (animator);
-        PlantDefenceGameManager.Instance.BubbleAnimator.enabled = false;
-        PlantDefenceGameManager.Instance.BubbleAnimator.runtimeAnimatorController = pDInformation.Anim;
-        PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;
-        PlantDefenceGameManager.Instance.MidSummary.ViewSummary ();
+        if (!isSummaryViewed)
+        {
+            PlantDefenceGameManager.Instance.BubbleAnimator.enabled = false;
+            PlantDefenceGameManager.Instance.BubbleAnimator.runtimeAnimatorController = pDInformation.Anim;
+            PlantDefenceManager.Instance.DisableAllElementsClick();
+            PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;
+            PlantDefenceGameManager.Instance.MidSummary.ViewSummary();
+            isSummaryViewed = true;
+        }
     }
 }

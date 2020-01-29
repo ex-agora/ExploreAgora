@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
 {
-    [SerializeField] bool nextState;
+     bool nextState;
     [SerializeField] SpeechBubbleController bubbleController;
     [SerializeField] StateMachineManager stateMachine;
     [SerializeField] PDInformationPanelManager informationPanelManager;
@@ -38,6 +38,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     // Start is called before the first frame update
     void Start ()
     {
+        AudioManager.Instance?.Play("bg", "Background");
         Invoke (nameof (StartMachine) , 2f);
     }
 
@@ -82,47 +83,38 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     public void WaitingForTab ()
     {
+        CancelInvoke (nameof (CustomUpdateForTab));
         elpTime = 0;
         InvokeRepeating (nameof (CustomUpdateForTab) , 0 , updateRate);
     }
     public void StopWaitingForTab ()
     {
         CancelInvoke (nameof (CustomUpdateForTab));
-        tapHintCounter = 0;
     }
     void CustomUpdateForTab ()
     {
         elpTime += updateRate;
-        if ( elpTime >= flowDurations.waitingForTap )
+        if (elpTime >= flowDurations.waitingForTap)
         {
-            print ("Finished Timer");
+            print("Finished Timer");
+
+            if (tapHintCounter == 0)
+            {
+                PlantDefenceManager.Instance.ShowHotspot();
+                ShowHint(2);
+            }
+            else if (tapHintCounter == 1)
+            {
+                PlantDefenceManager.Instance.ShowAllHotspots();
+            }
             tapHintCounter++;
-            if ( tapHintCounter == 1 )
-            {
-                PlantDefenceManager.Instance.ShowHotspot ();
-                CancelInvoke (nameof (CustomUpdateForTab));
-                WaitingForTab ();
-                ShowHint (2);
-                nextState = true;
-                ShowHint (3);
-                nextState = true;
-                print ("1");
-            }
-            else if ( tapHintCounter == 2 )
-            {
-                PlantDefenceManager.Instance.ShowAllHotspots ();
-                tapHintCounter = 0;
-                ShowHint (5);
-                nextState = true;
-                print ("2");
-                CancelInvoke (nameof (CustomUpdateForTab));
-            }
+
+            CancelInvoke(nameof(CustomUpdateForTab));
+            //ShowHint (3);
+            //nextState = true;
+            print("1");
+
         }
-    }
-    public void ResetTapHint ()
-    {
-        tapHintCounter = 0;
-        WaitingForTab ();
     }
     public void ShowHint (int index)
     {
@@ -132,6 +124,11 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public void AfterMidSummary ()
     {
         PlantDefenceManager.Instance.EnableAllElementsClick ();
+    }
+
+    public void HotsoptClicked() {
+        ShowHint(4);
+        nextState = true;
     }
 
 }
