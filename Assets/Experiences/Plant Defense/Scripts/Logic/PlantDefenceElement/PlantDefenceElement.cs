@@ -49,14 +49,14 @@ public class PlantDefenceElement : MonoBehaviour
     public void PlayBubbleAnimator(string animator)
     {
         pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController(animator);
-        Invoke(nameof (PlayBubbleAfterTime) , PlantDefenceGameManager.Instance.flowDurations.beforeSummaryTime);
+        Invoke(nameof(PlayBubbleAfterTime), PlantDefenceGameManager.Instance.FlowDurations.beforeSummaryTime);
     }
     void PlayBubbleAfterTime()
     {
         if (!isSummaryViewed)
         {
-            PlantDefenceGameManager.Instance.BubbleAnimator.enabled = false;
-            PlantDefenceGameManager.Instance.BubbleAnimator.runtimeAnimatorController = pDInformation.Anim;
+            PlantDefenceGameManager.Instance.BubbleAnimator.enabled = true;
+            PlantDefenceGameManager.Instance.BubbleAnimator.SetInteger("panelState", pDInformation.PanelState);
             PlantDefenceManager.Instance.DisableAllElementsClick();
             PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;
             PlantDefenceGameManager.Instance.MidSummary.ViewSummary();

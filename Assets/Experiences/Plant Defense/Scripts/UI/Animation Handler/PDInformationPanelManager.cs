@@ -8,15 +8,14 @@ public class PDInformationPanelManager : MonoBehaviour
     [SerializeField] List<PDInformationPanel> informationPanels;
     public PDInformationPanel SetAnimatorController (string panelName)
     {
-        PDInformationPanel panel = new PDInformationPanel ();
-        ;
-        for ( int i = 0 ; i < informationPanels.Count ; i++ )
+        for (int i = 0; i < informationPanels.Count; i++)
         {
-            if ( panelName == informationPanels [i].PanelName )
+            if (panelName == informationPanels[i].PanelName)
             {
-                panel = informationPanels [i];
+                return informationPanels[i];
             }
         }
-        return panel;
+
+        return null;
     }
 }

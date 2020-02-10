@@ -8,7 +8,7 @@ public class MenuUIHandler : MonoBehaviour
     #region Fields
     [SerializeField] Sprite[] audioSprites;
     [SerializeField] Sprite cloesMenuSprite;
-    [TypeConstraint(typeof(IMenuHandler))] [SerializeField] GameObject handler;
+    [TypeConstraint(typeof(IMenuHandler))] [SerializeField] GameObject handler = null;
     int indexSoundSprite;
     bool isOpen;
     [SerializeField] Animator menuAnimator;
@@ -88,7 +88,8 @@ public class MenuUIHandler : MonoBehaviour
     {
         indexSoundSprite = 0;
         IsOpen = false;
-        menuHandler = handler.GetComponent<IMenuHandler>();
+        if (handler != null)
+            menuHandler = handler?.GetComponent<IMenuHandler>();
     }
    
     // Update is called once per frame

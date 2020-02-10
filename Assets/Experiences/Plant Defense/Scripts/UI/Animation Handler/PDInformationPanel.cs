@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct PDInformationPanel
+public class PDInformationPanel:MonoBehaviour
 {
-    [SerializeField]
-    string panelName;
-    [SerializeField]
-    RuntimeAnimatorController anim;
-    [SerializeField]
-    Sprite firstFrame;
+    #region Fields
+    [SerializeField] string panelName;
 
-    public RuntimeAnimatorController Anim { get => anim; set => anim = value; }
+    [SerializeField] int panelState;
+
+    [SerializeField] Sprite firstFrame;
+
+    #endregion Fields
+
+    #region Properties
+    public int PanelState { get => panelState; set => panelState = value; }
     public Sprite FirstFrame { get => firstFrame; set => firstFrame = value; }
     public string PanelName { get => panelName; set => panelName = value; }
+    #endregion Properties
 }
