@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "ClickDecision", menuName = "SO/SM/Decision/ClickDecision", order = 0)]
 public class ClickDecision : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return IsTapped<T>(stateMachine, controllersManager);
@@ -18,5 +19,6 @@ public class ClickDecision : Decision
             return false;
         return interactionController.tapTrigger.IsTapped;
     }
+    #endregion Methods
 }
 

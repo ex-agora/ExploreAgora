@@ -8,21 +8,65 @@ using UnityEngine.XR.ARFoundation;
 public class TestingScript : MonoBehaviour
 {
 
-    float calculatedDistance;
-    Vector3 finalDistance;
+    #region Fields
     public Transform Target, ARcamera;
-    [SerializeField] bool isOnce;
+    float calculatedDistance;
     bool correctCheck = true, minCheck = true, maxCheck = true;
-    delegate void StateDelegate ();
-    StateDelegate state;
-
-    [SerializeField] float minimumDistance;
+    [SerializeField] GameEvent correctDistance_event;
+    Vector3 finalDistance;
+    [SerializeField] bool isOnce;
     [SerializeField] float maximumDistance;
 
-    [SerializeField] GameEvent correctDistance_event;
     [SerializeField] GameEvent MaximumDistance_event;
+
+    [SerializeField] float minimumDistance;
+
     [SerializeField] GameEvent MinimumDistance_event;
+
+    StateDelegate state;
+    #endregion Fields
+
+    #region Delegates
+    delegate void StateDelegate();
+    #endregion Delegates
+
     // [SerializeField] ARSession arSession;
+
+    #region Methods
+    void CorrectDistance()
+    {
+        print("CorrectDistance     Main Functionality");
+        correctDistance_event.Raise();
+    }
+
+    void MaxDistance()
+    {
+        print("MaxDistance      Main Functionality");
+        MaximumDistance_event.Raise();
+    }
+
+    void MinDistance()
+    {
+        print("MinDistance      Main Functionality");
+        MinimumDistance_event.Raise();
+    }
+
+    private void OnValidate()
+    {
+        if (minimumDistance == maximumDistance)
+        {
+            maximumDistance += 1;
+        }
+        if (minimumDistance > maximumDistance)
+        {
+            var t = maximumDistance;
+            maximumDistance = minimumDistance;
+            minimumDistance = t;
+        }
+
+        if (!ARcamera || !Target)
+            Debug.LogError("asdsaasdaasda");
+    }
 
     // Start is called before the first frame update
     void Start ()
@@ -95,36 +139,5 @@ public class TestingScript : MonoBehaviour
         }
 
     }
-    private void OnValidate ()
-    {
-        if (minimumDistance == maximumDistance)
-        {
-            maximumDistance += 1;
-        }
-        if (minimumDistance > maximumDistance)
-        {
-            var t = maximumDistance;
-            maximumDistance = minimumDistance;
-            minimumDistance = t;
-        }
-
-        if (!ARcamera || !Target)
-            Debug.LogError ("asdsaasdaasda");
-    }
-    void CorrectDistance ()
-    {
-        print ("CorrectDistance     Main Functionality");
-        correctDistance_event.Raise ();
-    }
-    void MinDistance ()
-    {
-        print ("MinDistance      Main Functionality");
-        MinimumDistance_event.Raise ();
-    }
-    void MaxDistance ()
-    {
-        print ("MaxDistance      Main Functionality");
-        MaximumDistance_event.Raise ();
-    }
-
+    #endregion Methods
 }

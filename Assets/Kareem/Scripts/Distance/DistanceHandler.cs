@@ -4,21 +4,22 @@ public class DistanceHandler : MonoBehaviour
 {
     #region Fields
     [SerializeField] private Transform ARCamera;
-    [SerializeField] private Transform Target;
-    [SerializeField] private bool isOnce;
-    [SerializeField] private float maximumDistance;
-    [SerializeField] private float minimumDistance;
-    [SerializeField] private GameEvent correctDistance_event;
-    [SerializeField] private GameEvent MaximumDistance_event;
-    [SerializeField] private GameEvent MinimumDistance_event;
-
-    [SerializeField] DistanceHandlerTypes distanceHandlerTypes;
-    private Vector3 finalDistance;
     private float calculatedDistance;
     private bool correctCheck = true, minCheck = true, maxCheck = true;
+    [SerializeField] private GameEvent correctDistance_event;
+    [SerializeField] DistanceHandlerTypes distanceHandlerTypes;
+    private Vector3 finalDistance;
+    [SerializeField] private bool isOnce;
+    [SerializeField] private float maximumDistance;
+    [SerializeField] private GameEvent MaximumDistance_event;
+    [SerializeField] private float minimumDistance;
+    [SerializeField] private GameEvent MinimumDistance_event;
     private System.Action state;
-
+    [SerializeField] private Transform Target;
     #endregion Fields
+    #region Methods
+    #endregion Methods
+
     Vector3 arCameraPosXZ;
     Vector3 targetPosXZ;
     #region Methods

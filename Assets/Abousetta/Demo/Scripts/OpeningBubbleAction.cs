@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "OpenBubbleAction", menuName = "SO/SM/Bubble/Action/OpenBubbleAction", order = 0)]
 public class OpeningBubbleAction : Action
 {
+    #region Methods
     public override void Act<T>(StateControllersManager controllersManager)
     {
         OpenBubble<T>(controllersManager);
@@ -23,4 +24,5 @@ public class OpeningBubbleAction : Action
         controller1.Duration = 1f;
         controller.ShowNextBubble();
     }
+    #endregion Methods
 }

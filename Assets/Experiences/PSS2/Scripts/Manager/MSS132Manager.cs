@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class MSS132Manager : MonoBehaviour
 {
     #region singletone
@@ -20,14 +20,38 @@ public class MSS132Manager : MonoBehaviour
     #region serialzed field
     [SerializeField] MSS132PlantAnimations plantAnim;
     [SerializeField] Elements elements;
+    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] LabelWorldHandler label;
+    string textStr;
+    
     #endregion
     #region properties
     public bool IsAnimationWorking { get => isAnimationWorking; set => isAnimationWorking = value; }
-    public MSS132PlantStates PlantState { get => plantState; set => plantState = value; }
+    public MSS132PlantStates PlantState { get => plantState; set { plantState = value; UpdateTextPanal(); } }
+
+    public string TextStr { get => textStr; set { textStr = value; UpdateTextPanal(value); } }
     #endregion
     private void Awake ()
     {
         Instance = this;
+    }
+    void UpdateTextPanal(string str = "") {
+        if (plantState == MSS132PlantStates.None && str == "")
+            return;
+        var s = str == "" && plantState != MSS132PlantStates.None ? plantState.ToString() : str;
+        FadeTMP(s);
+    }
+    void FadeTMP(string str) {
+        text.text = str;
+        Invoke(nameof(ShowLabal), 2f);
+    }
+    void ShowLabal() {
+        label.ShowLabel();
+    }
+    private void OnEnable()
+    {
+        ShowLabal();
+        Invoke(nameof(HideLabel), 1);
     }
     // Start is called before the first frame update
     void Start ()
@@ -35,12 +59,8 @@ public class MSS132Manager : MonoBehaviour
         //Initial Plant State
         PlantState = MSS132PlantStates.None;
     }
+    void HideLabel() { label.HidaLabel(); }
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-    }
     #region Logic Functions
     #region Update Current Elements
     public void UpdateCurrentBulb (MSS132ElementHandler currentElement)
@@ -160,7 +180,7 @@ public class MSS132Manager : MonoBehaviour
             }
             else
             {
-                if ( PlantState == MSS132PlantStates.Dying )
+                if ( PlantState == MSS132PlantStates.Dying || PlantState == MSS132PlantStates.None)
                 {
                     PlantDyingToDying ();
                 }
@@ -174,13 +194,13 @@ public class MSS132Manager : MonoBehaviour
         }
         else
         {
-            if ( PlantState == MSS132PlantStates.Dying )
+            if (PlantState == MSS132PlantStates.Dying || PlantState == MSS132PlantStates.None)
             {
-                PlantDyingToDying ();
+                PlantDyingToDying();
             }
             else
             {
-                PlantDying ();
+                PlantDying();
             }
             PlantState = MSS132PlantStates.Dying;
             MSS132GameManager.Instance.BarHandler.ActiveDying ();

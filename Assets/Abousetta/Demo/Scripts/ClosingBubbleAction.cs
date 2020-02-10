@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "ClosingBubbleAction", menuName = "SO/SM/Bubble/Action/ClosingBubbleAction", order = 0)]
 public class ClosingBubbleAction : Action
 {
+    #region Methods
     public override void Act<T>(StateControllersManager controllersManager)
     {
         CloseBubble<T>(controllersManager);
@@ -20,4 +21,5 @@ public class ClosingBubbleAction : Action
         var controller = controllersManager.GetController<SpeechBubbleController>();
         controller.HideBubble();
     }
+    #endregion Methods
 }

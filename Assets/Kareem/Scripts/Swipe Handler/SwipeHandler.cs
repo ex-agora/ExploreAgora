@@ -4,18 +4,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public struct SwapInfo
+{
+    #region Fields
+    public float angle;
+
+    public Vector3 direction;
+
+    public float timeElapsed;
+    #endregion Fields
+
+    #region Constructors
+    public SwapInfo(Vector3 _Direction, float _TimeElapsed, float _Angle)
+    {
+        direction = _Direction;
+        timeElapsed = _TimeElapsed;
+        angle = _Angle;
+    }
+    #endregion Constructors
+}
+
 public class SwipeHandler : MonoBehaviour, IEndDragHandler, IBeginDragHandler, IDragHandler
 {
 
+    #region Fields
     public GameEvent endSwipeEvent;
+    float angle;
     Vector3 beginPosition;
     Vector3 endPosition;
-    Vector3 finalPosition;
-    float angle;
-    float takenTimeOfDrag;
     float endTime;
-    bool isSwiped;
+    Vector3 finalPosition;
     SwapInfo info;
+    bool isSwiped;
+    float takenTimeOfDrag;
+    #endregion Fields
+
+    #region Properties
     public SwapInfo Info
     {
         get => info;
@@ -26,8 +50,15 @@ public class SwipeHandler : MonoBehaviour, IEndDragHandler, IBeginDragHandler, I
         get => isSwiped;
         set => isSwiped = value;
     }
+    #endregion Properties
 
-    public void OnBeginDrag (PointerEventData eventData)
+    #region Methods
+    public float DragTakenTime()
+    {
+        return endTime - takenTimeOfDrag;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
         
         IsSwiped = false;
@@ -37,7 +68,12 @@ public class SwipeHandler : MonoBehaviour, IEndDragHandler, IBeginDragHandler, I
         info = default (SwapInfo);
     }
 
-    public void OnEndDrag (PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
     {
         endPosition = eventData.position;
         finalPosition = (endPosition - beginPosition).normalized;
@@ -52,28 +88,5 @@ public class SwipeHandler : MonoBehaviour, IEndDragHandler, IBeginDragHandler, I
         angle = Mathf.Atan2 (finalPosition.y, finalPosition.x) * Mathf.Rad2Deg;
         return angle;
     }
-
-    public float DragTakenTime ()
-    {
-        return endTime - takenTimeOfDrag;
-    }
-
-    public void OnDrag (PointerEventData eventData)
-    {
-
-    }
-
-}
-
-public struct SwapInfo
-{
-    public SwapInfo (Vector3 _Direction, float _TimeElapsed, float _Angle)
-    {
-        direction = _Direction;
-        timeElapsed = _TimeElapsed;
-        angle = _Angle;
-    }
-    public Vector3 direction;
-    public float timeElapsed;
-    public float angle;
+    #endregion Methods
 }

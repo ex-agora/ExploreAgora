@@ -5,11 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LanguageConfig", menuName = "SO/Language/LanguageConfig", order =0)]
 public class LanguageConfig : ScriptableObject
 {
+    #region Fields
+    static List<SystemLanguage> allLanguages = new List<SystemLanguage>();
     [SerializeField] SystemLanguage languageName;
     [SerializeField] LanguageType type;
-    static List<SystemLanguage> allLanguages = new List<SystemLanguage>();
+    #endregion Fields
+
+    #region Properties
     public SystemLanguage LanguageName { get => languageName; set => languageName = value; }
     public LanguageType Type { get => type; set => type = value; }
-   
+    #endregion Properties
+
 
 }

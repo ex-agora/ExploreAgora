@@ -5,9 +5,9 @@ public class DoubleTap : MonoBehaviour, IPointerClickHandler
 {
     #region Private Variables
     private bool doubleTapped = false;
-    private float tapSpeed = 0.5f;
     private float lastTapTime = 0;
     private float tapCounter = 0;
+    private float tapSpeed = 0.5f;
     #endregion
 
     #region Methods

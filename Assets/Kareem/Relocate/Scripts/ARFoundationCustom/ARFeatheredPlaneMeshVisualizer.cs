@@ -10,17 +10,37 @@ using UnityEngine.XR.ARFoundation;
 [RequireComponent(typeof(ARPlaneMeshVisualizer), typeof(MeshRenderer), typeof(ARPlane))]
 public class ARFeatheredPlaneMeshVisualizer : MonoBehaviour
 {
+    #region Fields
+    static List<Vector3> s_FeatheringUVs = new List<Vector3>();
+
+    static List<Vector3> s_Vertices = new List<Vector3>();
+
+    Material m_FeatheredPlaneMaterial;
+
     [Tooltip("The width of the texture feathering (in world units).")]
     [SerializeField]
     float m_FeatheringWidth = 0.2f;
 
+    ARPlane m_Plane;
+
+    ARPlaneMeshVisualizer m_PlaneMeshVisualizer;
+    #endregion Fields
+
+    #region Properties
     /// <summary>
     /// The width of the texture feathering (in world units).
     /// </summary>
     public float featheringWidth
     { 
         get { return m_FeatheringWidth; }
-        set { m_FeatheringWidth = value; } 
+        set { m_FeatheringWidth = value; }
+    }
+    #endregion Properties
+
+    #region Methods
+    void ARPlane_boundaryUpdated(ARPlaneBoundaryChangedEventArgs eventArgs)
+    {
+        GenerateBoundaryUVs(m_PlaneMeshVisualizer.mesh);
     }
 
     void Awake()
@@ -28,21 +48,6 @@ public class ARFeatheredPlaneMeshVisualizer : MonoBehaviour
         m_PlaneMeshVisualizer = GetComponent<ARPlaneMeshVisualizer>();
         m_FeatheredPlaneMaterial = GetComponent<MeshRenderer>().material;
         m_Plane = GetComponent<ARPlane>();
-    }
-
-    void OnEnable()
-    {
-        m_Plane.boundaryChanged += ARPlane_boundaryUpdated;
-    }
-
-    void OnDisable()
-    {
-        m_Plane.boundaryChanged -= ARPlane_boundaryUpdated;
-    }
-
-    void ARPlane_boundaryUpdated(ARPlaneBoundaryChangedEventArgs eventArgs)
-    {
-        GenerateBoundaryUVs(m_PlaneMeshVisualizer.mesh);
     }
 
     /// <summary>
@@ -98,13 +103,14 @@ public class ARFeatheredPlaneMeshVisualizer : MonoBehaviour
         mesh.UploadMeshData(false);
     }
 
-    static List<Vector3> s_FeatheringUVs = new List<Vector3>();
+    void OnDisable()
+    {
+        m_Plane.boundaryChanged -= ARPlane_boundaryUpdated;
+    }
 
-    static List<Vector3> s_Vertices = new List<Vector3>();
-
-    ARPlaneMeshVisualizer m_PlaneMeshVisualizer;
-
-    ARPlane m_Plane;
-
-    Material m_FeatheredPlaneMaterial;
+    void OnEnable()
+    {
+        m_Plane.boundaryChanged += ARPlane_boundaryUpdated;
+    }
+    #endregion Methods
 }

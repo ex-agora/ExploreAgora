@@ -5,6 +5,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "Timer Decision" , menuName = "SO /Variable/Timer Decision", order = 0)]
 public class TimerDecision : Decision
 {
+    #region Methods
     // return boolean of current timer state either reached dedicated Timer or not to make the Decision
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
@@ -20,5 +21,6 @@ public class TimerDecision : Decision
         Debug.Log(timePassedHandler.Duration);
         return (timePassedHandler.Duration <= stateMachine.ElpTime);
     }
+    #endregion Methods
 }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Close Distance Decision", menuName = "SO/SM/Decision/Close Distance", order = 0)]
 public class CloseDistanceDecision : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return isCorrectDistanceDecision<T>(stateMachine, controllersManager);
@@ -19,4 +20,5 @@ public class CloseDistanceDecision : Decision
         }
         return ditanceAlertStateController.ClearCloseTrigger();
     }
+    #endregion Methods
 }

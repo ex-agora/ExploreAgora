@@ -9,6 +9,29 @@ using System;
 
 public static class TestTEstEncrypt
 {
+    #region Methods
+    public static string Decrypt(string encodedText, string key)
+    {
+        TripleDESCryptoServiceProvider desCryptoProvider = new TripleDESCryptoServiceProvider();
+
+        byte[] byteBuff;
+
+        try
+        {
+            desCryptoProvider.Key = Encoding.UTF8.GetBytes(key);
+            desCryptoProvider.IV = UTF8Encoding.UTF8.GetBytes("ABCDEFGH");
+            byteBuff = Convert.FromBase64String(encodedText);
+
+            string plaintext = Encoding.UTF8.GetString(desCryptoProvider.CreateDecryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
+            return plaintext;
+        }
+        catch (Exception except)
+        {
+            Console.WriteLine(except + "\n\n" + except.StackTrace);
+            return null;
+        }
+    }
+
     public static string Encrypt(string source, string key)
     {
         TripleDESCryptoServiceProvider desCryptoProvider = new TripleDESCryptoServiceProvider();
@@ -35,39 +58,19 @@ public static class TestTEstEncrypt
             return null;
         }
     }
+    #endregion Methods
 
-    public static string Decrypt(string encodedText, string key)
-    {
-        TripleDESCryptoServiceProvider desCryptoProvider = new TripleDESCryptoServiceProvider();
+    /* static void Main(string[] args)
+     {
+         var securityKey = "abcdefghijklmnop";
+         var encrypted = Encrypt("The text to be encrypted", securityKey);
 
-        byte[] byteBuff;
+         Console.WriteLine("encrypted as: {0}", encrypted);
 
-        try
-        {
-            desCryptoProvider.Key = Encoding.UTF8.GetBytes(key);
-            desCryptoProvider.IV = UTF8Encoding.UTF8.GetBytes("ABCDEFGH");
-            byteBuff = Convert.FromBase64String(encodedText);
+         var decrypted = Decrypt(encrypted, securityKey);
+         Console.WriteLine("decrypted as: {0}", decrypted);
 
-            string plaintext = Encoding.UTF8.GetString(desCryptoProvider.CreateDecryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
-            return plaintext;
-        }
-        catch (Exception except)
-        {
-            Console.WriteLine(except + "\n\n" + except.StackTrace);
-            return null;
-        }
-    }
-   /* static void Main(string[] args)
-    {
-        var securityKey = "abcdefghijklmnop";
-        var encrypted = Encrypt("The text to be encrypted", securityKey);
-
-        Console.WriteLine("encrypted as: {0}", encrypted);
-
-        var decrypted = Decrypt(encrypted, securityKey);
-        Console.WriteLine("decrypted as: {0}", decrypted);
-
-        Console.ReadLine();
-    }*/
+         Console.ReadLine();
+     }*/
 }
 

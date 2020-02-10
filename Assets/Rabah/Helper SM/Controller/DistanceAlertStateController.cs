@@ -5,13 +5,25 @@ using StateMachine;
 
 public class DistanceAlertStateController : MonoBehaviour, IStateController
 {
+    #region Fields
+    bool isCloseDitanceTriggered;
     bool isCorrectDitanceTriggered;
     bool isFarDitanceTriggered;
-    bool isCloseDitanceTriggered;
+    #endregion Fields
 
+    #region Properties
+    public bool IsCloseDitanceTriggered { get => isCloseDitanceTriggered; set => isCloseDitanceTriggered = value; }
     public bool IsCorrectDitanceTriggered { get => isCorrectDitanceTriggered; set => isCorrectDitanceTriggered = value; }
     public bool IsFarDitanceTriggered { get => isFarDitanceTriggered; set => isFarDitanceTriggered = value; }
-    public bool IsCloseDitanceTriggered { get => isCloseDitanceTriggered; set => isCloseDitanceTriggered = value; }
+    #endregion Properties
+
+    #region Methods
+    public bool ClearCloseTrigger()
+    {
+        bool up = IsCloseDitanceTriggered;
+        IsCloseDitanceTriggered = false;
+        return up;
+    }
 
     public bool ClearCorrectTrigger()
     {
@@ -19,28 +31,25 @@ public class DistanceAlertStateController : MonoBehaviour, IStateController
         IsCorrectDitanceTriggered = false;
         return up;
     }
-    public void SetCorrectTrigget()
-    {
-        IsCorrectDitanceTriggered = true;
-    }
     public bool ClearFarTrigger()
     {
         bool up = IsFarDitanceTriggered;
         IsFarDitanceTriggered = false;
         return up;
     }
-    public void SetFarTrigget()
-    {
-        IsFarDitanceTriggered = true;
-    }
-    public bool ClearCloseTrigger()
-    {
-        bool up = IsCloseDitanceTriggered;
-        IsCloseDitanceTriggered = false;
-        return up;
-    }
+
     public void SetCloseTrigget()
     {
         IsCloseDitanceTriggered = true;
     }
+
+    public void SetCorrectTrigget()
+    {
+        IsCorrectDitanceTriggered = true;
+    }
+    public void SetFarTrigget()
+    {
+        IsFarDitanceTriggered = true;
+    }
+    #endregion Methods
 }

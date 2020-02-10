@@ -24,7 +24,7 @@ namespace Lean.Touch
 		[HideInInspector]
 		[SerializeField]
 		private Vector3 remainingTranslation;
-
+        public Vector3 RemainingTranslation { get => remainingTranslation; set => remainingTranslation = value; }
 		/// <summary>If you've set Use to ManuallyAddedFingers, then you can call this method to manually add a finger.</summary>
 		public void AddFinger(LeanFinger finger)
 		{

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class BubbleTextHolder : MonoBehaviour
 {
+    #region Fields
     [SerializeField] BubbleTextInfo[] bubbleTextInfoHolder;
+    int hintIndex;
     int index = -1;
     bool isHintPlaced;
+    #endregion Fields
+
+    #region Properties
     public BubbleTextInfo[] BubbleTextInfoHolder { get => bubbleTextInfoHolder; set => bubbleTextInfoHolder = value; }
     public bool IsHintPlaced { get => HandleHintBool(); set => isHintPlaced = value; }
-    int hintIndex;
+    #endregion Properties
+
+    #region Methods
     /// <summary>
     /// Hold speech bubble content [Command, Speech, Hint Blink]
     /// </summary>
@@ -30,16 +37,20 @@ public class BubbleTextHolder : MonoBehaviour
             return bubbleTextInfoHolder [index];
         }
     }
-    bool HandleHintBool () {
-        bool up = isHintPlaced;
-        isHintPlaced = false;
-        return up;
-    }
-    public void SetNextHint (int _index) {
-        if ( _index >= 0 && _index < bubbleTextInfoHolder.Length )
+    public void SetNextHint(int _index)
+    {
+        if (_index >= 0 && _index < bubbleTextInfoHolder.Length)
         {
             hintIndex = _index;
             IsHintPlaced = true;
         }
     }
+
+    bool HandleHintBool()
+    {
+        bool up = isHintPlaced;
+        isHintPlaced = false;
+        return up;
+    }
+    #endregion Methods
 }

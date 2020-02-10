@@ -10,15 +10,13 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
 
+    #region Fields
+    int _index;
+    string _scene;
     [SerializeField] Animator ScreenLodAnim;
-    string _scene;//Scene Name
-    int _index;//Scene Index
-    // Start is called before the first frame update
-    void Start()
-    {
-     //Fade image at the satrt of scene
-        ScreenLodAnim.SetBool("StartFade", true);
-    }
+    #endregion Fields
+
+    #region Methods
     //Set Experience name and reset index
     public void LoadExperience(string SceneName)
     {
@@ -27,6 +25,7 @@ public class SceneLoader : MonoBehaviour
         ScreenLodAnim.SetBool("Loading", true);
 
     }
+
     //Set Experience index and reset name
     public void LoadExperience(int Index)
     {
@@ -35,6 +34,7 @@ public class SceneLoader : MonoBehaviour
         ScreenLodAnim.SetBool("Loading", true);
 
     }
+
     //Load Experience by index or name
     public void LoadExperienceScene()
     {
@@ -44,4 +44,14 @@ public class SceneLoader : MonoBehaviour
             SceneManager.LoadSceneAsync(_index);
 
     }
+
+    //Scene Name
+    //Scene Index
+    // Start is called before the first frame update
+    void Start()
+    {
+     //Fade image at the satrt of scene
+        ScreenLodAnim.SetBool("StartFade", true);
+    }
+    #endregion Methods
 }

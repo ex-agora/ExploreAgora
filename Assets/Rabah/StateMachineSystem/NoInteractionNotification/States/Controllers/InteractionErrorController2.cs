@@ -7,10 +7,13 @@ using StateMachine;
 
 public class InteractionErrorController2 : MonoBehaviour, IStateController
 {
-    public Text text;
+    #region Fields
     public TapTrigger tapTrigger;
-       
+    public Text text;
     [SerializeField] string errorText;
+    #endregion Fields
 
+    #region Properties
     public string ErrorText { get => errorText; set => errorText = value; }
+    #endregion Properties
 }

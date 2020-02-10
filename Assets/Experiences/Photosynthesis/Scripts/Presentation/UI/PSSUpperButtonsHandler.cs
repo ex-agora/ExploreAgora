@@ -15,6 +15,7 @@ public class PSSUpperButtonsHandler : MonoBehaviour
     {
         btn.interactable = false;
         btn.image.sprite = activeBtnSprite;
+        //AudioManager.Instance?.Play("miniNotification", "Activity");
         manager.HandlerActive ();
     }
     public void ShowCommand ()

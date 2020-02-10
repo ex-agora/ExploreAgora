@@ -5,19 +5,83 @@ using UnityEngine.UI;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    [SerializeField] Button menuBtn;
-    [SerializeField] Button relocateBtn;
-    [SerializeField] Sprite openMenuSprite;
-    [SerializeField] Sprite cloesMenuSprite;
-    [SerializeField] Image menuBtnImg;
-    [SerializeField] Animator menuAnimator;
-    [SerializeField] Animator menuBtnAnimator;
+    #region Fields
     [SerializeField] Sprite[] audioSprites;
+    [SerializeField] Sprite cloesMenuSprite;
     [TypeConstraint(typeof(IMenuHandler))] [SerializeField] GameObject handler;
-    IMenuHandler menuHandler;
     int indexSoundSprite;
     bool isOpen;
+    [SerializeField] Animator menuAnimator;
+    [SerializeField] Button menuBtn;
+    [SerializeField] Animator menuBtnAnimator;
+    [SerializeField] Image menuBtnImg;
+    IMenuHandler menuHandler;
+    [SerializeField] Sprite openMenuSprite;
+    [SerializeField] Button relocateBtn;
+    #endregion Fields
+
+    #region Properties
     public bool IsOpen { get => isOpen; set { isOpen = value; HandleMenu(); } }
+    #endregion Properties
+
+    #region Methods
+    public void ClickToggleMenuPressed()
+    {
+        IsOpen = !IsOpen;
+        if (AudioManager.Instance != null)
+        {
+            if (isOpen)
+            {
+                AudioManager.Instance.Play("openOption", "UI");
+            }
+            else
+            {
+                AudioManager.Instance.Play("closeOption", "UI");
+            }
+        }
+    }
+
+    public void GoToHome() => menuHandler.GoTOHome();
+
+    public void HandleSoundBtn(Image image)
+    {
+        indexSoundSprite = (indexSoundSprite + 1) % audioSprites.Length;
+        image.sprite = audioSprites[indexSoundSprite];
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.AudioController(indexSoundSprite);
+        }
+    }
+
+    public void ResetLevel() => menuHandler.ResetLevel();
+
+    public void RunMenuInteraction()
+    {
+        menuBtn.interactable = true;
+        relocateBtn.interactable = true;
+    }
+
+    public void StopMenuInteraction()
+    {
+        IsOpen = false;
+        menuBtn.interactable = false;
+        relocateBtn.interactable = false;
+    }
+
+    void HandleMenu()
+    {
+        HandleMenusprite();
+    }
+
+    void HandleMenusprite()
+    {
+        //if (IsOpen) { menuBtnImg.sprite = cloesMenuSprite; }
+        //else { menuBtnImg.sprite = openMenuSprite; }
+        menuAnimator.SetBool("IsOpen", IsOpen);
+        menuBtnAnimator.SetBool("IsOpen", IsOpen);
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,47 +96,5 @@ public class MenuUIHandler : MonoBehaviour
     {
 
     }
-    void HandleMenusprite() {
-        //if (IsOpen) { menuBtnImg.sprite = cloesMenuSprite; }
-        //else { menuBtnImg.sprite = openMenuSprite; }
-        menuAnimator.SetBool("IsOpen", IsOpen);
-        menuBtnAnimator.SetBool("IsOpen", IsOpen);
-
-
-    }
-    void HandleMenu() {
-        HandleMenusprite();
-    }
-    public void ClickToggleMenuPressed() {
-        IsOpen = !IsOpen;
-        if (AudioManager.Instance != null)
-        {
-            if (isOpen)
-            {
-                AudioManager.Instance.Play("openOption", "UI");
-            }
-            else
-            {
-                AudioManager.Instance.Play("closeOption", "UI");
-            }
-        }
-    }
-    public void HandleSoundBtn(Image image) {
-        indexSoundSprite = (indexSoundSprite + 1) % audioSprites.Length;
-        image.sprite = audioSprites[indexSoundSprite];
-        if (AudioManager.Instance != null) {
-            AudioManager.Instance.AudioController(indexSoundSprite);
-        }
-    }
-    public void StopMenuInteraction() {
-        IsOpen = false;
-        menuBtn.interactable = false;
-        relocateBtn.interactable = false;
-    }
-    public void RunMenuInteraction() {
-        menuBtn.interactable = true;
-        relocateBtn.interactable = true;
-    }
-    public void ResetLevel() => menuHandler.ResetLevel();
-    public void GoToHome() => menuHandler.GoTOHome();
+    #endregion Methods
 }

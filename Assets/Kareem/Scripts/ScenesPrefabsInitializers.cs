@@ -6,5 +6,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Required Prefab", menuName = "SO/Variable/Scene Manager", order = 0)]
 public class ScenesPrefabsIntializers : ScriptableObject
 {
+    #region Fields
     public GameObject NextSceneRequiredPrefab;
+    #endregion Fields
 }

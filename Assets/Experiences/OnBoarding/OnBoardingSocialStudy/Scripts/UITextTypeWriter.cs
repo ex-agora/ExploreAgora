@@ -25,9 +25,15 @@ public class UITextTypeWriter : MonoBehaviour
         elpTime = 0;
         updateRate = duration / story.Length;
         InvokeRepeating(nameof(CustoumUpdate), 0, updateRate);
+        AudioManager.Instance?.Play("writing", "Activity");
     }
     private void CustoumUpdate()
     {
+        if (index >= story.Length) {
+            txt.text = story;
+            CancelInvoke(nameof(CustoumUpdate));
+            return;
+        }
         txt.text += story[index];
         index++;
         elpTime += updateRate;

@@ -24,9 +24,10 @@ public class interactions : MonoBehaviour
     private Pose targetPose;
     bool planeFound = false;
     public bool canSet;
-    bool firstTime = true;
     bool isSurfaceFound;
+    bool firstTime = true;
     [SerializeField] bool isFoundedOnce;
+    [SerializeField] QuickFadeHandler fadeHandler = null;
     static interactions instance;
 
     public ARSessionOrigin SessionOrigin { get => sessionOrigin; set => sessionOrigin = value; }
@@ -101,6 +102,7 @@ public class interactions : MonoBehaviour
             if (rrr.size.x >= targetSize.x && rrr.size.y >= targetSize.y)
             {
                 // state.text = "Found";
+                fadeHandler?.FadeIn();
                 planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [0];
                 canSet = true;
             }
@@ -108,6 +110,7 @@ public class interactions : MonoBehaviour
             {
                 //Debug.Log(rrr.size);
                 // state.text = "Lost";
+                fadeHandler?.FadeOut();
                 canSet = false;
                 planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [1];
             }

@@ -7,4 +7,7 @@ public class TapSoundRaiser : MonoBehaviour
     public void TapSound() {
         AudioManager.Instance?.Play("UIAction", "UI");
     }
+    public void PlaceSound() {
+        AudioManager.Instance?.Play("placeObject", "Activity");
+    }
 }

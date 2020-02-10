@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class HotSpotClickHandler : MonoBehaviour
 {
+    #region Fields
     [SerializeField] GameEvent afterClickHotspot , gameEvent;
-    [SerializeField] GameEventListener lis;
     bool firstTime = true;
+    [SerializeField] GameEventListener lis;
+    #endregion Fields
+
+    #region Methods
     public void raiseHotSpotEvent()
     {
         if (!firstTime)
@@ -19,5 +23,6 @@ public class HotSpotClickHandler : MonoBehaviour
             firstTime = false;
         }
 
-    } 
+    }
+    #endregion Methods 
 }

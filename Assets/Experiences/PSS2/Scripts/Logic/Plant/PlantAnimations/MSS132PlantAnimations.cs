@@ -30,6 +30,7 @@ public class MSS132PlantAnimations : MonoBehaviour
         durationCounter = duration;
         MSS132Manager.Instance.IsAnimationWorking = true;
         step = ((EndKayValue - plantTransition.KayValue) / duration) * repeatRate;
+        if (step > 0) { AudioManager.Instance?.Play("resurrectionDown", "Activity"); } else { AudioManager.Instance?.Play("resurrection", "Activity"); }
         InvokeRepeating (nameof (CustomUpdate) , 0 , repeatRate);
     }
     void CustomUpdate ()
@@ -48,6 +49,7 @@ public class MSS132PlantAnimations : MonoBehaviour
         durationCounter = duration;
         MSS132Manager.Instance.IsAnimationWorking = true;
         step = (((EndKayValue - plantTransition.KayValue) / duration) * repeatRate) / 2.0f;
+        AudioManager.Instance?.Play("breathing", "Activity");
         InvokeRepeating (nameof (CustomUpdateSameState) , 0 , repeatRate);
     }
     void CustomUpdateSameState ()

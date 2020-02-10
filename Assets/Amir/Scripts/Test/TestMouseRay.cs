@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TestMouseRay : MonoBehaviour
 {
+    #region Fields
     [SerializeField] Camera cam;
-    Ray ray;
     RaycastHit hit;
+    Ray ray;
+    #endregion Fields
+
+    #region Methods
     // Update is called once per frame
     void Update()
     {
@@ -15,4 +19,5 @@ public class TestMouseRay : MonoBehaviour
             Debug.Log(hit.collider.gameObject.name);
         }
     }
+    #endregion Methods
 }

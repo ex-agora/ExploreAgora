@@ -6,11 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AgoraCategories", menuName = "SO/Experience/AgoraCategories", order = 0)]
 public class AgoraCategories : ScriptableObject
 {
+    #region Fields
     [HideInInspector]
     public static List<string> categories = new List<string>();
     public string newCategory;
+    #endregion Fields
 
 
+    #region Methods
     public void AddNewCategory()
     {
         if (newCategory != "")
@@ -35,4 +38,5 @@ public class AgoraCategories : ScriptableObject
                 Debug.LogError($"{newCategory} does not exist!");
             }
     }
+    #endregion Methods
 }

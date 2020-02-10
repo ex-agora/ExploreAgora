@@ -4,13 +4,19 @@ using UnityEngine.EventSystems;
 
 public class HoldedTime : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    #region Fields
+    float elapsedTime;
+    bool isHolded;
+    float startTime;
+    [SerializeField] float updateRate = 0.5f;
+    #endregion Fields
+
+    #region Properties
     public float ElapsedTime { get => elapsedTime; set => elapsedTime = value; }
     public bool IsHolded { get => isHolded; set => isHolded = value; }
+    #endregion Properties
 
-    float elapsedTime;
-    float startTime;
-    bool isHolded;
-    [SerializeField] float updateRate = 0.5f;
+    #region Methods
     public void OnPointerDown(PointerEventData eventData)
     {
         
@@ -45,8 +51,9 @@ public class HoldedTime : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void UpdatePerUnit()
     {
             ElapsedTime += updateRate;
-            // time = Mathf.Round(time * 100) / 100;
-       
+        // time = Mathf.Round(time * 100) / 100;
+
         //Debug.Log("ElapsedTime " + ElapsedTime );
     }
+    #endregion Methods
 }

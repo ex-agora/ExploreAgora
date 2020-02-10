@@ -9,6 +9,7 @@ public class GrinderInteractions : MonoBehaviour
     [SerializeField] GameObject coalPowderHotSpot;
     [SerializeField] Animator coalGrinderAnim;
     [SerializeField] ParticleSystem particle;
+    [SerializeField] QuickFadeHandler label;
     float updateRate = 1;
     float duration = 5;
 
@@ -24,7 +25,7 @@ public class GrinderInteractions : MonoBehaviour
         {
             CancelInvoke(nameof(CustomUpdate));
             coalGrinderAnim.SetTrigger("Fire");
-            Invoke(nameof(AfterComplete), 0.788322f);
+            Invoke(nameof(AfterComplete), 1.788322f);
         }
     }
     void AfterComplete() {
@@ -48,9 +49,12 @@ public class GrinderInteractions : MonoBehaviour
     public void PlayPS() {
         particle.gameObject.SetActive(true);
         particle.Play();
+        AudioManager.Instance.Play("revealObject", "Activity");
+        Invoke(nameof(ShowFinalSpot), 2f);
     }
     void ShowFinalSpot() {
         OnBoardingGameManager.Instance.GoToNextState();
+        label.FadeIn();
         coalPowderHotSpot.SetActive(true);
     }
     public void PlayPlaceSFX() {
