@@ -9,7 +9,7 @@ public class PlantDefenceElement : MonoBehaviour
     [SerializeField] LabelWorldHandler label;
     bool isLabelOpened = false;
     bool isSheildUpdated = false;
-    PDInformationPanel pDInformation;
+    [SerializeField] PDInformationPanel pDInformation;
     public PlantDefenceHotspot Hotspot { get => hotspot; set => hotspot = value; }
     public LabelWorldHandler Label { get => label; set => label = value; }
 
@@ -49,9 +49,8 @@ public class PlantDefenceElement : MonoBehaviour
     {
         PlantDefenceGameManager.Instance.ResetTapHint ();
     }
-    public void PlayBubbleAnimator (string animator)
+    public void PlayBubbleAnimator ()
     {
-        pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController (animator);
         PlantDefenceGameManager.Instance.BubbleAnimator.enabled = false;
         PlantDefenceGameManager.Instance.BubbleAnimator.runtimeAnimatorController = pDInformation.Anim;
         PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;

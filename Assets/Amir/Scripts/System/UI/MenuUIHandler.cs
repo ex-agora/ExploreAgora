@@ -8,7 +8,7 @@ public class MenuUIHandler : MonoBehaviour
     #region Fields
     [SerializeField] Sprite[] audioSprites;
     [SerializeField] Sprite cloesMenuSprite;
-    [TypeConstraint(typeof(IMenuHandler))] [SerializeField] GameObject handler;
+    [TypeConstraint (typeof (IMenuHandler))] [SerializeField] GameObject handler = null;
     int indexSoundSprite;
     bool isOpen;
     [SerializeField] Animator menuAnimator;
@@ -41,7 +41,7 @@ public class MenuUIHandler : MonoBehaviour
         }
     }
 
-    public void GoToHome() => menuHandler.GoTOHome();
+    public void GoToHome() => menuHandler?.GoTOHome();
 
     public void HandleSoundBtn(Image image)
     {
@@ -53,7 +53,7 @@ public class MenuUIHandler : MonoBehaviour
         }
     }
 
-    public void ResetLevel() => menuHandler.ResetLevel();
+    public void ResetLevel() => menuHandler?.ResetLevel();
 
     public void RunMenuInteraction()
     {
@@ -88,7 +88,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         indexSoundSprite = 0;
         IsOpen = false;
-        menuHandler = handler.GetComponent<IMenuHandler>();
+        //menuHandler = handler?.GetComponent<IMenuHandler>();
     }
    
     // Update is called once per frame

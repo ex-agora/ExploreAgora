@@ -10,7 +10,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] bool nextState;
     [SerializeField] SpeechBubbleController bubbleController;
     [SerializeField] StateMachineManager stateMachine;
-    [SerializeField] PDInformationPanelManager informationPanelManager;
+    //[SerializeField] PDInformationPanelManager informationPanelManager;
     [SerializeField] SummaryHandler midSummary;
     static PlantDefenceGameManager instance;
     public PlantdefenceFlowDurations flowDurations;
@@ -19,7 +19,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public SheildUIHander SheildCounter { get => sheildCounter; set => sheildCounter = value; }
     public Animator BubbleAnimator { get => bubbleAnimator; set => bubbleAnimator = value; }
     public SpeechBubbleController BubbleController { get => bubbleController; set => bubbleController = value; }
-    public PDInformationPanelManager InformationPanelManager { get => informationPanelManager; set => informationPanelManager = value; }
+    //public PDInformationPanelManager InformationPanelManager { get => informationPanelManager; set => informationPanelManager = value; }
     public SummaryHandler MidSummary { get => midSummary; set => midSummary = value; }
 
     float elpTime;
