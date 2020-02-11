@@ -61,6 +61,7 @@ public class TutorialPanelController : MonoBehaviour
     /// Called whenever need to make Ok_Btn interactable.
     public void ActiveOkButton()
     {
+        Debug.Log("OKK");
         ActiveButton();
     }
 }

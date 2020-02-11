@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
-
+using UnityEngine.SceneManagement;
 public class DetectObj : MonoBehaviour
 {
     public Text outputText;
-    public GameObject Maincanvas , LoadingCanvas;
+    public GameObject Maincanvas , LoadingCanvas, Panel;
     //Output from server 
     string output;
 
@@ -18,10 +18,17 @@ public class DetectObj : MonoBehaviour
     //responsible of return string of response output of a JSON String
     string processJson(string response)
     {
+        //jsonvale = JsonMapper.ToObject(response);
+        //string ObjectDetectedFormResponse;
+
+        //ObjectDetectedFormResponse = jsonvale[0]["message"].ToString();
+        //return ObjectDetectedFormResponse;
+
         jsonvale = JsonMapper.ToObject(response);
         string ObjectDetectedFormResponse;
+        Debug.Log(jsonvale);
 
-        ObjectDetectedFormResponse = jsonvale[0]["message"].ToString();
+        ObjectDetectedFormResponse = jsonvale["detected"].ToString();
         return ObjectDetectedFormResponse;
     }
 
@@ -58,11 +65,12 @@ public class DetectObj : MonoBehaviour
 
         // Create a Web Form
         WWWForm form = new WWWForm();
-        form.AddField("frameCount", Time.frameCount.ToString());
-        form.AddBinaryData("avatar", bytes, "screenShot.png", "image/png");
+        form.AddField("score", "0.8");
+        form.AddField("objectToDetect", scanProperties.detectionObjectName);
+        form.AddBinaryData("scannedImg", bytes, "screenShot.png", "image/png");
 
         // Upload to a cgi script
-        using (var w = UnityEngine.Networking.UnityWebRequest.Post("http://api.exploreagora.com:8000/detect", form))
+        using (var w = UnityEngine.Networking.UnityWebRequest.Post("https://explore-agora.herokuapp.com/vision/detect", form))
         {
             yield return w.SendWebRequest();
             //if error 
@@ -78,14 +86,20 @@ public class DetectObj : MonoBehaviour
                 Debug.Log("Finished Uploading Screenshot");
                 Debug.Log(w.downloadHandler.text);
                 output = processJson(w.downloadHandler.text);
-                outputText.text = output;
+                //outputText.text = output;
                 //For Example
-                if (output.ToLower() == scanProperties.detectionObjectName.ToLower())
+                if (output.ToLower() == "true")
                 {
                     print(output + " true   "  + scanProperties.detectionObjectName.ToLower());
+                    outputText.text = "Found";
+                    if (scanProperties.ShouldContinueToExperience)                     
+                        Panel.SetActive(true);
+                    else
+                        SceneManager.LoadScene("first Scene");
                 }
                 else
                 {
+                    outputText.text = scanProperties.detectionObjectName+" Not Found";
                     print(output +  "  Not found  " + scanProperties.detectionObjectName.ToLower());
                 }
             }

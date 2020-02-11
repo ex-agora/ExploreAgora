@@ -12,7 +12,7 @@ public class SummaryHandler : MonoBehaviour
     [SerializeField] Animator contentAnimator;
     [SerializeField] Image contentImage;
     [SerializeField] Sprite contentSprite;
-    [SerializeField] GameEvent doneEvent;
+    [SerializeField] GameEvent doneEvent =null;
     [SerializeField] bool isContentAnimPlace;
     public string TittleString { get => tittleString; set { tittleString = value; HandleTittle(); } }
 
@@ -56,6 +56,7 @@ public class SummaryHandler : MonoBehaviour
     /// Called whenever needed to open Summary.
     public void ViewSummary()
     {
+        
         HandleTittle();
         HandleContent();
         OpenSummary();
@@ -68,6 +69,6 @@ public class SummaryHandler : MonoBehaviour
     {
         activationButton.interactable = false;
         CloseSummary();
-        doneEvent.Raise();
+        doneEvent?.Raise();
     }
 }
