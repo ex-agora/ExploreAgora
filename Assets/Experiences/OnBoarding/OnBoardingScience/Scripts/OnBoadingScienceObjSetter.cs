@@ -17,7 +17,7 @@ public class OnBoadingScienceObjSetter : MonoBehaviour
     public void ObjectContainSetter()
     {
         //FadeOutBook();
-        book.SetActive(false); 
+        //book.SetActive(false); 
         Invoke(nameof(ActeiveCoalObj), 0.1f);
     }
     void ActeiveCoalObj() {

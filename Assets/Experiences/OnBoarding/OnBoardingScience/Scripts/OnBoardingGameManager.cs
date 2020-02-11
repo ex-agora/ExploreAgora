@@ -55,7 +55,7 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
     public void StartSecondPhase()
     {
         nextState = true;
-        headerBarHandler.OpenBar();
+        //headerBarHandler.OpenBar();
     }
 
     public void EndSecondPhase()

@@ -11,12 +11,14 @@ public class LabelWorldHandler : MonoBehaviour
     [SerializeField] bool hasExtraInfo;
     [SerializeField] string extraInfoText;
     [SerializeField] Canvas canvas;
+    [SerializeField] bool isTabDisabled;
     bool isOpen;
     public string LabelTextStr { get => labelText.text; }
     public bool HasExtraInfo { get => hasExtraInfo; }
     public string ExtraInfoText { get => extraInfoText; }
     private void Start ()
     {
+        if(!isTabDisabled)
         canvas.worldCamera = interactions.Instance.SessionOrigin.camera;
     }
     // Start is called before the first frame update
@@ -24,8 +26,11 @@ public class LabelWorldHandler : MonoBehaviour
     {
         SetlabelAnimState ();
     }
-
-
+    public void EnableTap() {
+        isTabDisabled = false;
+        canvas.worldCamera = interactions.Instance.SessionOrigin.camera;
+    }
+ 
     private void SetlabelAnimState ()
     {
         if ( anim != null )

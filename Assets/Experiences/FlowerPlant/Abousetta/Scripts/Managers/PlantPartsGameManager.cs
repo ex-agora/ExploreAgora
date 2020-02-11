@@ -105,7 +105,16 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
             spotGroupManagers[i].PrepaireQuiz();
         }
     }
-
+    public void FarAlert()
+    {
+        bubbleController.SetHintText(8);
+        nextState = true;
+    }
+    public void NearAlert()
+    {
+        bubbleController.SetHintText(7);
+        nextState = true;
+    }
     public void StartFirstPhase()
     {
         //counterUIHandler.ShowCounter();

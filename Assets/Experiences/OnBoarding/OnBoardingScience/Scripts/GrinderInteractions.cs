@@ -9,7 +9,7 @@ public class GrinderInteractions : MonoBehaviour
     [SerializeField] GameObject coalPowderHotSpot;
     [SerializeField] Animator coalGrinderAnim;
     [SerializeField] ParticleSystem particle;
-    [SerializeField] LabelWorldHandler label;
+    [SerializeField] QuickFadeHandler label;
     float updateRate = 1;
     float duration = 5;
 
@@ -54,7 +54,7 @@ public class GrinderInteractions : MonoBehaviour
     }
     void ShowFinalSpot() {
         OnBoardingGameManager.Instance.GoToNextState();
-        label.ShowLabel();
+        label.FadeIn();
         coalPowderHotSpot.SetActive(true);
     }
     public void PlayPlaceSFX() {

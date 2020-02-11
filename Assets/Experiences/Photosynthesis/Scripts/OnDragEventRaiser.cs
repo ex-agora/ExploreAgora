@@ -9,7 +9,7 @@ public class OnDragEventRaiser : MonoBehaviour
     [SerializeField] UnityEvent eventSystem;
     private void Update()
     {
-        if (transform.hasChanged && selectable.IsSelected) {
+        if (transform.hasChanged /*&& selectable.IsSelected)*/ ){
             eventSystem?.Invoke();
         }
     }

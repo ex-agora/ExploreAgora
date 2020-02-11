@@ -9,13 +9,13 @@ public class MSS132ElementHandler : MonoBehaviour
     float step;
     Vector3 defaultPsoition;
     [SerializeField] Transform destination;
-
+    [SerializeField] Transform defaultPos = null;
     public Transform Destination { get => destination; set => destination = value; }
 
     // Start is called before the first frame update
     void OnEnable ()
     {
-        defaultPsoition = transform.position;
+        defaultPsoition = defaultPos == null ? transform.position : defaultPos.position;
     }
     public void ResetPosition ()
     {
