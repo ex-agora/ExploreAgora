@@ -52,7 +52,13 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
         realTimeTutorialHandler.OpenIndicator();
         nextState = true;
     }
-
+    public void EndFirstPhase() {
+        nextState = true;
+    }
+    public void EndSecondPhase()
+    {
+        nextState = true;
+    }
     public void StartSecondPhase()
     {
         nextState = true;

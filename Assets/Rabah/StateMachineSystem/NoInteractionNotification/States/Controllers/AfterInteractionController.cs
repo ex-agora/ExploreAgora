@@ -7,10 +7,13 @@ using StateMachine;
 
 public class AfterInteractionController : MonoBehaviour, IStateController
 {
-    public Text text;
+    #region Fields
     public TapTrigger tapTrigger;
-       
+    public Text text;
     [SerializeField] string afterText;
+    #endregion Fields
 
+    #region Properties
     public string AfterText { get => afterText; set => afterText = value; }
+    #endregion Properties
 }

@@ -8,36 +8,36 @@ using System.Collections;
 [RequireComponent(typeof(Light))]
 public class CFX_LightIntensityFade : MonoBehaviour
 {
-	// Duration of the effect.
-	public float duration = 1.0f;
-	
-	// Delay of the effect.
-	public float delay = 0.0f;
-	
+    #region Fields
+    // If <c>true</c>, light will destructs itself on completion of the effect
+    public bool autodestruct;
+
+    // Delay of the effect.
+    public float delay = 0.0f;
+
+    // Duration of the effect.
+    public float duration = 1.0f;
 	/// Final intensity of the light.
 	public float finalIntensity = 0.0f;
 	
 	// Base intensity, automatically taken from light parameters.
 	private float baseIntensity;
-	
-	// If <c>true</c>, light will destructs itself on completion of the effect
-	public bool autodestruct;
-	
-	private float p_lifetime = 0.0f;
-	private float p_delay;
-	
-	void Start()
-	{
+    private float p_delay;
+    private float p_lifetime = 0.0f;
+    #endregion Fields
+
+    #region Methods
+    void OnEnable()
+    {
+        p_lifetime = 0.0f;
+        p_delay = delay;
+        if (delay > 0) GetComponent<Light>().enabled = false;
+    }
+
+    void Start()
+    {
 		baseIntensity = GetComponent<Light>().intensity;
 	}
-	
-	void OnEnable()
-	{
-		p_lifetime = 0.0f;
-		p_delay = delay;
-		if(delay > 0) GetComponent<Light>().enabled = false;
-	}
-	
 	void Update ()
 	{
 		if(p_delay > 0)
@@ -60,6 +60,7 @@ public class CFX_LightIntensityFade : MonoBehaviour
 			if(autodestruct)
 				GameObject.Destroy(this.gameObject);
 		}
-		
-	}
+
+    }
+    #endregion Methods
 }

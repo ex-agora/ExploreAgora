@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Zoom : MonoBehaviour
 {
-    public Transform g1, g2;
-    Vector2 firstPos;
-    Vector2 secondPos;
+    #region Fields
+    public static Zoom instance;
     public float ang;
     public float dis, oldDis;
+    public Transform g1, g2;
     public bool minus;
-    public static Zoom instance;
+    Vector2 firstPos;
+    Vector2 secondPos;
+    #endregion Fields
+
+    #region Methods
     private void Awake()
     {
         instance = this;
@@ -79,4 +83,5 @@ public class Zoom : MonoBehaviour
             // }
         }
     }
+    #endregion Methods
 }

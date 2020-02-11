@@ -9,30 +9,19 @@ public class NewBehaviourScript : MonoBehaviour
     // string assetPath = Application.streamingAssetsPath + "/Spheres/Spheres";
     // string assetPath1 = "E:/UnityProjects/Hypatia/ExploreAgora/Assets/Rabah/Asset Bundles"+"/Spheres/sphere.1";
 
-    string sphereName = "Sphere";
-    string factory = "factory";
-    string GameObject = "GameObject (1)";
-    public GameObject sphere;
+    #region Fields
     public GameObject anyObj;
     public List<Object> assetBundleData;
-    string path;
-    public Transform CAM;
     public string assetName;
-    void Start()
-    {
-        if (assetName == "")
-        {
-            assetName = GameObject;
-            // anyObj = Resources.Load(assetName) as GameObject;
-        }
-        path = Application.persistentDataPath + "/Test Asset Bundle/" + assetName;
-        // sphereData = new Object[2];
+    public Transform CAM;
+    public GameObject sphere;
+    string factory = "factory";
+    string GameObject = "GameObject (1)";
+    string path;
+    string sphereName = "Sphere";
+    #endregion Fields
 
-        // sphereData[0] = Resources.Load(sphereName) as Object;
-        // sphereData[1] = Resources.Load("New Material") as Material;
-        // assetBundleData[0] = Resources.Load("New Material") as Material;
-        CreateAssetBundle();
-    }
+    #region Methods
     public void CreateAssetBundle()
     {
         anyObj = Resources.Load(assetName) as GameObject;
@@ -47,7 +36,11 @@ public class NewBehaviourScript : MonoBehaviour
         File.WriteAllBytes(path, bundleLoadRequestText2.bytes);
 
     }
-    // private void OnEnable() {
+
+    public void hh(FirstCapsule c)
+    {
+        print(c.gameObject.name);
+    }
 
     // }
     [ContextMenu("sss")]
@@ -68,10 +61,8 @@ public class NewBehaviourScript : MonoBehaviour
         prefab2.name = assetName;
         bundleLoadRequest2.Unload(false);
     }
-    public void hh(FirstCapsule c)
-    {
-        print(c.gameObject.name);
-    }
+
+    // private void OnEnable() {
     [ContextMenu("sss")]
     public void LoadAssetBundle(bool aa)
     {
@@ -96,4 +87,21 @@ public class NewBehaviourScript : MonoBehaviour
         prefab2.transform.localPosition = Vector3.forward * 10;
         bundleLoadRequest2.Unload(false);
     }
+
+    void Start()
+    {
+        if (assetName == "")
+        {
+            assetName = GameObject;
+            // anyObj = Resources.Load(assetName) as GameObject;
+        }
+        path = Application.persistentDataPath + "/Test Asset Bundle/" + assetName;
+        // sphereData = new Object[2];
+
+        // sphereData[0] = Resources.Load(sphereName) as Object;
+        // sphereData[1] = Resources.Load("New Material") as Material;
+        // assetBundleData[0] = Resources.Load("New Material") as Material;
+        CreateAssetBundle();
+    }
+    #endregion Methods
 }

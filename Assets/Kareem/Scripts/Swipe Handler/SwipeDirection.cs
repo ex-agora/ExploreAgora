@@ -7,10 +7,13 @@ using UnityEngine;
 [RequireComponent (typeof (SwipeHandler))]
 public class SwipeDirection : MonoBehaviour
 {
-    SwipeHandler swipController;
-    SwapInfo info;
+    #region Fields
     SwapEightDirections dir;
+    SwapInfo info;
+    SwipeHandler swipController;
+    #endregion Fields
 
+    #region Properties
     public SwapEightDirections Dir
     {
         get => dir;
@@ -21,17 +24,14 @@ public class SwipeDirection : MonoBehaviour
         get => info;
         set => info = value;
     }
+    #endregion Properties
 
-    private void Start ()
-    {
-        swipController = this.GetComponent<SwipeHandler> ();
-    }
-
-    public void GetDragDirection ()
+    #region Methods
+    public void GetDragDirection()
     {
         Info = swipController.Info;
-        float positiveX = Mathf.Abs (Info.direction.x);
-        float positiveY = Mathf.Abs (Info.direction.y);
+        float positiveX = Mathf.Abs(Info.direction.x);
+        float positiveY = Mathf.Abs(Info.direction.y);
         SwapEightDirections draggedDir;
         if (positiveX > positiveY)
             draggedDir = (Info.direction.x > 0) ? SwapEightDirections.Right : SwapEightDirections.Left;
@@ -40,7 +40,7 @@ public class SwipeDirection : MonoBehaviour
         Dir = draggedDir;
     }
 
-    public void GetDragEightDirection ()
+    public void GetDragEightDirection()
     {
         Info = swipController.Info;
         SwapEightDirections draggedDir = SwapEightDirections.None;
@@ -83,6 +83,12 @@ public class SwipeDirection : MonoBehaviour
         #endregion
 
         Dir = draggedDir;
-        
+
     }
+
+    private void Start()
+    {
+        swipController = this.GetComponent<SwipeHandler> ();
+    }
+    #endregion Methods
 }

@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName ="Far Distance Decision",menuName = "SO/SM/Decision/Far Distance", order =0)]
 public class FarDistanceDecision : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return isCorrectDistanceDecision<T>(stateMachine, controllersManager);
@@ -19,4 +20,5 @@ public class FarDistanceDecision : Decision
         }
         return ditanceAlertStateController.ClearFarTrigger();
     }
+    #endregion Methods
 }

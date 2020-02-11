@@ -27,7 +27,13 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] private StateMachineManager stateMachine;
     [SerializeField] private TimerUIHandler timerUIHandler;
     [SerializeField] private TutorialPanelController tutorialPanelController;
+    [SerializeField] MenuUIHandler menu;
     private int whiteMoothCount;
+    bool isRelocatePressed;
+    bool isSecondBuffer;
+
+    bool isFirstStartBuffer;
+    bool isSecondStartBuffer;
     #endregion Fields
 
     #region Properties
@@ -51,7 +57,6 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public void ContinueSecondPhase()
     {
         Invoke(nameof(ShowSecondSummary), 1.5f);
-
         //ShowSecondSummary();
     }
 
@@ -68,7 +73,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         else if (whiteMoothCount >= blackMoothCount)
         {
             timerUIHandler.HideBar();
-            mothScoreHandler.ShowSummary(false, "Before Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more black moths than white moths as they are easier to see. Let's see how this happens.");
+            mothScoreHandler.ShowSummary(false, "Before Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more black moths than white moths because the black ones are easier to see. Let's see how this happens.");
         }
         else if (blackMoothCount > whiteMoothCount)
         {
@@ -90,6 +95,12 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
             EndSecondPhase();
         }
     }
+    public void ToggleRelocate() {
+        isRelocatePressed = !isRelocatePressed;
+        if (!isRelocatePressed) {
+            CheckBuffer ();
+        }
+    }
 
     public void EndSecondPhase()
     {
@@ -99,12 +110,12 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         if (blackMoothCount == 0 && whiteMoothCount == 0)
         {
             mothScoreHandler.ShowSummary(true, "After Industrialization", "Start!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "You didn't catch any of the moths on the tree. Try again!.");
-            StartFirstPhase();
+            StartSecondPhase();
         }
         else if (whiteMoothCount <= blackMoothCount)
         {
             timerUIHandler.HideBar();
-            mothScoreHandler.ShowSummary(false, "After Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more white moths than black moths as they are easier to see. Let's see how this happens.");
+            mothScoreHandler.ShowSummary(false, "After Industrialization", "Next!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "Players usually hunt more white moths than black moths because the white ones are easier to see. Let's see how this happens.");
         }
         else if (blackMoothCount < whiteMoothCount)
         {
@@ -121,6 +132,10 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void FinalSummary()
     {
+        Invoke(nameof(ShowFinalSummary), 1f);
+    }
+    void ShowFinalSummary() {
+        StopMenuInteraction();
         finalSummary.ViewSummary();
     }
 
@@ -150,23 +165,43 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public void PrepareFirstPhase()
     {
         nextState = true;
-        Debug.LogError("sjhdjshd");
-        Invoke(nameof(ShowStaticTutorial), 4f);
-        Debug.LogError("12121223");
+        //Debug.LogError("sjhdjshd");
+        Invoke(nameof(ShowStaticTutorial), 12f);
+        //Debug.LogError("12121223");
     }
 
     public void PrepareSecondPhase()
     {
-
-        Invoke(nameof(CreateSecondPhase), 2f);
+        nextState = true;
+        Invoke(nameof(CreateSecondPhase), 4f);
     }
     void CreateSecondPhase() {
+        if (isRelocatePressed)
+        {
+            isSecondBuffer = true;
+            return;
+        }
+        isSecondBuffer = false;
         prepareSecondPhase.Raise();
         nextState = true;
         barHandler.OpenToolBar();
+    }
+    void CheckBuffer() {
+        if (isFirstStartBuffer)
+            StartFirstPhase();
+        if (isSecondBuffer)
+            CreateSecondPhase();
+        if (isSecondStartBuffer)
+            StartSecondPhase();
+    }
+    public void VFXStopped() {
+        barHandler.CloseToolBar();
+        nextState = true;
+        Invoke(nameof(ShowButtonSecondPhase), 4.5f);
+    }
+    void ShowButtonSecondPhase() {
         secondPhaseBtn.OpenToolBar();
     }
-
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -174,16 +209,25 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void ShowFirstSummary()
     {
+        //StopMenuInteraction();
         bubbleBefore.ViewSummary();
     }
 
     public void ShowSecondSummary()
     {
+        //StopMenuInteraction();
         bubbleAfter.ViewSummary();
     }
 
     public void StartFirstPhase()
     {
+        if (isRelocatePressed)
+        {
+            isFirstStartBuffer = true;
+            return;
+        }
+        
+        isFirstStartBuffer = false;
         isFirstPhase = true;
         whiteMoothCount = 0;
         blackMoothCount = 0;
@@ -197,6 +241,12 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void StartSecondPhase()
     {
+        if (isRelocatePressed)
+        {
+            isSecondStartBuffer = true;
+            return;
+        }
+        isSecondStartBuffer = false;
         barHandler.CloseToolBar();
         startSecondPhase.Raise();
         whiteMoothCount = 0;
@@ -236,13 +286,25 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     private void Start()
     {
-        AudioManager.Instance.Play("birds", "Background");
+        AudioManager.Instance.Play("bg", "Background");
+        isRelocatePressed = true;
         Invoke(nameof(StartMachine), 2f);
     }
-
+    private void OnDisable()
+    {
+        stateMachine.StopSM();
+    }
     private void StartMachine()
     {
         stateMachine.StartSM();
+    }
+    void StopMenuInteraction() {
+        bubbleController.StopSpeech();
+        menu.StopMenuInteraction();
+    }
+    void StartMenuInteraction() {
+        bubbleController.RunSpeech();
+        menu.StopMenuInteraction();
     }
     #endregion Methods
 }

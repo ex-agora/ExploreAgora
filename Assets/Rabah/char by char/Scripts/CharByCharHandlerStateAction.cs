@@ -5,6 +5,7 @@ using StateMachine;
 [CreateAssetMenu (fileName = "TimeHandler" , menuName = "SO/SM/Action/TimeHandler" , order = 0)]
 public class CharByCharHandlerStateAction : Action
 {
+    #region Methods
     public override void Act<T> (StateControllersManager controllersManager)
     {
         AddDurationTime<T> (controllersManager);
@@ -17,4 +18,5 @@ public class CharByCharHandlerStateAction : Action
         handler.Duration =
         charByCharHndlerStateController.CharByCharController.TextDuration / charByCharHndlerStateController.CharByCharController.TextString.Length;
     }
+    #endregion Methods
 }

@@ -5,27 +5,20 @@ using UnityEngine;
 
 public class First : MonoBehaviour
 {
+    #region Fields
+    public Transform CAM;
+
+    GameObject anyObj;
+
+    TextAsset bundleLoadRequestText2;
+
     // string assetName = "cube (1)";
     // string assetName1 = "Cube";
     // string assetName = "factory";
     string path;
-    GameObject anyObj;
-    public Transform CAM;
-    TextAsset bundleLoadRequestText2;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // print("AnaFirst");
-        path = Application.persistentDataPath + "/Test Asset Bundle/" + "sphere" + ".txt";
-        print(path);
-        // path = "/Test Asset Bundle/" + name;
-        // path = name;
+    #endregion Fields
 
-        bundleLoadRequestText2 = Resources.Load("sphere") as TextAsset;
-        File.WriteAllBytes(path, bundleLoadRequestText2.bytes);
-        // LoadAssetBundle(assetName1);
-    }
-
+    #region Methods
     [ContextMenu("sss")]
     public void LoadAssetBundle()
     {
@@ -43,7 +36,7 @@ public class First : MonoBehaviour
         // AssetBundle bundleLoadRequest2 = AssetBundle.LoadFromFile("E:\\UnityProjects\\Hypatia\\ExploreAgora\\Assets\\Resources\\cube (1)");
 
         AssetBundle bundleLoadRequest2 = AssetBundle.LoadFromMemory(hh);
-      
+
 
         // AssetBundle bundleLoadRequest2 = AssetBundle.LoadFromFile(path);
         if (bundleLoadRequest2 == null)
@@ -62,6 +55,7 @@ public class First : MonoBehaviour
         prefab2.transform.localPosition = Vector3.forward * 10;
         bundleLoadRequest2.Unload(false);
     }
+
     [ContextMenu("sss")]
     public void LoadAssetBundle(bool ss)
     {
@@ -80,4 +74,19 @@ public class First : MonoBehaviour
         prefab2.name = "sphere";
         bundleLoadRequest2.Unload(false);
     }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // print("AnaFirst");
+        path = Application.persistentDataPath + "/Test Asset Bundle/" + "sphere" + ".txt";
+        print(path);
+        // path = "/Test Asset Bundle/" + name;
+        // path = name;
+
+        bundleLoadRequestText2 = Resources.Load("sphere") as TextAsset;
+        File.WriteAllBytes(path, bundleLoadRequestText2.bytes);
+        // LoadAssetBundle(assetName1);
+    }
+    #endregion Methods
 }

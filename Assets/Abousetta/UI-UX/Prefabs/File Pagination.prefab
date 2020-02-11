@@ -1,0 +1,2805 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8193268974830421312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268974830421313}
+  - component: {fileID: 8193268974830421316}
+  - component: {fileID: 8193268974830421319}
+  - component: {fileID: 8193268974830421318}
+  m_Layer: 5
+  m_Name: File Pagination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268974830421313
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268974830421312}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8193268976433263277}
+  - {fileID: 8193268975642213270}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 197.7, y: -312.9}
+  m_SizeDelta: {x: 1166.8, y: 435}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8193268974830421316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268974830421312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 8193268975570131916}
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 25
+  m_Viewport: {fileID: 8193268976433263277}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 2
+  m_VerticalScrollbarVisibility: 1
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!222 &8193268974830421319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268974830421312}
+  m_CullTransparentMesh: 0
+--- !u!114 &8193268974830421318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268974830421312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.93725497, g: 0.94117653, b: 0.93725497, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8193268975508175377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268975508175382}
+  - component: {fileID: 8193268975508175380}
+  - component: {fileID: 8193268975508175383}
+  m_Layer: 5
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268975508175382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975508175377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8193268976103127047}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8193268975508175380
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975508175377}
+  m_CullTransparentMesh: 0
+--- !u!114 &8193268975508175383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975508175377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.16078432, g: 0.42352945, b: 0.8705883, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8193268975570131919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268975570131916}
+  m_Layer: 5
+  m_Name: Content
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268975570131916
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975570131919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8262040480285152971}
+  - {fileID: 8262040480233042812}
+  - {fileID: 8262040479845891052}
+  - {fileID: 8262040479779662668}
+  - {fileID: 8262040480103568463}
+  - {fileID: 8262040480430013258}
+  - {fileID: 8262040478677340120}
+  - {fileID: 8262040480303075390}
+  - {fileID: 8262040480544048033}
+  - {fileID: 8262040479610407492}
+  - {fileID: 8262040480506123020}
+  - {fileID: 8262040479752739785}
+  - {fileID: 8262040479508752043}
+  - {fileID: 8262040478704348657}
+  - {fileID: 8262040480294893264}
+  - {fileID: 8262040480571587385}
+  - {fileID: 8262040478555108632}
+  m_Father: {fileID: 8193268976433263277}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 850}
+  m_Pivot: {x: 0, y: 1}
+--- !u!1 &8193268975642213265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268975642213270}
+  - component: {fileID: 8193268975642213269}
+  - component: {fileID: 8193268975642213268}
+  - component: {fileID: 8193268975642213271}
+  m_Layer: 5
+  m_Name: Scrollbar Vertical
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268975642213270
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975642213265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8193268976103127047}
+  m_Father: {fileID: 8193268974830421313}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 0}
+  m_Pivot: {x: 1, y: 1}
+--- !u!222 &8193268975642213269
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975642213265}
+  m_CullTransparentMesh: 0
+--- !u!114 &8193268975642213268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975642213265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8193268975642213271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268975642213265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8193268975508175383}
+  m_HandleRect: {fileID: 8193268975508175382}
+  m_Direction: 2
+  m_Value: 1
+  m_Size: 0.58000004
+  m_NumberOfSteps: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Scrollbar+ScrollEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!1 &8193268976103127046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268976103127047}
+  m_Layer: 5
+  m_Name: Sliding Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268976103127047
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268976103127046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8193268975508175382}
+  m_Father: {fileID: 8193268975642213270}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: -20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8193268976433263276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8193268976433263277}
+  - component: {fileID: 8193268976433263280}
+  - component: {fileID: 8193268976433263283}
+  - component: {fileID: 8193268976433263282}
+  m_Layer: 5
+  m_Name: Viewport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8193268976433263277
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268976433263276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8193268975570131916}
+  m_Father: {fileID: 8193268974830421313}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &8193268976433263280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268976433263276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
+--- !u!222 &8193268976433263283
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268976433263276}
+  m_CullTransparentMesh: 0
+--- !u!114 &8193268976433263282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193268976433263276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &8193268974683211469
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CGenie in a Bottle\u201D by Christina Aguilera"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -550.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CGenie in a Bottle\u201D by Christina Aguilera"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.91 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040479752739785 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268974683211469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268974790489672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CI Wanna Dance With Somebody\u201D by Whitney Houston"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -150.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CI Wanna Dance With Somebody\u201D by Whitney Houston"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.11 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040479779662668 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268974790489672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268974824462144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CBillie Jean\u201D by Michael Jackson"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -450.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CBillie Jean\u201D by Michael Jackson"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.23 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040479610407492 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268974824462144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975126914792
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CWhen Doves Cry\u201D by Prince"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CWhen Doves Cry\u201D by Prince"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.78 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040479845891052 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975126914792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975223204820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -700.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.82 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480294893264 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975223204820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975232928719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CThriller\u201D by Michael Jackson"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480285152971 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975232928719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975242030712
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CLike a Prayer\u201D by Madonna"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CLike a Prayer\u201D by Madonna"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 1.20 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480233042812 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975242030712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975315668282
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CRolling in the Deep\u201D by Adele"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -350.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CRolling in the Deep\u201D by Adele"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 4.01 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480303075390 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975315668282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975380924747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CBaby One More Time\u201D by Britney Spears"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200.00005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CBaby One More Time\u201D by Britney Spears"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.80 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480103568463 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975380924747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975468961445
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CDon\u2019t Stop Believing\u201D by Journey"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CDon\u2019t Stop Believing\u201D by Journey"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.87 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480544048033 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975468961445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975514193416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CSingle Ladies (Put a Ring on It)\u201D by Beyonc\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -500.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CSingle Ladies (Put a Ring on It)\u201D by Beyonc\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.77 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480506123020 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975514193416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975584044605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -750.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.82 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480571587385 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975584044605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975624922702
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CIt\u2019s Gonna Be Me\u201D by \u2018N Sync"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250.00005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CIt\u2019s Gonna Be Me\u201D by \u2018N Sync"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.28 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040480430013258 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975624922702}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975765918428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CEverybody (Backstreet\u2019s Back)\u201D by the Backstreet Boys"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CEverybody (Backstreet\u2019s Back)\u201D by the Backstreet Boys"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-02-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.89 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040478677340120 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975765918428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975864754421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CCall Me Maybe\u201D by Carly Rae Jepsen"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -650.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CCall Me Maybe\u201D by Carly Rae Jepsen"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 3.20 MB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204509707163634, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040478704348657 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975864754421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268975981520924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CUptown Funk\u201D by Mark Ronson and Bruno Mars"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2.82 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040478555108632 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268975981520924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8193268976670997423
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8193268975570131916}
+    m_Modifications:
+    - target: {fileID: 1905795775154814, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+      propertyPath: m_Name
+      value: "\u201CHollaback Girl\u201D by Gwen Stefani"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -600.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982467288918804, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u201CHollaback Girl\u201D by Gwen Stefani"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061736041386066, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: MP3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183560623954158, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 2019-01-27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936388548298096, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+        type: 3}
+      propertyPath: m_Text
+      value: 4.11 MB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f6e25982e6996a44b65e6e63d46bcc0, type: 3}
+--- !u!224 &8262040479508752043 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224331930592058628, guid: 7f6e25982e6996a44b65e6e63d46bcc0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8193268976670997423}
+  m_PrefabAsset: {fileID: 0}

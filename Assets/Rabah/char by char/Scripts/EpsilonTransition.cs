@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EpsilonTransition", menuName = "SO/SM/Decision/EpsilonTransition", order = 0)]
 public class EpsilonTransition : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return GotoNextStateAutomatic<T>(stateMachine, controllersManager);
@@ -14,4 +15,5 @@ public class EpsilonTransition : Decision
     {
         return true;
     }
+    #endregion Methods
 }

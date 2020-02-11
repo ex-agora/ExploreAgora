@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-    }
+    #region Fields
+    [SerializeField] Animator anim;
+    #endregion Fields
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    #region Methods
+    public void PlayAnim() {
+        anim.enabled = true;
     }
+    #endregion Methods
 }

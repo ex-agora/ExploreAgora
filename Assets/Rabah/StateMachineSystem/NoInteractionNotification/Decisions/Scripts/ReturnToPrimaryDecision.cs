@@ -6,6 +6,7 @@ using StateMachine;
 [CreateAssetMenu(fileName = "ReturnToPrimaryDecision", menuName = "SO/SM/Decision/ReturnToPrimaryDecision", order = 0)]
 public class ReturnToPrimaryDecision : Decision
 {
+    #region Methods
     public override bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager)
     {
         return CheckTime<T>(stateMachine, controllersManager);
@@ -18,5 +19,6 @@ public class ReturnToPrimaryDecision : Decision
             return false;
         return interactionController.tapTrigger.IsTapped;
     }
+    #endregion Methods
 }
 

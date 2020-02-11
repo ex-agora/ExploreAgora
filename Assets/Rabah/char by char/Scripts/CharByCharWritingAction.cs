@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharByCharWritingAction : Action
 {
 
+    #region Methods
     public override void Act<T>(StateControllersManager controllersManager)
     {
         WriteCharByChar<T>(controllersManager);
@@ -17,5 +18,6 @@ public class CharByCharWritingAction : Action
         CharByCharController characterController = controllersManager.GetController<CharByCharController>();
         characterController.OutputText += characterController.TextString[characterController.CharIndex];
         characterController.CharIndex++;
-    } 
+    }
+    #endregion Methods 
 }

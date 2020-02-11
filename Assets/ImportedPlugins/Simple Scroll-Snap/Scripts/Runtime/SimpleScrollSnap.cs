@@ -696,6 +696,23 @@ namespace DanielLochner.Assets.SimpleScrollSnap
 
         public void GoToPanel(int panelNumber)
         {
+            if (!infinitelyScroll)
+            {
+                if (panelNumber == 0)
+                {
+                    previousButton.gameObject.SetActive(false);
+                }
+                else
+                {
+                    previousButton.gameObject.SetActive(true);
+                }
+                if (panelNumber == (NumberOfPanels - 1)) {
+                    nextButton.gameObject.SetActive(false);
+                }
+                else {
+                    nextButton.gameObject.SetActive(true);
+                }
+            }
             targetPanel = panelNumber;
             selected = true;
             onPanelSelected.Invoke();

@@ -5,10 +5,14 @@ using UnityEngine;
 /// </summary> 
 public class CharByCharHndlerStateController : MonoBehaviour, IStateController
 {
+    #region Fields
     [SerializeField] CharByCharController charByCharController;
     [SerializeField] TimePassedController timePassedController;
+    #endregion Fields
 
+    #region Properties
     public CharByCharController CharByCharController { get => charByCharController; set => charByCharController = value; }
     public TimePassedController TimePassedController { get => timePassedController; set => timePassedController = value; }
+    #endregion Properties
 
 }

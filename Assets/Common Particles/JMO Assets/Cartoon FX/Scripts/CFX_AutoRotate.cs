@@ -7,14 +7,18 @@ using System.Collections;
 
 public class CFX_AutoRotate : MonoBehaviour
 {
-	// Rotation speed & axis
-	public Vector3 rotation;
+    #region Fields
+    // Rotation speed & axis
+    public Vector3 rotation;
 	
 	// Rotation space
 	public Space space = Space.Self;
-	
-	void Update()
+    #endregion Fields
+
+    #region Methods
+    void Update()
 	{
 		this.transform.Rotate(rotation * Time.deltaTime, space);
-	}
+    }
+    #endregion Methods
 }

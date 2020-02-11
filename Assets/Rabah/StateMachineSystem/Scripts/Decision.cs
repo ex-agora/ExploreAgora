@@ -10,7 +10,9 @@ namespace StateMachine
     /// </summary>
     public abstract class Decision : ScriptableObject
     {
+        #region Methods
         //The transition is based on whether it returns true or false
         public abstract bool MakeDecision<T>(StateMachineManager stateMachine, StateControllersManager controllersManager) where T : IStateController;
+        #endregion Methods
     }
 }

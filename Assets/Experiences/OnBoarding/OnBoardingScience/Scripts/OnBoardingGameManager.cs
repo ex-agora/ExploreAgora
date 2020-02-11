@@ -55,17 +55,19 @@ public class OnBoardingGameManager : MonoBehaviour, ITriggable ,IMenuHandler
     public void StartSecondPhase()
     {
         nextState = true;
-        headerBarHandler.OpenBar();
+        //headerBarHandler.OpenBar();
     }
 
     public void EndSecondPhase()
     {
+        Invoke(nameof(ShowFinalSummery), 2f);
+    }
+    void ShowFinalSummery() {
         headerBarHandler.CloseBar();
         bubbleController.StopSpeech();
         menuUI.StopMenuInteraction();
         finalSummary.ViewSummary();
     }
-
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

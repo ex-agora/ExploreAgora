@@ -6,5 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Tag", menuName = "SO/Experience/Tag", order = 0)]
 public class Tag : ScriptableObject
 {
+    #region Fields
     public List<string> tags;
+    #endregion Fields
 }

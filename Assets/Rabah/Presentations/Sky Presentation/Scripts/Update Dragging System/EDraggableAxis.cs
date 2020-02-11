@@ -2,5 +2,7 @@
     X_Axis,
     Y_Axis,
     Z_Axis,
-    XZ_Surface
+    XZ_Surface,
+    XY_Surface,
+    YZ_Surface
 }

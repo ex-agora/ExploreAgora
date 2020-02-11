@@ -5,16 +5,7 @@ using System.IO;
 
 public class MyBehaviour : MonoBehaviour
 {
-    void Start()
-    {
-        StartCoroutine(GetAssetBundle());
-    }
-
-    // IEnumerator GetAssetBundle()
-    // {
-    //     UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("https://rabahagoratest.000webhostapp.com/sphere");
-    //     yield return www.SendWebRequest();
-
+    #region Methods
     //     if (www.isNetworkError || www.isHttpError)
     //     {
     //         Debug.Log(www.error);
@@ -56,4 +47,15 @@ public class MyBehaviour : MonoBehaviour
             Debug.Log("Couldn't load resource");
         }
     }
+
+    void Start()
+    {
+        StartCoroutine(GetAssetBundle());
+    }
+    #endregion Methods
+
+    // IEnumerator GetAssetBundle()
+    // {
+    //     UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("https://rabahagoratest.000webhostapp.com/sphere");
+    //     yield return www.SendWebRequest();
 }

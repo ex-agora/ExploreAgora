@@ -23,11 +23,13 @@ public class DragToWorld : MonoBehaviour
     [SerializeField] GameObject objectToBePlaced;
     RectTransform rectTransform;
     LabelWorldHandler label;
+    Vector3 initPos;
     private void Start()
     {
         //set starting pos of UI Element
         rectTransform = transform.GetComponent<RectTransform>();
         canDarg = true;
+        initPos = rectTransform.position;
         PlantPartsGameManager.Instance.MaxQuizPart++;
     }
 
@@ -101,8 +103,9 @@ public class DragToWorld : MonoBehaviour
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
-            rectTransform.offsetMax = Vector2.Lerp(rectTransform.offsetMax, Vector2.zero , (elapsedTime / duration));
-            rectTransform.offsetMin = Vector2.Lerp(rectTransform.offsetMin, Vector2.zero, (elapsedTime / duration));
+            //rectTransform.offsetMax = Vector2.Lerp(rectTransform.offsetMax, Vector2.zero , (elapsedTime / duration));
+            //rectTransform.offsetMin = Vector2.Lerp(rectTransform.offsetMin, Vector2.zero, (elapsedTime / duration));
+            rectTransform.position = Vector3.Lerp(rectTransform.position, initPos, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
