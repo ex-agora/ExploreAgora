@@ -40,7 +40,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
         get => bubbleController;
         set => bubbleController = value;
     }
-    //public PDInformationPanelManager InformationPanelManager { get => informationPanelManager; set => informationPanelManager = value; }
+    public PDInformationPanelManager InformationPanelManager { get => informationPanelManager; set => informationPanelManager = value; }
     public SummaryHandler MidSummary
     {
         get => midSummary;
