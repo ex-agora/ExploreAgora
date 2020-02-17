@@ -17,6 +17,8 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] private CounterUIHandler sheildUI;
     [SerializeField] private StateMachineManager stateMachine;
     [SerializeField] private GameObject pdInfoManagerPrefab;
+    [SerializeField] private SummaryHandler finalSummary;
+    private int counter = 0;
     private int tapHintCounter = 0;
     private float updateRate = 0.01f;
     #endregion Fields
@@ -82,14 +84,17 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void StopWaitingForTab()
     {
-        CancelInvoke(nameof(CustomUpdateForTab));
+        if (IsInvoking(nameof(CustomUpdateForTab)))
+            CancelInvoke(nameof(CustomUpdateForTab));
     }
 
     public void WaitingForTab()
     {
-        CancelInvoke(nameof(CustomUpdateForTab));
+        if (IsInvoking(nameof(CustomUpdateForTab)))
+            CancelInvoke(nameof(CustomUpdateForTab));
         elpTime = 0;
-        InvokeRepeating(nameof(CustomUpdateForTab), 0, updateRate);
+        if (tapHintCounter <= 1)
+            InvokeRepeating(nameof(CustomUpdateForTab), 0, updateRate);
     }
 
     private void Awake()
@@ -109,12 +114,14 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
             {
                 PlantDefenceManager.Instance.ShowHotspot();
                 ShowHint(2);
+                tapHintCounter++;
             }
             else if (tapHintCounter == 1)
             {
                 PlantDefenceManager.Instance.ShowAllHotspots();
+                tapHintCounter++;
             }
-            tapHintCounter++;
+            
 
             CancelInvoke(nameof(CustomUpdateForTab));
             //ShowHint (3);
@@ -140,11 +147,14 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         stateMachine.StartSM();
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
+    public void CheckFinalSummary() {
+        counter++;
+        if (counter == 5) {
+            Invoke(nameof(ShowFinalSummary), 2.5f);
+        }
     }
+    // Update is called once per frame
+    public void ShowFinalSummary() { finalSummary.ViewSummary(); }
 
     #endregion Methods
 }

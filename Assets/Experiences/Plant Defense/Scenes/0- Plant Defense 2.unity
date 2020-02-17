@@ -162,8 +162,8 @@ MonoBehaviour:
     textInfo: Tap on the other parts of the plant  that have adapted to defend it
       against herbivores and insects.
   - bubbleType: 2
-    textInfo: I can see the Wise Dots. If you TAP on them, they tell us what they
-      know
+    textInfo: Tap on the other parts of the plant  that have adapted to defend it
+      against herbivores and insects.
   - bubbleType: 2
     textInfo: Oh! the Wise Dots are gone. Will you DRAG the labels to the plant for
       me?
@@ -883,6 +883,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1179033116}
+        m_MethodName: CheckFinalSummary
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &353318405
@@ -1481,8 +1492,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2061,7 +2072,7 @@ MonoBehaviour:
   contentImage: {fileID: 660809584}
   contentSprite: {fileID: 21300000, guid: 6d3f18f74f6fdb24caecbcd9338540b7, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
-  isContentAnimPlace: 1
+  isContentAnimPlace: 0
   tittleString: Recap
   tittleText: {fileID: 464461383}
 --- !u!95 &1159260305
@@ -2265,6 +2276,7 @@ MonoBehaviour:
   stateMachine: {fileID: 379250327}
   pdInfoManagerPrefab: {fileID: 6979550817037281369, guid: 6ae3c68fba6dc5b4a92122f1f5b8d068,
     type: 3}
+  finalSummary: {fileID: 5393014111546377999}
 --- !u!114 &1179033117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,7 +2624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278490304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3543,6 +3555,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1278490304}
+  - {fileID: 2139538026}
   m_Father: {fileID: 5393014110646193297}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3596,6 +3609,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textCounter: {fileID: 0}
   anim: {fileID: 2072742754}
+--- !u!1 &2139538025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139538026}
+  - component: {fileID: 2139538028}
+  - component: {fileID: 2139538027}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2139538026
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139538025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2072742753}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 864}
+  m_SizeDelta: {x: 624, y: 106}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2139538027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139538025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 1d9f621685cd89e48bd085ef63c669bb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2139538028
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139538025}
+  m_CullTransparentMesh: 0
 --- !u!114 &5393014110177653714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5860,7 +5948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5393014111546377993
 RectTransform:
   m_ObjectHideFlags: 0

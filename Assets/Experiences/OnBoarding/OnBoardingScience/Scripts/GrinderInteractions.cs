@@ -53,6 +53,7 @@ public class GrinderInteractions : MonoBehaviour
         Invoke(nameof(ShowFinalSpot), 2f);
     }
     void ShowFinalSpot() {
+        particle.gameObject.SetActive(false);
         OnBoardingGameManager.Instance.GoToNextState();
         label.FadeIn();
         coalPowderHotSpot.SetActive(true);

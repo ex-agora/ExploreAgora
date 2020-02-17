@@ -35,32 +35,40 @@ public class PlantDefenceElement : MonoBehaviour
     }
     public void ToggleLabels ()
     {
-        if ( isLabelOpened )
-        {
-            label.HidaLabel ();
-            isLabelOpened = false;
-        }
-        else
-        {
-            label.ShowLabel ();
-            isLabelOpened = true;
-        }
+        //if ( isLabelOpened )
+        //{
+        //    label.HidaLabel ();
+        //    isLabelOpened = false;
+        //}
+        //else
+        //{
+        //    label.ShowLabel ();
+        //    isLabelOpened = true;
+        //}
     }
     public void PlayBubbleAnimator(string animator)
     {
         pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController(animator);
+        PlantDefenceGameManager.Instance.BubbleAnimator.SetInteger("panelState", 0);
+       
         Invoke(nameof(PlayBubbleAfterTime), PlantDefenceGameManager.Instance.FlowDurations.beforeSummaryTime);
     }
     void PlayBubbleAfterTime()
     {
         if (!isSummaryViewed)
         {
-            PlantDefenceGameManager.Instance.BubbleAnimator.enabled = true;
-            PlantDefenceGameManager.Instance.BubbleAnimator.SetInteger("panelState", pDInformation.PanelState);
-            PlantDefenceManager.Instance.DisableAllElementsClick();
+            PlantDefenceGameManager.Instance.BubbleAnimator.enabled = false;
             PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;
             PlantDefenceGameManager.Instance.MidSummary.ViewSummary();
+           
+            Invoke(nameof(SetBubbleInfo), 2.3f);
+            
+            PlantDefenceManager.Instance.DisableAllElementsClick();
             isSummaryViewed = true;
         }
+    }
+    void SetBubbleInfo() {
+        PlantDefenceGameManager.Instance.BubbleAnimator.enabled = true;
+        PlantDefenceGameManager.Instance.BubbleAnimator.SetInteger("panelState", pDInformation.PanelState);
     }
 }
