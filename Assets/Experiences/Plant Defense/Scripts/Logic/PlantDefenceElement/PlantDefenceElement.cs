@@ -68,7 +68,7 @@ public class PlantDefenceElement : MonoBehaviour
         PlantDefenceGameManager.Instance.MidSummary.ContentSprite = pDInformation.FirstFrame;
         PlantDefenceGameManager.Instance.MidSummary.ViewSummary ();
 
-        Invoke (nameof (SetBubbleInfo) , 2.3f);
+        Invoke (nameof (SetBubbleInfo), 2.3f);
 
         PlantDefenceManager.Instance.DisableAllElementsClick ();
         isSummaryViewed = true;
