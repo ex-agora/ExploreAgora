@@ -5,7 +5,7 @@ using UnityEngine;
 public class PDInformationPanelManager : MonoBehaviour
 {
 
-    [SerializeField] List<PDInformationPanel> informationPanels;
+    [SerializeField] List<PDInformationPanel> informationPanels ;
     public PDInformationPanel SetAnimatorController (string panelName)
     {
         for (int i = 0; i < informationPanels.Count; i++)
