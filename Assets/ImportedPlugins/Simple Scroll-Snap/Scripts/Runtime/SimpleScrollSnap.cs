@@ -23,11 +23,13 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         private Vector2 contentSize, previousPosition;
         private Direction releaseDirection;
         private CanvasGroup canvasGroup;
-        private GameObject[] panels;
+        private  GameObject[] panels;
         private Toggle[] toggles;
         private Graphic[] graphics;
         private Canvas canvas;
         private CanvasScaler canvasScaler;
+
+        private static SimpleScrollSnap instance;
 
         public MovementType movementType = MovementType.Fixed;
         public MovementAxis movementAxis = MovementAxis.Horizontal;
@@ -90,6 +92,10 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         {
             get { return toggles; }
         }
+
+        public static SimpleScrollSnap Instance { get => instance; set => instance = value; }
+
+
         #endregion
 
         #region Enumerators
@@ -124,6 +130,11 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         #endregion
 
         #region Methods
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+        }
         private void Start()
         {
             if (Validate())
@@ -852,6 +863,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             ScrollRect.velocity += velocity;
             selected = false;
         }
+
+
+       
         #endregion
     }
 }
