@@ -95,9 +95,9 @@ public class PlantDefenceManager : MonoBehaviour
             plantElements[i].Hotspot.DisableHotspotClick ();
         }
     }
-    /*public void RestartTimer()
+    public void RestartTimer()
     {
-        PlantDefenceGameManager.Instance.WaitingForTab();
+        PlantDefenceGameManager.Instance.StopWaitingForTab();
         print("WaitingForTab WaitingForTab WaitingForTab WaitingForTab");
-    }*/
+    }
 }

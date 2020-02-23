@@ -11,7 +11,9 @@ public class ScanProperties : ScriptableObject
 {
     /* this string which contained in scriptableobject responsible of holding the name of object that 
      * need to be scanned currently */
-    #region Fields
+    //#region Fields
     public string detectionObjectName;
-    #endregion Fields
+    [SerializeField] bool shouldContinueToExperience;
+
+    public bool ShouldContinueToExperience{ get => shouldContinueToExperience; set => shouldContinueToExperience = value; }
 }

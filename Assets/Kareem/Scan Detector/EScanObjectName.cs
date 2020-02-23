@@ -1,8 +1,9 @@
 ﻿// possible option of objects that app can detect 
 public enum Detectiopossibilities
 {
-    tree,
+    flower,
     can,
     cookie,
     face,
+    tree
 }

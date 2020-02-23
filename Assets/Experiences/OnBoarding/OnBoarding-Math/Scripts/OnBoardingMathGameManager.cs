@@ -255,6 +255,8 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
             //play last sound 
             AudioManager.Instance.Play("openLock", "Activity");
             BookAnimator.SetTrigger("openClip");
+            BookAnimator.keepAnimatorControllerStateOnDisable = true;
+            dragHnadler.SetActive(false);
             //final summary 
             Invoke(nameof(FinalSummary), 8f);
             //finalSummary.ViewSummary();
@@ -265,7 +267,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         imgHandler.PlayAnimation();
     }
-
+    
     void FinalSummary()
     {
         bubbleController.StopSpeech();

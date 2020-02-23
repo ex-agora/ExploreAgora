@@ -49,7 +49,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public void OnDrag (PointerEventData eventData)
     {
-        if (!canBeDragged|| isStartDargging)
+        if (!canBeDragged|| !isStartDargging)
             return;
         cursorScreenPoint.x = eventData.position.x;
         cursorScreenPoint.y = eventData.position.y;
@@ -98,7 +98,7 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag (PointerEventData eventData)
     {
-        if (!canBeDragged|| isStartDargging)
+        if (!canBeDragged|| !isStartDargging)
             return;
         screenPoint = Vector3.zero;
         offset = Vector3.zero;
@@ -139,7 +139,8 @@ public class DraggableOnSurface : MonoBehaviour, IBeginDragHandler, IEndDragHand
                 return null;
         }
     }
-
    
+
+
     #endregion
 }
