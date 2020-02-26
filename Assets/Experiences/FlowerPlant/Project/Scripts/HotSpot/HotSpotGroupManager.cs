@@ -88,6 +88,7 @@ public class HotSpotGroupManager : MonoBehaviour
         {
             spotHandlers[i].PrepaireQuiz();
         }
+        upperLabel.Hide();
         gameObject.SetActive(true);
         text.gameObject.SetActive(false);
     }

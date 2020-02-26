@@ -69,7 +69,7 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.rotation = targetPose.rotation;
         }
         objectToPlaceParent.SetActive(true);
-
+        fadeHandler?.FadeOut();
         planeDetectionController.TogglePlaneDetection ();
         planeTarget.SetActive (false);
         relocate.interactable = true;

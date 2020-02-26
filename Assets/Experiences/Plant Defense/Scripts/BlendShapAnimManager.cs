@@ -6,13 +6,23 @@ public class BlendShapAnimManager : MonoBehaviour
 {
     [SerializeField] List<BlendShapeHandler> shapeHandlers;
     [SerializeField] float duration = 0.05f;
+    [SerializeField] bool isOnes;
     float elpTime;
     float step;
     float updateRate = 0.05f;
+    bool isPlayed = false;
     public void PlayAnim() {
-        elpTime = 0;
-        step = (shapeHandlers[0].MaxKeyValue / duration) * updateRate;
-        InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
+        if (!isPlayed || !isOnes)
+        {
+            for (int i = 0; i < shapeHandlers.Count; i++)
+            {
+                shapeHandlers[i].KayValue = shapeHandlers[i].MaxKeyValue;
+            }
+            isPlayed = true;
+            elpTime = 0;
+            step = (shapeHandlers[0].MaxKeyValue / duration) * updateRate;
+            InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
+        }
     }
     void CustomUpdate() {
         for (int i = 0; i < shapeHandlers.Count; i++) {

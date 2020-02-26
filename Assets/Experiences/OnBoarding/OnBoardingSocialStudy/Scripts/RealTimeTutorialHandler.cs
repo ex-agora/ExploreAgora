@@ -13,7 +13,7 @@ public class RealTimeTutorialHandler : MonoBehaviour
     void ShowIndicator()
     {
         RTTutorialAnimator.SetTrigger("IsOpened");
-        Invoke(nameof(ShowAnim), 1.5f);
+        Invoke(nameof(ShowAnim), 1f);
     }
     void ShowAnim() {
         if (isTarageted)

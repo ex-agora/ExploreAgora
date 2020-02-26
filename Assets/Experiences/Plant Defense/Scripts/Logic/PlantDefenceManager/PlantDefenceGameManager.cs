@@ -19,6 +19,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] private StateMachineManager stateMachine;
     [SerializeField] private GameObject pdInfoManagerPrefab;
     [SerializeField] private SummaryHandler finalSummary;
+    [SerializeField] private PDBarFeedbackHandler feedbackHandler;
     private int counter = 0;
     private int tapHintCounter = 0;
     private float updateRate = 0.01f;
@@ -61,6 +62,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
         get => flowDurations;
         set => flowDurations = value;
     }
+    public PDBarFeedbackHandler FeedbackHandler { get => feedbackHandler; set => feedbackHandler = value; }
     #endregion Properties
 
     #region Methods

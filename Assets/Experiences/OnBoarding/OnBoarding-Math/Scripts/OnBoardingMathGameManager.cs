@@ -160,7 +160,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void Tutorial()
     {
-        Invoke(nameof(StartTutorial), 2f);
+        Invoke(nameof(StartTutorial), 1f);
     }
 
 
