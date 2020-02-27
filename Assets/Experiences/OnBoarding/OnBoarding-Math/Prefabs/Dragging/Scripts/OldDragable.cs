@@ -130,7 +130,7 @@ public class OldDragable : MonoBehaviour
             CanBeDragged = false;
             OnTargetHit.Invoke();
             if (Snap) transform.position = Target.transform.position;
-            AudioManager.Instance?.Play("placeObject", "Activity");
+            //AudioManager.Instance?.Play("placeObject", "Activity");
         }
         else if (!dragged && CanBeDragged)
         {
