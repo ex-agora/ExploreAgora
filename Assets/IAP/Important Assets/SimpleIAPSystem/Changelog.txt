@@ -1,0 +1,289 @@
+**************************************
+CHANGELOG
+**************************************
+v4.3.2
+- added button to log in with device ID to UserLogin scene as a sample
+- fixed critical bug on PlayFab not granting items introduced in 4.3.1
+
+v4.3.1
+- added checkbox on the IAPManager to allow for manual initialization
+- added fetching product data and price from PlayFab on PayPal & Steam
+- fixed missing API error on PlayFab's JSONWrapper replacement
+- fixed granting currency locally too when using PlayFab Bundles
+- fixed PayPal internal order ID could go lost when switching scenes
+- fixed ignoring Unity IAP fake data on shop items when in test mode
+
+v4.3
+- added functionality for option "Validation Only" when using PayPal
+- added Unity IAP Status checks in Plugin Setup window
+- added SIS_IAP defines for using Unity IAP on specific platforms only
+- updated Getting Started section in documentation
+- fixed double PlayFab login call when running on non-mobile platforms
+- Unity 2019.1+ compatibility
+- minimum required Unity version: 2017.3.0
+
+v4.2
+- added native Steam IAP support via Steam Inventory Service
+- readded OculusStore class (went missing in previous version)
+- added group collapse/expand in IAP Settings editor for performance
+- added product foldout coloring if there are platform overrides for it
+- added ShopManager.RefreshGroup convenience method for more control
+- fixed NRE when getting items from PlayFab without VirtualCurrencyPrice
+
+v4.1
+- added support for Steam game IAPs: see the guide on our forums
+- added shop message when trying to purchase but billing init failed
+- removed support for Tizen since Unity stopped supporting it
+
+v4.0.2
+- Unity 2017.2+ compatibility (incorporated namespace changes)
+
+v4.0.1
+- added VRGraphicRaycaster script for fixing Unity VR UI raycasting
+- added isPurchased method to DBManager for backwards compatibility
+- fixed ReceiptValidatorClient script throwing errors without tangles
+  (added comment blocks again, which you have to remove before using it)
+
+v4.0
+THIS VERSION IS NOT BACKWARDS COMPATIBLE
+- NEW STORES: Facebook (Unity IAP), Oculus (Rift & GearVR), PayPal
+  (via PlayFab). See the store guides on our forums for instructions.
+- added VR example scene (VerticalVR) for in-game purchasing on Oculus
+- PlayFab integration brings cloud sync support for online games:
+  memory only mode, meaning no IAP data is stored on the device.
+  This requires an active internet connection at all times!
+- added server side receipt validation using PlayFab: "lite" mode
+  supports validation only (no other PlayFab features required)
+- added automatic tracking of consumable products in PlayerData
+- added usageCount for consumable products to define custom use count
+- added currency product type that adds the defined amount on purchase
+- added ShowDatabaseEditor for displaying currently stored player data
+- added possibility of "standalone" IAPItem without using shop prefabs:
+  you can drag an IAPItem in the scene and give it a productId manually
+- rewrote shop item updating to be more performant, adding automatic
+  shop updating e.g. for single-scene apps with shop in background 
+- replaced downloadable RemoteConfig with PlayFab's item catalog:
+  introduce product sales without app update, works on all platforms
+- replaced 'restore' product with separate button in each shop scene:
+  there is a new 'Button - Restore' prefab and UIButtonRestore script
+- fixed ClearDatabaseEditor not working without entering runtime
+- fixed shop items duplicating with IAPManager & ShopManager in scene
+- renaming of some DBManager methods for consistency
+- restructure of platform overrides from list to dropdown selection
+- restructure of billing plugins: all plugins are written on top of
+  Unity IAP - therefore Unity IAP is now a required plugin. No more
+  separate billing plugin packages to import, this is being handled
+  with platform defines instead, allowing for several combinations
+  of billing plugins on different platforms.
+- removed support for Prime31 billing plugins
+- minimum required Unity version: 5.6.x
+
+Upgrade notes:
+- Export your products in the IAP Settings Editor before upgrading.
+  Re-check your currency products for the new currency type and also
+  your platform overrides since their format has changed. Remove any
+  custom code that can now be handled with the currency type (adding
+  currency on purchase) and usage (adding PlayerData on purchase).
+
+v3.3
+LAST VERSION FOR UNITY 4.x
+- All packages: added JSON export/import of IAP Settings editor
+- UnityIAP: fixed iOS platform overrides not being recognized
+- StansAssets: updated to incorporate latest API changes
+- Voxel Busters: potentially fixed initialization error in the editor
+
+v3.2
+- Unity IAP: added Samsung Galaxy Apps Store support.
+- All packages: added stripping of empty spaces in product ids.
+- All packages: updated API to most recent versions.
+
+v3.1
+- Unity IAP: added Amazon App Store support.
+- Unity IAP: added client-side receipt verification validator script,
+  see documentation PDF on how to use it on the IAPManager prefab.
+- All packages: removed server-side receipt verification. This will
+  be replaced by a more versatile component system in the future.
+
+v3.0.2
+- fixed 'restore' product trying to load on App Stores
+- Voxel Busters: updated compatibility to version 1.3
+- Unity IAP: removed deprecated WinStore warning (in Editor)
+
+v3.0.1
+- fixed bug not recognizing virtual non-consumable purchases
+- got rid of warnings about obsolete methods for Unity 5.3+
+
+v3.0
+THIS VERSION IS NOT BACKWARDS COMPATIBLE
+- Unity 5.3+: Unity IAP billing plugin is now supported!
+- unified IAP Settings editor for all products in one view
+- IAP Settings editor window can be resized
+- API: combined purchase methods into PurchaseProduct(string id)
+- added IAPListener script to the IAPManager main transform
+- debug messages are enabled for Development Builds only
+- renamed UIPanelStretch script for containers to IAPContainer
+- containers need to be IAPContainer scripts, not transforms
+- replaced confirmation checkmark on purchase with "OK" text
+- shop scenes scale with screen size (instead of pixel-perfect)
+- renamed prefabs to not include spaces (IAPManager, ShopManager)
+- fixed GetIAPUpgrade NR exception to throw a more detailed error
+- fixed OutOfIndexException when deleting the last virtual currency
+- Stans Assets: fixed duplicated IAPs exception in native settings
+- Stans Assets: fixed product prices not using the localized string
+- Voxel Busters: fixed NR exception when buying already owned items
+- updated SmartLocalization support to latest version
+Check our roadmap for features and requests! https://goo.gl/HONgk0
+
+Upgrade notes:
+- Please take a screenshot of your virtual items in the IAP Editor
+  before upgrading, as you will have to reenter them in the new view.
+  Clear the database on the first game launch (AllSelection scene).
+  Also carefully read the changelog for API and structural changes.
+  If you are using OpenIAB/Unibill, upgrade to Unity 5.3 and Unity IAP.
+
+v2.6
+- Cross Platform Native (VoxelBuster) plugins are now supported!
+- Stans Assets: updated compatibility to latest versions
+- OpenIAB: added receipt verification functionality for iOS
+- verification php time check fix on Android subscriptions
+- smaller updates on docs (FAQ section on forums, links, etc.)
+
+v2.5.5
+- SmartLocalization: fixed errors in localization example scene
+- further project folder restructure to ease moving it around
+- changed billing plugin setup window to be more user-friendly
+- some internal changes to the way external packages are structured
+
+v2.5.4
+- Project: You can now use virtual currency & products of Simple IAP
+  System without billing plugin. Without billing, purchases for real
+  money are deactivated. This is for developers who would like to use
+  the shop system & currency, but don't want to charge their users.
+
+v2.5.3
+- All billing plugins: updated to support latest versions
+- Project: now compiles for webplayer platform too, but billing is
+  still not supported on webplayers due to missing billing functionality
+- Project: removed NGUI-compatible package, as it is no longer supported
+
+v2.5.2
+- Unibill: updated compatibility to latest version
+- DBManager: for upgrades, GetAllPurchased only returns the last one 
+
+v2.5.1
+- workaround for reversed product UI in Unity 4.6.3 - 5.0+
+  (updated UIPanelStretch & all example scenes)
+
+v2.5
+- added product upgrades which replace their associated product,
+  allowing for different price/icon/etc after each purchase
+- IAPManager: added GetIAPUpgrades, GetCurrentUpgrade, GetNextUpgrade
+- restructured documentation to be more useful with less to read
+- OpenIAB: now compatible with latest versions (0.9.8.4+)
+
+v2.4.4
+- IAP Editor window now reloads values while open on scene change
+- IAP Editor saves IAP/IGC data correctly on exit if left open
+- Prime31-NGUI: fixes missing prefab references in some example scenes
+- added new receipt verification php script for iOS7+ (use with Unibill)
+
+v2.4.3
+- uGUI workaround for single selection items not deselecting other items
+- Stans Assets: updated to naming changes in iOS Native 5.5
+
+v2.4.2
+- NGUI-compatible version is now included in the main package (Plugin Setup)
+- NGUI version: IAPItem variable renaming to be identical with uGUI version
+- NGUI version: Scenes & prefabs re-designed to be identical with uGUI version
+- dropped support for Neatplug billing plugins
+
+v2.4.1
+- removed Input.multiTouchEnabled code in ShopManager,
+  this should be handled by the developer on a per-project basis instead
+- added warning if initializing billing plugin without store key on Android
+- added warning if ShopManager does not find an IAPManager instance
+- UpdateFunds script now detects currency changes through DBManager too
+- fixed duplicated shop items when using multiple ShopManager in scenes
+- added quick way to check if an item is selected via DBManager.isSelected
+- Prime31: updated IAPManager to newest Android API, solving a compiler error
+
+v2.4
+- added (offline) localization for in-app products and virtual products
+  using SmartLocalization: see documentation pdf chapter 9
+- Unibill: fixed error for missing GetAllPurchaseReceipts() API
+- StansAssets: fixed error caused by accessing billing instance in OnDestroy
+
+v2.3.4
+- StansAssets: added compatibility for only Android or iOS Native 
+
+v2.3.2-3
+- ShopManager OnDestroy reverts to previous Input.multiTouchEnabled state
+- StansAssets: package updated for Android Native 4.8, iOS Native 5.3
+- Unibill: package updated for 1.7.5, onPurchaseDeferred event
+
+v2.3.1
+- iOS & Android Native billing plugins by Stans Assets are now supported!
+- itemSelectedEvent now only fires on first and changed selections
+- DBManager.SetToSelected returns true for new selections (false otherwise)
+
+v2.3
+THIS VERSION IS NOT BACKWARDS COMPATIBLE
+- replaced NGUI with Unity uGUI released in Unity 4.6
+- full rebuild of all UI prefabs and shop templates to be compatible with uGUI
+- script changes have been made in ShopManager, IAPManager, IAPItem, IAPEditor
+- renamed some variables on IAPItem to make their purpose more obvious
+- rewrote UIPanelStretch for uGUI and removed UIUpdateCollider
+- updated documentation with respect to uGUI changes and references
+Please contact us if you still need a NGUI-compatible version.
+
+v2.2.1
+- fixed missing script reference on IAPManager prefab and Prime31 package
+- fixed undo error when opening IAP editor without Shop Manager in the scene
+
+v2.2
+- introduced platform dependent product identifiers for in-app purchases,
+  which allow overriding identifiers for different stores in the IAP Editor
+- added Amazon support for OpenIAB (new dropdown in the IAP Editor) (beta) 
+- added Windows Phone 8 support for OpenIAB (beta)
+- fixed DBManager.GetAllSelected() not returning the correct list of items
+
+Upgrade notes:
+- Please take a screenshot of your items in the IAP Editor before upgrading,
+  as you will have to reenter them in the new format. You can now specify a
+  global id for your products and override it per store, if necessary. Adjust
+  your IAPListener script accordingly (only global id is needed).
+
+v2.1.1
+- changed IAP Settings editor to not require a ShopManager prefab in
+  the scene, once again working around a Unity crash on Mac OS. You
+  won't be able to assign prefabs or parents without ShopManager prefab
+
+v2.1
+- added remote config download option for virtual products
+- IAPManager and virtual products now work on standalone builds
+- DBManager IncreaseFunds method checks against negative values
+- removed unnecessary DBManager references in IAPManager
+- restructured IAPManager receipt verification checkboxes as enums
+- restructured IAPManager serverUrl for verification and hosted configs
+- potential fix for IAPEditor hang/error on Close(), improved warning
+- unlockable prefabs falsely unlocked buy buttons too (inspector change)
+
+v2.0.2
+- fixed scrolling issue on menu scenes when updating to NGUI 3.5.8
+
+v2.0.1
+- fixed compile errors on Windows Phone 8 related to Database obfuscation
+- WP8 obfuscation key requires 16 characters, iOS/Android stays at 8
+- obfuscation on other platforms than WP8/iOS/Android defaults to byte[]
+
+v2.0
+- Unibill, Neatplug and OpenIAB (free) billing plugins are now supported!
+- Project: embedded all scripts in the “SIS” namespace 
+- IAPListener: was disabled on the IAP Manager prefab, but should not 
+- IAPListener: fixed NullReference when getting callback without ShopManager
+- IAPEditor: fixed potential NullReference when defining new IAP objects 
+- IAPManager: removed workaround for restoreTransactions introduced in 1.3
+- Receipt verification: updated verify.php to work with new Apple responses
+- DBManager: added methods SaveReceipt, GetReceipt, SetFunds
+- DBManager: made the encryption key public 
+- Scenes: ListVerticalMenu Armory scrolling fixes

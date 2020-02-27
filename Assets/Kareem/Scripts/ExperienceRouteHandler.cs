@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
-public class GetNextScenePrefab : MonoBehaviour
+public class ExperienceRouteHandler : MonoBehaviour
 {
     #region Fields
     [SerializeField] ScenesPrefabsIntializers @scenesPrefabsIntializers;
     [SerializeField] string SceneName;
     #endregion Fields
 
+
     #region Methods
-    public void Test (GameObject NextScenePrefab)
+    public void Transit (ExperienceContainerHolder experienceContainerHolder)
     {
-    
+        if ( experienceContainerHolder == null )
+        {
+            Debug.LogWarning ("Transit function needs experienceContainerHolder parameter");
+            return;
+        }
+        @scenesPrefabsIntializers.nextExperienceContainerHolder = experienceContainerHolder;
         SceneManager.LoadScene (SceneName);
-        @scenesPrefabsIntializers.NextSceneRequiredPrefab = NextScenePrefab;
     }
     #endregion Methods
 }

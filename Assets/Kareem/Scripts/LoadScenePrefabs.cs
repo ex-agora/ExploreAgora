@@ -16,9 +16,9 @@ public class LoadScenePrefabs : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
-    private void Awake()
+    private void Start()
     {
-        Instantiate (@scenesPrefabsIntializers.NextSceneRequiredPrefab);
+        Instantiate (@scenesPrefabsIntializers.nextExperienceContainerHolder.experiencePrefab);
     }
     #endregion Methods
 }
