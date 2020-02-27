@@ -1,0 +1,72 @@
+handlers.addCurrency = function (args)
+{
+	var clientDict = args.data;
+  
+   	var getUserInventoryResult = server.GetUserInventory({
+  		PlayFabId: currentPlayerId
+  	});
+  
+  	var serverDict = getUserInventoryResult.VirtualCurrency;
+  	
+  	if(serverDict)
+    {
+    	for(var clientKey in clientDict) 
+        {
+            var cur = String(clientKey).substring(0, 2).toUpperCase();
+          	var diff = clientDict[clientKey] - serverDict[cur];
+
+          	if(diff > 0)
+            {
+            	server.AddUserVirtualCurrency({
+    				PlayFabId: currentPlayerId,
+        			VirtualCurrency: cur,
+                  	Amount: diff
+    			});
+            }
+          	else if(diff < 0)
+            {
+              	diff = diff * (-1);
+              	server.SubtractUserVirtualCurrency({
+    				PlayFabId: currentPlayerId,
+        			VirtualCurrency: cur,
+                  	Amount: diff
+    			});
+            }
+        }	
+    }
+}
+
+
+handlers.grantItems = function (args) 
+{ 
+  	var getUserInventoryResult = server.GetUserInventory({
+  		PlayFabId: currentPlayerId
+  	});
+  
+  	var serverArray = getUserInventoryResult.Inventory;
+  	var serverItems = [];
+  	var remoteArray = args.itemIds;
+  
+  	if(serverArray)
+    {
+      	for (var i = 0; i < serverArray.length; i++) 
+        {
+       		for (var j = remoteArray.length - 1; j >= 0; j--) 
+        	{
+				if(serverArray[i].ItemId === remoteArray[j])
+                {
+                	remoteArray.splice(j, 1);
+                  	break;
+                }
+            }
+        }
+    }
+  
+  	if(remoteArray.length > 0)
+    {
+        server.GrantItemsToUser({
+            PlayFabId: currentPlayerId,
+            ItemIds: remoteArray
+        });
+    }
+}

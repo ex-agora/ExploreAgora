@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: ExploreAgora
-  productName: OnSS
+  productName: Agora
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -162,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.ExploreAgora.OnSS
+    Android: com.Hypatia.ExplorAgora
     iPhone: com.ExploreAgora.ExploreAgora
   buildNumber: {}
   AndroidBundleVersionCode: 1
@@ -258,7 +258,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Agora - Work/Store Key/agora.keystore
+  AndroidKeystoreName: C:/Users/dell/Downloads/agora.keystore
   AndroidKeyaliasName: exploreagora
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -742,14 +742,15 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: UNITY_POST_PROCESSING_STACK_V2
-    4: AMPLIFY_SHADER_EDITOR
-    7: AMPLIFY_SHADER_EDITOR;UNITY_POST_PROCESSING_STACK_V2
-    13: UNITY_POST_PROCESSING_STACK_V2
+    1: SIS_IAP;UNITY_POST_PROCESSING_STACK_V2
+    4: AMPLIFY_SHADER_EDITOR;SIS_IAP
+    7: SIS_IAP;UNITY_POST_PROCESSING_STACK_V2;AMPLIFY_SHADER_EDITOR
+    13: SIS_IAP;UNITY_POST_PROCESSING_STACK_V2
+    14: SIS_IAP
     19: UNITY_POST_PROCESSING_STACK_V2
     21: UNITY_POST_PROCESSING_STACK_V2
-    25: UNITY_POST_PROCESSING_STACK_V2
-    26: UNITY_POST_PROCESSING_STACK_V2
+    25: UNITY_POST_PROCESSING_STACK_V2;SIS_IAP
+    26: UNITY_POST_PROCESSING_STACK_V2;SIS_IAP
     27: UNITY_POST_PROCESSING_STACK_V2
     28: UNITY_POST_PROCESSING_STACK_V2
     29: UNITY_POST_PROCESSING_STACK_V2
@@ -826,6 +827,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -846,10 +851,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: b40f1be6-4720-450b-bcc5-c89b4fc581c6
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: ExploreAgora
+  organizationId: exploreagora
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
