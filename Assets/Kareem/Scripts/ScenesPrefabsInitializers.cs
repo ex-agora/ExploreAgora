@@ -7,6 +7,6 @@ using UnityEngine;
 public class ScenesPrefabsIntializers : ScriptableObject
 {
     #region Fields
-    public GameObject NextSceneRequiredPrefab;
+    public ExperienceContainerHolder nextExperienceContainerHolder;
     #endregion Fields
 }
