@@ -130,9 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4509414}
   - component: {fileID: 4509415}
-  - component: {fileID: 4509417}
-  - component: {fileID: 4509416}
-  - component: {fileID: 4509418}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -168,45 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 1893113229}
---- !u!114 &4509416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509413}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 1585201990951412, guid: 2b0e55c5e32cb084ab7e530d19b77fd6,
-    type: 3}
-  m_DetectionMode: 1
---- !u!114 &4509417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4509418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdc041e06df7474a9f3a3ef286c4fe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &35244510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
@@ -1175,11 +1133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27fd42fd0c5e84f8ef3df7491eb800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
-  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
-  previousState: {fileID: 0}
   autoPreviousState: {fileID: 0}
   controllersManager: {fileID: 716838306}
+  currentState: {fileID: 11400000, guid: c6f52c31f7dc0f24aa8c6766ef5fed62, type: 2}
+  previousState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 1d9d2f59a16883343963c42f5ade6c05, type: 2}
 --- !u!4 &379250328
 Transform:
   m_ObjectHideFlags: 0
@@ -1461,10 +1419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1727fcf4d8caac945811c79637d57281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textString: 
-  textDuration: 0.0001
-  textUI: {fileID: 5393014110575231009}
   outputText: 
+  textDuration: 0.0001
+  textString: 
+  textUI: {fileID: 5393014110575231009}
 --- !u!4 &508034026
 Transform:
   m_ObjectHideFlags: 0
@@ -2530,12 +2488,12 @@ PrefabInstance:
         type: 3}
       propertyPath: arOrigin
       value: 
-      objectReference: {fileID: 4509417}
+      objectReference: {fileID: 0}
     - target: {fileID: 4396628156767085688, guid: 83054ffa48062f24bbe129ce2321a81c,
         type: 3}
       propertyPath: aRPlaneManager
       value: 
-      objectReference: {fileID: 4509416}
+      objectReference: {fileID: 0}
     - target: {fileID: 4396628156767085688, guid: 83054ffa48062f24bbe129ce2321a81c,
         type: 3}
       propertyPath: planeTarget
@@ -2555,7 +2513,7 @@ PrefabInstance:
         type: 3}
       propertyPath: planeDetectionController
       value: 
-      objectReference: {fileID: 4509418}
+      objectReference: {fileID: 0}
     - target: {fileID: 4396628156767085688, guid: 83054ffa48062f24bbe129ce2321a81c,
         type: 3}
       propertyPath: objectToPlace
@@ -4296,7 +4254,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4509418}
+      - m_Target: {fileID: 0}
         m_MethodName: TogglePlaneDetection
         m_Mode: 1
         m_Arguments:
@@ -5073,15 +5031,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 1051936366}
   activationButton: {fileID: 794336679}
-  tittleString: Recap
   bubbleAnimator: {fileID: 1702496473}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 1566179176}
   contentSprite: {fileID: 21300000, guid: 95ed9d6cb9cf8b842a0206710d5c0cec, type: 3}
   doneEvent: {fileID: 0}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 1051936366}
 --- !u!95 &1702496473
 Animator:
   serializedVersion: 3
@@ -5606,6 +5564,7 @@ MonoBehaviour:
   TestButton: {fileID: 0}
   stateMachine: {fileID: 379250327}
   bookPuzzleTex: {fileID: 2800000, guid: 7a15400b3b545c64fa2ee533f61434f4, type: 3}
+  bookCurrentTex: {fileID: 0}
   barHandler: {fileID: 2933763376663904871}
   tutorial: {fileID: 5393014112106333879}
   finalSummary: {fileID: 5393014112064107428}
@@ -5625,6 +5584,7 @@ MonoBehaviour:
   menu: {fileID: 35244510}
   onTutorialReadyPressed: {fileID: 11400000, guid: aa448015504bbd54993f5ef3e63dcc46,
     type: 2}
+  dragHnadler: {fileID: 0}
   score: 0
   powderParticleTemp: {fileID: 0}
   bookParticleTemp: {fileID: 0}
@@ -10294,9 +10254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleAnimator: {fileID: 5393014111397541908}
-  charByCharController: {fileID: 508034025}
   bubbleTextHolder: {fileID: 72801670}
   characterBtn: {fileID: 5393014110337109632}
+  charByCharController: {fileID: 508034025}
 --- !u!224 &5393014111511645536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10590,15 +10550,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014110491459426}
   activationButton: {fileID: 0}
-  tittleString: Summary
   bubbleAnimator: {fileID: 5393014111546377998}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014112208368714}
   contentSprite: {fileID: 21300000, guid: a68b44def5c8d394a81c07913db5b28c, type: 3}
   doneEvent: {fileID: 11400000, guid: 96c8f39f4871e4e41a02f1002a8d84d4, type: 2}
   isContentAnimPlace: 0
+  tittleString: Summary
+  tittleText: {fileID: 5393014110491459426}
 --- !u!114 &5393014111716195860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10875,15 +10835,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014110974856674}
   activationButton: {fileID: 5393014111525083937}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014111791694829}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 1335139511}
   contentSprite: {fileID: 21300000, guid: 0a2b8f70e9d24e44aa18fffd5836b51b, type: 3}
   doneEvent: {fileID: 0}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014110974856674}
 --- !u!224 &5393014111791694828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11371,15 +11331,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a107e89a1cb640ace52bc096c389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tittleText: {fileID: 5393014111817864939}
   activationButton: {fileID: 5393014112005815868}
-  tittleString: Recap
   bubbleAnimator: {fileID: 5393014112064107431}
   contentAnimator: {fileID: 0}
   contentImage: {fileID: 5393014111756576183}
   contentSprite: {fileID: 21300000, guid: b395e9762ce7fe440a082f3fc7abf16d, type: 3}
   doneEvent: {fileID: 11400000, guid: 1bf5df0385ea9ca4c9599e78c21a5bb9, type: 2}
   isContentAnimPlace: 0
+  tittleString: Recap
+  tittleText: {fileID: 5393014111817864939}
 --- !u!224 &5393014112064107430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11538,10 +11498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e6e4ff1e7ee4246a3feb7740dac841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPanelAnimator: {fileID: 5393014112106333878}
   okButton: {fileID: 5393014110988642214}
-  tutorialTextStr: 
+  tutorialPanelAnimator: {fileID: 5393014112106333878}
   tutorialText: {fileID: 147254088}
+  tutorialTextStr: 
 --- !u!114 &5393014112159361378
 MonoBehaviour:
   m_ObjectHideFlags: 0
