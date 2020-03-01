@@ -23,14 +23,21 @@ public class DOBHandler : MonoBehaviour
         year.onValueChanged.AddListener(delegate { HandleDay(); });
 
         InputHandler();
+        HandleDay();
     }
     private void InputHandler()
     {
         temp.Clear();
 
-        for (int i = 1; i <= 12; i++)
-            temp.Add(i.ToString());
-
+        /* for (int i = 1; i <= 12; i++)
+             temp.Add(i.ToString());*/
+        foreach (var item in DateTimeFormatInfo.CurrentInfo.AbbreviatedMonthNames)
+        {
+            if (item != "")
+            {
+                temp.Add(item);
+            }
+        }
         month.ClearOptions();
         month.AddOptions(temp);
 
@@ -48,7 +55,7 @@ public class DOBHandler : MonoBehaviour
     private void HandleDay()
     {
         temp.Clear();
-        for (int i = 1; i <= System.DateTime.DaysInMonth(int.Parse(year.options[year.value].text), int.Parse(month.options[month.value].text)); i++)
+        for (int i = 1; i <= System.DateTime.DaysInMonth(int.Parse(year.options[year.value].text), month.value + 1); i++)
             temp.Add(i.ToString());
 
         day.ClearOptions();
