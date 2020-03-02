@@ -71,6 +71,6 @@ public class DOBHandler : MonoBehaviour
 
     private void SetDateOfBirth()
     {
-        dob = new DateTime(int.Parse(year.options[year.value].text), int.Parse(month.options[month.value].text), int.Parse(day.options[day.value].text));
+        dob = new DateTime(int.Parse(year.options[year.value].text), month.value+1, int.Parse(day.options[day.value].text));
     }
 }

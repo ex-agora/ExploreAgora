@@ -12833,7 +12833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.7848636}
   m_AnchorMax: {x: 0.5, y: 0.7848636}
-  m_AnchoredPosition: {x: 0, y: -225}
+  m_AnchoredPosition: {x: 0, y: -509.00006}
   m_SizeDelta: {x: 1020, y: 526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399540434
@@ -34010,7 +34010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1068398377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36170,7 +36170,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Forgot Password
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -37496,8 +37496,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1275564595}
-        m_MethodName: ConfirmChangeProfilePicture
+      - m_Target: {fileID: 1576896267}
+        m_MethodName: ConfirmImg
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41317,7 +41317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1275564594
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41358,11 +41358,16 @@ MonoBehaviour:
   keysText1: {fileID: 0}
   streakText1: {fileID: 0}
   stoneText1: {fileID: 0}
-  editProfileImage: {fileID: 1818882683}
   mainProfileImage: {fileID: 365934654}
+  shopProfileImage: {fileID: 594906736}
+  bookProfileImage: {fileID: 726451482}
+  insideBundleProfileImage: {fileID: 993857654}
+  outsideBundleProfileImage: {fileID: 635640919}
   profileSpriteIndex: 0
   chosenForProfile: {fileID: 0}
   profilePictureHandler: {fileID: 275585789}
+  profileInfo: {fileID: 11400000, guid: ff5ffb0f349df444d93025eccac2ccee, type: 2}
+  ranks: {fileID: 11400000, guid: 775b5c059c6c0094ba8a602ef50839f3, type: 2}
 --- !u!222 &1275564596
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48678,7 +48683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1526671309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -50540,13 +50545,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1576896265}
   - component: {fileID: 1576896266}
+  - component: {fileID: 1576896267}
   m_Layer: 5
   m_Name: EditProfileMainPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1576896265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -50577,6 +50583,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576896264}
   m_CullTransparentMesh: 0
+--- !u!114 &1576896267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576896264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4379a1c438ff6f489ca47aeb9343506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dOB: {fileID: 1133588883}
+  gender: {fileID: 586060955}
+  nickname: {fileID: 228802648}
+  profile: {fileID: 1818882683}
+  pictureHandler: {fileID: 275585789}
+  account: {fileID: 1275564595}
 --- !u!1 &1578348277
 GameObject:
   m_ObjectHideFlags: 0
@@ -52245,7 +52269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.7848636}
   m_AnchorMax: {x: 0.5, y: 0.7848636}
-  m_AnchoredPosition: {x: 0, y: 249}
+  m_AnchoredPosition: {x: 0, y: -35.00006}
   m_SizeDelta: {x: 1020, y: 526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631474508
@@ -63021,7 +63045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1900062083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -65267,7 +65291,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2104}
+  m_SizeDelta: {x: 0, y: 848.36}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1990136396
 GameObject:
@@ -66564,6 +66588,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1576896267}
+        m_MethodName: ConfirmChanges
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2023996743
@@ -66854,6 +66889,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1576896264}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1576896267}
+        m_MethodName: SetInfo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

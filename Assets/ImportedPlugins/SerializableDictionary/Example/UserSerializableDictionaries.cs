@@ -17,6 +17,8 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class StringAudioClipsDictionary : SerializableDictionary<string, AudioClip> {}
+[Serializable]
+public class StringRankRangeDictionary : SerializableDictionary<string, RankRange> {}
 
 
 [Serializable]
@@ -24,6 +26,12 @@ public class MyClass
 {
     public int i;
     public string str;
+}
+
+[System.Serializable]
+public class RankRange {
+    public uint min;
+    public uint max;
 }
 
 [Serializable]

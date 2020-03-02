@@ -23,6 +23,7 @@ public class ProfilePictureHandler : MonoBehaviour
     public void SetActiveFrameIndex(int _index = -1)
     {
         frameIndex = _index == -1 ? 0 : _index;
+        TurnFrameOn(frameIndex);
     }
 
     public int ChangeProfilePicture()
