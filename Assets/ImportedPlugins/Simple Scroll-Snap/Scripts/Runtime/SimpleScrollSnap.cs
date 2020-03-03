@@ -700,17 +700,17 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             {
                 if (panelNumber == 0)
                 {
-                    previousButton.gameObject.SetActive(false);
+                    previousButton.interactable = false;
                 }
                 else
                 {
-                    previousButton.gameObject.SetActive(true);
+                    previousButton.interactable = true;
                 }
                 if (panelNumber == (NumberOfPanels - 1)) {
-                    nextButton.gameObject.SetActive(false);
+                    nextButton.interactable = false;
                 }
                 else {
-                    nextButton.gameObject.SetActive(true);
+                    nextButton.interactable = true;
                 }
             }
             targetPanel = panelNumber;
