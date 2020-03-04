@@ -54,12 +54,15 @@ public class DOBHandler : MonoBehaviour
 
     private void HandleDay()
     {
+        int x = day.value;
         temp.Clear();
         for (int i = 1; i <= System.DateTime.DaysInMonth(int.Parse(year.options[year.value].text), month.value + 1); i++)
             temp.Add(i.ToString());
 
         day.ClearOptions();
         day.AddOptions(temp);
+        day.value = x < day.options.Count ? x : day.options.Count-1;
+        
     }
 
     private void HandleDate()
