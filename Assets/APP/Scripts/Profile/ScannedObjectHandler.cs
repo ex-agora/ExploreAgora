@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,14 @@ public class ScannedObjectHandler : MonoBehaviour
     [SerializeField] private Text tittle;
     [SerializeField] private string name;
 
-    public string Name { get => name; }
+    public string Name
+    {
+        get => name;
+    }
 
-    private void UnlockObject()
+    private void UnlockObject ()
     {
         lockedImage.sprite = unlockedImage;
-        tittle.gameObject.SetActive(true);
+        tittle.gameObject.SetActive (true);
     }
 }
