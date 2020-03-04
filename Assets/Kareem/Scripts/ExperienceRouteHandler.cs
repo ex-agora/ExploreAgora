@@ -7,20 +7,37 @@ using UnityEngine.XR.ARFoundation;
 public class ExperienceRouteHandler : MonoBehaviour
 {
     #region Fields
-    [SerializeField] ScenesPrefabsIntializers @scenesPrefabsIntializers;
+    [SerializeField] SOTest @sceneNavManager;
     [SerializeField] string SceneName;
     #endregion Fields
-
+    public void Testtttt () { SceneManager.LoadScene (SceneManager.GetActiveScene().name); }
 
     #region Methods
     public void Transit (ExperienceContainerHolder experienceContainerHolder)
     {
-        if ( experienceContainerHolder == null )
+        Debug.Log ("@scenesPrefabsIntializers " + @sceneNavManager);
+        Debug.Log ("SceneName " + SceneName);
+        Debug.Log ("experienceContainerHolder " + experienceContainerHolder);
+        Debug.Log ("experienceContainerHolder experiencePrefab" + experienceContainerHolder.experiencePrefab);
+        Debug.Log ("experienceContainerHolder experienceName" + experienceContainerHolder.experienceName);
+        Debug.Log ("experienceContainerHolder experienceCode" + experienceContainerHolder.experienceCode);
+        Debug.Log ("experienceContainerHolder scannedObject" + experienceContainerHolder.scannedObject);
+        Debug.Log ("experienceContainerHolder categories.Length" + experienceContainerHolder.categories.Length);
+        Debug.Log ("experienceContainerHolder topics.Length" + experienceContainerHolder.topics.Length);
+        Debug.Log ("experienceContainerHolder isIndoor" + experienceContainerHolder.isIndoor);
+        Debug.Log ("experienceContainerHolder tags.Length" + experienceContainerHolder.tags.Length);
+        Debug.Log ("experienceContainerHolder minimumAgeGroup" + experienceContainerHolder.minimumAgeGroup);
+        Debug.Log ("experienceContainerHolder maximumAgeGroup" + experienceContainerHolder.maximumAgeGroup);
+        Debug.Log ("experienceContainerHolder subject" + experienceContainerHolder.subject);
+        Debug.Log ("experienceContainerHolder requiredArea" + experienceContainerHolder.requiredArea);
+        Debug.Log ("experienceContainerHolder token" + experienceContainerHolder.token);
+        if ( experienceContainerHolder == null)
         {
             Debug.LogWarning ("Transit function needs experienceContainerHolder parameter");
             return;
         }
-        @scenesPrefabsIntializers.nextExperienceContainerHolder = experienceContainerHolder;
+        @sceneNavManager.nextExperienceContainerHolder = experienceContainerHolder;
+        Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
         SceneManager.LoadScene (SceneName);
     }
     #endregion Methods
