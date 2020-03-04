@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadScenePrefabs : MonoBehaviour
 {
     #region Fields
-    [SerializeField] ScenesPrefabsIntializers @scenesPrefabsIntializers;
+    [SerializeField] SOTest @sceneNavManager;
     #endregion Fields
 
     #region Methods
@@ -18,7 +18,8 @@ public class LoadScenePrefabs : MonoBehaviour
 
     private void Start()
     {
-        Instantiate (@scenesPrefabsIntializers.nextExperienceContainerHolder.experiencePrefab);
+        Instantiate (@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
+        gameObject.SetActive (false);
     }
     #endregion Methods
 }
