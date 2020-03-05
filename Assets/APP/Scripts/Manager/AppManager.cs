@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class AppManager : MonoBehaviour
 {
-    public static AppManager Instance;
+    private static AppManager instance;
     private bool isSplashScreenDone;
 
+    public static AppManager Instance { get => instance; set => instance = value; }
     public bool IsSplashScreenDone { get => isSplashScreenDone; set => isSplashScreenDone = value; }
 
     private void Awake()

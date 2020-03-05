@@ -8,6 +8,7 @@ public class UXFlowManager : MonoBehaviour
 
     [SerializeField] private SplashScreenHandler splashScreenHandler;
     [SerializeField] private QuickFadeHandler quickFadeHandler;
+    [SerializeField] private SceneLoader sceneLoader;
 
     private void Awake()
     {

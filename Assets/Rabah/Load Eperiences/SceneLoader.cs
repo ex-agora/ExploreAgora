@@ -20,8 +20,8 @@ public class SceneLoader : MonoBehaviour
     //Set Experience name and reset index
     public void LoadExperience(string SceneName)
     {
-        //_scene = SceneName;
-        //_index = -1;
+        _scene = SceneName;
+        _index = -1;
         ScreenLodAnim.SetBool("Loading", true);
 
     }
@@ -33,8 +33,8 @@ public class SceneLoader : MonoBehaviour
     //Set Experience index and reset name
     public void LoadExperience(int Index)
     {
-        //_index = Index;
-        //_scene = string.Empty;
+        _index = Index;
+        _scene = string.Empty;
         ScreenLodAnim.SetBool("Loading", true);
 
     }
@@ -42,10 +42,10 @@ public class SceneLoader : MonoBehaviour
     //Load Experience by index or name
     public void LoadExperienceScene()
     {
-        //if (_scene != string.Empty)
-        //    SceneManager.LoadSceneAsync(_scene);
-        //else if (_index != -1)
-        //    SceneManager.LoadSceneAsync(_index);
+        if (_scene != string.Empty)
+            SceneManager.LoadSceneAsync(_scene);
+        else if (_index != -1)
+            SceneManager.LoadSceneAsync(_index);
 
     }
 
