@@ -42,10 +42,10 @@ public class SceneLoader : MonoBehaviour
     //Load Experience by index or name
     public void LoadExperienceScene()
     {
-        if (_scene != string.Empty)
-            SceneManager.LoadSceneAsync(_scene);
-        else if (_index != -1)
-            SceneManager.LoadSceneAsync(_index);
+        //if (_scene != string.Empty)
+        //    SceneManager.LoadSceneAsync(_scene);
+        //else if (_index != -1)
+        //    SceneManager.LoadSceneAsync(_index);
 
     }
 

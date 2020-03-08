@@ -28,7 +28,6 @@ public class UXFlowManager : MonoBehaviour
 
     public void LoginFadeIn()
     {
-
         quickFadeHandler.FadeIn();
     }
 }
