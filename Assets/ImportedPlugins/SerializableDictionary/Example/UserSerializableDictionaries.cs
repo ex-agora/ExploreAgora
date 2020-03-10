@@ -17,6 +17,10 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class StringAudioClipsDictionary : SerializableDictionary<string, AudioClip> {}
+
+[Serializable]
+public class StringIntDictionary : SerializableDictionary<string, int> {}
+
 [Serializable]
 public class StringRankRangeDictionary : SerializableDictionary<string, RankRange> {}
 
