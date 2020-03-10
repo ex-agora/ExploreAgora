@@ -11,30 +11,39 @@ public class SwichStoriesHandler : MonoBehaviour
     [SerializeField] UnityEvent onFinishTouch;
     Touch touch;
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if ( Input.touchCount > 0 )
+        /* if ( Input.touchCount > 0 )
+         {
+             touch = Input.GetTouch (0);
+             if ( touch.phase == TouchPhase.Began )
+             {
+                 if ( touch.position.x < Screen.width / 2 )
+                 {
+                     tocuhLeftScreen.Invoke ();
+                 }
+                 else if ( touch.position.x > Screen.width / 2 )
+                 {
+                     tocuhRightScreen.Invoke ();
+                 }
+             }
+             else if ( touch.phase == TouchPhase.Stationary )
+             {
+                 onResumeTouch.Invoke ();
+             }
+             else if ( touch.phase == TouchPhase.Ended )
+             {
+                 onFinishTouch.Invoke ();
+             }
+         }*/
+
+
+        if (Input.GetMouseButtonDown(0))
         {
-            touch = Input.GetTouch (0);
-            if ( touch.phase == TouchPhase.Began )
-            {
-                if ( touch.position.x < Screen.width / 2 )
-                {
-                    tocuhLeftScreen.Invoke ();
-                }
-                else if ( touch.position.x > Screen.width / 2 )
-                {
-                    tocuhRightScreen.Invoke ();
-                }
-            }
-            else if ( touch.phase == TouchPhase.Stationary )
-            {
-                onResumeTouch.Invoke ();
-            }
-            else if ( touch.phase == TouchPhase.Ended )
-            {
-                onFinishTouch.Invoke ();
-            }
+            if (Input.mousePosition.x < Screen.width / 2)
+                tocuhLeftScreen.Invoke();
+            else if (Input.mousePosition.x >= Screen.width / 2)
+                tocuhRightScreen.Invoke();
         }
     }
 }
