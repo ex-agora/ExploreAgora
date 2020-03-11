@@ -45,4 +45,5 @@ public class ExperienceContainerHolder : ScriptableObject
     public bool isHaveToken;
     public ExperienceToken token;
     public bool isReadyToPlay;
+    public bool isActive;
 }

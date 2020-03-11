@@ -8,6 +8,7 @@ public class ExperienceHandler : MonoBehaviour
     [SerializeField] private ExperienceContainerHolder experienceContainerHolder;
     [SerializeField] private Button experienceButton;
     [SerializeField] private Sprite played;
+    [SerializeField] private Sprite disactiveSprite;
     [SerializeField] private Sprite readyToPlay;
     [SerializeField] private Image gem;
     [SerializeField] private List<Sprite> gemStates;
@@ -17,17 +18,26 @@ public class ExperienceHandler : MonoBehaviour
         gem.enabled = false;
         experienceButton.interactable = false;
 
-        if (experienceContainerHolder.playedCounter > 0 && experienceContainerHolder.isReadyToPlay)
+        if (experienceContainerHolder.playedCounter > 0 && experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
         {
             gem.enabled = true;
             gem.sprite = gemStates[experienceContainerHolder.experienceScore];
             experienceButton.image.sprite = played;
             experienceButton.interactable = true;
+            // Open Popup with one button
+            ActiveDependencies();
             UnlockDependencies();
         }
-        else if (experienceContainerHolder.isReadyToPlay)
+        else if (experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
         {
+            // Open Popup with one button
             experienceButton.image.sprite = readyToPlay;
+            experienceButton.interactable = true;
+        }
+        else if (experienceContainerHolder.isActive)
+        {
+            // Open Popup with two button
+            experienceButton.image.sprite = disactiveSprite;
             experienceButton.interactable = true;
         }
     }
@@ -37,9 +47,21 @@ public class ExperienceHandler : MonoBehaviour
     {
         experienceContainerHolder.isReadyToPlay = true; UpdateUIState();
     }
+
+    public void ActiveExperience()
+    {
+        experienceContainerHolder.isActive = true; UpdateUIState();
+    }
+
     public void UnlockDependencies()
     {
         for (int i = 0; i < experienceDependencies.Count; i++)
             experienceDependencies[i].UnlockExperience();
+    }
+
+    public void ActiveDependencies()
+    {
+        for (int i = 0; i < experienceDependencies.Count; i++)
+            experienceDependencies[i].ActiveExperience();
     }
 }

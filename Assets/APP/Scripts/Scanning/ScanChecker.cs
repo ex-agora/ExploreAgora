@@ -14,6 +14,10 @@ public class ScanChecker : MonoBehaviour
     public void CheckScannedObject()
     {
         int counter = bundleHandler.GetScannedCounter(objectToScanName);
+
+        for (int i = 0; i < experiences.Count; i++)
+            experiences[i].ActiveExperience();
+
         if (counter > 0)
         {
             stateImage.sprite = unlockedState;
