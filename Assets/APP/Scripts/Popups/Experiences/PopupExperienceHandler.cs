@@ -27,6 +27,9 @@ public class PopupExperienceHandler : MonoBehaviour
 
     [SerializeField] private Animator popupAnim;
 
+    [SerializeField] private GameObject playNowBtnObject;
+    [SerializeField] private GameObject useKeyBtnObject;
+
     public string HeaderStr { get => headerStr; set => headerStr = value; }
     public string TitleStr { get => titleStr; set => titleStr = value; }
     public string DescriptionStr { get => descriptionStr; set => descriptionStr = value; }
