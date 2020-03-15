@@ -25,7 +25,7 @@ public class PopupExperienceHandler : MonoBehaviour
     [SerializeField] private Image sizeImg;
     [SerializeField] private Image extraImg;
 
-    [SerializeField] private Animator popupAnim;
+    [SerializeField] private ToolBarHandler popupAnim;
 
     [SerializeField] private GameObject playNowBtnObject;
     [SerializeField] private GameObject useKeyBtnObject;
@@ -70,5 +70,22 @@ public class PopupExperienceHandler : MonoBehaviour
         titleTxt.text = titleStr;
         headerTxt.text = headerStr;
         descriptionTxt.text = descriptionStr;
+        if (_isScannedState)
+        {
+            playNowBtnObject.SetActive(false);
+            useKeyBtnObject.SetActive(true);
+        }
+        else
+        {
+            playNowBtnObject.SetActive(true);
+            useKeyBtnObject.SetActive(false);
+        }
+
+        popupAnim.OpenToolBar();
+    }
+
+    public void ClosePopup()
+    {
+        popupAnim.CloseToolBar();
     }
 }
