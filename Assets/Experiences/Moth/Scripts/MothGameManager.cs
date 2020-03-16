@@ -67,7 +67,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
         if (blackMoothCount == 0 && whiteMoothCount == 0)
         {
-            mothScoreHandler.ShowSummary(true, "Before Industrialization", "Start!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "You didn't catch any of the moths on the tree. Try again!.");
+            mothScoreHandler.ShowSummary(true, "Before Industrialization", "Start!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "You didn't catch any of the moths on the tree. Try again!");
             StartFirstPhase();
         }
         else if (whiteMoothCount >= blackMoothCount)
@@ -109,7 +109,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
         if (blackMoothCount == 0 && whiteMoothCount == 0)
         {
-            mothScoreHandler.ShowSummary(true, "After Industrialization", "Start!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "You didn't catch any of the moths on the tree. Try again!.");
+            mothScoreHandler.ShowSummary(true, "After Industrialization", "Start!", blackMoothCount.ToString(), whiteMoothCount.ToString(), "You didn't catch any of the moths on the tree. Try again!");
             StartSecondPhase();
         }
         else if (whiteMoothCount <= blackMoothCount)
@@ -198,8 +198,10 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
         barHandler.CloseToolBar();
         nextState = true;
         Invoke(nameof(ShowButtonSecondPhase), 4.5f);
+        Debug.Log("1");
     }
     void ShowButtonSecondPhase() {
+        Debug.Log("2");
         secondPhaseBtn.OpenToolBar();
     }
     public void ResetLevel()

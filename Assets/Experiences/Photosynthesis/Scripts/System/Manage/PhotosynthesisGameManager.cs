@@ -49,7 +49,7 @@ public class PhotosynthesisGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     void FirstPhase () {
         nextState = true;
-        Invoke(nameof(ShowUpperBar), 4.3f);
+        Invoke(nameof(ShowUpperBar), 5.3f);
         EnableDisableDraggable ();
     }
     void HideRTTHand() {

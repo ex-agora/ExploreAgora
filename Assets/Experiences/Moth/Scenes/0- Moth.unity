@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextInfoHolder:
   - bubbleType: 1
-    textInfo: Find an Exploratory Zone
+    textInfo: Find an Exploratory Zone.
   - bubbleType: 1
     textInfo: Look at the tree. This is how trees looked like BEFORE INDUSTRIALIZATION.
   - bubbleType: 1
@@ -401,7 +401,7 @@ MonoBehaviour:
   - bubbleType: 1
     textInfo: ' AFTER INDUSTRIALIZATION.'
   - bubbleType: 1
-    textInfo: "The smoke from factories made the tree\u2019s colour darker."
+    textInfo: "The smoke from factories made the tree\u2019s color darker."
   - bubbleType: 1
     textInfo: You have 30 seconds. HUNT as many moths as you can!
   - bubbleType: 2
@@ -864,6 +864,21 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3807407469995753262, guid: 09a7076a2884b5145b88fbeef0b5a067,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555103304986707251, guid: 09a7076a2884b5145b88fbeef0b5a067,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010500612152328039, guid: 09a7076a2884b5145b88fbeef0b5a067,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a7076a2884b5145b88fbeef0b5a067, type: 3}
 --- !u!4 &252688750 stripped
@@ -964,21 +979,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: handler
-      value: 
-      objectReference: {fileID: 1755133773}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: relocateBtn
-      value: 
-      objectReference: {fileID: 1460455027}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: menuBtn
-      value: 
-      objectReference: {fileID: 1514541190}
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1084,6 +1084,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1755133773}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: relocateBtn
+      value: 
+      objectReference: {fileID: 1460455027}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: menuBtn
+      value: 
+      objectReference: {fileID: 1514541190}
+    - target: {fileID: 2617314001005341268, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToHome
+      objectReference: {fileID: 0}
     - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_Colors.m_ColorMultiplier
@@ -1093,11 +1113,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResetLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617314001005341268, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToHome
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee23c5f9f93d524997ead257a2e6d6f, type: 3}
@@ -1191,7 +1206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &390963621
 GameObject:
@@ -1685,21 +1700,6 @@ PrefabInstance:
       propertyPath: sfxSources.Array.data[1]
       value: 
       objectReference: {fileID: 534831252}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 1.34
-      objectReference: {fileID: 0}
     - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -1715,6 +1715,21 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8d65727163a36fe43bd3f9122c05ff8f, type: 3}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2e8f503748622429623909fa188f46, type: 3}
 --- !u!82 &534831252 stripped
@@ -1904,7 +1919,7 @@ Transform:
   m_LocalScale: {x: 0.20391029, y: 0.20391029, z: 0.20391029}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &673175632
 PrefabInstance:
@@ -1961,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 1267755417414740612, guid: 09a7076a2884b5145b88fbeef0b5a067,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1267755417414740612, guid: 09a7076a2884b5145b88fbeef0b5a067,
         type: 3}
@@ -3984,7 +3999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1278490303
 GameObject:
@@ -6252,7 +6267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1755133775
 MonoBehaviour:
@@ -6749,7 +6764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1825461431
 GameObject:
