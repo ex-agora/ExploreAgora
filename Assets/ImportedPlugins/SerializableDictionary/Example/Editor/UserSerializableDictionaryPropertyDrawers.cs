@@ -9,6 +9,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]
 [CustomPropertyDrawer(typeof(StringRankRangeDictionary))]
 [CustomPropertyDrawer(typeof(StringIntDictionary))]
+[CustomPropertyDrawer(typeof(StringImageDictionary))]
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
 [CustomPropertyDrawer(typeof(ColorArrayStorage))]
