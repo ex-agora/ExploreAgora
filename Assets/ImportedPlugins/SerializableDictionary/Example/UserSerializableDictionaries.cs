@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class StringStringDictionary : SerializableDictionary<string, string> {}
@@ -17,8 +18,15 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class StringAudioClipsDictionary : SerializableDictionary<string, AudioClip> {}
+
+[Serializable]
+public class StringIntDictionary : SerializableDictionary<string, int> {}
+
 [Serializable]
 public class StringRankRangeDictionary : SerializableDictionary<string, RankRange> {}
+
+[Serializable]
+public class StringImageDictionary : SerializableDictionary<string, Image> {}
 
 
 [Serializable]

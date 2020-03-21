@@ -24,12 +24,14 @@ public class PSSOutputAnimationHandler : MonoBehaviour
     }
     void CustomUpdate() {
         elpTime += updateRate;
-        AudioManager.Instance?.Play("miniNotification", "Activity");
-        if (elpTime >= outputAnimationsDuration) {
+       
+        if (elpTime >= outputAnimationsDuration)
+        {
             StopOutputAnimations();
-            if(IsInvoking(nameof(CustomUpdate)))
-            CancelInvoke(nameof(CustomUpdate));
+            if (IsInvoking(nameof(CustomUpdate)))
+                CancelInvoke(nameof(CustomUpdate));
         }
+        else { AudioManager.Instance?.Play("miniNotification", "Activity"); }
     }
     public void StopOutputAnimations ()
     {

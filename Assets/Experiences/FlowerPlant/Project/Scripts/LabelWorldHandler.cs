@@ -12,6 +12,7 @@ public class LabelWorldHandler : MonoBehaviour
     [SerializeField] string extraInfoText;
     [SerializeField] Canvas canvas;
     [SerializeField] bool isTabDisabled;
+    [SerializeField] GameObject extraLabalIcon;
     bool isOpen;
     public string LabelTextStr { get => labelText.text; }
     public bool HasExtraInfo { get => hasExtraInfo; }
@@ -51,6 +52,8 @@ public class LabelWorldHandler : MonoBehaviour
     {
         labelText.gameObject.SetActive (false);
         ShowLabel ();
+        if (hasExtraInfo)
+            extraLabalIcon.SetActive(false);
     }
     public void RightAnswer ()
     {
