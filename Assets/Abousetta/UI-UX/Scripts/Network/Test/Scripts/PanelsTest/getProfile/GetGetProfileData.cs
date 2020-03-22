@@ -32,5 +32,6 @@ public class GetGetProfileData : GeneralPanelTest
         gender.text = data.gender;
         birthdate.text = data.birthDate;
         country.text = data.country;
+        
     }
 }

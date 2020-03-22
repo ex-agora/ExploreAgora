@@ -189,6 +189,8 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<VerifyEmailResponse> (networkManagerData.GetVerifyEmailURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
+    #region  reset password
+    //first step in reset password
     public bool ResetPasswordRequest (ResetPasswordRequestData resetPasswordRequestData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         WWWForm form = new WWWForm ();
@@ -196,6 +198,7 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<ResetPasswordRequestResponse> (networkManagerData.GetResetPasswordRequestURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
+    //second step in reset password
     public bool CheckResetPasswordToken (CheckResetPasswordTokenData checkResetPasswordTokenData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         WWWForm form = new WWWForm ();
@@ -205,6 +208,7 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<CheckResetPasswordTokenResponse> (networkManagerData.GetCheckResetPasswordTokenURL () , form , false , onSuccess , onFailed));
         return isSuccess;
     }
+    //third step in reset password HINT: user will not put token again, you must cash it if CheckResetPasswordToken is success
     public bool ResetPassword (ResetPasswordData resetPasswordData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         print (resetPasswordData.email);
@@ -217,6 +221,8 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<ResetPasswordResponse> (networkManagerData.GetResetPasswordURL () , form , false , onSuccess , onFailed));
         return isSuccess;
     }
+    #endregion
+    //change if you logged in and change password
     public bool ChangePassword (ChangePasswordData changePasswordData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         WWWForm form = new WWWForm ();
@@ -228,6 +234,16 @@ public class NetworkManager : MonoBehaviour
     public bool ResendActivationCode (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         StartCoroutine (PostRequest<ResendActivationCodeResponse> (networkManagerData.GetResendActivationCodeURL () , true , onSuccess , onFailed));
+        return isSuccess;
+    }
+    public bool CompleteCheckout (CompleteCheckoutData completeCheckoutData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        WWWForm form = new WWWForm ();
+        form.AddField ("packageName" , completeCheckoutData.packageName);
+        form.AddField ("productId" , completeCheckoutData.productId);
+        form.AddField ("storeType" , completeCheckoutData.storeType);
+        form.AddField ("purchaseToken" , completeCheckoutData.purchaseToken);
+        StartCoroutine (PostRequest<CompleteCheckoutResponse> (networkManagerData.GetCompleteCheckoutURL () , true , onSuccess , onFailed));
         return isSuccess;
     }
     private IEnumerator PostRequest<T> (string url , WWWForm form , bool isAuthorizeTokenNeeeded , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed) where T : ResponseData
@@ -350,13 +366,11 @@ public class NetworkManager : MonoBehaviour
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
-        print ("start detect Obj");
         // Create a Web Form
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
         form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
-        print ("DetectObject");
         StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
     }
 }
