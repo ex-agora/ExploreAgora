@@ -13,6 +13,10 @@ public class OnBoardingFlowHandler : MonoBehaviour
         sceneLoader.LoadExperience(sceneName);
     }
 
-
+    public void ChangeComicToMap()
+    {
+        AppManager.Instance.boardingPhases = OnBoardingPhases.Map;
+        AppManager.Instance.saveOnBoardingProgress();
+    }
 
 }

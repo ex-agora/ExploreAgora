@@ -19,7 +19,7 @@ public class SplashScreenHandler : MonoBehaviour
     {
         splashAnimator.gameObject.SetActive(false);
         stonesAnimator.gameObject.SetActive(false);
-        UXFlowManager.Instance.LoginFadeIn();
+        UXFlowManager.Instance.CanvasChecker();
         this.gameObject.SetActive(false);
     }
 }

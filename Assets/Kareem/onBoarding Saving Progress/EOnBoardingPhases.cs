@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public enum OnBoardingPhases
 {
-
+    None,
     Map,
     Book,
     Profile,
