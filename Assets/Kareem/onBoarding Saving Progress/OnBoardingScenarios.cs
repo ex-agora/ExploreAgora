@@ -1,0 +1,217 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class OnBoardingScenarios : MonoBehaviour
+{
+    #region Fields
+    [SerializeField] GameObject comics, Map, Profile , book , shop , setting;
+    //[SerializeField] List<Transform> mapInstructionsPanels;
+    //[SerializeField] List<Transform> popUpInstructionsPanels;
+    [SerializeField] List<Button> mapButtons;
+    [SerializeField] List<GameObject> footerButtons;
+    [SerializeField] List<string> onBoardingSceneNames;
+    [SerializeField] GameObject giftsPanel;
+    [SerializeField] Button backMission;
+    //[SerializeField] StagesIndicator stagesIndicator;
+    private int currentIndex;
+    //index of current state
+   
+    #endregion
+
+
+    #region Public_Methods
+
+    public void Giftbutton()
+    {
+        AppManager.Instance.isCurrentLevelPrizeDone[currentIndex] = true;
+        AppManager.Instance.saveOnBoardingProgress();
+        mapButtons[currentIndex].GetComponent<MapButtonsBehavior>().PlayActions();
+        mapButtons[currentIndex].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
+    }
+
+
+
+    public void Nextbutton()
+    {
+        AppManager.Instance.currentBoardingIndex++;
+        AppManager.Instance.saveOnBoardingProgress();
+        MapScenearios();
+    }
+
+
+    public void EndingComics()
+    {
+        ChangeStage(OnBoardingPhases.Map);
+        comics.SetActive(false);
+        Map.SetActive(true);
+        MapScenearios();
+    }
+
+    public void ChangeProfileToShop()
+    {
+        ChangeStage(OnBoardingPhases.Shop);
+    }
+
+    public void ChangeSettingToQuests()
+    {
+        ChangeStage(OnBoardingPhases.Quests);
+    }
+    public void ChangeStage(OnBoardingPhases onBoardingPhase)
+    {
+        AppManager.Instance.boardingPhases = onBoardingPhase;
+        AppManager.Instance.saveOnBoardingProgress();
+    }
+
+    public void ChangeButtonsSprite(Sprite s, Image img)
+    {
+        img.sprite = s;
+    }
+
+    #endregion
+
+
+    #region Private_Methods
+    private void Awake()
+    {
+        OnBoardingFlowStates();
+    }
+
+
+    void MapScenearios()
+    {
+
+        if (currentIndex > 0 && currentIndex < 4)
+        {
+            Debug.Log("11111QQQ");
+            for (int i = 1; i < currentIndex + 1; i++)
+            {
+                Debug.Log("QQQ");
+                if (AppManager.Instance.isCurrentLevelDone[i] == false && AppManager.Instance.isCurrentLevelPrizeDone[i] == false)
+                {
+                    mapButtons[i].interactable = true;
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().OpenButtonFirstTime();
+                    Debug.Log("1");
+                    break;
+                }
+                else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == false)
+                {
+                    //lock
+                    mapButtons[i].interactable = false;
+                    ShowGiftPanel(i);
+                    //show last panel
+                    Debug.Log("Gifts");
+                    break;
+                }
+                else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == true)
+                {
+                    print("HEREEEE");
+                    if (i != mapButtons.Count - 1)
+                    {
+                        mapButtons[i].interactable = false;
+
+                        mapButtons[i + 1].interactable = true;
+
+                    }
+                    else
+                    {
+                        mapButtons[i].interactable = false;
+
+                        // change enum
+                        ChangeStage(OnBoardingPhases.Profile);
+                        OnBoardingFlowStates();
+                    }
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
+                    // mapButtons[i].GetComponent<MapButtonsBehavior>().PlayActions();
+                }
+            }
+        }
+        else if (currentIndex == 0)
+        {
+            if (AppManager.Instance.isCurrentLevelDone[0] == false)
+            {
+                mapButtons[0].interactable = true;
+                print("xzcdferre");
+            }
+            else
+            {
+                print("kjkjkjkj");
+                mapButtons[0].interactable = false;
+                mapButtons[1].interactable = true;
+            }
+        }
+        else
+        {
+            print("PQWEOQW");
+        }
+
+    }
+
+
+
+    void OnBoardingFlowStates()
+    {
+        Debug.Log((int)AppManager.Instance.boardingPhases);
+        switch (AppManager.Instance.boardingPhases)
+        {
+            
+            case OnBoardingPhases.Map:
+                currentIndex = AppManager.Instance.currentBoardingIndex;
+                MapScenearios();
+                break;
+            case OnBoardingPhases.Book:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                break;
+            case OnBoardingPhases.Profile:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                Profile.SetActive(true);
+                break;
+            case OnBoardingPhases.Shop:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                break;
+            case OnBoardingPhases.Setting:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                break;
+          
+            case OnBoardingPhases.Quests:
+                footerButtons[0].SetActive(true);
+                footerButtons[0].GetComponentInChildren<Button>().interactable = true;
+                backMission.interactable = true;
+                for (int i = 1; i < footerButtons.Count; i++)
+                {
+                    footerButtons[i].SetActive(true);
+                    footerButtons[i].GetComponentInChildren<Button>().interactable = false;
+                }
+                break;
+
+            default:
+                print("something else");
+                break;
+        }
+    }
+
+
+    void LockPreviousStages(int num)
+    {
+
+        for (int i = 0; i < num+1; i++)
+        {
+            footerButtons[i].SetActive(true);
+            footerButtons[i].GetComponentInChildren<Button>().interactable = false;
+        }
+    }
+
+    void ShowGiftPanel(int i)
+    {
+        giftsPanel.SetActive(true);
+
+    }
+
+
+    #endregion
+
+
+
+    //public void ChangeScene
+}
