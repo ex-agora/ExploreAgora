@@ -25,6 +25,63 @@ public class OnBoardingScenarios : MonoBehaviour
 
     #region Public_Methods
 
+
+    public void OnBoardingFlowStates()
+    {
+        Debug.Log((int)AppManager.Instance.boardingPhases);
+        switch (AppManager.Instance.boardingPhases)
+        {
+
+            case OnBoardingPhases.Map:
+                currentIndex = AppManager.Instance.currentBoardingIndex;
+                MapScenearios();
+                break;
+            case OnBoardingPhases.Book:
+                footerButtons[1].GetComponentInChildren<Button>().interactable = true;  
+                footerButtons[1].SetActive(true);
+                footerButtons[1].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                break;
+            case OnBoardingPhases.Profile:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                footerButtons[2].SetActive(true);
+                footerButtons[2].GetComponentInChildren<Button>().interactable = true;
+                footerButtons[2].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                break;
+            case OnBoardingPhases.Shop:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                footerButtons[3].SetActive(true);
+                footerButtons[3].GetComponentInChildren<Button>().interactable = true;
+                footerButtons[3].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                break;
+            case OnBoardingPhases.Setting:
+                LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                footerButtons[4].SetActive(true);
+                footerButtons[4].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                break;
+
+            case OnBoardingPhases.Quests:
+                footerButtons[0].SetActive(true);
+                footerButtons[0].GetComponentInChildren<Button>().interactable = true;
+                footerButtons[0].SetActive(true);
+                footerButtons[0].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                backMission.interactable = true;
+                for (int i = 1; i < footerButtons.Count; i++)
+                {
+                    footerButtons[i].SetActive(true);
+                    footerButtons[i].GetComponentInChildren<Button>().interactable = false;
+                }
+                break;
+
+            default:
+                print("something else");
+                break;
+        }
+    }
+
+
+
+
     public void Giftbutton()
     {
         AppManager.Instance.isCurrentLevelPrizeDone[currentIndex] = true;
@@ -43,15 +100,15 @@ public class OnBoardingScenarios : MonoBehaviour
     }
 
 
-    public void EndingComics()
-    {
-        ChangeStage(OnBoardingPhases.Profile);
-        OnBoardingFlowStates();
-    }
 
     public void ChangeProfileToShop()
     {
         ChangeStage(OnBoardingPhases.Shop);
+    }
+
+    public void ChangeBookToProfile()
+    {
+        ChangeStage(OnBoardingPhases.Profile);
     }
 
     public void ChangeSettingToQuests()
@@ -136,6 +193,7 @@ public class OnBoardingScenarios : MonoBehaviour
             if (AppManager.Instance.isCurrentLevelDone[0] == false)
             {
                 mapButtons[0].interactable = true;
+                mapButtons[0].GetComponent<MapButtonsBehavior>().OpenButtonFirstTime();
                 print("xzcdferre");
             }
             else
@@ -154,65 +212,15 @@ public class OnBoardingScenarios : MonoBehaviour
 
 
 
-    public void OnBoardingFlowStates()
-    {
-        Debug.Log((int)AppManager.Instance.boardingPhases);
-        switch (AppManager.Instance.boardingPhases)
-        {
-            
-            case OnBoardingPhases.Map:
-                currentIndex = AppManager.Instance.currentBoardingIndex;
-                MapScenearios();
-                break;
-            case OnBoardingPhases.Book:
-                footerButtons[1].SetActive(true);
-                footerButtons[1].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
-                footerButtons[1].GetComponentInChildren<Button>().interactable = true;
-                LockPreviousStages((int)AppManager.Instance.boardingPhases);
-                break;
-            case OnBoardingPhases.Profile:
-                LockPreviousStages((int)AppManager.Instance.boardingPhases);
-                footerButtons[2].SetActive(true);
-                footerButtons[2].GetComponentInChildren<Button>().interactable = true;
-                 footerButtons[2].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
-                break;
-            case OnBoardingPhases.Shop:
-                LockPreviousStages((int)AppManager.Instance.boardingPhases);
-                footerButtons[3].SetActive(true);
-                footerButtons[3].GetComponentInChildren<Button>().interactable = true;
-                footerButtons[3].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
-                break;
-            case OnBoardingPhases.Setting:
-                LockPreviousStages((int)AppManager.Instance.boardingPhases);
-                footerButtons[4].SetActive(true);
-                footerButtons[4].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
-                break;
-          
-            case OnBoardingPhases.Quests:
-                footerButtons[0].SetActive(true);
-                footerButtons[0].GetComponentInChildren<Button>().interactable = true;
-                footerButtons[0].SetActive(true);
-                footerButtons[0].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
-                backMission.interactable = true;
-                for (int i = 1; i < footerButtons.Count; i++)
-                {
-                    footerButtons[i].SetActive(true);
-                    footerButtons[i].GetComponentInChildren<Button>().interactable = false;
-                }
-                break;
-
-            default:
-                print("something else");
-                break;
-        }
-    }
+   
 
 
     void LockPreviousStages(int num)
     {
 
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < num-1; i++)
         {
+            print(footerButtons[i].name + "     HEREEE");
             footerButtons[i].SetActive(true);
             footerButtons[i].GetComponentInChildren<Button>().interactable = false;
         }
@@ -232,6 +240,7 @@ public class OnBoardingScenarios : MonoBehaviour
     public void change()
     {
         AppManager.Instance.boardingPhases = tesst;
+        AppManager.Instance.saveOnBoardingProgress();
         OnBoardingFlowStates();
     }
 

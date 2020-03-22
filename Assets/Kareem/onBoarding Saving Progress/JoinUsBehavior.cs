@@ -13,8 +13,14 @@ public class JoinUsBehavior : MonoBehaviour
         ProfileData profileData = new ProfileData();
         profileData.nickName = profileInfoContainer.nickname;
         profileData.gender = profileInfoContainer.gender.ToString();
-        profileInfoContainer.DOB = profileInfoContainer.DOB;
-        profileInfoContainer.profileImgIndex = profileInfoContainer.profileImgIndex;
+        profileData.birthDate = profileInfoContainer.DOB.dateTime.ToString("yyyy-MM-dd");
+        print(profileInfoContainer.DOB.dateTime.ToString("yyyy-MM-dd"));
+        //profileData.birthDate = "2000-10-15";
+        profileData.avatarId = profileInfoContainer.profileImgIndex.ToString();
+
+        
+
+
 
         NetworkManager.Instance.UpdateProfile(profileData, OnUpdateProfileSuccess, OnUpdateProfileFailed);
     }
