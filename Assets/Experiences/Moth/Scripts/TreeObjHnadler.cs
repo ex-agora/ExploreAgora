@@ -18,16 +18,19 @@ public class TreeObjHnadler : MonoBehaviour
         Invoke(nameof(StopVFX), 5f);
     }
     void StopVFX() {
-        isVFXRunning = false;
-        stopVFXEvent?.Raise();
-        particle.Stop();
-        meshTree.material = afterMatTree;
-    }
-    private void OnDisable()
-    {
-        if(isVFXRunning)
+        if (isVFXRunning)
+        {
+            isVFXRunning = false;
             stopVFXEvent?.Raise();
-        particle.Stop();
-        particle.gameObject.SetActive(false);
+            particle.Stop();
+            meshTree.material = afterMatTree;
+        }
+    }
+    private void OnEnable()
+    {
+        if (isVFXRunning)
+            StopVFX();
+        //particle.Stop();
+        //particle.gameObject.SetActive(false);
     }
 }

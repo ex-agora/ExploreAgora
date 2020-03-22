@@ -803,7 +803,8 @@ MonoBehaviour:
   - bubbleType: 1
     textInfo: Drag one factor from each category that would help the plant thrive.
   - bubbleType: 1
-    textInfo: "Drag different factors to the plant and let\u2019s discover what happens."
+    textInfo: "Drag different factors to the plant and let\u2019s discover what will
+      happen."
   - bubbleType: 2
     textInfo: You are too far. STEP forward to see everything in the exploratory zone.
   - bubbleType: 2
@@ -946,7 +947,7 @@ RectTransform:
   m_Children:
   - {fileID: 1539016930}
   m_Father: {fileID: 1628447480}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.31013572}
   m_AnchorMax: {x: 0.5, y: 0.31013572}
@@ -3949,6 +3950,16 @@ PrefabInstance:
       propertyPath: sfxSources.Array.data[1]
       value: 
       objectReference: {fileID: 1341607886}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -3963,16 +3974,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pitch
       value: 1.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: Loop
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2e8f503748622429623909fa188f46, type: 3}
@@ -5166,8 +5167,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1590852685}
-  - {fileID: 336316030}
   - {fileID: 2145172034}
+  - {fileID: 336316030}
   - {fileID: 342094797}
   m_Father: {fileID: 1325814285}
   m_RootOrder: 0
@@ -6093,7 +6094,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1814bdbaf31dbed47977b507164fcf92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88df35d5cce6e284cb817f7d9cf18286, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6257,21 +6258,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: handler
-      value: 
-      objectReference: {fileID: 113772072}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: relocateBtn
-      value: 
-      objectReference: {fileID: 1244647694}
-    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: menuBtn
-      value: 
-      objectReference: {fileID: 2036645590}
     - target: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6377,46 +6363,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_Colors.m_ColorMultiplier
-      value: 1.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: handler
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+      objectReference: {fileID: 113772072}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UIClicked
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+      propertyPath: relocateBtn
+      value: 
+      objectReference: {fileID: 1244647694}
+    - target: {fileID: 2617313999638629648, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: menuBtn
+      value: 
+      objectReference: {fileID: 2036645590}
     - target: {fileID: 2617314001005341268, guid: cee23c5f9f93d524997ead257a2e6d6f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6481,6 +6442,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UIClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617313999183504249, guid: cee23c5f9f93d524997ead257a2e6d6f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee23c5f9f93d524997ead257a2e6d6f, type: 3}
@@ -7199,7 +7200,7 @@ RectTransform:
   m_Children:
   - {fileID: 1550532758}
   m_Father: {fileID: 1628447480}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
