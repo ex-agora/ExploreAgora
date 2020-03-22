@@ -49,7 +49,7 @@ public class AppManager : MonoBehaviour
             currentBoardingIndex = 0;
             isCurrentLevelDone = new bool[4];
             isCurrentLevelPrizeDone = new bool[4];
-            boardingPhases = OnBoardingPhases.Map;
+            boardingPhases = OnBoardingPhases.None;
             saveOnBoardingProgress();
         }
     }
@@ -58,4 +58,6 @@ public class AppManager : MonoBehaviour
     {
        SaveLoadBoardingProgress.Save(this);
     }
+
+   
 }

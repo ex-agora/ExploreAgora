@@ -13,7 +13,8 @@ public class TESTCLASSBOARDING : MonoBehaviour
 
         AppManager.Instance.isCurrentLevelDone[currentind] = true;
         AppManager.Instance.saveOnBoardingProgress();
-        SceneManager.LoadSceneAsync(0);
+       // SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadScene("UI-UX");
     }
     public void testt()
     {
@@ -22,6 +23,7 @@ public class TESTCLASSBOARDING : MonoBehaviour
         AppManager.Instance.isCurrentLevelPrizeDone[0] = true;
         AppManager.Instance.saveOnBoardingProgress();
         //stagesIndicator.StagesIndicators[0] = true;
-        SceneManager.LoadSceneAsync(0);
+       // SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadScene("UI-UX");
     }
 }

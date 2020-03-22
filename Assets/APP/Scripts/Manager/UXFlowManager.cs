@@ -32,4 +32,19 @@ public class UXFlowManager : MonoBehaviour
     {
         quickFadeHandler.FadeIn();
     }
+
+    public void CanvasChecker()
+    {
+        if(AppManager.Instance.boardingPhases != OnBoardingPhases.None)
+        {
+            onBoardingCanvas.gameObject.SetActive(true);
+            uIDefaultCanvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            onBoardingCanvas.gameObject.SetActive(false);
+            uIDefaultCanvas.gameObject.SetActive(true);
+            LoginFadeIn();
+        }
+    }
 }
