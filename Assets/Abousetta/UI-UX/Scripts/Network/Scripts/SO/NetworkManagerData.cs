@@ -23,6 +23,7 @@ public class NetworkManagerData : ScriptableObject
     public string experiencePlayed;
     public string experienceData;
     public string detectObj;
+    public string completeCheckout;
 
     public string GetSignupURL ()
     {
@@ -87,5 +88,9 @@ public class NetworkManagerData : ScriptableObject
     public string GetDetecObjectURL ()
     {
         return serverURL + "/" + detectObj;
+    }    
+    public string GetCompleteCheckoutURL ()
+    {
+        return serverURL + "/" + completeCheckout;
     }
 }

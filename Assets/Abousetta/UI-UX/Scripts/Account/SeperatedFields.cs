@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class SeperatedFields : MonoBehaviour
 {
     [SerializeField] private List<InputField> inputFields;
+    [HideInInspector] public string code;
 
     private int index = 0;
     private AxisEventData direction;
@@ -31,7 +32,7 @@ public class SeperatedFields : MonoBehaviour
             direction.moveDir = MoveDirection.Left;
             previous = index;
             //inputFields[index < 0 ? 0 : index - 1].interactable = true;
-            up=ExecuteEvents.Execute(inputFields[index--].gameObject, direction, ExecuteEvents.moveHandler);
+            up = ExecuteEvents.Execute(inputFields[index--].gameObject, direction, ExecuteEvents.moveHandler);
             if (index < 0)
                 index = 0;
         }
@@ -40,7 +41,7 @@ public class SeperatedFields : MonoBehaviour
             direction.moveDir = MoveDirection.Right;
             previous = index;
             //inputFields[index >= inputFields.Count ? inputFields.Count - 1 : index + 1].interactable = true;
-            up =ExecuteEvents.Execute(inputFields[index++].gameObject, direction, ExecuteEvents.moveHandler);
+            up = ExecuteEvents.Execute(inputFields[index++].gameObject, direction, ExecuteEvents.moveHandler);
             if (index >= inputFields.Count)
                 index = inputFields.Count - 1;
         }
@@ -49,6 +50,18 @@ public class SeperatedFields : MonoBehaviour
         inputFields[index].Select();
         inputFields[index].ActivateInputField();
     }
+
+    public int SubmitCode()
+    {
+        code = string.Empty;
+
+        for (int i = 0; i < inputFields.Count; i++)
+            code += inputFields[i].text;
+
+        return int.Parse(code);
+
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))

@@ -202,16 +202,12 @@ public class NetworkTester : MonoBehaviour
     DetectObjectData detectObjectData = new DetectObjectData ();
     public void TestDetect ()
     {
-        print ("TestDetect");
-        detectObjectData.detectionObjectName = "tree";
-        print ("startTakePicture");
         StartCoroutine (TakePicture ());
     }
     public IEnumerator TakePicture ()
     {
         yield return new WaitForEndOfFrame ();
         string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
-        print ("TakePicture");
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
         int height = Screen.height;
@@ -223,16 +219,16 @@ public class NetworkTester : MonoBehaviour
 
         // Encode texture into PNG
         bytes = tex.EncodeToPNG ();
-        ////optional step either save to image or not
-        //System.IO.File.WriteAllBytes (path , bytes);
         detectObjectData.bytes = bytes;
+        detectObjectData.score = "0.8";
+        detectObjectData.detectionObjectName = "tree";
         NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
         Destroy (tex);
-        //return bytes;
     }
     private void OnS (NetworkParameters obj)
     {
-        print ("Tree fe3lan");
+        DetectObjectResponse detectObjectResponse = (DetectObjectResponse)obj.responseData;
+        print (detectObjectResponse.detected);
     }
     private void OnF (NetworkParameters obj)
     {
