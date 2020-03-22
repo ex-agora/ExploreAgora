@@ -11,7 +11,7 @@ public class NetworkTester : MonoBehaviour
     {
         using ( var w = UnityWebRequest.Post (NetworkManager.Instance.networkManagerData.GetDeleteTestURL () , "") )
         {
-            w.SetRequestHeader ("authorization" , "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNzRmZjEyYWQ5MDkzMDAxNzVkNTQ0NSIsInBsYXllclR5cGUiOiJjb21wbGV0ZSIsInJvbGUiOiJwbGF5ZXIiLCJpYXQiOjE1ODQ3MjU3Nzh9.aRa6LFMU80hgu-IbnNeIyGahqljV4xaswg1zjGYZnDk");
+            w.SetRequestHeader ("authorization" , NetworkManager.Instance.LoadToken ());
             yield return w.SendWebRequest ();
         }
     }
@@ -25,11 +25,13 @@ public class NetworkTester : MonoBehaviour
     [SerializeField] GetResetPasswordRequestData getRequestResetPasswordData;
     [SerializeField] GetCheckResetPasswordTokenData getCheckResetPasswordTokenData;
     [SerializeField] GetChangePasswordData getChangePasswordData;
+    [SerializeField] GetResetPasswordData getResetPasswordData;
     [SerializeField] GetLoginData getLoginData;
     [SerializeField] GetCompleteProfileData getCompleteProfileData;
     [SerializeField] GetGetProfileData getGetProfileData;
     [SerializeField] GetPlayExperienceData getPlayExperienceData;
     [SerializeField] GetExperienceData getExperienceData;
+    byte [] bytes;
     public void TestSignup ()
     {
         NetworkManager.Instance.Signup (getSignupData.getSignupData () , OnSignupSuccess , OnSignupFailed);
@@ -61,6 +63,7 @@ public class NetworkTester : MonoBehaviour
     }
     public void TestLogin ()
     {
+        print (getLoginData.getLoginData ().email);
         NetworkManager.Instance.Login (getLoginData.getLoginData () , OnLoginSuccess , OnLoginFailed);
     }
     private void OnLoginSuccess (NetworkParameters obj)
@@ -109,7 +112,6 @@ public class NetworkTester : MonoBehaviour
     private void OnResetPasswordRequestSuccess (NetworkParameters obj)
     {
         getRequestResetPasswordData.GoToNextPanel ();
-        TestCheckResetPasswordToken ();
     }
     private void OnResetPasswordRequestFailed (NetworkParameters obj)
     {
@@ -118,6 +120,7 @@ public class NetworkTester : MonoBehaviour
     }
     public void TestCheckResetPasswordToken ()
     {
+        print (getCheckResetPasswordTokenData.getCheckResetPasswordTokenData ().email);
         NetworkManager.Instance.CheckResetPasswordToken (getCheckResetPasswordTokenData.getCheckResetPasswordTokenData () , OnCheckResetPasswordTokenSuccess , OnCheckResetPasswordTokenFailed);
     }
     private void OnCheckResetPasswordTokenSuccess (NetworkParameters obj)
@@ -129,9 +132,9 @@ public class NetworkTester : MonoBehaviour
         getCheckResetPasswordTokenData.gameObject.SetActive (true);
         getCheckResetPasswordTokenData.ShowErrors (obj.err.message);
     }
-    public void TestChangePassword()
+    public void TestChangePassword ()
     {
-        NetworkManager.Instance.ChangePassword(getChangePasswordData.getChangePasswordData () , OnChangePasswordSuccess , OnChangePasswordFailed);
+        NetworkManager.Instance.ChangePassword (getChangePasswordData.getChangePasswordData () , OnChangePasswordSuccess , OnChangePasswordFailed);
     }
     private void OnChangePasswordSuccess (NetworkParameters obj)
     {
@@ -141,6 +144,19 @@ public class NetworkTester : MonoBehaviour
     {
         getChangePasswordData.gameObject.SetActive (true);
         getChangePasswordData.ShowErrors (obj.err.message);
+    }
+    public void TestResetPassword ()
+    {
+        NetworkManager.Instance.ResetPassword (getResetPasswordData.getResetPasswordData () , OnResetPasswordSuccess , OnResetPasswordFailed);
+    }
+    private void OnResetPasswordSuccess (NetworkParameters obj)
+    {
+        getResetPasswordData.GoToNextPanel ();
+    }
+    private void OnResetPasswordFailed (NetworkParameters obj)
+    {
+        getResetPasswordData.gameObject.SetActive (true);
+        getResetPasswordData.ShowErrors (obj.err.message);
     }
     public void TestUpdateExperience ()
     {
@@ -183,28 +199,43 @@ public class NetworkTester : MonoBehaviour
         getExperienceData.gameObject.SetActive (true);
         getExperienceData.ShowErrors (obj.err.message);
     }
+    DetectObjectData detectObjectData = new DetectObjectData ();
+    public void TestDetect ()
+    {
+        print ("TestDetect");
+        detectObjectData.detectionObjectName = "tree";
+        print ("startTakePicture");
+        StartCoroutine (TakePicture ());
+    }
+    public IEnumerator TakePicture ()
+    {
+        yield return new WaitForEndOfFrame ();
+        string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
+        print ("TakePicture");
+        // Create a texture the size of the screen, RGB24 format
+        int width = Screen.width;
+        int height = Screen.height;
+        var tex = new Texture2D (width , height , TextureFormat.RGB24 , false);
+
+        // Read screen contents into the texture
+        tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
+        tex.Apply ();
+
+        // Encode texture into PNG
+        bytes = tex.EncodeToPNG ();
+        ////optional step either save to image or not
+        //System.IO.File.WriteAllBytes (path , bytes);
+        detectObjectData.bytes = bytes;
+        NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
+        Destroy (tex);
+        //return bytes;
+    }
+    private void OnS (NetworkParameters obj)
+    {
+        print ("Tree fe3lan");
+    }
+    private void OnF (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
 }
-//DetectObjectData detectObjectData;
-//public void TestDetect ()
-//{
-//    detectObjectData.detectionObjectName = "tree";
-//    byte [] bytes = TakePicture ();
-//    detectObjectData.bytes = bytes;
-//    NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
-//}
-//public byte [] TakePicture ()
-//{
-//    string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
-//    // Create a texture the size of the screen, RGB24 format
-//    int width = Screen.width;
-//    int height = Screen.height;
-//    var tex = new Texture2D (width , height , TextureFormat.RGB24 , false);
-
-//    // Read screen contents into the texture
-//    tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
-//    tex.Apply ();
-
-//    // Encode texture into PNG
-//    byte [] bytes = tex.EncodeToPNG ();
-//    return bytes;
-//}

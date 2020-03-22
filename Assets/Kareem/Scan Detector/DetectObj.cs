@@ -68,11 +68,12 @@ public class DetectObj : MonoBehaviour
         // Create a Web Form
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
-        form.AddField ("objectToDetect" , scanProperties.detectionObjectName);
+        //form.AddField ("objectToDetect" , scanProperties.detectionObjectName);
+        form.AddField ("objectToDetect" , "tree");
         form.AddBinaryData ("scannedImg" , bytes , "screenShot.png" , "image/png");
 
         // Upload to a cgi script
-        using ( var w = UnityEngine.Networking.UnityWebRequest.Post ("https://explore-agora.herokuapp.com/vision/detect" , form) )
+        using ( var w = UnityEngine.Networking.UnityWebRequest.Post ("https://exploreagora.herokuapp.com/player/vision/detect" , form) )
         {
             yield return w.SendWebRequest ();
             //if error 
