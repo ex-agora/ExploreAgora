@@ -86,6 +86,6 @@ public class NetworkManagerData : ScriptableObject
     }    
     public string GetDetecObjectURL ()
     {
-        return detectObj;
+        return serverURL + "/" + detectObj;
     }
 }

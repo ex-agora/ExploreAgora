@@ -199,9 +199,22 @@ public class NetworkManager : MonoBehaviour
     public bool CheckResetPasswordToken (CheckResetPasswordTokenData checkResetPasswordTokenData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         WWWForm form = new WWWForm ();
+        print (checkResetPasswordTokenData.email);
         form.AddField ("email" , checkResetPasswordTokenData.email);
         form.AddField ("token" , checkResetPasswordTokenData.token); //token is activation code 
         StartCoroutine (PostRequest<CheckResetPasswordTokenResponse> (networkManagerData.GetCheckResetPasswordTokenURL () , form , false , onSuccess , onFailed));
+        return isSuccess;
+    }
+    public bool ResetPassword (ResetPasswordData resetPasswordData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        print (resetPasswordData.email);
+        print (resetPasswordData.password);
+        print (resetPasswordData.token);
+        WWWForm form = new WWWForm ();
+        form.AddField ("email" , resetPasswordData.email);
+        form.AddField ("password" , resetPasswordData.password);
+        form.AddField ("token" , resetPasswordData.token);
+        StartCoroutine (PostRequest<ResetPasswordResponse> (networkManagerData.GetResetPasswordURL () , form , false , onSuccess , onFailed));
         return isSuccess;
     }
     public bool ChangePassword (ChangePasswordData changePasswordData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
@@ -212,15 +225,6 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<ChangePasswordResponse> (networkManagerData.GetChangePasswordURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
-    public bool ResetPassword (ResetPasswordData resetPasswordData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
-    {
-        WWWForm form = new WWWForm ();
-        form.AddField ("email" , resetPasswordData.email);
-        form.AddField ("password" , resetPasswordData.password);
-        form.AddField ("token" , resetPasswordData.token);
-        StartCoroutine (PostRequest<ResetPasswordResponse> (networkManagerData.GetResetPasswordURL () , form , false , onSuccess , onFailed));
-        return isSuccess;
-    }
     public bool ResendActivationCode (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         StartCoroutine (PostRequest<ResendActivationCodeResponse> (networkManagerData.GetResendActivationCodeURL () , true , onSuccess , onFailed));
@@ -228,9 +232,9 @@ public class NetworkManager : MonoBehaviour
     }
     private IEnumerator PostRequest<T> (string url , WWWForm form , bool isAuthorizeTokenNeeeded , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed) where T : ResponseData
     {
+        Debug.Log (url);
         using ( var w = UnityWebRequest.Post (url , form) )
         {
-            Debug.Log (url);
             if ( isAuthorizeTokenNeeeded )
                 AuthorizeWithToken (w);
             yield return w.SendWebRequest ();
@@ -244,6 +248,8 @@ public class NetworkManager : MonoBehaviour
             }
             else
             {
+                Debug.Log (w.downloadHandler.text);
+
                 RequestSucceed<T> (w);
                 if ( onSuccess != null )
                     onSuccess.Invoke (np);
@@ -295,12 +301,12 @@ public class NetworkManager : MonoBehaviour
             }
             else
             {
+                RequestSucceed<T> (w);
+                if ( onSuccess != null )
+                    onSuccess.Invoke (np);
+                else
+                    Debug.LogError ("NetworkParameter onSuccess is NULL!!!!");
             }
-            RequestSucceed<T> (w);
-            if ( onSuccess != null )
-                onSuccess.Invoke (np);
-            else
-                Debug.LogError ("NetworkParameter onSuccess is NULL!!!!");
         }
     }
     void RequestFailed (UnityWebRequest w)
@@ -344,11 +350,13 @@ public class NetworkManager : MonoBehaviour
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
+        print ("start detect Obj");
         // Create a Web Form
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
         form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
-        StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , false , onSuccess , onFailed));
+        print ("DetectObject");
+        StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
     }
 }
