@@ -17,7 +17,9 @@ public class OnBoardingScenarios : MonoBehaviour
     //[SerializeField] StagesIndicator stagesIndicator;
     private int currentIndex;
     //index of current state
-   
+
+
+    [SerializeField] OnBoardingPhases tesst;
     #endregion
 
 
@@ -43,10 +45,8 @@ public class OnBoardingScenarios : MonoBehaviour
 
     public void EndingComics()
     {
-        ChangeStage(OnBoardingPhases.Map);
-        comics.SetActive(false);
-        Map.SetActive(true);
-        MapScenearios();
+        ChangeStage(OnBoardingPhases.Profile);
+        OnBoardingFlowStates();
     }
 
     public void ChangeProfileToShop()
@@ -57,6 +57,10 @@ public class OnBoardingScenarios : MonoBehaviour
     public void ChangeSettingToQuests()
     {
         ChangeStage(OnBoardingPhases.Quests);
+    }
+    public void ChangeShopToSetting()
+    {
+        ChangeStage(OnBoardingPhases.Setting);
     }
     public void ChangeStage(OnBoardingPhases onBoardingPhase)
     {
@@ -119,7 +123,7 @@ public class OnBoardingScenarios : MonoBehaviour
                         mapButtons[i].interactable = false;
 
                         // change enum
-                        ChangeStage(OnBoardingPhases.Profile);
+                        ChangeStage(OnBoardingPhases.Book);
                         OnBoardingFlowStates();
                     }
                     mapButtons[i].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
@@ -150,7 +154,7 @@ public class OnBoardingScenarios : MonoBehaviour
 
 
 
-    void OnBoardingFlowStates()
+    public void OnBoardingFlowStates()
     {
         Debug.Log((int)AppManager.Instance.boardingPhases);
         switch (AppManager.Instance.boardingPhases)
@@ -161,22 +165,34 @@ public class OnBoardingScenarios : MonoBehaviour
                 MapScenearios();
                 break;
             case OnBoardingPhases.Book:
+                footerButtons[1].SetActive(true);
+                footerButtons[1].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
+                footerButtons[1].GetComponentInChildren<Button>().interactable = true;
                 LockPreviousStages((int)AppManager.Instance.boardingPhases);
                 break;
             case OnBoardingPhases.Profile:
                 LockPreviousStages((int)AppManager.Instance.boardingPhases);
-                Profile.SetActive(true);
+                footerButtons[2].SetActive(true);
+                footerButtons[2].GetComponentInChildren<Button>().interactable = true;
+                 footerButtons[2].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
                 break;
             case OnBoardingPhases.Shop:
                 LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                footerButtons[3].SetActive(true);
+                footerButtons[3].GetComponentInChildren<Button>().interactable = true;
+                footerButtons[3].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
                 break;
             case OnBoardingPhases.Setting:
                 LockPreviousStages((int)AppManager.Instance.boardingPhases);
+                footerButtons[4].SetActive(true);
+                footerButtons[4].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
                 break;
           
             case OnBoardingPhases.Quests:
                 footerButtons[0].SetActive(true);
                 footerButtons[0].GetComponentInChildren<Button>().interactable = true;
+                footerButtons[0].SetActive(true);
+                footerButtons[0].GetComponent<FooterButtonsBehavior>().EnableInstructionPanel();
                 backMission.interactable = true;
                 for (int i = 1; i < footerButtons.Count; i++)
                 {
@@ -195,7 +211,7 @@ public class OnBoardingScenarios : MonoBehaviour
     void LockPreviousStages(int num)
     {
 
-        for (int i = 0; i < num+1; i++)
+        for (int i = 0; i < num; i++)
         {
             footerButtons[i].SetActive(true);
             footerButtons[i].GetComponentInChildren<Button>().interactable = false;
@@ -212,6 +228,12 @@ public class OnBoardingScenarios : MonoBehaviour
     #endregion
 
 
+    [ContextMenu("TTTT")]
+    public void change()
+    {
+        AppManager.Instance.boardingPhases = tesst;
+        OnBoardingFlowStates();
+    }
 
     //public void ChangeScene
 }
