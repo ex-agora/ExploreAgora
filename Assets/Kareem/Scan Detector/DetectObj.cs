@@ -52,32 +52,33 @@ public class DetectObj : MonoBehaviour
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
         int height = Screen.height;
-        var tex = new Texture2D (width, height, TextureFormat.RGB24, false);
+        var tex = new Texture2D (width , height , TextureFormat.RGB24 , false);
 
         // Read screen contents into the texture
-        tex.ReadPixels (new Rect (0, 0, width, height), 0, 0);
+        tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
         tex.Apply ();
 
         // Encode texture into PNG
         byte [] bytes = tex.EncodeToPNG ();
         //optional step either save to image or not
-        System.IO.File.WriteAllBytes (path, bytes);
+        System.IO.File.WriteAllBytes (path , bytes);
         Destroy (tex);
         Debug.Log (bytes);
 
         // Create a Web Form
         WWWForm form = new WWWForm ();
-        form.AddField ("score", "0.8");
-        form.AddField ("objectToDetect", scanProperties.detectionObjectName);
-        form.AddBinaryData ("scannedImg", bytes, "screenShot.png", "image/png");
+        form.AddField ("score" , "0.8");
+        form.AddField ("objectToDetect" , scanProperties.detectionObjectName);
+        form.AddBinaryData ("scannedImg" , bytes , "screenShot.png" , "image/png");
 
         // Upload to a cgi script
-        using (var w = UnityEngine.Networking.UnityWebRequest.Post ("https://explore-agora.herokuapp.com/vision/detect", form))
+        using ( var w = UnityEngine.Networking.UnityWebRequest.Post ("https://explore-agora.herokuapp.com/vision/detect" , form) )
         {
             yield return w.SendWebRequest ();
             //if error 
-            if (w.isNetworkError || w.isHttpError)
+            if ( w.isNetworkError || w.isHttpError )
             {
+                Debug.Log (w.error);
                 Debug.Log (w.error);
                 Debug.Log ("Error");
                 outputText.text = w.downloadHandler.text + " " + w.error;
@@ -90,11 +91,11 @@ public class DetectObj : MonoBehaviour
                 output = processJson (w.downloadHandler.text);
                 //outputText.text = output;
                 //For Example
-                if (output.ToLower () == "true")
+                if ( output.ToLower () == "true" )
                 {
                     print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
                     outputText.text = "Found";
-                    if (scanProperties.ShouldContinueToExperience)
+                    if ( scanProperties.ShouldContinueToExperience )
                         Panel.SetActive (true);
                     else
                         SceneManager.LoadScene ("first Scene");
