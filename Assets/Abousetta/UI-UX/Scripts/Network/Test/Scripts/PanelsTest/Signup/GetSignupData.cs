@@ -24,5 +24,17 @@ public class GetSignupData : GeneralPanelTest
         s.deviceId = deviceId.text;
         return s;
     }
+    public SignupData getSignupData (bool t)
+    {
+        SignupData s = new SignupData ();
+        s.firstName = "sasda";
+        s.lastName = "sasda";
+        s.email = "sasda";
+        s.password = "sasda";
+        s.country = "sasda";
+        s.deviceType = "sasda";
+        s.deviceId = "sasda";
+        return s;
+    }
 
 }

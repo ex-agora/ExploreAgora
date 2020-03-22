@@ -16,12 +16,13 @@ public class DetectObj : MonoBehaviour
     //Output from server 
     string output;
     [SerializeField] ScanProperties scanProperties;
+    DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
     #region Methods
     public void Detect ()
     {
-        StartCoroutine (UploadPNG ());
+        StartCoroutine (TakePicture ());
     }
 
     //responsible of return string of response output of a JSON String
@@ -61,7 +62,7 @@ public class DetectObj : MonoBehaviour
         // Encode texture into PNG
         byte [] bytes = tex.EncodeToPNG ();
         //optional step either save to image or not
-        System.IO.File.WriteAllBytes (path , bytes);
+        //System.IO.File.WriteAllBytes (path , bytes);
         Destroy (tex);
         Debug.Log (bytes);
 
@@ -111,6 +112,55 @@ public class DetectObj : MonoBehaviour
             LoadingCanvas.SetActive (false);
             Maincanvas.SetActive (true);
         }
+    }
+    public IEnumerator TakePicture ()
+    {
+        yield return new WaitForEndOfFrame ();
+        string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
+        // Create a texture the size of the screen, RGB24 format
+        int width = Screen.width;
+        int height = Screen.height;
+        var tex = new Texture2D (width , height , TextureFormat.RGB24 , false);
+        // Read screen contents into the texture
+        tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
+        tex.Apply ();
+        byte [] bytes = tex.EncodeToPNG ();
+
+        // Encode texture into PNG
+        bytes = tex.EncodeToPNG ();
+        detectObjectData.bytes = bytes;
+        detectObjectData.score = "0.8";
+        detectObjectData.detectionObjectName = scanProperties.detectionObjectName;
+        NetworkManager.Instance.DetectObject (detectObjectData , OnSuscees , OnFailed);
+        Destroy (tex);
+    }
+    private void OnSuscees (NetworkParameters obj)
+    {
+        DetectObjectResponse detectObjectResponse = (DetectObjectResponse)obj.responseData;
+        print (detectObjectResponse.detected);
+        LoadingCanvas.SetActive (false);
+        Maincanvas.SetActive (true);
+
+        if ( detectObjectResponse.detected.ToLower () == "true" )
+        {
+            print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
+            outputText.text = "Found";
+            if ( scanProperties.ShouldContinueToExperience )
+                Panel.SetActive (true);
+            else
+                SceneManager.LoadScene ("first Scene");
+        }
+        else
+        {
+            outputText.text = scanProperties.detectionObjectName + " Not Found";
+            print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
+        }
+    }
+    private void OnFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+        LoadingCanvas.SetActive (false);
+        Maincanvas.SetActive (true);
     }
     #endregion Methods
 }

@@ -8,4 +8,5 @@ public class ProfileResponse
     public string country;
     public string gender;
     public string avatarId;
+    public float powerStones;
 }
