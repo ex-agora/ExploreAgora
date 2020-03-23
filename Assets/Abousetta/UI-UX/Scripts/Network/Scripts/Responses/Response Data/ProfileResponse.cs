@@ -11,4 +11,8 @@ public class ProfileResponse
     public float powerStones;
     public bool registered;
     public string playerType;
+    public string email;
+    public string points;
+    public int keys;
+    public int streaks;
 }

@@ -105,6 +105,7 @@ public class NetworkTester : MonoBehaviour
     {
         getGetProfileData.gameObject.SetActive (true);
         getGetProfileData.ShowErrors (obj.err.message);
+        print (obj.err.message);
     }
     public void TestResetPasswordRequest ()
     {
