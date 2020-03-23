@@ -53,7 +53,7 @@ public class NetworkManager : MonoBehaviour
     }
     IEnumerator checkServerConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest(networkManagerData.serverURL);
+        UnityWebRequest www = new UnityWebRequest (networkManagerData.serverURL);
         yield return www;
         if ( www.error != null )
         {
@@ -87,7 +87,7 @@ public class NetworkManager : MonoBehaviour
     }
     IEnumerator checkInternetConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest("http://google.com");
+        UnityWebRequest www = new UnityWebRequest ("http://google.com");
         yield return www;
         if ( www.error != null )
         {
@@ -148,6 +148,15 @@ public class NetworkManager : MonoBehaviour
             form.AddField ("gender" , updateProfileData.gender);
         if ( !String.IsNullOrEmpty (updateProfileData.avatarId) )
             form.AddField ("avatarId" , updateProfileData.avatarId);
+        form.AddField ("powerStones" , updateProfileData.powerStones.ToString ());
+        form.AddField ("registered" , updateProfileData.registered.ToString ());
+        if ( !String.IsNullOrEmpty (updateProfileData.playerType) )
+            form.AddField ("playerType" , updateProfileData.playerType);
+        if ( !String.IsNullOrEmpty (updateProfileData.email) )
+            form.AddField ("email" , updateProfileData.email);
+        form.AddField ("points" , updateProfileData.points.ToString ());
+        form.AddField ("keys" , updateProfileData.keys.ToString ());
+        form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
         StartCoroutine (PostRequest<UpdateProfileResponse> (networkManagerData.GetUpdateProfileURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
@@ -363,12 +372,13 @@ public class NetworkManager : MonoBehaviour
             return string.Empty;
         }
     }
-    public bool CheckTokenExist() => File.Exists(tokenPath);
-    public void DeleteToken() {
-        if (File.Exists(tokenPath))
-            File.Delete(tokenPath);
+    public bool CheckTokenExist () => File.Exists (tokenPath);
+    public void DeleteToken ()
+    {
+        if ( File.Exists (tokenPath) )
+            File.Delete (tokenPath);
     }
-    public bool IsEmptyToken() => LoadToken() == string.Empty;
+    public bool IsEmptyToken () => LoadToken () == string.Empty;
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
