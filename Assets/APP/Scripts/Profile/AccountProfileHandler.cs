@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class AccountProfileHandler : MonoBehaviour
 {
     [SerializeField] private Text nicknameText;
+    [SerializeField] private Text nicknameShopText;
+    [SerializeField] private Text nicknameBookText;
+    [SerializeField] private Text nicknameMissionText;
     [SerializeField] private Text rankText;
+    [SerializeField] private Text rankBookText;
+    [SerializeField] private Text rankShopText;
+    [SerializeField] private Text rankMissionText;
     [SerializeField] private Text pointsText;
     [SerializeField] private Text keysText1;
     [SerializeField] private Text streakText1;
@@ -40,6 +46,12 @@ public class AccountProfileHandler : MonoBehaviour
         outsideBundleProfileImage.sprite = chosenForProfile;
     }
 
+    public void UpdateNickname() {
+        nicknameText.text = profileInfo.nickname;
+        nicknameShopText.text = profileInfo.nickname;
+        nicknameBookText.text = profileInfo.nickname;
+        nicknameMissionText.text = profileInfo.nickname;
+    }
     public void UpdateStreak()
     {
         if (profileInfo.streaks == 0)
@@ -57,6 +69,16 @@ public class AccountProfileHandler : MonoBehaviour
     {
         var rank = ranks.GetRank(profileInfo.points);
         rankText.text = rank.Key;
+        rankBookText.text = rank.Key;
+        rankShopText.text = rank.Key;
+        rankBookText.text = rank.Key;
         pointsText.text = $"{AbbrevationUtility.AbbreviateNumber(profileInfo.points)}/{AbbrevationUtility.AbbreviateNumber(rank.Value.max)}";
+    }
+    public void UpdateProfile()
+    {
+        ConfirmChangeProfilePicture();
+        UpdateStreak();
+        UpdateNickname();
+        UpdateRankPoints();
     }
 }
