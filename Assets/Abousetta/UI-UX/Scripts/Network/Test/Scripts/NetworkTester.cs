@@ -69,6 +69,7 @@ public class NetworkTester : MonoBehaviour
     private void OnLoginSuccess (NetworkParameters obj)
     {
         LoginResponse loginResponse = (LoginResponse)obj.responseData;
+        NetworkManager.Instance.SaveToken (loginResponse.token);
         getLoginData.GoToNextPanel ();
     }
     private void OnLoginFailed (NetworkParameters obj)
