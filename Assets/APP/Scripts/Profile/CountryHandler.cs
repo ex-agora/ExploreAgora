@@ -18,6 +18,16 @@ public class CountryHandler : MonoBehaviour
         }
         countryDD.AddOptions(countryNames);
     }
+    public void SetCountry(string _country) {
+        CountriesCodedInfo countriesInfo = CountryHolder.Instance.GetCountries();
+        for (int i = 0; i < countriesInfo.countries.Length; i++)
+        {
+            if (countriesInfo.countries[i].country == _country) {
+                countryDD.value = i;
+                break;
+            }
+        }
+    }
     public string GetCountryName() {
         CountriesCodedInfo countriesInfo = CountryHolder.Instance.GetCountries();
         return countriesInfo.countries[countryDD.value].country;

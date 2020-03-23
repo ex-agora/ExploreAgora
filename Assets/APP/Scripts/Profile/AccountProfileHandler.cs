@@ -48,6 +48,9 @@ public class AccountProfileHandler : MonoBehaviour
     [SerializeField] private ProfileInfoContainer profileInfo;
     [SerializeField] private RanksHolder ranks;
 
+    [SerializeField] private Text fNameText;
+    [SerializeField] private Text lNameText;
+    [SerializeField] private CountryHandler country;
     public ProfileInfoContainer ProfileInfo { get => profileInfo; set => profileInfo = value; }
 
     public void ConfirmChangeProfilePicture()
@@ -61,6 +64,11 @@ public class AccountProfileHandler : MonoBehaviour
         outsideBundleProfileImage.sprite = chosenForProfile;
     }
 
+    public void UpdateSettingsInfo() {
+        fNameText.text = profileInfo.fName;
+        lNameText.text = profileInfo.lName;
+        country.SetCountry(profileInfo.country);
+    }
     public void UpdateNickname()
     {
         nicknameText.text = profileInfo.nickname;
@@ -119,6 +127,7 @@ public class AccountProfileHandler : MonoBehaviour
         UpdateStreak();
         UpdatePowerStones();
         UpdateKeys();
+        UpdateSettingsInfo();
         UpdateNickname();
         UpdateRankPoints();
     }

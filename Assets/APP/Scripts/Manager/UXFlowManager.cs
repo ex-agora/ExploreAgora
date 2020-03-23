@@ -37,7 +37,7 @@ public class UXFlowManager : MonoBehaviour
         {
             _ProfileNetowrkHandler.GetProfile();
             AcceptLogin();
-            quickFadeHandler.FadeIn();
+            //quickFadeHandler.FadeIn();
         }
         else {
             FadeInProfile();
@@ -45,6 +45,10 @@ public class UXFlowManager : MonoBehaviour
     }
     public void FadeInProfile() {
         quickFadeHandler.FadeIn();
+    }
+    public void FadeInProfileDellay(float delay)
+    {
+        Invoke(nameof(FadeInProfile), delay);
     }
     public void CanvasChecker()
     {
