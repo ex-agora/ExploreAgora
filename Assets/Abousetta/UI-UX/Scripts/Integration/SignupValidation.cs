@@ -9,15 +9,16 @@ public class SignupValidation : MonoBehaviour
     [SerializeField] private InputField lastName;
     [SerializeField] private InputField email;
     [SerializeField] private InputField password;
+    [SerializeField] private InputField confirmPassword;
     [SerializeField] private CountryHandler country;
-    [SerializeField] private Button signUpBtn;
+    [SerializeField] CheckBoxToggle termsCheck;
+    [SerializeField] CheckBoxToggle policyCheck;
     [SerializeField] private ErrorFadingHandler fNameError;
     [SerializeField] private ErrorFadingHandler lNameError;
     [SerializeField] private ErrorFadingHandler emailError;
     [SerializeField] private ErrorFadingHandler pwError;
+    [SerializeField] private ErrorFadingHandler pwConfirmError;
     [SerializeField] private ErrorFadingHandler tremsAndPolicyError;
-    [SerializeField] CheckBoxToggle termsCheck;
-    [SerializeField] CheckBoxToggle policyCheck;
     bool isPressed = false;
     private void OnEnable()
     {
@@ -53,6 +54,20 @@ public class SignupValidation : MonoBehaviour
             emailError.HideErrorMsgDelay(3f);
             return;
         }
+        if (!ValidationInputUtility.VerifyPassword(password.text))
+        {
+            pwError.ShowErrorMsg("Invalid Password Length");
+            pwError.HideErrorMsgDelay(3f);
+
+            return;
+        }
+        if (password.text != confirmPassword.text)
+        {
+            pwConfirmError.ShowErrorMsg("The Password does not match");
+            pwConfirmError.HideErrorMsgDelay(3f);
+
+            return;
+        }
         if (!termsCheck.IsActiveCheck || !policyCheck.IsActiveCheck)
         {
             tremsAndPolicyError.ShowErrorMsg("Please Confirm Our Policies");
@@ -74,12 +89,34 @@ public class SignupValidation : MonoBehaviour
     {
         isPressed = false;
         SignupResponse signupResponse = (SignupResponse)obj.responseData;
-        /////very importnt 
         NetworkManager.Instance.SaveToken(signupResponse.token);
+        UXFlowManager.Instance.ShowConformationPanel();
     }
     private void OnSignupFailed(NetworkParameters obj)
     {
-        
+        switch (obj.err.message.ToLower()) {
+            case "password must be at least 8 chars long":
+                pwError.ShowErrorMsg("Invalid Password Length");
+                pwError.HideErrorMsgDelay(3f);
+                break;
+            case "invalid value":
+                lNameError.ShowErrorMsg("Invalid Last Name");
+                lNameError.HideErrorMsgDelay(3f);
+                break;
+            case "firstname must not be empty.":
+                fNameError.ShowErrorMsg("Invalid First Name");
+                fNameError.HideErrorMsgDelay(3f);
+                break;
+            case "lastname must not be empty.":
+                lNameError.ShowErrorMsg("Invalid Last Name");
+                lNameError.HideErrorMsgDelay(3f);
+                break;
+            case "user already existed":
+                pwError.ShowErrorMsg("User Already Existed");
+                pwError.HideErrorMsgDelay(3f);
+                break;
+        }
+        isPressed = false;
     }
 }
 

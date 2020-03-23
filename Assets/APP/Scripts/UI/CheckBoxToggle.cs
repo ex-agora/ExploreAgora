@@ -7,7 +7,7 @@ public class CheckBoxToggle : MonoBehaviour
 {
     [SerializeField] Sprite active;
     [SerializeField] Sprite unactive;
-    [SerializeField] Button checkBtn;
+    [SerializeField] Image checkImg;
     bool isActiveCheck;
 
     private void OnEnable()
@@ -18,8 +18,8 @@ public class CheckBoxToggle : MonoBehaviour
     public void ToggleCheckBox() {
         isActiveCheck = !isActiveCheck;
         if (isActiveCheck)
-            checkBtn.image.sprite = active;
+            checkImg.sprite = active;
         else
-            checkBtn.image.sprite = unactive;
+            checkImg.sprite = unactive;
     }
 }

@@ -51,7 +51,7 @@ public class VerifyLoginInfo : MonoBehaviour
     private void OnLoginFailed(NetworkParameters obj)
     {
         isPressed = false;
-        error.ShowErrorMsg(obj.err.message);
+        error.ShowErrorMsg("Wrong Email or Password");
         error.HideErrorMsgDelay(3f);
         print(obj.err.message);
     }
