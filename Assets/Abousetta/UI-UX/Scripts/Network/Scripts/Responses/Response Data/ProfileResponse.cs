@@ -9,4 +9,6 @@ public class ProfileResponse
     public string gender;
     public string avatarId;
     public float powerStones;
+    public bool registered;
+    public string playerType;
 }
