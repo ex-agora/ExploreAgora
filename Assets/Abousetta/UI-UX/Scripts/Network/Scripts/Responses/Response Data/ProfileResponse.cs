@@ -12,7 +12,7 @@ public class ProfileResponse
     public bool registered;
     public string playerType;
     public string email;
-    public string points;
+    public ulong points;
     public int keys;
-    public int streaks;
+    public int dailyStreaks;
 }
