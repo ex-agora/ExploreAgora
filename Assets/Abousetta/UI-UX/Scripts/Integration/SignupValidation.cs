@@ -19,6 +19,7 @@ public class SignupValidation : MonoBehaviour
     [SerializeField] private ErrorFadingHandler pwError;
     [SerializeField] private ErrorFadingHandler pwConfirmError;
     [SerializeField] private ErrorFadingHandler tremsAndPolicyError;
+    
     bool isPressed = false;
     private void OnEnable()
     {

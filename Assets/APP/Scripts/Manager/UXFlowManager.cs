@@ -7,7 +7,8 @@ public class UXFlowManager : MonoBehaviour
     public static UXFlowManager Instance;
 
     [SerializeField] private SplashScreenHandler splashScreenHandler;
-    [SerializeField] private QuickFadeHandler quickFadeHandler;
+    [SerializeField] private QuickFadeHandler quickFadeLoginHandler;
+    [SerializeField] private QuickFadeHandler quickFadeProfileHandler;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private Canvas uIDefaultCanvas;
     [SerializeField] private Canvas onBoardingCanvas;
@@ -36,18 +37,20 @@ public class UXFlowManager : MonoBehaviour
         if (NetworkManager.Instance.CheckTokenExist())
         {
             _ProfileNetowrkHandler.GetProfile();
-            AcceptLogin();
+            //AcceptLogin();
             //quickFadeHandler.FadeIn();
         }
         else {
-            FadeInProfile();
+            quickFadeLoginHandler.FadeIn();
         }
     }
     public void FadeInProfile() {
-        quickFadeHandler.FadeIn();
+        
+        quickFadeProfileHandler.FadeIn();
     }
     public void FadeInProfileDellay(float delay)
     {
+        AcceptLogin();
         Invoke(nameof(FadeInProfile), delay);
     }
     public void CanvasChecker()

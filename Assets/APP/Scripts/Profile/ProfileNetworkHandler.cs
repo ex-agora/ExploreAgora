@@ -21,7 +21,12 @@ public class ProfileNetworkHandler : MonoBehaviour
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.birthDate))
             profile.DOB.dateTime = System.DateTime.Parse(response.profile.birthDate);
         if (response.profile.gender != null)
-            profile.gender = (Gender)System.Enum.Parse(typeof(Gender), response.profile.gender);
+        {
+            var str = response.profile.gender.ToCharArray();
+            str[0] = char.ToUpper(response.profile.gender[0]);
+            System.Enum.TryParse(new string(str), out profile.gender);
+        }
+
         profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
             profile.lName = response.profile.lastName;
