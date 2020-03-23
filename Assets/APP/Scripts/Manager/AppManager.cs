@@ -11,6 +11,8 @@ public class AppManager : MonoBehaviour
     public bool[] isCurrentLevelPrizeDone;
     public OnBoardingPhases boardingPhases;
 
+
+
     private static AppManager instance;
     private bool isSplashScreenDone;
  
@@ -59,5 +61,12 @@ public class AppManager : MonoBehaviour
        SaveLoadBoardingProgress.Save(this);
     }
 
-   
+    public void DeleteBoardFile()
+    {
+        SaveLoadBoardingProgress.Delete();
+    }
+
+
+    
+  
 }

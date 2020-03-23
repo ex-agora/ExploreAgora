@@ -11,7 +11,9 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private Canvas uIDefaultCanvas;
     [SerializeField] private Canvas onBoardingCanvas;
-
+    [SerializeField] private GameObject loginRootPanel;
+    [SerializeField] private GameObject footerPanel;
+    [SerializeField] private GameObject conformationPanel;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -30,6 +32,8 @@ public class UXFlowManager : MonoBehaviour
 
     public void LoginFadeIn()
     {
+        if (NetworkManager.Instance.CheckTokenExist())
+            AcceptLogin();
         quickFadeHandler.FadeIn();
     }
 
@@ -46,5 +50,12 @@ public class UXFlowManager : MonoBehaviour
             uIDefaultCanvas.gameObject.SetActive(true);
             LoginFadeIn();
         }
+    }
+    public void AcceptLogin() {
+        loginRootPanel.SetActive(false);
+        footerPanel.SetActive(true);
+    }
+    public void ShowConformationPanel() {
+        conformationPanel.SetActive(true);
     }
 }

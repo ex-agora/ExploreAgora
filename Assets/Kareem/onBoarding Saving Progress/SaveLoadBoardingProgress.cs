@@ -71,5 +71,10 @@ public class SaveLoadBoardingProgress
             return null;
         }
     }
+
+public static void Delete()
+    {
+        File.Delete(Application.persistentDataPath + "/OnBoarding" + ".File");
+    }
 }
 
