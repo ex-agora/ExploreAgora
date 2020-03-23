@@ -360,10 +360,15 @@ public class NetworkManager : MonoBehaviour
         else
         {
             Debug.LogError ("UnAutorized!!!!");
-            return "UnAutorized";
+            return string.Empty;
         }
     }
     public bool CheckTokenExist() => File.Exists(tokenPath);
+    public void DeleteToken() {
+        if (File.Exists(tokenPath))
+            File.Delete(tokenPath);
+    }
+    public bool IsEmptyToken() => LoadToken() == string.Empty;
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {

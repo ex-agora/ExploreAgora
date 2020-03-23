@@ -67,4 +67,12 @@ public class SeperatedFields : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
             NextField();
     }
+    public void ClearSeperatedFields() {
+        for (int i = 0; i < inputFields.Count; i++)
+            inputFields[i].text = string.Empty;
+        inputFields[0].Select();
+        inputFields[0].ActivateInputField();
+        direction = new AxisEventData(EventSystem.current);
+        direction.moveDir = MoveDirection.None;
+    }
 }

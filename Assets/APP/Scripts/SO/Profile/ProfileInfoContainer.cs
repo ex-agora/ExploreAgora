@@ -15,4 +15,8 @@ public class ProfileInfoContainer : ScriptableObject
     public int streaks;
     public int stones;
     public int profileImgIndex;
+    public string country;
+    public string fName;
+    public string lName;
+    public string email;
 }

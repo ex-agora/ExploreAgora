@@ -58,4 +58,9 @@ public class UXFlowManager : MonoBehaviour
     public void ShowConformationPanel() {
         conformationPanel.SetActive(true);
     }
+    public void AcceptConformation() {
+        conformationPanel.SetActive(false);
+    }
+
+
 }
