@@ -53,7 +53,7 @@ public class NetworkManager : MonoBehaviour
     }
     IEnumerator checkServerConnection (Action<bool> action)
     {
-        WWW www = new WWW (networkManagerData.serverURL);
+        UnityWebRequest www = new UnityWebRequest(networkManagerData.serverURL);
         yield return www;
         if ( www.error != null )
         {
@@ -87,7 +87,7 @@ public class NetworkManager : MonoBehaviour
     }
     IEnumerator checkInternetConnection (Action<bool> action)
     {
-        WWW www = new WWW ("http://google.com");
+        UnityWebRequest www = new UnityWebRequest("http://google.com");
         yield return www;
         if ( www.error != null )
         {
@@ -363,6 +363,7 @@ public class NetworkManager : MonoBehaviour
             return "UnAutorized";
         }
     }
+    public bool CheckTokenExist() => File.Exists(tokenPath);
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {

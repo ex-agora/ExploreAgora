@@ -18,4 +18,8 @@ public class ErrorFadingHandler : MonoBehaviour
     {
         fadeAnimator.SetTrigger("IsClose");
     }
+    public void HideErrorMsgDelay(float delay)
+    {
+        Invoke(nameof(HideErrorMsg), delay);
+    }
 }
