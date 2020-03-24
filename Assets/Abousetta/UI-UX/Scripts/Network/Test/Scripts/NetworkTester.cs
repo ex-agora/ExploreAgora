@@ -6,6 +6,27 @@ using UnityEngine.Networking;
 
 public class NetworkTester : MonoBehaviour
 {
+    //private void Start ()
+    //{
+
+    //    ProfileData ss = new ProfileData ();
+    //    ss.scannedObjects = new ScannedObjects ();
+    //    ss.scannedObjects.scannedObjects = new List<ScannedObject> ();
+    //    ScannedObject tree = new ScannedObject ();
+    //    tree.name = "tree";
+    //    tree.counter = 51;
+    //    ScannedObject book = new ScannedObject ();
+    //    book.name = "book";
+    //    book.counter = 22;
+    //    ss.scannedObjects.scannedObjects.Add (tree);
+    //    ss.scannedObjects.scannedObjects.Add (book);
+    //    //scannedObjects.Add (tree);
+    //    //scannedObjects.Add (book);
+    //    //string scannedObjectsData = JsonUtility.ToJson (ss.scannedObjects);
+    //    //print (scannedObjectsData);
+    //    NetworkManager.Instance.UpdateProfile (ss , OnUpdateProfileSuccess , OnUpdateProfileFailed);
+    //    //print (ssss);
+    //}
     /// 
     private IEnumerator DeleteForTestResponse ()
     {
@@ -79,7 +100,31 @@ public class NetworkTester : MonoBehaviour
     }
     public void TestUpdateProfile ()
     {
-        NetworkManager.Instance.UpdateProfile (getCompleteProfileData.getCompleteProfileData () , OnUpdateProfileSuccess , OnUpdateProfileFailed);
+
+        ProfileData ss = new ProfileData ();
+        ss.scannedObjects.scannedObjects= new List<ScannedObject> ();
+        ScannedObject tree = new ScannedObject ();
+        tree.name = "tree";
+        tree.counter = 5;
+        ScannedObject book = new ScannedObject ();
+        book.name = "book";
+        book.counter = 140;
+        ss.scannedObjects.scannedObjects.Add (tree);
+        ss.scannedObjects.scannedObjects.Add (book);
+        ProfileData profileData = new ProfileData ();
+        profileData.scannedObjects = ss.scannedObjects;
+        //getCompleteProfileData.getCompleteProfileData ().scannedObjects = ss.scannedObjects;
+        //getCompleteProfileData.getCompleteProfileData ().scannedObjects = ssss;
+        //getCompleteProfileData.getCompleteProfileData ().keys = 0;
+        //getCompleteProfileData.getCompleteProfileData ().points = 0;
+        //getCompleteProfileData.getCompleteProfileData ().powerStones = 0;
+        //getCompleteProfileData.getCompleteProfileData ().dailyStreaks = 0;
+        //print (getCompleteProfileData.getCompleteProfileData ().dailyStreaks);
+        //print (getCompleteProfileData.getCompleteProfileData ().powerStones);
+        //print (getCompleteProfileData.getCompleteProfileData ().points);
+        //print (getCompleteProfileData.getCompleteProfileData ().keys);
+        //print (getCompleteProfileData.getCompleteProfileData ().scannedObjects + ssss);
+        NetworkManager.Instance.UpdateProfile (profileData , OnUpdateProfileSuccess , OnUpdateProfileFailed);
     }
     private void OnUpdateProfileSuccess (NetworkParameters obj)
     {
@@ -99,7 +144,25 @@ public class NetworkTester : MonoBehaviour
     private void OnGetProfileSuccess (NetworkParameters obj)
     {
         GetProfileResponse getProfileResponse = (GetProfileResponse)obj.responseData;
-        getGetProfileData.ShowData (getProfileResponse.profile);
+        //print (getProfileResponse.profile.avatarId);
+        //print (getProfileResponse.profile.birthDate);
+        //print (getProfileResponse.profile.country);
+        //print (getProfileResponse.profile.dailyStreaks);
+        //print (getProfileResponse.profile.email);
+        //print (getProfileResponse.profile.firstName);
+        //print (getProfileResponse.profile.gender);
+        //print (getProfileResponse.profile.keys);
+        //print (getProfileResponse.profile.lastName);
+        //print (getProfileResponse.profile.nickName);
+        //print (getProfileResponse.profile.playerType);
+        //print (getProfileResponse.profile.points);
+        //print (getProfileResponse.profile.powerStones);
+        //for ( int i = 0 ; i < getProfileResponse.profile.scannedObjects.Count ; i++ )
+        //{
+        //    print (getProfileResponse.profile.scannedObjects[i].name + " "  + getProfileResponse.profile.scannedObjects [i].counter);
+        //}
+        //print (getProfileResponse.profile.registered);
+        //getGetProfileData.ShowData (getProfileResponse.profile);
     }
     private void OnGetProfileFailed (NetworkParameters obj)
     {
@@ -223,7 +286,7 @@ public class NetworkTester : MonoBehaviour
         bytes = tex.EncodeToPNG ();
         detectObjectData.bytes = bytes;
         detectObjectData.score = "0.8";
-        detectObjectData.detectionObjectName = "tree";
+        detectObjectData.detectionObjectName = "book";
         NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
         Destroy (tex);
     }

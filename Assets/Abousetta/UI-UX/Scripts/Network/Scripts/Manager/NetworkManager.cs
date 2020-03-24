@@ -133,7 +133,14 @@ public class NetworkManager : MonoBehaviour
 
     public bool UpdateProfile (ProfileData updateProfileData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
+        string scannedObjectsData = JsonUtility.ToJson (updateProfileData.scannedObjects);
         WWWForm form = new WWWForm ();
+        form.AddField ("points" , updateProfileData.points.ToString ());
+        form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
+        form.AddField ("keys" , updateProfileData.keys.ToString ());
+        form.AddField ("powerStones" , updateProfileData.powerStones.ToString ());
+        if ( !String.IsNullOrEmpty (scannedObjectsData) )
+            form.AddField ("scannedObjects" , scannedObjectsData);
         if ( !String.IsNullOrEmpty (updateProfileData.firstName) )
             form.AddField ("firstName" , updateProfileData.firstName);
         if ( !String.IsNullOrEmpty (updateProfileData.lastName) )
@@ -148,15 +155,8 @@ public class NetworkManager : MonoBehaviour
             form.AddField ("gender" , updateProfileData.gender);
         if ( !String.IsNullOrEmpty (updateProfileData.avatarId) )
             form.AddField ("avatarId" , updateProfileData.avatarId);
-        form.AddField ("powerStones" , updateProfileData.powerStones.ToString ());
-        form.AddField ("registered" , updateProfileData.registered.ToString ());
-        if ( !String.IsNullOrEmpty (updateProfileData.playerType) )
-            form.AddField ("playerType" , updateProfileData.playerType);
         if ( !String.IsNullOrEmpty (updateProfileData.email) )
             form.AddField ("email" , updateProfileData.email);
-        form.AddField ("points" , updateProfileData.points.ToString ());
-        form.AddField ("keys" , updateProfileData.keys.ToString ());
-        form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
         StartCoroutine (PostRequest<UpdateProfileResponse> (networkManagerData.GetUpdateProfileURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
@@ -336,10 +336,23 @@ public class NetworkManager : MonoBehaviour
     }
     void RequestFailed (UnityWebRequest w)
     {
+
+        Debug.Log (w.downloadHandler.text);
         isSuccess = false;
         Debug.LogError ("isHttpError " + w.isHttpError + "\nisNetworkError " + w.isNetworkError + "\nResponse: " + w.downloadHandler.text + "\nError " + w.error);
-        np.err = JsonUtility.FromJson<NetworkError> (w.downloadHandler.text);
-        Debug.LogError (" status: " + np.err.status + " customCode: " + np.err.customCode + " message:  " + np.err.message);
+        if ( w.isHttpError )
+        {
+            np.err = JsonUtility.FromJson<NetworkError> (w.downloadHandler.text);
+            Debug.LogError (" status: " + np.err.status + " customCode: " + np.err.customCode + " message:  " + np.err.message);
+        }
+        else if ( w.isNetworkError )
+        {
+            np.err = new NetworkError ();
+            np.err.customCode = "12001";
+            np.err.status = "12001";
+            np.err.message = "No Internet";
+            Debug.LogError (np.err.message);
+        }
     }
     void RequestSucceed<T> (UnityWebRequest w) where T : ResponseData
     {
