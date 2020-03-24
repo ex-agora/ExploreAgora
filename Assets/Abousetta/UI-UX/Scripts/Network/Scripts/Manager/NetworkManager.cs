@@ -30,91 +30,91 @@ public class NetworkManager : MonoBehaviour
 
     }
     #region Internet connection
-    public bool CheckServerConnectivity (Action<NetworkParameters> onSuccess, Action<NetworkParameters> onFailed)
+    public bool CheckServerConnectivity (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         // Check internet connection.
         //TODO
         bool networkStatus = false;
-        StartCoroutine (checkServerConnection ((isConnected) =>
+        StartCoroutine (CheckServerConnection ((isConnected) =>
         {
             // handle connection status here
-            // handle connection status here
-            if (isConnected)
-            {
-                onSuccess.Invoke(np);
-                Debug.Log("Network status " + networkStatus);
-            }
-            else
-            {
-                onFailed.Invoke(np);
-                Debug.LogError("Network status " + networkStatus);
-            }
-        }));
-        return networkStatus;
-    }
-    IEnumerator checkServerConnection (Action<bool> action)
-    {
-        UnityWebRequest www = null;
-        if (Application.internetReachability != NetworkReachability.NotReachable)
-        {
-            www = new UnityWebRequest(networkManagerData.serverURL);
-            www.timeout = 3;
-            yield return www;
-        }
-        if (www == null || www.error != null)
-        {
-            var e = new NetworkError();
-            e.status = "12001";
-            e.status = "No Internet";
-            np.err = e;
-            action(false);
-        }
-        else
-        {
-            action(true);
-        }
-    }
-    public void CheckInternetConnectivity (Action<NetworkParameters> onSuccess, Action<NetworkParameters> onFailed)
-    {
-        // Check internet connection.
-        //TODO
-        bool networkStatus = false;
-        StartCoroutine (checkInternetConnection ((isConnected) =>
-        {
             // handle connection status here
             if ( isConnected )
             {
-                onSuccess.Invoke(np);
+                onSuccess.Invoke (np);
                 Debug.Log ("Network status " + networkStatus);
             }
             else
             {
-                onFailed.Invoke(np); 
+                onFailed.Invoke (np);
                 Debug.LogError ("Network status " + networkStatus);
             }
         }));
-       
+        return networkStatus;
     }
-    IEnumerator checkInternetConnection (Action<bool> action)
+    IEnumerator CheckServerConnection (Action<bool> action)
     {
         UnityWebRequest www = null;
-        if (Application.internetReachability != NetworkReachability.NotReachable)
+        if ( Application.internetReachability != NetworkReachability.NotReachable )
         {
-            www = new UnityWebRequest("http://google.com.ae");
+            www = new UnityWebRequest (networkManagerData.serverURL);
             www.timeout = 3;
             yield return www;
         }
-        if (www == null || www.error != null)
+        if ( www == null || www.error != null )
         {
-            var e = new NetworkError();
+            var e = new NetworkError ();
             e.status = "12001";
             e.status = "No Internet";
             np.err = e;
-            action(false);
+            action (false);
         }
         else
         {
-            action(true);
+            action (true);
+        }
+    }
+    public void CheckInternetConnectivity (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        // Check internet connection.
+        //TODO
+        bool networkStatus = false;
+        StartCoroutine (CheckInternetConnection ((isConnected) =>
+        {
+            // handle connection status here
+            if ( isConnected )
+            {
+                onSuccess.Invoke (np);
+                Debug.Log ("Network status " + networkStatus);
+            }
+            else
+            {
+                onFailed.Invoke (np);
+                Debug.LogError ("Network status " + networkStatus);
+            }
+        }));
+
+    }
+    IEnumerator CheckInternetConnection (Action<bool> action)
+    {
+        UnityWebRequest www = null;
+        if ( Application.internetReachability != NetworkReachability.NotReachable )
+        {
+            www = new UnityWebRequest ("http://google.com.ae");
+            www.timeout = 3;
+            yield return www;
+        }
+        if ( www == null || www.error != null )
+        {
+            var e = new NetworkError ();
+            e.status = "12001";
+            e.status = "No Internet";
+            np.err = e;
+            action (false);
+        }
+        else
+        {
+            action (true);
         }
     }
     #endregion
@@ -188,7 +188,11 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new WWWForm ();
         form.AddField ("status" , experiencePlayData.status);
-        form.AddField ("experiencecode" , experiencePlayData.experiencecode);
+        form.AddField ("experienceCode" , experiencePlayData.experienceCode);
+        if ( experiencePlayData.status == 1)
+        {
+            experiencePlayData.score = 0;
+        }
         form.AddField ("score" , experiencePlayData.score);
         StartCoroutine (PostRequest<ExperienceResponse> (networkManagerData.GetUpdateExperienceStatusURL () , form , true , onSuccess , onFailed));
         return isSuccess;
@@ -418,7 +422,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
         form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
-        Debug.LogError(detectObjectData.detectionObjectName);
+        Debug.LogError (detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
         StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
     }

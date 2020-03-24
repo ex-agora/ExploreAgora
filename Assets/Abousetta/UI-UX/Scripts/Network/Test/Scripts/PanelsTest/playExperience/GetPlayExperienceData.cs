@@ -10,11 +10,11 @@ public class GetPlayExperienceData : GeneralPanelTest
     public InputField exName;
     public InputField score;
 
-    public ExperiencePlayData getPlayExperienceData ()
+    public ExperiencePlayData GetPlayExperienceDataHandeler ()
     {
         ExperiencePlayData s = new ExperiencePlayData ();
         s.status = Int32.Parse(status.text);
-        s.experiencecode = exName.text;
+        s.experienceCode = exName.text;
         s.score = Int32.Parse (score.text);
         return s;
     }

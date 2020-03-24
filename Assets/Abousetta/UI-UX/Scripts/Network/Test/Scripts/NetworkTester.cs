@@ -6,12 +6,12 @@ using UnityEngine.Networking;
 
 public class NetworkTester : MonoBehaviour
 {
-    private void Start ()
-    {
+    //private void Start ()
+    //{
 
 
-        //print (ssss);
-    }
+    //    //print (ssss);
+    //}
 
     private IEnumerator DeleteForTestResponse ()
     {
@@ -113,7 +113,7 @@ public class NetworkTester : MonoBehaviour
     }
     private void OnUpdateProfileSuccess (NetworkParameters obj)
     {
-        UpdateProfileResponse updateProfileResponse = (UpdateProfileResponse)obj.responseData;
+        //UpdateProfileResponse updateProfileResponse = (UpdateProfileResponse)obj.responseData;
         TestGetProfile ();
         getCompleteProfileData.GoToNextPanel ();
         //flow
@@ -231,7 +231,7 @@ public class NetworkTester : MonoBehaviour
     }
     public void TestUpdateExperience ()
     {
-        NetworkManager.Instance.UpdateExperienceStatus (getPlayExperienceData.getPlayExperienceData () , OntUpdateExperienceSuccess , OntUpdateExperienceFailed);
+        NetworkManager.Instance.UpdateExperienceStatus (getPlayExperienceData.GetPlayExperienceDataHandeler () , OntUpdateExperienceSuccess , OntUpdateExperienceFailed);
     }
     private void OntUpdateExperienceSuccess (NetworkParameters obj)
     {
