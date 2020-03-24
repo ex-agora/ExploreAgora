@@ -54,6 +54,23 @@ public class NetworkTester : MonoBehaviour
         getSignupData.ShowErrors (obj.err.message);
         getSignupData.gameObject.SetActive (true);
     }
+    public void TestCheckout ()
+    {
+        CompleteCheckoutData checkoutData = new CompleteCheckoutData ();
+        checkoutData.packageName = "";
+        checkoutData.productId = "";
+        checkoutData.purchaseToken = "";
+        checkoutData.storeType = "";
+        NetworkManager.Instance.CompleteCheckout (checkoutData , OnCheckoutSuccess , OnCheckoutFailed);
+    }
+    private void OnCheckoutSuccess (NetworkParameters obj)
+    {
+       //flow
+    }
+    private void OnCheckoutFailed (NetworkParameters obj)
+    {
+        //flow
+    }
     public void TestVerifyMail ()
     {
         NetworkManager.Instance.VerifyEmail (getVerifyMailData.getVerifyEmailData () , OnVerifyMailSuccess , OnVerifyMailFailed);
