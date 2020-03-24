@@ -14,7 +14,7 @@ public class GetPlayExperienceData : GeneralPanelTest
     {
         ExperiencePlayData s = new ExperiencePlayData ();
         s.status = Int32.Parse(status.text);
-        s.experienceName = exName.text;
+        s.experiencecode = exName.text;
         s.score = Int32.Parse (score.text);
         return s;
     }

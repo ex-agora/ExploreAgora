@@ -6,28 +6,13 @@ using UnityEngine.Networking;
 
 public class NetworkTester : MonoBehaviour
 {
-    //private void Start ()
-    //{
+    private void Start ()
+    {
 
-    //    ProfileData ss = new ProfileData ();
-    //    ss.scannedObjects = new ScannedObjects ();
-    //    ss.scannedObjects.scannedObjects = new List<ScannedObject> ();
-    //    ScannedObject tree = new ScannedObject ();
-    //    tree.name = "tree";
-    //    tree.counter = 51;
-    //    ScannedObject book = new ScannedObject ();
-    //    book.name = "book";
-    //    book.counter = 22;
-    //    ss.scannedObjects.scannedObjects.Add (tree);
-    //    ss.scannedObjects.scannedObjects.Add (book);
-    //    //scannedObjects.Add (tree);
-    //    //scannedObjects.Add (book);
-    //    //string scannedObjectsData = JsonUtility.ToJson (ss.scannedObjects);
-    //    //print (scannedObjectsData);
-    //    NetworkManager.Instance.UpdateProfile (ss , OnUpdateProfileSuccess , OnUpdateProfileFailed);
-    //    //print (ssss);
-    //}
-    /// 
+
+        //print (ssss);
+    }
+
     private IEnumerator DeleteForTestResponse ()
     {
         using ( var w = UnityWebRequest.Post (NetworkManager.Instance.networkManagerData.GetDeleteTestURL () , "") )
@@ -102,40 +87,42 @@ public class NetworkTester : MonoBehaviour
     {
 
         ProfileData ss = new ProfileData ();
-        ss.scannedObjects.scannedObjects= new List<ScannedObject> ();
+        ss.scannedObjects = new ScannedObjects ();
+        ss.scannedObjects.scannedObjects = new List<ScannedObject> ();
         ScannedObject tree = new ScannedObject ();
         tree.name = "tree";
-        tree.counter = 5;
+        tree.counter = 51;
         ScannedObject book = new ScannedObject ();
         book.name = "book";
-        book.counter = 140;
+        book.counter = 22;
+        ss.firstName = "";
+        ss.lastName = "";
+        ss.nickName = "";
+        ss.country = "";
+        ss.birthDate = "YYYY-MM-DD";
+        ss.avatarId = "";
+        ss.email = "";
+        ss.gender = "";
+        ss.keys = 0;
+        ss.dailyStreaks = 0;
+        ss.points = 0;
+        ss.powerStones = 0;
         ss.scannedObjects.scannedObjects.Add (tree);
         ss.scannedObjects.scannedObjects.Add (book);
-        ProfileData profileData = new ProfileData ();
-        profileData.scannedObjects = ss.scannedObjects;
-        //getCompleteProfileData.getCompleteProfileData ().scannedObjects = ss.scannedObjects;
-        //getCompleteProfileData.getCompleteProfileData ().scannedObjects = ssss;
-        //getCompleteProfileData.getCompleteProfileData ().keys = 0;
-        //getCompleteProfileData.getCompleteProfileData ().points = 0;
-        //getCompleteProfileData.getCompleteProfileData ().powerStones = 0;
-        //getCompleteProfileData.getCompleteProfileData ().dailyStreaks = 0;
-        //print (getCompleteProfileData.getCompleteProfileData ().dailyStreaks);
-        //print (getCompleteProfileData.getCompleteProfileData ().powerStones);
-        //print (getCompleteProfileData.getCompleteProfileData ().points);
-        //print (getCompleteProfileData.getCompleteProfileData ().keys);
-        //print (getCompleteProfileData.getCompleteProfileData ().scannedObjects + ssss);
-        NetworkManager.Instance.UpdateProfile (profileData , OnUpdateProfileSuccess , OnUpdateProfileFailed);
+        NetworkManager.Instance.UpdateProfile (ss , OnUpdateProfileSuccess , OnUpdateProfileFailed);
     }
     private void OnUpdateProfileSuccess (NetworkParameters obj)
     {
         UpdateProfileResponse updateProfileResponse = (UpdateProfileResponse)obj.responseData;
         TestGetProfile ();
         getCompleteProfileData.GoToNextPanel ();
+        //flow
     }
     private void OnUpdateProfileFailed (NetworkParameters obj)
     {
         getCompleteProfileData.gameObject.SetActive (true);
         getCompleteProfileData.ShowErrors (obj.err.message);
+        //print(obj.err.message);
     }
     public void TestGetProfile ()
     {
@@ -144,25 +131,44 @@ public class NetworkTester : MonoBehaviour
     private void OnGetProfileSuccess (NetworkParameters obj)
     {
         GetProfileResponse getProfileResponse = (GetProfileResponse)obj.responseData;
-        //print (getProfileResponse.profile.avatarId);
-        //print (getProfileResponse.profile.birthDate);
-        //print (getProfileResponse.profile.country);
-        //print (getProfileResponse.profile.dailyStreaks);
-        //print (getProfileResponse.profile.email);
-        //print (getProfileResponse.profile.firstName);
-        //print (getProfileResponse.profile.gender);
-        //print (getProfileResponse.profile.keys);
-        //print (getProfileResponse.profile.lastName);
-        //print (getProfileResponse.profile.nickName);
-        //print (getProfileResponse.profile.playerType);
-        //print (getProfileResponse.profile.points);
-        //print (getProfileResponse.profile.powerStones);
-        //for ( int i = 0 ; i < getProfileResponse.profile.scannedObjects.Count ; i++ )
+        print (getProfileResponse.profile.isConfirmed);
+        print (getProfileResponse.profile.points);
+        print (getProfileResponse.profile.dailyStreaks);
+        print (getProfileResponse.profile.keys);
+        print (getProfileResponse.profile.powerStones);
+        for ( int i = 0 ; i < getProfileResponse.profile.scannedObjects.Count ; i++ )
+        {
+            print (getProfileResponse.profile.scannedObjects [i].name + " " + getProfileResponse.profile.scannedObjects [i].counter);
+        }
+        print (getProfileResponse.profile.email);
+        print (getProfileResponse.profile.country);
+        print (getProfileResponse.profile.avatarId);
+        print (getProfileResponse.profile.firstName);
+        print (getProfileResponse.profile.lastName);
+        print (getProfileResponse.profile.playerType);
+        print (getProfileResponse.profile.birthDate);
+        print (getProfileResponse.profile.gender);
+        print (getProfileResponse.profile.nickName);
+
+        //= getProfileResponse.profile.isConfirmed;
+        //= getProfileResponse.profile.points;
+        //= getProfileResponse.profile.dailyStreaks;
+        //= getProfileResponse.profile.keys;
+        //= getProfileResponse.profile.powerStones;
+        //for ( int i = 0 ; i < = getProfileResponse.profile.scannedObjects.Count ; i++ )
         //{
-        //    print (getProfileResponse.profile.scannedObjects[i].name + " "  + getProfileResponse.profile.scannedObjects [i].counter);
+        //    = getProfileResponse.profile.scannedObjects [i].name + " " + = getProfileResponse.profile.scannedObjects [i].counter;
         //}
-        //print (getProfileResponse.profile.registered);
-        //getGetProfileData.ShowData (getProfileResponse.profile);
+        //= getProfileResponse.profile.email;
+        //= getProfileResponse.profile.country;
+        //= getProfileResponse.profile.avatarId;
+        //= getProfileResponse.profile.firstName;
+        //= getProfileResponse.profile.lastName;
+        //= getProfileResponse.profile.playerType;
+        //= getProfileResponse.profile.birthDate;
+        //= getProfileResponse.profile.gender;
+        //= getProfileResponse.profile.nickName;
+        getGetProfileData.ShowData (getProfileResponse.profile);
     }
     private void OnGetProfileFailed (NetworkParameters obj)
     {
@@ -244,17 +250,16 @@ public class NetworkTester : MonoBehaviour
     }
     private void OnGetExperiencesSuccess (NetworkParameters obj)
     {
-
         ExperienceResponse getExperienceResponse = (ExperienceResponse)obj.responseData;
         string exS = "";
         for ( int i = 0 ; i < getExperienceResponse.experience.Length ; i++ )
         {
-            exS += "Name :  " + getExperienceResponse.experience [i].experienceName +
-                " lastPlayedAt " + getExperienceResponse.experience [i].lastPlayedAt +
+            exS += "Name :  " + getExperienceResponse.experience [i].experienceCode +
+                //" lastPlayedAt " + getExperienceResponse.experience [i].lastPlayedAt +
                 " finishedTimesCounter " + getExperienceResponse.experience [i].finishedTimesCounter +
                     " maxScore " + getExperienceResponse.experience [i].maxScore +
-                    " playedTiemesCounter " + getExperienceResponse.experience [i].playedTiemesCounter +
-                    " totalPlayedDuration " + getExperienceResponse.experience [i].totalPlayedDuration + "    \n";
+                    " playedTiemesCounter " + getExperienceResponse.experience [i].playedTimesCounter + "    \n";
+            //" totalPlayedDuration " + getExperienceResponse.experience [i].totalPlayedDuration + "    \n";
         }
         getExperienceData.ShowData (exS);
     }

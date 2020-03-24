@@ -188,7 +188,7 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new WWWForm ();
         form.AddField ("status" , experiencePlayData.status);
-        form.AddField ("experienceName" , experiencePlayData.experienceName);
+        form.AddField ("experiencecode" , experiencePlayData.experiencecode);
         form.AddField ("score" , experiencePlayData.score);
         StartCoroutine (PostRequest<ExperienceResponse> (networkManagerData.GetUpdateExperienceStatusURL () , form , true , onSuccess , onFailed));
         return isSuccess;
