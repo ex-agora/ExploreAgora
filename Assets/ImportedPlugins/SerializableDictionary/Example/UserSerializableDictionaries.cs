@@ -27,6 +27,8 @@ public class StringRankRangeDictionary : SerializableDictionary<string, RankRang
 
 [Serializable]
 public class StringImageDictionary : SerializableDictionary<string, Image> {}
+[Serializable]
+public class StringExperienceContainerHolderDictionary : SerializableDictionary<string, ExperienceContainerHolder> { }
 
 
 [Serializable]

@@ -95,7 +95,7 @@ public class PopupExperienceHandler : MonoBehaviour
         popupAnim.OpenToolBar();
     }
     public void PlayExperience() {
-
+        ExperienceRouteHandler.Instance.Transit(_Experience);
     }
 
     public void AcviteScan() {
