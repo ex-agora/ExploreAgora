@@ -8,6 +8,7 @@ public class InventoryObjectHolder : ScriptableObject
     [SerializeField] StringIntDictionary scanedObjects;
     public int GetScanedCounter(string _Name) {
         int counter = -1,value;
+        _Name = _Name.ToLower();
         if (scanedObjects.TryGetValue(_Name, out value))
             counter = value;
         return counter;

@@ -32,6 +32,9 @@ public class GetGetProfileData : GeneralPanelTest
         gender.text = data.gender;
         birthdate.text = data.birthDate;
         country.text = data.country;
-        
+        //for ( int i = 0 ; i < data.scannedObjects.Count ; i++ )
+        //{
+        //    Debug.LogError (data.scannedObjects[i].name + " " + data.scannedObjects [i].counter);
+        //}
     }
 }

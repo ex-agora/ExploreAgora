@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class DetermineObject : MonoBehaviour
 {
     #region Fields
-    [SerializeField] Detectiopossibilities detectiopossibilities;
+    [SerializeField] string detectiopossibilities;
     [SerializeField] ScanProperties scanProperties;
     #endregion Fields
 
     #region Methods
-    private void Awake()
+    private void StartScan()
     {
         scanProperties.detectionObjectName = detectiopossibilities.ToString();
         SceneManager.LoadScene("Scan Scene");

@@ -30,33 +30,43 @@ public class NetworkManager : MonoBehaviour
 
     }
     #region Internet connection
-    public bool CheckServerConnectivity ()
+    public bool CheckServerConnectivity (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         // Check internet connection.
         //TODO
         bool networkStatus = false;
-        StartCoroutine (checkServerConnection ((isConnected) =>
+        StartCoroutine (CheckServerConnection ((isConnected) =>
         {
+            // handle connection status here
             // handle connection status here
             if ( isConnected )
             {
-                networkStatus = true;
+                onSuccess.Invoke (np);
                 Debug.Log ("Network status " + networkStatus);
             }
             else
             {
-                networkStatus = false;
+                onFailed.Invoke (np);
                 Debug.LogError ("Network status " + networkStatus);
             }
         }));
         return networkStatus;
     }
-    IEnumerator checkServerConnection (Action<bool> action)
+    IEnumerator CheckServerConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest (networkManagerData.serverURL);
-        yield return www;
-        if ( www.error != null )
+        UnityWebRequest www = null;
+        if ( Application.internetReachability != NetworkReachability.NotReachable )
         {
+            www = new UnityWebRequest (networkManagerData.serverURL);
+            www.timeout = 3;
+            yield return www;
+        }
+        if ( www == null || www.error != null )
+        {
+            var e = new NetworkError ();
+            e.status = "12001";
+            e.status = "No Internet";
+            np.err = e;
             action (false);
         }
         else
@@ -64,33 +74,42 @@ public class NetworkManager : MonoBehaviour
             action (true);
         }
     }
-    public bool CheckInternetConnectivity ()
+    public void CheckInternetConnectivity (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         // Check internet connection.
         //TODO
         bool networkStatus = false;
-        StartCoroutine (checkInternetConnection ((isConnected) =>
+        StartCoroutine (CheckInternetConnection ((isConnected) =>
         {
             // handle connection status here
             if ( isConnected )
             {
-                networkStatus = true;
+                onSuccess.Invoke (np);
                 Debug.Log ("Network status " + networkStatus);
             }
             else
             {
-                networkStatus = false;
+                onFailed.Invoke (np);
                 Debug.LogError ("Network status " + networkStatus);
             }
         }));
-        return networkStatus;
+
     }
-    IEnumerator checkInternetConnection (Action<bool> action)
+    IEnumerator CheckInternetConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest ("http://google.com");
-        yield return www;
-        if ( www.error != null )
+        UnityWebRequest www = null;
+        if ( Application.internetReachability != NetworkReachability.NotReachable )
         {
+            www = new UnityWebRequest ("http://google.com.ae");
+            www.timeout = 3;
+            yield return www;
+        }
+        if ( www == null || www.error != null )
+        {
+            var e = new NetworkError ();
+            e.status = "12001";
+            e.status = "No Internet";
+            np.err = e;
             action (false);
         }
         else
@@ -133,7 +152,14 @@ public class NetworkManager : MonoBehaviour
 
     public bool UpdateProfile (ProfileData updateProfileData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
+        string scannedObjectsData = JsonUtility.ToJson (updateProfileData.scannedObjects);
         WWWForm form = new WWWForm ();
+        form.AddField ("points" , updateProfileData.points.ToString ());
+        form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
+        form.AddField ("keys" , updateProfileData.keys.ToString ());
+        form.AddField ("powerStones" , updateProfileData.powerStones.ToString ());
+        if ( !String.IsNullOrEmpty (scannedObjectsData) )
+            form.AddField ("scannedObjects" , scannedObjectsData);
         if ( !String.IsNullOrEmpty (updateProfileData.firstName) )
             form.AddField ("firstName" , updateProfileData.firstName);
         if ( !String.IsNullOrEmpty (updateProfileData.lastName) )
@@ -148,15 +174,8 @@ public class NetworkManager : MonoBehaviour
             form.AddField ("gender" , updateProfileData.gender);
         if ( !String.IsNullOrEmpty (updateProfileData.avatarId) )
             form.AddField ("avatarId" , updateProfileData.avatarId);
-        form.AddField ("powerStones" , updateProfileData.powerStones.ToString ());
-        form.AddField ("registered" , updateProfileData.registered.ToString ());
-        if ( !String.IsNullOrEmpty (updateProfileData.playerType) )
-            form.AddField ("playerType" , updateProfileData.playerType);
         if ( !String.IsNullOrEmpty (updateProfileData.email) )
             form.AddField ("email" , updateProfileData.email);
-        form.AddField ("points" , updateProfileData.points.ToString ());
-        form.AddField ("keys" , updateProfileData.keys.ToString ());
-        form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
         StartCoroutine (PostRequest<UpdateProfileResponse> (networkManagerData.GetUpdateProfileURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
@@ -169,7 +188,11 @@ public class NetworkManager : MonoBehaviour
     {
         WWWForm form = new WWWForm ();
         form.AddField ("status" , experiencePlayData.status);
-        form.AddField ("experienceName" , experiencePlayData.experienceName);
+        form.AddField ("experienceCode" , experiencePlayData.experienceCode);
+        if ( experiencePlayData.status == 1)
+        {
+            experiencePlayData.score = 0;
+        }
         form.AddField ("score" , experiencePlayData.score);
         StartCoroutine (PostRequest<ExperienceResponse> (networkManagerData.GetUpdateExperienceStatusURL () , form , true , onSuccess , onFailed));
         return isSuccess;
@@ -336,10 +359,23 @@ public class NetworkManager : MonoBehaviour
     }
     void RequestFailed (UnityWebRequest w)
     {
+
+        Debug.Log (w.downloadHandler.text);
         isSuccess = false;
         Debug.LogError ("isHttpError " + w.isHttpError + "\nisNetworkError " + w.isNetworkError + "\nResponse: " + w.downloadHandler.text + "\nError " + w.error);
-        np.err = JsonUtility.FromJson<NetworkError> (w.downloadHandler.text);
-        Debug.LogError (" status: " + np.err.status + " customCode: " + np.err.customCode + " message:  " + np.err.message);
+        if ( w.isHttpError )
+        {
+            np.err = JsonUtility.FromJson<NetworkError> (w.downloadHandler.text);
+            Debug.LogError (" status: " + np.err.status + " customCode: " + np.err.customCode + " message:  " + np.err.message);
+        }
+        else if ( w.isNetworkError )
+        {
+            np.err = new NetworkError ();
+            np.err.customCode = "12001";
+            np.err.status = "12001";
+            np.err.message = "No Internet";
+            Debug.LogError (np.err.message);
+        }
     }
     void RequestSucceed<T> (UnityWebRequest w) where T : ResponseData
     {
@@ -386,6 +422,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
         form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
+        Debug.LogError (detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
         StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
     }
