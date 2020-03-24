@@ -42,12 +42,15 @@ public class PopupExperienceHandler : MonoBehaviour
                 break;
             case ExperienceRequiredArea.Small:
                 sizeImg.sprite = size[0];
+                sizeTxt.text = ExperienceRequiredArea.Small.ToString();
                 break;
             case ExperienceRequiredArea.Medium:
                 sizeImg.sprite = size[1];
+                sizeTxt.text = ExperienceRequiredArea.Medium.ToString();
                 break;
             case ExperienceRequiredArea.Large:
                 sizeImg.sprite = size[2];
+                sizeTxt.text = ExperienceRequiredArea.Large.ToString();
                 break;
             case ExperienceRequiredArea.XL:
                 break;
@@ -61,11 +64,13 @@ public class PopupExperienceHandler : MonoBehaviour
             placeOnImg.sprite = placeOn[1];
         else if (_placeOn.ToLower() == "face")
             placeOnImg.sprite = placeOn[2];
+        placeOnTxt.text = _placeOn;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (_hasExtra)
             extraImg.sprite = extra[1];
         else
             extraImg.sprite = extra[0];
+        extraTxt.text = _hasExtra ? "Headphone" : "Nothing";
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         titleTxt.text = titleStr;
         headerTxt.text = headerStr;

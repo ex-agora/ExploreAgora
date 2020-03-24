@@ -14,9 +14,17 @@ public class SceneLoader : MonoBehaviour
     int _index;
     string _scene;
     [SerializeField] Animator ScreenLodAnim;
+    static SceneLoader instance;
+
+    public static SceneLoader Instance { get => instance; set => instance = value; }
     #endregion Fields
 
     #region Methods
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
     //Set Experience name and reset index
     public void LoadExperience(string SceneName)
     {

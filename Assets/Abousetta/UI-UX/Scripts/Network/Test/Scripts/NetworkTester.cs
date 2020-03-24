@@ -223,7 +223,7 @@ public class NetworkTester : MonoBehaviour
         bytes = tex.EncodeToPNG ();
         detectObjectData.bytes = bytes;
         detectObjectData.score = "0.8";
-        detectObjectData.detectionObjectName = "tree";
+        detectObjectData.detectionObjectName = "book";
         NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
         Destroy (tex);
     }

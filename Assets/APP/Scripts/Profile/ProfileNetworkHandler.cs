@@ -25,7 +25,7 @@ public class ProfileNetworkHandler : MonoBehaviour
             var str = response.profile.gender.ToCharArray();
             str[0] = char.ToUpper(response.profile.gender[0]);
             System.Enum.TryParse(new string(str), out profile.gender);
-        }
+        }   
 
         profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
