@@ -24,15 +24,20 @@ public class PopupExperienceHandler : MonoBehaviour
     [SerializeField] private Image placeOnImg;
     [SerializeField] private Image sizeImg;
     [SerializeField] private Image extraImg;
-
+    [SerializeField] private ExperienceContainerHolder _experience;
     [SerializeField] private ToolBarHandler popupAnim;
 
     [SerializeField] private GameObject playNowBtnObject;
     [SerializeField] private GameObject useKeyBtnObject;
 
+    [SerializeField] private ScanChecker _scan;
+    [SerializeField] KeysUsageHandler keysUsage;
+
     public string HeaderStr { get => headerStr; set => headerStr = value; }
     public string TitleStr { get => titleStr; set => titleStr = value; }
     public string DescriptionStr { get => descriptionStr; set => descriptionStr = value; }
+    public ExperienceContainerHolder _Experience { get => _experience; set => _experience = value; }
+    public ScanChecker _Scan { get => _scan; set => _scan = value; }
 
     public void OpenPopup(ExperienceRequiredArea _experienceRequiredArea, string _placeOn, bool _hasExtra, bool _isScannedState)
     {
@@ -77,7 +82,8 @@ public class PopupExperienceHandler : MonoBehaviour
         descriptionTxt.text = descriptionStr;
         if (_isScannedState)
         {
-            playNowBtnObject.SetActive(false);
+            playNowBtnObject.SetActive(false); 
+            keysUsage.CheckProfileKeys();
             useKeyBtnObject.SetActive(true);
         }
         else
@@ -88,7 +94,12 @@ public class PopupExperienceHandler : MonoBehaviour
 
         popupAnim.OpenToolBar();
     }
+    public void PlayExperience() {
 
+    }
+
+    public void AcviteScan() {
+    }
     public void ClosePopup()
     {
         popupAnim.CloseToolBar();

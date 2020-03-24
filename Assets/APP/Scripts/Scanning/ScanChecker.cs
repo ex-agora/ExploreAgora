@@ -11,6 +11,8 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] private Sprite unlockedState;
     [SerializeField] private Image stateImage;
     [SerializeField] ScanProperties scanProperties;
+    [SerializeField] Image objImg;
+    [SerializeField] Sprite objActiveSprite;
     private void Start()
     {
         CheckScannedObject();
@@ -25,7 +27,7 @@ public class ScanChecker : MonoBehaviour
         if (counter > 0)
         {
             stateImage.sprite = unlockedState;
-
+            objImg.sprite = objActiveSprite;
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
@@ -41,7 +43,8 @@ public class ScanChecker : MonoBehaviour
         SceneLoader.Instance.LoadExperience("Scan Scene");
     }
     void OnFailedScan(NetworkParameters np) {
-
         Debug.Log(np.err.message);
     }
+
+    public void UseFavoritismScanningKey() => bundleHandler.ApplyFavoritismScanningKey(objectToScanName);
 }
