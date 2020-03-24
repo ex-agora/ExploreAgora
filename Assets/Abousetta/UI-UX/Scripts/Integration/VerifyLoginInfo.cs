@@ -8,6 +8,7 @@ public class VerifyLoginInfo : MonoBehaviour
     [SerializeField] private InputField emailInputField;
     [SerializeField] private InputField passwordInputField;
     [SerializeField] ErrorFadingHandler error;
+   
     bool isPressed =false;
     private void OnEnable()
     {
@@ -46,7 +47,8 @@ public class VerifyLoginInfo : MonoBehaviour
         isPressed = false;
         LoginResponse response = (LoginResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(response.token);
-        UXFlowManager.Instance.AcceptLogin();
+        UXFlowManager.Instance.LoginFadeIn();
+ 
     }
     private void OnLoginFailed(NetworkParameters obj)
     {

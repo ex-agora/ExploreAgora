@@ -7,13 +7,15 @@ public class UXFlowManager : MonoBehaviour
     public static UXFlowManager Instance;
 
     [SerializeField] private SplashScreenHandler splashScreenHandler;
-    [SerializeField] private QuickFadeHandler quickFadeHandler;
+    [SerializeField] private QuickFadeHandler quickFadeLoginHandler;
+    [SerializeField] private QuickFadeHandler quickFadeProfileHandler;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private Canvas uIDefaultCanvas;
     [SerializeField] private Canvas onBoardingCanvas;
     [SerializeField] private GameObject loginRootPanel;
     [SerializeField] private GameObject footerPanel;
     [SerializeField] private GameObject conformationPanel;
+    [SerializeField] private ProfileNetworkHandler _ProfileNetowrkHandler;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -33,10 +35,24 @@ public class UXFlowManager : MonoBehaviour
     public void LoginFadeIn()
     {
         if (NetworkManager.Instance.CheckTokenExist())
-            AcceptLogin();
-        quickFadeHandler.FadeIn();
+        {
+            _ProfileNetowrkHandler.GetProfile();
+            //AcceptLogin();
+            //quickFadeHandler.FadeIn();
+        }
+        else {
+            quickFadeLoginHandler.FadeIn();
+        }
     }
-
+    public void FadeInProfile() {
+        
+        quickFadeProfileHandler.FadeIn();
+    }
+    public void FadeInProfileDellay(float delay)
+    {
+        AcceptLogin();
+        Invoke(nameof(FadeInProfile), delay);
+    }
     public void CanvasChecker()
     {
         if(AppManager.Instance.boardingPhases != OnBoardingPhases.None)

@@ -6,6 +6,7 @@ public class SignupVerificationCode : MonoBehaviour
 {
     [SerializeField] private SeperatedFields codeVerifcation;
     [SerializeField] ErrorFadingHandler error;
+    [SerializeField] OnBordingHandler bordingHandler;
     private void OnEnable()
     {
         codeVerifcation.ClearSeperatedFields();
@@ -20,6 +21,7 @@ public class SignupVerificationCode : MonoBehaviour
     private void OnVerifyMailSuccess(NetworkParameters obj)
     {
         UXFlowManager.Instance.AcceptConformation();
+        bordingHandler.StartOnBording();
     }
     private void OnVerifyMailFailed(NetworkParameters obj)
     {

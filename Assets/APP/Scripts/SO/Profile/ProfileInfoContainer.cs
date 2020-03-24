@@ -10,7 +10,7 @@ public class ProfileInfoContainer : ScriptableObject
     public string nickname;
     public string rank;
     public string nicknameInput;
-    public int points;
+    public ulong points;
     public int keys;
     public int streaks;
     public int stones;

@@ -16,6 +16,7 @@ public class DetectObj : MonoBehaviour
     //Output from server 
     string output;
     [SerializeField] ScanProperties scanProperties;
+    [SerializeField] InventoryObjectHolder inventory;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
@@ -97,10 +98,12 @@ public class DetectObj : MonoBehaviour
                 {
                     print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
                     outputText.text = "Found";
-                    if ( scanProperties.ShouldContinueToExperience )
-                        Panel.SetActive (true);
+                   
+                    if (scanProperties.ShouldContinueToExperience)
+                        Panel.SetActive(true);
                     else
-                        SceneManager.LoadScene ("first Scene");
+                        SceneManager.LoadScene("first Scene");
+
                 }
                 else
                 {
@@ -115,6 +118,8 @@ public class DetectObj : MonoBehaviour
     }
     public IEnumerator TakePicture ()
     {
+        Maincanvas.SetActive(false);
+        LoadingCanvas.SetActive(true);
         yield return new WaitForEndOfFrame ();
         string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
         // Create a texture the size of the screen, RGB24 format
@@ -130,7 +135,7 @@ public class DetectObj : MonoBehaviour
         bytes = tex.EncodeToPNG ();
         detectObjectData.bytes = bytes;
         detectObjectData.score = "0.8";
-        detectObjectData.detectionObjectName = scanProperties.detectionObjectName;
+        detectObjectData.detectionObjectName = scanProperties.detectionObjectName.ToLower();
         NetworkManager.Instance.DetectObject (detectObjectData , OnSuscees , OnFailed);
         Destroy (tex);
     }
@@ -145,10 +150,16 @@ public class DetectObj : MonoBehaviour
         {
             print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
             outputText.text = "Found";
-            if ( scanProperties.ShouldContinueToExperience )
-                Panel.SetActive (true);
+            int counter = inventory.GetScanedCounter(scanProperties.detectionObjectName);
+            if (counter == -1)
+                Debug.Log("Not Found Object at Inventory");
+            counter++;
+            inventory.SetObject(scanProperties.detectionObjectName, counter);
+            //Network update
+            if (scanProperties.ShouldContinueToExperience)
+                Panel.SetActive(true);
             else
-                SceneManager.LoadScene ("first Scene");
+                SceneLoader.Instance.LoadExperience("UI-UX");
         }
         else
         {

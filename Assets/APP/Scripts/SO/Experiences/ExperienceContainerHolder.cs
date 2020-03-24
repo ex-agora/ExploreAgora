@@ -29,6 +29,7 @@ public class ExperienceContainerHolder : ScriptableObject
     public string [] categories;
     public string [] topics;
     public bool isIndoor;
+    public bool hasExtra;
     public string [] tags;
     public string [] standardNGSS;
     public string [] standardEGY;

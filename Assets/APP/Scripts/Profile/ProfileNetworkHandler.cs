@@ -5,25 +5,40 @@ using UnityEngine;
 public class ProfileNetworkHandler : MonoBehaviour
 {
     [SerializeField] ProfileInfoContainer profile;
+    [SerializeField] AccountProfileHandler profileHandler;
     public void GetProfile() {
         if(NetworkManager.Instance.CheckTokenExist())
             NetworkManager.Instance.GetProfile(OnGetProfileSuccess, OnGetProfileFailed);
     }
     private void OnGetProfileSuccess(NetworkParameters obj) {
         GetProfileResponse response = (GetProfileResponse)obj.responseData;
-        profile.country = response.profile.country;
-        //profile.email = response.profile.email;
-        profile.fName = response.profile.firstName;
-        profile.DOB.dateTime = System.DateTime.Parse(response.profile.birthDate);
-        profile.gender = (Gender) System.Enum.Parse(typeof(Gender), response.profile.gender);
-        //profile.keys = response.profile.keys;
-        profile.lName = response.profile.lastName;
-        profile.nickname = response.profile.nickName == string.Empty ? "User" : response.profile.nickName;
-        //profile.points = response.profile.points;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.country))
+            profile.country = response.profile.country;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.email))
+            profile.email = response.profile.email;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.firstName))
+            profile.fName = response.profile.firstName;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.birthDate))
+            profile.DOB.dateTime = System.DateTime.Parse(response.profile.birthDate);
+        if (response.profile.gender != null)
+        {
+            var str = response.profile.gender.ToCharArray();
+            str[0] = char.ToUpper(response.profile.gender[0]);
+            System.Enum.TryParse(new string(str), out profile.gender);
+        }   
+
+        profile.keys = response.profile.keys;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
+            profile.lName = response.profile.lastName;
+        profile.nickname = !ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "User" : response.profile.nickName;
+        profile.points = response.profile.points;
         profile.stones = (int)response.profile.powerStones;
-        //profile.streaks = response.profile.streaks;
-        profile.profileImgIndex = int.Parse(response.profile.avatarId);
-        //TODO
+        profile.streaks = response.profile.dailyStreaks;
+        if (!ValidationInputUtility.IsEmptyOrNull(response.profile.avatarId))
+            profile.profileImgIndex = int.Parse(response.profile.avatarId);
+        profileHandler.UpdateProfile();
+
+        UXFlowManager.Instance.FadeInProfileDellay(2f);
     }
     private void OnGetProfileFailed(NetworkParameters obj) {
        

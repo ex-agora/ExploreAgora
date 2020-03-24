@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviour
 
     }
     #region Internet connection
-    public bool CheckServerConnectivity ()
+    public bool CheckServerConnectivity (Action<NetworkParameters> onSuccess, Action<NetworkParameters> onFailed)
     {
         // Check internet connection.
         //TODO
@@ -38,33 +38,43 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (checkServerConnection ((isConnected) =>
         {
             // handle connection status here
-            if ( isConnected )
+            // handle connection status here
+            if (isConnected)
             {
-                networkStatus = true;
-                Debug.Log ("Network status " + networkStatus);
+                onSuccess.Invoke(np);
+                Debug.Log("Network status " + networkStatus);
             }
             else
             {
-                networkStatus = false;
-                Debug.LogError ("Network status " + networkStatus);
+                onFailed.Invoke(np);
+                Debug.LogError("Network status " + networkStatus);
             }
         }));
         return networkStatus;
     }
     IEnumerator checkServerConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest (networkManagerData.serverURL);
-        yield return www;
-        if ( www.error != null )
+        UnityWebRequest www = null;
+        if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            action (false);
+            www = new UnityWebRequest(networkManagerData.serverURL);
+            www.timeout = 3;
+            yield return www;
+        }
+        if (www == null || www.error != null)
+        {
+            var e = new NetworkError();
+            e.status = "12001";
+            e.status = "No Internet";
+            np.err = e;
+            action(false);
         }
         else
         {
-            action (true);
+            action(true);
         }
     }
-    public bool CheckInternetConnectivity ()
+    public void CheckInternetConnectivity (Action<NetworkParameters> onSuccess, Action<NetworkParameters> onFailed)
     {
         // Check internet connection.
         //TODO
@@ -74,28 +84,37 @@ public class NetworkManager : MonoBehaviour
             // handle connection status here
             if ( isConnected )
             {
-                networkStatus = true;
+                onSuccess.Invoke(np);
                 Debug.Log ("Network status " + networkStatus);
             }
             else
             {
-                networkStatus = false;
+                onFailed.Invoke(np); 
                 Debug.LogError ("Network status " + networkStatus);
             }
         }));
-        return networkStatus;
+       
     }
     IEnumerator checkInternetConnection (Action<bool> action)
     {
-        UnityWebRequest www = new UnityWebRequest ("http://google.com");
-        yield return www;
-        if ( www.error != null )
+        UnityWebRequest www = null;
+        if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            action (false);
+            www = new UnityWebRequest("http://google.com.ae");
+            www.timeout = 3;
+            yield return www;
+        }
+        if (www == null || www.error != null)
+        {
+            var e = new NetworkError();
+            e.status = "12001";
+            e.status = "No Internet";
+            np.err = e;
+            action(false);
         }
         else
         {
-            action (true);
+            action(true);
         }
     }
     #endregion
@@ -399,6 +418,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = new WWWForm ();
         form.AddField ("score" , "0.8");
         form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
+        Debug.LogError(detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
         StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
     }

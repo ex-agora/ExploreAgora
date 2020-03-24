@@ -10,7 +10,11 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] private BundleHandler bundleHandler;
     [SerializeField] private Sprite unlockedState;
     [SerializeField] private Image stateImage;
-
+    [SerializeField] ScanProperties scanProperties;
+    private void Start()
+    {
+        CheckScannedObject();
+    }
     public void CheckScannedObject()
     {
         int counter = bundleHandler.GetScannedCounter(objectToScanName);
@@ -25,5 +29,19 @@ public class ScanChecker : MonoBehaviour
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
+    }
+    public void StartScan()
+    {
+        NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
+    }
+
+    void OnSuccessScan(NetworkParameters np)
+    {
+        scanProperties.detectionObjectName = objectToScanName;
+        SceneLoader.Instance.LoadExperience("Scan Scene");
+    }
+    void OnFailedScan(NetworkParameters np) {
+
+        Debug.Log(np.err.message);
     }
 }

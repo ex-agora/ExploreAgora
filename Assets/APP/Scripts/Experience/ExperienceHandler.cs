@@ -13,6 +13,7 @@ public class ExperienceHandler : MonoBehaviour
     [SerializeField] private Image gem;
     [SerializeField] private List<Sprite> gemStates;
     [SerializeField] private List<ExperienceHandler> experienceDependencies;
+    [SerializeField] private PopupExperienceHandler popup;
     public void UpdateUIState()
     {
         gem.enabled = false;
@@ -63,5 +64,27 @@ public class ExperienceHandler : MonoBehaviour
     {
         for (int i = 0; i < experienceDependencies.Count; i++)
             experienceDependencies[i].ActiveExperience();
+    }
+
+    public void OpenPopup() {
+        bool up = false;
+
+        popup.TitleStr = experienceContainerHolder.experienceName;
+        popup.DescriptionStr = experienceContainerHolder.description;
+        if (experienceContainerHolder.playedCounter > 0 && experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
+        {
+            up = false;
+        }
+        else if (experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
+        {
+            up = false;
+        }
+        else if (experienceContainerHolder.isActive)
+        {
+
+            up = true;
+           
+        }
+        popup.OpenPopup(experienceContainerHolder.requiredArea, experienceContainerHolder.palceOn, experienceContainerHolder.hasExtra, up);
     }
 }
