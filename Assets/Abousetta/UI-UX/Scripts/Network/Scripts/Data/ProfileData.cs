@@ -1,18 +1,19 @@
-﻿[System.Serializable]
+﻿using System.Collections.Generic;
+using Unity.Collections;
+[System.Serializable]
 public class ProfileData
 {
+    public ulong points;
+    public int dailyStreaks;
+    public int keys;
+    public float powerStones;
+    public ScannedObjects scannedObjects;
+    public string email;
+    public string country;
     public string firstName;
     public string lastName;
-    public string nickName;
-    public string birthDate;
-    public string country;
-    public string gender;
     public string avatarId;
-    public float powerStones;
-    public bool registered;
-    public string playerType;
-    public string email;
-    public ulong points;
-    public int keys;
-    public int dailyStreaks;
+    public string birthDate;
+    public string gender;
+    public string nickName;
 }
