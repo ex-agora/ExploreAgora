@@ -8,6 +8,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Security;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SIS
 {
@@ -17,16 +19,17 @@ namespace SIS
     /// </summary>
 	public class ReceiptValidatorClient : ReceiptValidator
     {
+
         /// <summary>
         /// Constructor for setting a default value.
         /// </summary>
         public ReceiptValidatorClient()
         {
-            this.verificationType = VerificationType.onPurchase;  
+            this.verificationType = VerificationType.onPurchase;
         }
 
-        /*
-        #if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX || UNITY_TVOS
+
+#if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX || UNITY_TVOS
         /// <summary>
         /// Overriding the base method to only trigger on Unity IAP supported platforms.
         /// </summary>
@@ -49,7 +52,7 @@ namespace SIS
         /// </summary>
         public override void Validate(Product p = null)
         {
-            Product[] products = new Product[]{ p };
+            Product[] products = new Product[] { p };
             if (p == null)
                 products = IAPManager.controller.products.all;
 
@@ -71,7 +74,17 @@ namespace SIS
                     validator.Validate(products[i].receipt);
                     IAPManager.GetInstance().PurchaseVerified(products[i].definition.id);
 
+
+                    //Network Manager Bta3 Rabaaaaaaaa7 
+                    ///
+                    ///
+                    ///
+                    ///
+                   // StartCoroutine(ValidateServerTest(products[i].receipt));
+                    // StartCoroutine(ValidateServerTest(products[i].definition.id));
                     if (IAPManager.isDebug) Debug.Log("Local Receipt Validation passed for: " + products[i].definition.id);
+
+
                 }
                 catch (Exception ex)
                 {
@@ -88,9 +101,48 @@ namespace SIS
                     }
                 };
             }
+
+
+
+
         }
-        #endif
-        */
+#endif
+
+        IEnumerator ValidateServerTest(string receipt)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("invoiceId", receipt);
+
+            using (var w = UnityEngine.Networking.UnityWebRequest.Post("https://exploreagora.herokuapp.com/player/payment/checkInvoice", form))
+            {
+                yield return w.SendWebRequest();
+                //if error 
+                if (w.isNetworkError || w.isHttpError)
+                {
+                    Debug.Log(w.error);
+                    Debug.Log("Error");
+                    //outputText.text = w.downloadHandler.text + " " + w.error;
+                }
+                //if Done
+                else
+                {
+                    Debug.Log("Finished Uploading Screenshot");
+                    Debug.Log(w.downloadHandler.text + "      " + receipt);
+                    // output = processJson(w.downloadHandler.text);
+                    //outputText.text = output;
+                    //For Example
+
+                }
+                // hide loading Canvas and show mainCanvas
+
+            }
+        }
+
+
+
     }
+
+
+
 }
 #endif
