@@ -16,6 +16,7 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private GameObject footerPanel;
     [SerializeField] private GameObject conformationPanel;
     [SerializeField] private ProfileNetworkHandler _ProfileNetowrkHandler;
+    [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -37,6 +38,7 @@ public class UXFlowManager : MonoBehaviour
         if (NetworkManager.Instance.CheckTokenExist())
         {
             _ProfileNetowrkHandler.GetProfile();
+            _ExperiencesStates.HandleExperiencesStates();
             //AcceptLogin();
             //quickFadeHandler.FadeIn();
         }

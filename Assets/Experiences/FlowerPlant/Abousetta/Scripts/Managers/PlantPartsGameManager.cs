@@ -158,6 +158,17 @@ public class PlantPartsGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void GoTOHome()
     {
-        //TODO 
+        FinishExperiencesHandler.Instance.GotoHome();
+    }
+    public void FinishExperience()
+    {
+        int score = 0;
+        if (WrongTrialCount == 0)
+            score = 3;
+        else if (WrongTrialCount > 0 && WrongTrialCount < 3)
+            score = 2;
+        else
+            score = 1;
+        FinishExperiencesHandler.Instance.FinshExperience(score);
     }
 }

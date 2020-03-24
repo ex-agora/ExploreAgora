@@ -39,7 +39,11 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
 
     public void GoTOHome()
     {
-        //TODO
+        FinishExperiencesHandler.Instance.GotoHome();
+    }
+    public void FinishExperience()
+    {
+        FinishExperiencesHandler.Instance.FinshExperience(3);
     }
 
     public void ResetLevel()

@@ -6,6 +6,7 @@ public class ProfileNetworkHandler : MonoBehaviour
 {
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] AccountProfileHandler profileHandler;
+    [SerializeField] InventoryObjectHolder inventory;
     public void GetProfile() {
         if(NetworkManager.Instance.CheckTokenExist())
             NetworkManager.Instance.GetProfile(OnGetProfileSuccess, OnGetProfileFailed);
@@ -36,6 +37,12 @@ public class ProfileNetworkHandler : MonoBehaviour
         profile.streaks = response.profile.dailyStreaks;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.avatarId))
             profile.profileImgIndex = int.Parse(response.profile.avatarId);
+        StringIntDictionary _scannedObj = new StringIntDictionary();
+        for (int i = 0; i < response.profile.scannedObjects.Count; i++)
+        {
+            _scannedObj.Add(response.profile.scannedObjects[i].name, response.profile.scannedObjects[i].counter);
+        }
+        inventory.SetObjects(_scannedObj);
         profileHandler.UpdateProfile();
 
         UXFlowManager.Instance.FadeInProfileDellay(2f);

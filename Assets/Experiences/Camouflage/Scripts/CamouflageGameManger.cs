@@ -92,7 +92,11 @@ public class CamouflageGameManger : MonoBehaviour, ITriggable, IMenuHandler
 
     public void GoTOHome()
     {
-        //TODO
+        FinishExperiencesHandler.Instance.GotoHome();
+    }
+    public void FinishExperience()
+    {
+        FinishExperiencesHandler.Instance.FinshExperience(3);
     }
 
     public void ResetLevel()

@@ -10,7 +10,7 @@ public class ExperienceRouteHandler : MonoBehaviour
     [SerializeField] SOTest @sceneNavManager;
     [SerializeField] string SceneName;
     static ExperienceRouteHandler instance;
-
+    bool isPressed = false;
     public static ExperienceRouteHandler Instance { get => instance; set => instance = value; }
     #endregion Fields
     #region Methods
@@ -19,7 +19,7 @@ public class ExperienceRouteHandler : MonoBehaviour
         if (instance == null)
             instance = this;
     }
-    public void Transit (ExperienceContainerHolder experienceContainerHolder)
+    public void Transit(ExperienceContainerHolder experienceContainerHolder)
     {
         //Debug.Log ("SceneName " + SceneName);
         //Debug.Log ("experienceContainerHolder " + experienceContainerHolder);
@@ -36,15 +36,35 @@ public class ExperienceRouteHandler : MonoBehaviour
         //Debug.Log ("experienceContainerHolder subject" + experienceContainerHolder.subject);
         //Debug.Log ("experienceContainerHolder requiredArea" + experienceContainerHolder.requiredArea);
         //Debug.Log ("experienceContainerHolder token" + experienceContainerHolder.token);
-        Debug.Log ("@scenesPrefabsIntializers " + @sceneNavManager);
-        if ( experienceContainerHolder == null)
+        Debug.Log("@scenesPrefabsIntializers " + @sceneNavManager);
+        if (experienceContainerHolder == null)
         {
-            Debug.LogWarning ("Transit function needs experienceContainerHolder parameter");
+            Debug.LogWarning("Transit function needs experienceContainerHolder parameter");
             return;
         }
+        if (isPressed)
+            return;
+        isPressed = true;
         @sceneNavManager.nextExperienceContainerHolder = experienceContainerHolder;
-        Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
-        SceneLoader.Instance.LoadExperience (SceneName);
+        ExperiencePlayData s = new ExperiencePlayData(); s.status = 1;
+        s.experienceCode = experienceContainerHolder.experienceCode;
+        s.score = 0;
+        NetworkManager.Instance.UpdateExperienceStatus(s, OntUpdateExperienceSuccess, OntUpdateExperienceFailed);
+        // Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
+
+    }
+
+    private void OntUpdateExperienceSuccess(NetworkParameters obj)
+    {
+        isPressed = false;
+        SceneLoader.Instance.LoadExperience(SceneName);
+    }
+    private void OntUpdateExperienceFailed(NetworkParameters obj)
+    {
+        isPressed = false;
+        SceneLoader.Instance.Loading();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
     #endregion Methods
 }

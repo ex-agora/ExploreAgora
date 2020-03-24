@@ -148,9 +148,12 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void GoTOHome()
     {
-        //TODO
+        FinishExperiencesHandler.Instance.GotoHome();
     }
-
+    public void FinishExperience()
+    {
+        FinishExperiencesHandler.Instance.FinshExperience(3);
+    }
     public void GoToNextBubbleState()
     {
         nextState = true;

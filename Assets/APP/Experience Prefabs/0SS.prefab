@@ -1217,6 +1217,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6599046992163417449}
+        m_MethodName: FinishExperience
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1243929750396596933
@@ -3244,7 +3255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6599046992037127982
 Transform:
   m_ObjectHideFlags: 0
@@ -3365,18 +3376,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &6599046992054510826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9207072264579377654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d0f1e77d655334fa8b797f23f7ff3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6599046992055176453
 GameObject:
   m_ObjectHideFlags: 0
@@ -5866,6 +5865,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: The Wise Dots are gone! Drag the labels to the plant.
+--- !u!114 &6599046992054510826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207072264579377654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d0f1e77d655334fa8b797f23f7ff3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6341034991569874579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6241,15 +6252,15 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 6599046991970953792}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &2501871833979253348 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
-    type: 3}
-  m_PrefabInstance: {fileID: 6599046991970953792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &2501871834047595794 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+    type: 3}
+  m_PrefabInstance: {fileID: 6599046991970953792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2501871833979253348 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
     type: 3}
   m_PrefabInstance: {fileID: 6599046991970953792}
   m_PrefabAsset: {fileID: 0}
@@ -6609,15 +6620,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee23c5f9f93d524997ead257a2e6d6f, type: 3}
---- !u!1 &9207072264579377654 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2617313999638629650, guid: cee23c5f9f93d524997ead257a2e6d6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6599046992054510820}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9207072264579377655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2617313999638629651, guid: cee23c5f9f93d524997ead257a2e6d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6599046992054510820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9207072264579377654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2617313999638629650, guid: cee23c5f9f93d524997ead257a2e6d6f,
     type: 3}
   m_PrefabInstance: {fileID: 6599046992054510820}
   m_PrefabAsset: {fileID: 0}

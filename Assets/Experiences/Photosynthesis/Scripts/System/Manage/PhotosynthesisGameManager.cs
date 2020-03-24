@@ -43,9 +43,13 @@ public class PhotosynthesisGameManager : MonoBehaviour, ITriggable, IMenuHandler
         bubbleController.SetHintText (index);
         nextState = true;
     }
-    public void GoTOHome ()
+    public void GoTOHome()
     {
-        //TODO GoHome   
+        FinishExperiencesHandler.Instance.GotoHome();
+    }
+    public void FinishExperience()
+    {
+        FinishExperiencesHandler.Instance.FinshExperience(3);
     }
     void FirstPhase () {
         nextState = true;
