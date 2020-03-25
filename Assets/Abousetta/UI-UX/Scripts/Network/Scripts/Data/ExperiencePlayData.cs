@@ -2,6 +2,6 @@
 public class ExperiencePlayData
 {
     public int status;
-    public string experienceName;
+    public string experienceCode;
     public int score;
 }

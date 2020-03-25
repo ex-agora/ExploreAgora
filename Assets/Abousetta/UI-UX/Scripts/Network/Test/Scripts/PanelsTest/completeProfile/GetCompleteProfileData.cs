@@ -23,6 +23,11 @@ public class GetCompleteProfileData : GeneralPanelTest
         u.country = country.text;
         u.gender = gender.text;
         u.avatarId = avatarId.text;
+        //u.scannedObjects = new Dictionary<string , int> ();
+        //u.scannedObjects.Add ("book" , 2);
+        u.keys = 400;
+        u.points = 1000;
+        u.powerStones = 144;
         return u;
     }
 }
