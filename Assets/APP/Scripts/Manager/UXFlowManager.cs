@@ -46,6 +46,8 @@ public class UXFlowManager : MonoBehaviour
             quickFadeLoginHandler.FadeIn();
         }
     }
+          
+    public void GetProfile() => _ProfileNetowrkHandler.GetProfile();
     public void FadeInProfile() {
         
         quickFadeProfileHandler.FadeIn();

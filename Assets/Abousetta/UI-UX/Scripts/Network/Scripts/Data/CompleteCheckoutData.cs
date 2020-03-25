@@ -5,4 +5,5 @@ public class CompleteCheckoutData
     public string productId;
     public string storeType;
     public string purchaseToken;
+    public string transactionID;
 }

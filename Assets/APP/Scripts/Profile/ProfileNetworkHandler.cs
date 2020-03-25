@@ -31,7 +31,7 @@ public class ProfileNetworkHandler : MonoBehaviour
         profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
             profile.lName = response.profile.lastName;
-        profile.nickname = !ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "User" : response.profile.nickName;
+        profile.nickname = !ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "Agoraien" : response.profile.nickName;
         profile.points = response.profile.points;
         profile.stones = (int)response.profile.powerStones;
         profile.streaks = response.profile.dailyStreaks;
