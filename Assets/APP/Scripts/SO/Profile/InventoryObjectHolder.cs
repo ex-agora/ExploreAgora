@@ -6,13 +6,16 @@ using UnityEngine;
 public class InventoryObjectHolder : ScriptableObject
 {
     [SerializeField] StringIntDictionary scanedObjects;
+
+    public StringIntDictionary ScanedObjects { get => scanedObjects; set => scanedObjects = value; }
+
     public int GetScanedCounter(string _Name) {
         int counter = -1,value;
         _Name = _Name.ToLower();
-        if (scanedObjects.TryGetValue(_Name, out value))
+        if (ScanedObjects.TryGetValue(_Name, out value))
             counter = value;
         return counter;
     }
-    public void SetObjects(StringIntDictionary _ScanedObjs) => scanedObjects = _ScanedObjs;
-    public void SetObject(string _Name, int _Conter) => scanedObjects.Add(_Name, _Conter);
+    public void SetObjects(StringIntDictionary _ScanedObjs) => ScanedObjects = _ScanedObjs;
+    public void SetObject(string _Name, int _Conter) => ScanedObjects.Add(_Name, _Conter);
 }

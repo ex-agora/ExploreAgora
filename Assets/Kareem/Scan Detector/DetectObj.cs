@@ -17,6 +17,7 @@ public class DetectObj : MonoBehaviour
     string output;
     [SerializeField] ScanProperties scanProperties;
     [SerializeField] InventoryObjectHolder inventory;
+    [SerializeField] ProfileInfoContainer profile;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
@@ -155,7 +156,7 @@ public class DetectObj : MonoBehaviour
                 Debug.Log("Not Found Object at Inventory");
             counter++;
             inventory.SetObject(scanProperties.detectionObjectName, counter);
-            //Network update
+            UpdateProfile();
             if (scanProperties.ShouldContinueToExperience)
                 Panel.SetActive(true);
             else
@@ -166,6 +167,36 @@ public class DetectObj : MonoBehaviour
             outputText.text = scanProperties.detectionObjectName + " Not Found";
             print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
         }
+    }
+    public void UpdateProfile()
+    {
+
+        ProfileData ss = new ProfileData();
+        ss.scannedObjects = new ScannedObjects();
+        ss.scannedObjects.scannedObjects = new List<ScannedObject>();
+        foreach ( var i in inventory.ScanedObjects) {
+            ss.scannedObjects.scannedObjects.Add(new ScannedObject(i.Key, i.Value));
+        } 
+       
+        ss.firstName = profile.fName;
+        ss.lastName = profile.lName;
+        ss.nickName = profile.nickname;
+        ss.country = profile.country;
+        ss.birthDate = profile.DOB.dateTime.ToString();
+        ss.avatarId = profile.profileImgIndex.ToString();
+        ss.email = profile.email;
+        ss.gender = profile.gender.ToString();
+        ss.keys = profile.keys;
+        ss.dailyStreaks = profile.streaks;
+        ss.points = profile.points;
+        ss.powerStones = profile.stones;
+        NetworkManager.Instance.UpdateProfile(ss, OnUpdateProfileSuccess, OnUpdateProfileFailed);
+    }
+    private void OnUpdateProfileSuccess(NetworkParameters obj)
+    {
+    }
+    private void OnUpdateProfileFailed(NetworkParameters obj)
+    {
     }
     private void OnFailed (NetworkParameters obj)
     {

@@ -10,4 +10,9 @@ public class BundleHandler : MonoBehaviour
     {
         return inventoryObjectHolder.GetScanedCounter(_scannedObjectName);
     }
+
+    public void ApplyFavoritismScanningKey(string _scannedObjectName) {
+        inventoryObjectHolder.SetObject(_scannedObjectName, inventoryObjectHolder.GetScanedCounter(_scannedObjectName) + 1);
+    }
+
 }

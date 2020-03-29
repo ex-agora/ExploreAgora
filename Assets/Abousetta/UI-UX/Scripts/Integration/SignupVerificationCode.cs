@@ -21,7 +21,8 @@ public class SignupVerificationCode : MonoBehaviour
     private void OnVerifyMailSuccess(NetworkParameters obj)
     {
         UXFlowManager.Instance.AcceptConformation();
-        bordingHandler.StartOnBording();
+        UXFlowManager.Instance.LoginFadeIn();
+       //bordingHandler.StartOnBording();
     }
     private void OnVerifyMailFailed(NetworkParameters obj)
     {

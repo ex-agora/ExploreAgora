@@ -6,6 +6,7 @@ public class ProfileNetworkHandler : MonoBehaviour
 {
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] AccountProfileHandler profileHandler;
+    [SerializeField] InventoryObjectHolder inventory;
     public void GetProfile() {
         if(NetworkManager.Instance.CheckTokenExist())
             NetworkManager.Instance.GetProfile(OnGetProfileSuccess, OnGetProfileFailed);
@@ -30,12 +31,18 @@ public class ProfileNetworkHandler : MonoBehaviour
         profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
             profile.lName = response.profile.lastName;
-        profile.nickname = !ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "User" : response.profile.nickName;
+        profile.nickname = !ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "Agoraien" : response.profile.nickName;
         profile.points = response.profile.points;
         profile.stones = (int)response.profile.powerStones;
         profile.streaks = response.profile.dailyStreaks;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.avatarId))
             profile.profileImgIndex = int.Parse(response.profile.avatarId);
+        StringIntDictionary _scannedObj = new StringIntDictionary();
+        for (int i = 0; i < response.profile.scannedObjects.Count; i++)
+        {
+            _scannedObj.Add(response.profile.scannedObjects[i].name, response.profile.scannedObjects[i].counter);
+        }
+        inventory.SetObjects(_scannedObj);
         profileHandler.UpdateProfile();
 
         UXFlowManager.Instance.FadeInProfileDellay(2f);

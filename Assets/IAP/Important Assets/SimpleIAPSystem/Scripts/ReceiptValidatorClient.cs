@@ -28,7 +28,37 @@ namespace SIS
             this.verificationType = VerificationType.onPurchase;
         }
 
+        public void Checkout(IPurchaseReceipt p)
+        {
+            GooglePlayReceipt googlePlay = p as GooglePlayReceipt;
+            if (p != null)
+            {
+                CompleteCheckoutData checkoutData = new CompleteCheckoutData();
+                checkoutData.packageName = googlePlay.packageName;
+                checkoutData.transactionID = googlePlay.transactionID;
+                checkoutData.productId = googlePlay.productID;
+                checkoutData.purchaseToken = googlePlay.purchaseToken;
+                checkoutData.storeType = AndroidStore.GooglePlay.ToString();
+                NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
+            }
+            //AppleInAppPurchaseReceipt appleInApp = p as AppleInAppPurchaseReceipt;
+            //if (appleInApp != p) {
+            //    CompleteCheckoutData checkoutData = new CompleteCheckoutData();
+            //    checkoutData.packageName = appleInApp.;
+            //    checkoutData.productId = appleInApp.productID;
+            //    checkoutData.purchaseToken = appleInApp.purchaseToken;
+            //    checkoutData.storeType = "GooglePlay";
+            //    NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
+            //}
+        }
+        private void OnCheckoutSuccess(NetworkParameters obj)
+        {
+            UXFlowManager.Instance.GetProfile();
+        }
+        private void OnCheckoutFailed(NetworkParameters obj)
+        {
 
+        }
 #if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX || UNITY_TVOS
         /// <summary>
         /// Overriding the base method to only trigger on Unity IAP supported platforms.
@@ -71,20 +101,17 @@ namespace SIS
                 {
                     // On Google Play, result will have a single product Id.
                     // On Apple stores receipts contain multiple products.
-                    validator.Validate(products[i].receipt);
+                    var receiptResults = validator.Validate(products[i].receipt);
                     IAPManager.GetInstance().PurchaseVerified(products[i].definition.id);
 
-
-                    //Network Manager Bta3 Rabaaaaaaaa7 
-                    ///
-                    ///
-                    ///
-                    ///
+                    foreach (var receiptResult in receiptResults) {
+                            Checkout(receiptResult);
+                    }
                    // StartCoroutine(ValidateServerTest(products[i].receipt));
                     // StartCoroutine(ValidateServerTest(products[i].definition.id));
                     if (IAPManager.isDebug) Debug.Log("Local Receipt Validation passed for: " + products[i].definition.id);
 
-
+                   
                 }
                 catch (Exception ex)
                 {
