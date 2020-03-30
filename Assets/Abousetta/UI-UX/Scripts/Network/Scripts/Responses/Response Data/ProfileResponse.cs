@@ -18,5 +18,6 @@ public class ProfileResponse
     public string birthDate;
     public string gender;
     public string nickName;
+    public List<int> achievements;
 }
 /*{"success":true,"data":{"profile":{"_id":"5e79e27cc467540017b8374a","isConfirmed":true,"points":0,"dailyStreaks":0,"keys":0,"powerStones":0,"scannedObjects":[],"email":"mahmoudhypatia@gmail.com","country":"egypt","firstName":"mahmoud","lastName":"rabah","playerType":"registered"}}}*/

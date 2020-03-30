@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Unity.Collections;
+﻿
 [System.Serializable]
 public class ProfileData
 {
@@ -16,4 +15,5 @@ public class ProfileData
     public string birthDate;
     public string gender;
     public string nickName;
+    public AchievementsData achievementsData;
 }

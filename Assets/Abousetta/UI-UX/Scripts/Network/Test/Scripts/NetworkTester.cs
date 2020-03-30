@@ -65,7 +65,7 @@ public class NetworkTester : MonoBehaviour
     }
     private void OnCheckoutSuccess (NetworkParameters obj)
     {
-       //flow
+        //flow
     }
     private void OnCheckoutFailed (NetworkParameters obj)
     {
@@ -112,20 +112,28 @@ public class NetworkTester : MonoBehaviour
         ScannedObject book = new ScannedObject ();
         book.name = "book";
         book.counter = 22;
-        ss.firstName = "";
-        ss.lastName = "";
-        ss.nickName = "";
-        ss.country = "";
-        ss.birthDate = "YYYY-MM-DD";
-        ss.avatarId = "";
-        ss.email = "";
-        ss.gender = "";
-        ss.keys = 0;
-        ss.dailyStreaks = 0;
-        ss.points = 0;
-        ss.powerStones = 0;
+        //ss.firstName = "";
+        //ss.lastName = "";
+        //ss.nickName = "";
+        //ss.country = "";
+        //ss.birthDate = "YYYY-MM-DD";
+        //ss.avatarId = "";
+        //ss.email = "";
+        //ss.gender = "";
+        ss.keys = 10;
+        ss.dailyStreaks = 20;
+        ss.points = 12;
+        ss.powerStones = 30;
         ss.scannedObjects.scannedObjects.Add (tree);
         ss.scannedObjects.scannedObjects.Add (book);
+        ss.achievementsData = new AchievementsData ();
+        //ss.achievementsData.achievements = new Achievements ();
+        ss.achievementsData.achievements = new List<int> ();
+        ss.achievementsData.achievements.Add (1);
+        ss.achievementsData.achievements.Add (2);
+        ss.achievementsData.achievements.Add (3);
+        //string achievementsData = JsonUtility.ToJson (ss.achievementsData);
+        //print (achievementsData);
         NetworkManager.Instance.UpdateProfile (ss , OnUpdateProfileSuccess , OnUpdateProfileFailed);
     }
     private void OnUpdateProfileSuccess (NetworkParameters obj)
@@ -148,24 +156,28 @@ public class NetworkTester : MonoBehaviour
     private void OnGetProfileSuccess (NetworkParameters obj)
     {
         GetProfileResponse getProfileResponse = (GetProfileResponse)obj.responseData;
-        print (getProfileResponse.profile.isConfirmed);
-        print (getProfileResponse.profile.points);
-        print (getProfileResponse.profile.dailyStreaks);
-        print (getProfileResponse.profile.keys);
-        print (getProfileResponse.profile.powerStones);
-        for ( int i = 0 ; i < getProfileResponse.profile.scannedObjects.Count ; i++ )
+        //print (getProfileResponse.profile.isConfirmed);
+        //print (getProfileResponse.profile.points);
+        //print (getProfileResponse.profile.dailyStreaks);
+        //print (getProfileResponse.profile.keys);
+        //print (getProfileResponse.profile.powerStones);
+        //for ( int i = 0 ; i < getProfileResponse.profile.scannedObjects.Count ; i++ )
+        //{
+        //    print (getProfileResponse.profile.scannedObjects [i].name + " " + getProfileResponse.profile.scannedObjects [i].counter);
+        //}
+        //print (getProfileResponse.profile.email);
+        //print (getProfileResponse.profile.country);
+        //print (getProfileResponse.profile.avatarId);
+        //print (getProfileResponse.profile.firstName);
+        //print (getProfileResponse.profile.lastName);
+        //print (getProfileResponse.profile.playerType);
+        //print (getProfileResponse.profile.birthDate);
+        //print (getProfileResponse.profile.gender);
+        //print (getProfileResponse.profile.nickName);
+        for ( int i = 0 ; i < getProfileResponse.profile.achievements.Count ; i++ )
         {
-            print (getProfileResponse.profile.scannedObjects [i].name + " " + getProfileResponse.profile.scannedObjects [i].counter);
+            print (getProfileResponse.profile.achievements [i]);
         }
-        print (getProfileResponse.profile.email);
-        print (getProfileResponse.profile.country);
-        print (getProfileResponse.profile.avatarId);
-        print (getProfileResponse.profile.firstName);
-        print (getProfileResponse.profile.lastName);
-        print (getProfileResponse.profile.playerType);
-        print (getProfileResponse.profile.birthDate);
-        print (getProfileResponse.profile.gender);
-        print (getProfileResponse.profile.nickName);
 
         //= getProfileResponse.profile.isConfirmed;
         //= getProfileResponse.profile.points;
@@ -318,6 +330,74 @@ public class NetworkTester : MonoBehaviour
         print (detectObjectResponse.detected);
     }
     private void OnF (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestUpdateBundle ()
+    {
+        CollectBundleTokenData collectBundleTokenData = new CollectBundleTokenData ();
+        collectBundleTokenData.bundleId = "507f191e810c19729de860aa";
+        collectBundleTokenData.tokenName = "prinsceEl7sab";
+        NetworkManager.Instance.UpdateCollectedTokens (collectBundleTokenData , OnUpdateBundleSuccess , OnUpdateBundleFailed);
+    }
+    private void OnUpdateBundleSuccess (NetworkParameters obj)
+    {
+        TestGetBunlde ();
+    }
+    private void OnUpdateBundleFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestGetBunlde ()
+    {
+        NetworkManager.Instance.GetBundlesData (OntGetBundleSuccess , OntGetBundleFailed);
+    }
+    private void OntGetBundleSuccess (NetworkParameters obj)
+    {
+        BundleResponse br = (BundleResponse)obj.responseData;
+        for ( int i = 0 ; i < br.bundles.Count ; i++ )
+        {
+
+            print (br.bundles [i].bundleId);
+            for ( int j = 0 ; j < br.bundles [i].collectedTokens.Count ; j++ )
+            {
+
+                print (br.bundles [i].collectedTokens [j]);
+            }
+
+        }
+    }
+    private void OntGetBundleFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestGetAllBunldes ()
+    {
+        NetworkManager.Instance.GetExperienceBundlesData (OntGetAllBundleSuccess , OntGetAllBundleFailed);
+    }
+    private void OntGetAllBundleSuccess (NetworkParameters obj)
+    {
+        ExperienceBundlesResponse br = (ExperienceBundlesResponse)obj.responseData;
+        print (br.bundles);
+        for ( int i = 0 ; i < br.bundles.Count ; i++ )
+        {
+            for ( int j = 0 ; j < br.bundles [i].experience.Count ; j++ )
+            {
+                print (br.bundles [i].experience [j]);
+
+            }
+            print (br.bundles [i].name);
+            for ( int j = 0 ; j < br.bundles [i].tokens.Count ; j++ )
+            {
+                print (br.bundles [i].tokens [j]);
+            }
+            print (br.bundles [i].name);
+            print (br.bundles [i]._id);
+
+        }
+
+    }
+    private void OntGetAllBundleFailed (NetworkParameters obj)
     {
         print (obj.err.message);
     }

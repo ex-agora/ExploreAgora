@@ -153,6 +153,8 @@ public class NetworkManager : MonoBehaviour
     public bool UpdateProfile (ProfileData updateProfileData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
         string scannedObjectsData = JsonUtility.ToJson (updateProfileData.scannedObjects);
+        string achievementsData = JsonUtility.ToJson (updateProfileData.achievementsData);
+        print (achievementsData);
         WWWForm form = new WWWForm ();
         form.AddField ("points" , updateProfileData.points.ToString ());
         form.AddField ("dailyStreaks" , updateProfileData.dailyStreaks.ToString ());
@@ -167,7 +169,10 @@ public class NetworkManager : MonoBehaviour
         if ( !String.IsNullOrEmpty (updateProfileData.nickName) )
             form.AddField ("nickName" , updateProfileData.nickName);
         if ( !String.IsNullOrEmpty (updateProfileData.birthDate) )
+        {
+            print (updateProfileData.birthDate);
             form.AddField ("birthDate" , updateProfileData.birthDate);
+        }
         if ( !String.IsNullOrEmpty (updateProfileData.country) )
             form.AddField ("country" , updateProfileData.country);
         if ( !String.IsNullOrEmpty (updateProfileData.gender) )
@@ -176,6 +181,8 @@ public class NetworkManager : MonoBehaviour
             form.AddField ("avatarId" , updateProfileData.avatarId);
         if ( !String.IsNullOrEmpty (updateProfileData.email) )
             form.AddField ("email" , updateProfileData.email);
+        if ( !String.IsNullOrEmpty (achievementsData) )
+            form.AddField ("achievements" , achievementsData);
         StartCoroutine (PostRequest<UpdateProfileResponse> (networkManagerData.GetUpdateProfileURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
@@ -189,7 +196,7 @@ public class NetworkManager : MonoBehaviour
         WWWForm form = new WWWForm ();
         form.AddField ("status" , experiencePlayData.status);
         form.AddField ("experienceCode" , experiencePlayData.experienceCode);
-        if ( experiencePlayData.status == 1)
+        if ( experiencePlayData.status == 1 )
         {
             experiencePlayData.score = 0;
         }
@@ -277,6 +284,24 @@ public class NetworkManager : MonoBehaviour
         form.AddField ("purchaseToken" , completeCheckoutData.purchaseToken);
         form.AddField ("transactionID" , completeCheckoutData.transactionID);
         StartCoroutine (PostRequest<CompleteCheckoutResponse> (networkManagerData.GetCompleteCheckoutURL () , true , onSuccess , onFailed));
+        return isSuccess;
+    }
+    public bool GetBundlesData (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        StartCoroutine (GetRequest<BundleResponse> (networkManagerData.GetBundleURL () , onSuccess , onFailed));
+        return isSuccess;
+    }
+    public bool GetExperienceBundlesData (Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        StartCoroutine (GetRequest<ExperienceBundlesResponse> (networkManagerData.GetExperienceBundlesURL () , onSuccess , onFailed));
+        return isSuccess;
+    }
+    public bool UpdateCollectedTokens (CollectBundleTokenData collectBundleTokenData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        WWWForm form = new WWWForm ();
+        form.AddField ("bundleId" , collectBundleTokenData.bundleId);
+        form.AddField ("tokenName" , collectBundleTokenData.tokenName);
+        StartCoroutine (PostRequest<BundleResponse> (networkManagerData.GetCollectBundleTokenURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
     private IEnumerator PostRequest<T> (string url , WWWForm form , bool isAuthorizeTokenNeeeded , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed) where T : ResponseData

@@ -24,7 +24,10 @@ public class NetworkManagerData : ScriptableObject
     public string experienceData;
     public string detectObj;
     public string completeCheckout;
-
+    public string bundle;
+    public string collectBundleToken;
+    public string experienceBundles;
+    public string gameData;
     public string GetSignupURL ()
     {
         return serverURL + "/" + signup;
@@ -92,5 +95,21 @@ public class NetworkManagerData : ScriptableObject
     public string GetCompleteCheckoutURL ()
     {
         return serverURL + "/" + completeCheckout;
+    }
+    public string GetBundleURL ()
+    {
+        return serverURL + "/" + bundle;
+    }    
+    public string GetCollectBundleTokenURL ()
+    {
+        return serverURL + "/" + collectBundleToken;
+    }
+    public string GetGameDataURL ()
+    {
+        return serverURL + "/" + gameData;
+    }
+    public string GetExperienceBundlesURL ()
+    {
+        return serverURL + "/" + experienceBundles;
     }
 }
