@@ -25,6 +25,7 @@ public class PopupExperienceHandler : MonoBehaviour
     [SerializeField] private Image sizeImg;
     [SerializeField] private Image extraImg;
     [SerializeField] private ExperienceContainerHolder _experience;
+    [SerializeField] private BundleHandler bundle;
     [SerializeField] private ToolBarHandler popupAnim;
 
     [SerializeField] private GameObject playNowBtnObject;
@@ -38,6 +39,7 @@ public class PopupExperienceHandler : MonoBehaviour
     public string DescriptionStr { get => descriptionStr; set => descriptionStr = value; }
     public ExperienceContainerHolder _Experience { get => _experience; set => _experience = value; }
     public ScanChecker _Scan { get => _scan; set => _scan = value; }
+    public BundleHandler _Bundle { get => bundle; set => bundle = value; }
 
     public void OpenPopup(ExperienceRequiredArea _experienceRequiredArea, string _placeOn, bool _hasExtra, bool _isScannedState)
     {
@@ -95,7 +97,7 @@ public class PopupExperienceHandler : MonoBehaviour
         popupAnim.OpenToolBar();
     }
     public void PlayExperience() {
-        ExperienceRouteHandler.Instance.Transit(_Experience);
+        ExperienceRouteHandler.Instance.Transit(_Experience ,bundle);
     }
 
     public void AcviteScan() {

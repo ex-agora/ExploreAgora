@@ -15,6 +15,7 @@ public class ExperienceHandler : MonoBehaviour
     [SerializeField] private List<ExperienceHandler> experienceDependencies;
     [SerializeField] private PopupExperienceHandler popup;
     [SerializeField] private ScanChecker scan;
+    [SerializeField] private BundleHandler bundle;
     public void UpdateUIState()
     {
         gem.enabled = false;
@@ -73,6 +74,7 @@ public class ExperienceHandler : MonoBehaviour
         popup.TitleStr = experienceContainerHolder.experienceName;
         popup.DescriptionStr = experienceContainerHolder.description;
         popup._Experience = experienceContainerHolder;
+        popup._Bundle = bundle;
         if (experienceContainerHolder.playedCounter > 0 && experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
         {
             up = false;

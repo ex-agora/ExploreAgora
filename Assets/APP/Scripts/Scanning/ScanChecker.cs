@@ -40,6 +40,7 @@ public class ScanChecker : MonoBehaviour
     void OnSuccessScan(NetworkParameters np)
     {
         scanProperties.detectionObjectName = objectToScanName;
+        scanProperties.detectionObjectSp = objActiveSprite;
         SceneLoader.Instance.LoadExperience("Scan Scene");
     }
     void OnFailedScan(NetworkParameters np) {

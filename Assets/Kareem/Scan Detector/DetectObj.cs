@@ -18,6 +18,7 @@ public class DetectObj : MonoBehaviour
     [SerializeField] ScanProperties scanProperties;
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfileInfoContainer profile;
+    [SerializeField] AchievementHolder achievement;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
@@ -153,7 +154,16 @@ public class DetectObj : MonoBehaviour
             outputText.text = "Found";
             int counter = inventory.GetScanedCounter(scanProperties.detectionObjectName);
             if (counter == -1)
-                Debug.Log("Not Found Object at Inventory");
+            {
+                counter = 0;
+                achievement.UpdateCurrent();
+                Sprite badge = achievement.GetBadge();
+                if (badge != null) {
+                    AchievementManager.Instance.AddBadge(badge);
+                }
+                AchievementManager.Instance.AddScannedObject(scanProperties.detectionObjectSp, scanProperties.detectionObjectName);
+            }
+            AchievementManager.Instance.AddScore(ScorePointsUtility.ScanObject);
             counter++;
             inventory.SetObject(scanProperties.detectionObjectName, counter);
             UpdateProfile();
@@ -172,12 +182,15 @@ public class DetectObj : MonoBehaviour
     {
 
         ProfileData ss = new ProfileData();
-        ss.scannedObjects = new ScannedObjects();
-        ss.scannedObjects.scannedObjects = new List<ScannedObject>();
-        foreach ( var i in inventory.ScanedObjects) {
-            ss.scannedObjects.scannedObjects.Add(new ScannedObject(i.Key, i.Value));
-        } 
-       
+        if (inventory.ScanedObjects.Count > 0)
+        {
+            ss.scannedObjects = new ScannedObjects();
+            ss.scannedObjects.scannedObjects = new List<ScannedObject>();
+            foreach (var i in inventory.ScanedObjects)
+            {
+                ss.scannedObjects.scannedObjects.Add(new ScannedObject(i.Key, i.Value));
+            }
+        }
         ss.firstName = profile.fName;
         ss.lastName = profile.lName;
         ss.nickName = profile.nickname;
@@ -190,6 +203,11 @@ public class DetectObj : MonoBehaviour
         ss.dailyStreaks = profile.streaks;
         ss.points = profile.points;
         ss.powerStones = profile.stones;
+        if (profile.achievements.Count > 0)
+        {
+            ss.achievementsData = new AchievementsData();
+            ss.achievementsData.achievements = profile.achievements;
+        }
         NetworkManager.Instance.UpdateProfile(ss, OnUpdateProfileSuccess, OnUpdateProfileFailed);
     }
     private void OnUpdateProfileSuccess(NetworkParameters obj)

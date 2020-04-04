@@ -44,7 +44,7 @@ public class ExperienceContainerHolder : ScriptableObject
     [Range (0 , 3)] public int experienceRate;
     public uint playedCounter;
     public uint finishedCounter;
-    public bool isHaveToken;
+    public bool hasToken;
     public ExperienceToken token;
     public bool isReadyToPlay;
     public bool isActive;

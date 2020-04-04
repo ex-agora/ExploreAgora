@@ -62,6 +62,7 @@ public class BundlesNetworkHandler : MonoBehaviour
         {
             if (bundleMap.TryGetValue(br.bundles[i].name, out _bundle)){
                 _bundle.Id = br.bundles[i]._id;
+                
                 bundleMapKey.Add(_bundle.Id, _bundle.BundleName);
 
             }

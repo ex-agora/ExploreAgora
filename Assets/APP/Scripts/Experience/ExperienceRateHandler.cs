@@ -5,6 +5,8 @@ using UnityEngine;
 public class ExperienceRateHandler : MonoBehaviour
 {
     [SerializeField] ToolBarHandler popup;
+    [SerializeField] AchievementHolder achievement;
+    [SerializeField] ProfileNetworkHandler networkHandler;
     string experienceCode;
     int rate;
     public void Rate(int _rate) => rate = _rate;
@@ -24,7 +26,14 @@ public class ExperienceRateHandler : MonoBehaviour
     }
     private void OnRateExperienceSusccess(NetworkParameters obj)
     {
-
+        achievement.UpdateCurrent();
+        networkHandler.Profile.points += ScorePointsUtility.Rating;
+        AchievementManager.Instance.AddScore(ScorePointsUtility.Rating);
+        Sprite badge = achievement.GetBadge();
+        if (badge != null) {
+            AchievementManager.Instance.AddBadge(badge);
+        }
+        networkHandler.UpdateProfile();
     }
     private void OnRateExperienceFailed(NetworkParameters obj)
     {

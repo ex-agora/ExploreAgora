@@ -16,6 +16,7 @@ public class LoadScenePrefabs : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
     public ExperienceContainerHolder GetExperience() => sceneNavManager.nextExperienceContainerHolder;
+    public string GetBundleID() => sceneNavManager.bundleID;
     private void Start()
     {
         Instantiate (@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);

@@ -6,7 +6,9 @@ public class BundleHandler : MonoBehaviour
 {
    
     [SerializeField] private InventoryObjectHolder inventoryObjectHolder;
+    string bundleID;
 
+    public string BundleID { get => bundleID; set => bundleID = value; }
 
     public int GetScannedCounter(string _scannedObjectName)
     {

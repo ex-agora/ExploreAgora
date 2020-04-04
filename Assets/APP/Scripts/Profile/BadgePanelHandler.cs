@@ -13,50 +13,44 @@ public class BadgePanelHandler : MonoBehaviour
 
     [SerializeField] private Text scoreText;
 
-    [SerializeField] private Sprite blueSprite;
-    [SerializeField] private Sprite purpleSprite;
-    [SerializeField] private Sprite goldSprite;
-
-    [SerializeField] private int blueRange;
-    [SerializeField] private int purpleRange;
-    [SerializeField] private int goldRange;
-
-    [SerializeField] private int current;
-
-    public int Current { get => current; set { current = value; UpdateCurrentPanel(); } }
-
+    [SerializeField] AchievementHolder achievement;
+    public int Current { get => achievement.current; set { achievement.current = value; UpdateCurrentPanel(); } }
+    private void OnEnable()
+    {
+        UpdateCurrentPanel();
+    }
     private void UpdateCurrentPanel()
     {
         if (isOneBadge)
         {
-            if (current > 0)
-                blueBadge.sprite = blueSprite;
+            if (achievement.current > 0)
+                blueBadge.sprite = achievement.blueSprite;
             return;
         }
-        if (current < purpleRange && current >= blueRange)
+        if (achievement.current < achievement.purpleRange && achievement.current >= achievement.blueRange)
         {
-            blueBadge.sprite = blueSprite;
-            UpdateScoreText(purpleRange);
+            blueBadge.sprite = achievement.blueSprite;
+            UpdateScoreText(achievement.purpleRange);
         }
-        else if (current < goldRange && current >= purpleRange)
+        else if (achievement.current < achievement.goldRange && achievement.current >= achievement.purpleRange)
         {
-            blueBadge.sprite = blueSprite;
-            purpleBadge.sprite = purpleSprite;
-            UpdateScoreText(goldRange);
+            blueBadge.sprite = achievement.blueSprite;
+            purpleBadge.sprite = achievement.purpleSprite;
+            UpdateScoreText(achievement.goldRange);
         }
-        else if (current >= goldRange)
+        else if (achievement.current >= achievement.goldRange)
         {
-            blueBadge.sprite = blueSprite;
-            purpleBadge.sprite = purpleSprite;
-            goldBadge.sprite = goldSprite;
+            blueBadge.sprite = achievement.blueSprite;
+            purpleBadge.sprite = achievement.purpleSprite;
+            goldBadge.sprite = achievement.goldSprite;
 
-            UpdateScoreText(goldRange);
+            UpdateScoreText(achievement.goldRange);
         }
-        else { UpdateScoreText(blueRange); }
+        else { UpdateScoreText(achievement.blueRange); }
     }
 
     private void UpdateScoreText(int _LimitScore)
     {
-        scoreText.text = $"{current}/{_LimitScore}";
+        scoreText.text = $"{achievement.current}/{_LimitScore}";
     }
 }

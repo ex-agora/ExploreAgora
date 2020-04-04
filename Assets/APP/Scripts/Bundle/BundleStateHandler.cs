@@ -12,9 +12,10 @@ public class BundleStateHandler : MonoBehaviour
     [SerializeField] List<Image> tokenImgs;
     [SerializeField] List<ExperienceToken> experienceTokens;
     [SerializeField] ComicStateHandler comic;
+    [SerializeField] BundleHandler handler;
     bool isComicActive;
     public string BundleName { get => bundleName; }
-    public string Id { get => id; set => id = value; }
+    public string Id { get => id; set { id = value; handler.BundleID = value; } }
     public void ActiveToken(string _TokenName) {
         bool isAllActive = true;
         for (int i = 0; i < experienceTokens.Count; i++) {

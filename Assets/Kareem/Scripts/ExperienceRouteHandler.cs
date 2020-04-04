@@ -9,6 +9,7 @@ public class ExperienceRouteHandler : MonoBehaviour
     #region Fields
     [SerializeField] SOTest @sceneNavManager;
     [SerializeField] string SceneName;
+    [SerializeField] AchievementHolder achievement;
     static ExperienceRouteHandler instance;
     bool isPressed = false;
     public static ExperienceRouteHandler Instance { get => instance; set => instance = value; }
@@ -19,7 +20,7 @@ public class ExperienceRouteHandler : MonoBehaviour
         if (instance == null)
             instance = this;
     }
-    public void Transit(ExperienceContainerHolder experienceContainerHolder)
+    public void Transit(ExperienceContainerHolder experienceContainerHolder,BundleHandler bundle)
     {
         //Debug.Log ("SceneName " + SceneName);
         //Debug.Log ("experienceContainerHolder " + experienceContainerHolder);
@@ -46,9 +47,18 @@ public class ExperienceRouteHandler : MonoBehaviour
             return;
         isPressed = true;
         @sceneNavManager.nextExperienceContainerHolder = experienceContainerHolder;
+        @sceneNavManager.bundleID = bundle.BundleID;
         ExperiencePlayData s = new ExperiencePlayData(); s.status = 1;
         s.experienceCode = experienceContainerHolder.experienceCode;
         s.score = 0;
+        if (experienceContainerHolder.playedCounter > 0) {
+            achievement.UpdateCurrent();
+            Sprite badge = achievement.GetBadge();
+            if (badge != null)
+            {
+                AchievementManager.Instance.AddBadge(badge);
+            }   
+        }
         NetworkManager.Instance.UpdateExperienceStatus(s, OntUpdateExperienceSuccess, OntUpdateExperienceFailed);
         // Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
 
@@ -57,6 +67,7 @@ public class ExperienceRouteHandler : MonoBehaviour
     private void OntUpdateExperienceSuccess(NetworkParameters obj)
     {
         isPressed = false;
+
         SceneLoader.Instance.LoadExperience(SceneName);
     }
     private void OntUpdateExperienceFailed(NetworkParameters obj)

@@ -5,4 +5,5 @@ using UnityEngine;
 public class SOTest : ScriptableObject
 {
     public ExperienceContainerHolder nextExperienceContainerHolder;
+    public string bundleID;
 }
