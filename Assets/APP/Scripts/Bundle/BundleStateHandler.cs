@@ -40,5 +40,7 @@ public class BundleStateHandler : MonoBehaviour
             return;
         comic.PlayComic();
     }
-    
+    public int GetTokensNumber() => experienceTokens.Count;
+
+
 }

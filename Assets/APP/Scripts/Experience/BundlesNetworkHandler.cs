@@ -5,6 +5,7 @@ using UnityEngine;
 public class BundlesNetworkHandler : MonoBehaviour
 {
     [SerializeField] List<BundleStateHandler> bundles;
+    [SerializeField] AchievementHolder achievement;
     Dictionary<string, BundleStateHandler> bundleMap;
     Dictionary<string, string> bundleMapKey;
     private void Start()
@@ -22,13 +23,21 @@ public class BundlesNetworkHandler : MonoBehaviour
     }
     private void OntGetBundleSuccess(NetworkParameters obj)
     {
+        int counter = 0;
         BundleResponse br = (BundleResponse)obj.responseData;
         for (int i = 0; i < br.bundles.Count; i++)
         {
-           
+
             print(br.bundles[i].bundleId);
             BundleStateHandler _bundle = null;
             string key = string.Empty;
+            if (bundleMapKey.TryGetValue(br.bundles[i].bundleId, out key))
+            {
+                if (bundleMap.TryGetValue(key, out _bundle))
+                {
+                    counter = _bundle.GetTokensNumber() == br.bundles[i].collectedTokens.Count ? counter + 1 : counter;
+                }
+            }
             for (int j = 0; j < br.bundles[i].collectedTokens.Count; j++)
             {
                 if (bundleMapKey.TryGetValue(br.bundles[i].bundleId, out key))
@@ -40,6 +49,15 @@ public class BundlesNetworkHandler : MonoBehaviour
                 }
             }
 
+        }
+        if (counter > achievement.current)
+        {
+            achievement.UpdateCurrent();
+            Sprite badge = achievement.GetBadge();
+            if (badge != null)
+            {
+                AchievementManager.Instance.AddBadge(badge);
+            }
         }
     }
     private void OntGetBundleFailed(NetworkParameters obj)
