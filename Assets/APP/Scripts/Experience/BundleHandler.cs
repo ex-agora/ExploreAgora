@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BundleHandler : MonoBehaviour
 {
+   
     [SerializeField] private InventoryObjectHolder inventoryObjectHolder;
+
 
     public int GetScannedCounter(string _scannedObjectName)
     {

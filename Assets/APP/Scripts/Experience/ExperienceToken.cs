@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct ExperienceToken 
+public class ExperienceToken 
 {
     public string tokenName;
     public Sprite tokenSprite;
+    public bool isCollected;
 }

@@ -9,6 +9,7 @@ public class WarningTransitionHandler : MonoBehaviour
 
     private void Start()
     {
+        Resources.UnloadUnusedAssets();
         quickFadeHandler.FadeIn();
         Invoke(nameof(NextScene), 3f);
     }
@@ -16,6 +17,7 @@ public class WarningTransitionHandler : MonoBehaviour
     private void NextScene()
     {
         quickFadeHandler.FadeOut();
-        SceneManager.LoadScene(1);
+        Application.backgroundLoadingPriority = ThreadPriority.High;
+        SceneManager.LoadSceneAsync(1,LoadSceneMode.Single);
     }
 }

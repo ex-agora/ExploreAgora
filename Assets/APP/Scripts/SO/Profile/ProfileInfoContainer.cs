@@ -19,4 +19,6 @@ public class ProfileInfoContainer : ScriptableObject
     public string fName;
     public string lName;
     public string email;
+    public bool isConfirmed;
+    public string playerType;
 }
