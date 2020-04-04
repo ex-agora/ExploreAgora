@@ -15,13 +15,17 @@ public class GenderHandler : MonoBehaviour
 
     private void Start()
     {
-        currentGender = male;
-        PlayerGender = Gender.Male;
+        if (currentGender == null) {
+            currentGender = male;
+            PlayerGender = Gender.Male;
+        }
+
     }
 
     public void SelectGender(int newGender)
     {
-        currentGender.gameObject.SetActive(false);
+        if (currentGender != null)
+            currentGender.gameObject.SetActive(false);
 
         playerGender = (Gender)newGender;
         switch (PlayerGender)
@@ -46,7 +50,7 @@ public class GenderHandler : MonoBehaviour
     private void SetGender(Gender newGender)
     {
         playerGender = newGender;
-        if (currentGender != null)
+        //if (currentGender != null)
             SelectGender((int)newGender);
     }
 }

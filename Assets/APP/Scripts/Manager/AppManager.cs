@@ -11,6 +11,8 @@ public class AppManager : MonoBehaviour
     public bool[] isCurrentLevelPrizeDone;
     public OnBoardingPhases boardingPhases;
 
+    bool isThereRate;
+    string experienceCode;
 
 
     private static AppManager instance;
@@ -19,7 +21,8 @@ public class AppManager : MonoBehaviour
 
     public static AppManager Instance { get => instance; set => instance = value; }
     public bool IsSplashScreenDone { get => isSplashScreenDone; set => isSplashScreenDone = value; }
- 
+    public bool IsThereRate { get => isThereRate; set => isThereRate = value; }
+    public string ExperienceCode { get => experienceCode; set => experienceCode = value; }
 
     private void Awake()
     {

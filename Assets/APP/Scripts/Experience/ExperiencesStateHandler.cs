@@ -17,6 +17,7 @@ public class ExperiencesStateHandler : MonoBehaviour
         {
             key = getExperienceResponse.experience[i].experienceCode;
             experiences[key].experienceScore = getExperienceResponse.experience[i].maxScore;
+            experiences[key].experienceRate = getExperienceResponse.experience[i].rate;
             experiences[key].playedCounter = (uint)getExperienceResponse.experience[i].playedTimesCounter;
             experiences[key].finishedCounter = (uint)getExperienceResponse.experience[i].finishedTimesCounter;
         }

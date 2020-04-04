@@ -56,7 +56,7 @@ public class AccountProfileHandler : MonoBehaviour
     public void ConfirmChangeProfilePicture()
     {
         profileSpriteIndex = profilePictureHandler.ChangeProfilePicture();
-        chosenForProfile = profilePictureHandler.GetProfileSprite(profileSpriteIndex);
+        chosenForProfile = profilePictureHandler.GetProfileSprite(ProfileInfo.profileImgIndex);
         mainProfileImage.sprite = chosenForProfile;
         shopProfileImage.sprite = chosenForProfile;
         bookProfileImage.sprite = chosenForProfile;
