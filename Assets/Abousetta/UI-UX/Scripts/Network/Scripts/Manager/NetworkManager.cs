@@ -304,6 +304,14 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<BundleResponse> (networkManagerData.GetCollectBundleTokenURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
+    public bool RateExperience (ExperienceRateData experienceRateData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        WWWForm form = new WWWForm ();
+        form.AddField ("experienceCode" , experienceRateData.experienceCode);
+        form.AddField ("rate" , experienceRateData.rate);
+        StartCoroutine (PostRequest<ResponseData> (networkManagerData.GetExperienceRateURL () , form , true , onSuccess , onFailed));
+        return isSuccess;
+    }
     private IEnumerator PostRequest<T> (string url , WWWForm form , bool isAuthorizeTokenNeeeded , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed) where T : ResponseData
     {
         Debug.Log (url);

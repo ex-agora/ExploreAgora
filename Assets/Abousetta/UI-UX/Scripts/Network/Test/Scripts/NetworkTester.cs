@@ -290,6 +290,10 @@ public class NetworkTester : MonoBehaviour
             //" totalPlayedDuration " + getExperienceResponse.experience [i].totalPlayedDuration + "    \n";
         }
         getExperienceData.ShowData (exS);
+        for ( int i = 0 ; i < getExperienceResponse.experience.Length ; i++ )
+        {
+            print (getExperienceResponse.experience[i].rate);
+        }
     }
     private void OnGetExperiencesFailed (NetworkParameters obj)
     {
@@ -414,7 +418,7 @@ public class NetworkTester : MonoBehaviour
     private void OnCreateDummyAccountFailed (NetworkParameters obj)
     {
         print (obj.err.message);
-    }    
+    }
     public void TestLinkAccount ()
     {
         LinkAccountData linkAccountData = new LinkAccountData ();
@@ -431,6 +435,20 @@ public class NetworkTester : MonoBehaviour
         NetworkManager.Instance.SaveToken (response.token);
     }
     private void OnLinkAccountFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestRateExperience ()
+    {
+        ExperienceRateData rateData = new ExperienceRateData ();
+        rateData.experienceCode = "0Sc";
+        rateData.rate = "3";
+        NetworkManager.Instance.RateExperience (rateData , OnRateExperienceSusccess , OnRateExperienceFailed);
+    }
+    private void OnRateExperienceSusccess (NetworkParameters obj)
+    {
+    }
+    private void OnRateExperienceFailed (NetworkParameters obj)
     {
         print (obj.err.message);
     }

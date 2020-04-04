@@ -28,6 +28,7 @@ public class NetworkManagerData : ScriptableObject
     public string collectBundleToken;
     public string experienceBundles;
     public string gameData;
+    public string experienceRate;
     public string GetSignupURL ()
     {
         return serverURL + "/" + signup;
@@ -111,5 +112,9 @@ public class NetworkManagerData : ScriptableObject
     public string GetExperienceBundlesURL ()
     {
         return serverURL + "/" + experienceBundles;
+    }
+    public string GetExperienceRateURL ()
+    {
+        return serverURL + "/" + experienceRate;
     }
 }

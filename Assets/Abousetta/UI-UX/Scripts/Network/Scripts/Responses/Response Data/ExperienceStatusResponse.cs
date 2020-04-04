@@ -8,4 +8,5 @@ public class ExperienceStatusResponse
     public int maxScore;  
     //public string lastPlayedAt;  
     public string experienceCode;
+    public int rate;
 }
