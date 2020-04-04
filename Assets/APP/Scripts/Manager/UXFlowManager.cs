@@ -15,6 +15,7 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private GameObject loginRootPanel;
     [SerializeField] private GameObject footerPanel;
     [SerializeField] private GameObject conformationPanel;
+    [SerializeField] private ExperienceRateHandler rateHandler;
     [SerializeField] private ProfileNetworkHandler _ProfileNetowrkHandler;
     [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
     private void Awake()
@@ -60,11 +61,23 @@ public class UXFlowManager : MonoBehaviour
     public void FadeInProfile() {
         
         quickFadeProfileHandler.FadeIn();
+        Invoke(nameof(CheckRate), 1f);
     }
+    void CheckRate() {
+        if (AppManager.Instance.IsThereRate) {
+            rateHandler.ShowRate(AppManager.Instance.ExperienceCode);
+            AppManager.Instance.IsThereRate = false;
+            AppManager.Instance.ExperienceCode = string.Empty;
+        }
+    }
+    
     public void FadeInProfileDellay(float delay)
     {
+        if (_ProfileNetowrkHandler.ShouldVerify())
+            ShowConformationPanel();
         _ExperiencesStates.gameObject.SetActive(true);
         _ExperiencesStates.HandleExperiencesStates();
+        
         AcceptLogin();
         Invoke(nameof(FadeInProfile), delay);
     }

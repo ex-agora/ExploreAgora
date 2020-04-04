@@ -41,6 +41,7 @@ public class ExperienceContainerHolder : ScriptableObject
     public string palceOn;
     public ExperienceRequiredArea requiredArea;
     [Range (0 , 3)] public int experienceScore;
+    [Range (0 , 3)] public int experienceRate;
     public uint playedCounter;
     public uint finishedCounter;
     public bool isHaveToken;

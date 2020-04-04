@@ -21,4 +21,5 @@ public class ProfileInfoContainer : ScriptableObject
     public string email;
     public bool isConfirmed;
     public string playerType;
+    public List<int> achievements;
 }

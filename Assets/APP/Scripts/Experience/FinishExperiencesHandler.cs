@@ -17,6 +17,10 @@ public class FinishExperiencesHandler : MonoBehaviour
     }
 
     public void FinshExperience(int score) {
+        if (scenePrefabs.GetExperience().experienceRate == 0) {
+            AppManager.Instance.IsThereRate = true;
+            AppManager.Instance.ExperienceCode = scenePrefabs.GetExperience().experienceCode;
+        }
         ExperiencePlayData s = new ExperiencePlayData();
         s.status = 2;
         s.experienceCode = scenePrefabs.GetExperience().experienceCode;

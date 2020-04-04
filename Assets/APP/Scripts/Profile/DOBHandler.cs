@@ -43,6 +43,7 @@ public class DOBHandler : MonoBehaviour
 
         InputHandler ();
         HandleDay ();
+        HandleDate();
     }
     private void InputHandler ()
     {

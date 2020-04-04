@@ -11,6 +11,7 @@ public class BundleStateHandler : MonoBehaviour
     [SerializeField] Sprite comicBtnSp;
     [SerializeField] List<Image> tokenImgs;
     [SerializeField] List<ExperienceToken> experienceTokens;
+    [SerializeField] ComicStateHandler comic;
     bool isComicActive;
     public string BundleName { get => bundleName; }
     public string Id { get => id; set => id = value; }
@@ -26,11 +27,17 @@ public class BundleStateHandler : MonoBehaviour
         if (isAllActive) {
             comicBtn.image.sprite = comicBtnSp;
             isComicActive = true;
+            comic.ActiveComic();
         }
+    }
+    private void Start()
+    {
+        ActiveToken(string.Empty);
     }
     public void PlayComic() {
         if (!isComicActive)
             return;
+        comic.PlayComic();
     }
     
 }
