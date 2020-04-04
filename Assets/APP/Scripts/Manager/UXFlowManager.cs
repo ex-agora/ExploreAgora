@@ -22,8 +22,18 @@ public class UXFlowManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+    void FreeAssets() {
+        Resources.UnloadUnusedAssets();
+    }
     private void Start()
     {
+        StartCoroutine(StartUX());
+        FreeAssets();
+    }
+    IEnumerator StartUX() {
+        yield return new WaitForSeconds(1.5f);
+        uIDefaultCanvas.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         if (!AppManager.Instance.IsSplashScreenDone)
         {
             splashScreenHandler.PlayAnim();
@@ -32,13 +42,12 @@ public class UXFlowManager : MonoBehaviour
         else
             splashScreenHandler.DeactiveAnim();
     }
-
     public void LoginFadeIn()
     {
         if (NetworkManager.Instance.CheckTokenExist())
         {
             _ProfileNetowrkHandler.GetProfile();
-            _ExperiencesStates.HandleExperiencesStates();
+            
             //AcceptLogin();
             //quickFadeHandler.FadeIn();
         }
@@ -54,6 +63,8 @@ public class UXFlowManager : MonoBehaviour
     }
     public void FadeInProfileDellay(float delay)
     {
+        _ExperiencesStates.gameObject.SetActive(true);
+        _ExperiencesStates.HandleExperiencesStates();
         AcceptLogin();
         Invoke(nameof(FadeInProfile), delay);
     }

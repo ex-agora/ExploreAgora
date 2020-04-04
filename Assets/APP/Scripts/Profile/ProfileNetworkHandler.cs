@@ -26,8 +26,7 @@ public class ProfileNetworkHandler : MonoBehaviour
             var str = response.profile.gender.ToCharArray();
             str[0] = char.ToUpper(response.profile.gender[0]);
             System.Enum.TryParse(new string(str), out profile.gender);
-        }   
-
+        }  
         profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
             profile.lName = response.profile.lastName;
@@ -35,6 +34,8 @@ public class ProfileNetworkHandler : MonoBehaviour
         profile.points = response.profile.points;
         profile.stones = (int)response.profile.powerStones;
         profile.streaks = response.profile.dailyStreaks;
+        profile.isConfirmed = response.profile.isConfirmed;
+        profile.playerType = response.profile.playerType;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.avatarId))
             profile.profileImgIndex = int.Parse(response.profile.avatarId);
         StringIntDictionary _scannedObj = new StringIntDictionary();
