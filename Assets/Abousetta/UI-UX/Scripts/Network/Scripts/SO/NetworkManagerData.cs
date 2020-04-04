@@ -29,6 +29,7 @@ public class NetworkManagerData : ScriptableObject
     public string experienceBundles;
     public string gameData;
     public string experienceRate;
+    public string promoCode;
     public string GetSignupURL ()
     {
         return serverURL + "/" + signup;
@@ -116,5 +117,9 @@ public class NetworkManagerData : ScriptableObject
     public string GetExperienceRateURL ()
     {
         return serverURL + "/" + experienceRate;
+    }
+    public string GetPromoCodeURL ()
+    {
+        return serverURL + "/" + promoCode;
     }
 }

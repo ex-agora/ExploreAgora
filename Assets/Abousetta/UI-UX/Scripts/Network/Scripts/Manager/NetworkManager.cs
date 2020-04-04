@@ -312,6 +312,13 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine (PostRequest<ResponseData> (networkManagerData.GetExperienceRateURL () , form , true , onSuccess , onFailed));
         return isSuccess;
     }
+    public bool PromoCode (PromoCodeData promoCodeData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
+    {
+        WWWForm form = new WWWForm ();
+        form.AddField ("hash" , promoCodeData.hash);
+        StartCoroutine (PostRequest<PromoCodeResponse> (networkManagerData.GetPromoCodeURL () , form , true , onSuccess , onFailed));
+        return isSuccess;
+    }
     private IEnumerator PostRequest<T> (string url , WWWForm form , bool isAuthorizeTokenNeeeded , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed) where T : ResponseData
     {
         Debug.Log (url);
