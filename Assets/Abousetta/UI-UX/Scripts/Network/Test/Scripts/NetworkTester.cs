@@ -116,7 +116,7 @@ public class NetworkTester : MonoBehaviour
         //ss.lastName = "";
         //ss.nickName = "";
         //ss.country = "";
-        //ss.birthDate = "YYYY-MM-DD";
+        ss.birthDate = "2002-12-02";
         //ss.avatarId = "";
         //ss.email = "";
         //ss.gender = "";
@@ -292,7 +292,7 @@ public class NetworkTester : MonoBehaviour
         getExperienceData.ShowData (exS);
         for ( int i = 0 ; i < getExperienceResponse.experience.Length ; i++ )
         {
-            print (getExperienceResponse.experience[i].rate);
+            print (getExperienceResponse.experience [i].rate);
         }
     }
     private void OnGetExperiencesFailed (NetworkParameters obj)
@@ -447,8 +447,24 @@ public class NetworkTester : MonoBehaviour
     }
     private void OnRateExperienceSusccess (NetworkParameters obj)
     {
+
     }
     private void OnRateExperienceFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestPromoCode ()
+    {
+        PromoCodeData promoCodeData = new PromoCodeData ();
+        promoCodeData.hash = "stayhome";
+        NetworkManager.Instance.PromoCode (promoCodeData , OnPromoCodeSusccess , OnPromoCodeFailed);
+    }
+    private void OnPromoCodeSusccess (NetworkParameters obj)
+    {
+        PromoCodeResponse promoCode = new PromoCodeResponse ();
+        int powerStones = promoCode.powerStones;
+    }
+    private void OnPromoCodeFailed (NetworkParameters obj)
     {
         print (obj.err.message);
     }
