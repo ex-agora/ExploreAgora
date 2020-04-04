@@ -127,7 +127,6 @@ public class NetworkTester : MonoBehaviour
         ss.scannedObjects.scannedObjects.Add (tree);
         ss.scannedObjects.scannedObjects.Add (book);
         ss.achievementsData = new AchievementsData ();
-        //ss.achievementsData.achievements = new Achievements ();
         ss.achievementsData.achievements = new List<int> ();
         ss.achievementsData.achievements.Add (1);
         ss.achievementsData.achievements.Add (2);
@@ -395,9 +394,43 @@ public class NetworkTester : MonoBehaviour
             print (br.bundles [i]._id);
 
         }
-
     }
     private void OntGetAllBundleFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }
+    public void TestCreateDummyAccount ()
+    {
+        CreateDummyAccountData createDummyAccountData = new CreateDummyAccountData ();
+        createDummyAccountData.deviceId = "123456";
+        createDummyAccountData.deviceType = "android";
+        NetworkManager.Instance.CreateDummyAccount (createDummyAccountData , OnCreateDummyAccountSusccess , OnCreateDummyAccountFailed);
+    }
+    private void OnCreateDummyAccountSusccess (NetworkParameters obj)
+    {
+        CreateDummyAccountResponse response = (CreateDummyAccountResponse)obj.responseData;
+        NetworkManager.Instance.SaveToken (response.token);
+    }
+    private void OnCreateDummyAccountFailed (NetworkParameters obj)
+    {
+        print (obj.err.message);
+    }    
+    public void TestLinkAccount ()
+    {
+        LinkAccountData linkAccountData = new LinkAccountData ();
+        linkAccountData.firstName = "7amo";
+        linkAccountData.lastName = "beeka";
+        linkAccountData.email = "7amobeeka@maharaganat.com";
+        linkAccountData.country = "omEldonia";
+        linkAccountData.password = "7amoPassword";
+        NetworkManager.Instance.LinkAccount (linkAccountData , OnLinkAccountSusccess , OnLinkAccountFailed);
+    }
+    private void OnLinkAccountSusccess (NetworkParameters obj)
+    {
+        LinkAccountResponse response = (LinkAccountResponse)obj.responseData;
+        NetworkManager.Instance.SaveToken (response.token);
+    }
+    private void OnLinkAccountFailed (NetworkParameters obj)
     {
         print (obj.err.message);
     }
