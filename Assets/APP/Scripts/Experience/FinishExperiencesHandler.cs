@@ -97,7 +97,7 @@ public class FinishExperiencesHandler : MonoBehaviour
         ss.lastName = profile.lName;
         ss.nickName = profile.nickname;
         ss.country = profile.country;
-        ss.birthDate = profile.DOB.dateTime.ToString();
+        ss.birthDate = profile.DOB.dateTime.Date.ToShortDateString();
         ss.avatarId = profile.profileImgIndex.ToString();
         ss.email = profile.email;
         ss.gender = profile.gender.ToString();

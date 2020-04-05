@@ -19,7 +19,7 @@ public class OnBoardingScenarios : MonoBehaviour
     //index of current state
 
 
-    [SerializeField] OnBoardingPhases tesst;
+    //[SerializeField] OnBoardingPhases tesst;
     #endregion
 
 
@@ -86,7 +86,7 @@ public class OnBoardingScenarios : MonoBehaviour
     {
         AppManager.Instance.isCurrentLevelPrizeDone[currentIndex] = true;
         AppManager.Instance.saveOnBoardingProgress();
-        mapButtons[currentIndex].GetComponent<MapButtonsBehavior>().PlayActions();
+        mapButtons[currentIndex].GetComponent<MapButtonsBehavior>().ShowAfterGiftUI();
         mapButtons[currentIndex].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
     }
 
@@ -96,6 +96,8 @@ public class OnBoardingScenarios : MonoBehaviour
     {
         AppManager.Instance.currentBoardingIndex++;
         AppManager.Instance.saveOnBoardingProgress();
+        if(AppManager.Instance.currentBoardingIndex <= 3 )
+         currentIndex = AppManager.Instance.currentBoardingIndex;
         MapScenearios();
     }
 
@@ -104,6 +106,9 @@ public class OnBoardingScenarios : MonoBehaviour
     public void ChangeProfileToShop()
     {
         ChangeStage(OnBoardingPhases.Shop);
+    } public void ChangeMapToBook()
+    {
+        ChangeStage(OnBoardingPhases.Book);
     }
 
     public void ChangeBookToProfile()
@@ -118,7 +123,7 @@ public class OnBoardingScenarios : MonoBehaviour
     public void ChangeShopToSetting()
     {
         ChangeStage(OnBoardingPhases.Setting);
-    }
+    } 
     public void ChangeStage(OnBoardingPhases onBoardingPhase)
     {
         AppManager.Instance.boardingPhases = onBoardingPhase;
@@ -143,8 +148,10 @@ public class OnBoardingScenarios : MonoBehaviour
     void MapScenearios()
     {
 
+        
         if (currentIndex > 0 && currentIndex < 4)
         {
+            mapButtons[0].GetComponent<MapButtonsBehavior>().PlayActions();
             Debug.Log("11111QQQ");
             for (int i = 1; i < currentIndex + 1; i++)
             {
@@ -153,6 +160,7 @@ public class OnBoardingScenarios : MonoBehaviour
                 {
                     mapButtons[i].interactable = true;
                     mapButtons[i].GetComponent<MapButtonsBehavior>().OpenButtonFirstTime();
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().ShowBeforePlayingUI();
                     Debug.Log("1");
                     break;
                 }
@@ -167,7 +175,7 @@ public class OnBoardingScenarios : MonoBehaviour
                 }
                 else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == true)
                 {
-                    print("HEREEEE");
+                    print("HEREEEE   " + i );
                     if (i != mapButtons.Count - 1)
                     {
                         mapButtons[i].interactable = false;
@@ -180,11 +188,12 @@ public class OnBoardingScenarios : MonoBehaviour
                         mapButtons[i].interactable = false;
 
                         // change enum
-                        ChangeStage(OnBoardingPhases.Book);
-                        OnBoardingFlowStates();
+                        //ChangeStage(OnBoardingPhases.Book);
+                        //OnBoardingFlowStates();
                     }
+
                     mapButtons[i].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
-                    // mapButtons[i].GetComponent<MapButtonsBehavior>().PlayActions();
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().PlayActions();
                 }
             }
         }
@@ -238,13 +247,7 @@ public class OnBoardingScenarios : MonoBehaviour
     #endregion
 
 
-    [ContextMenu("TTTT")]
-    public void change()
-    {
-        AppManager.Instance.boardingPhases = tesst;
-        AppManager.Instance.saveOnBoardingProgress();
-        OnBoardingFlowStates();
-    }
+   
 
     //public void ChangeScene
 }

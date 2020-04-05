@@ -8,7 +8,7 @@ public class MapButtonsBehavior : MonoBehaviour
 {
     [SerializeField] Sprite playedExperince;
     [SerializeField] Image img;
-    [SerializeField] UnityEvent buttonAction  ,  openingButton;
+    [SerializeField] UnityEvent buttonAction  ,  openingButton , beforePlaying , afterCollectGift ; 
    // [SerializeField] 
     public void ChangeButtonSprite()
     {
@@ -24,8 +24,13 @@ public class MapButtonsBehavior : MonoBehaviour
         openingButton.Invoke();
     }
 
-    //public void ShowNextNodePanel()
-    //{
+    public void ShowBeforePlayingUI()
+    {
+        beforePlaying.Invoke();
+    }
 
-    //}
+    public void ShowAfterGiftUI()
+    {
+        afterCollectGift.Invoke();
+    }
 }
