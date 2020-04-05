@@ -15,7 +15,11 @@ public class BundleStateHandler : MonoBehaviour
     [SerializeField] BundleHandler handler;
     bool isComicActive;
     public string BundleName { get => bundleName; }
-    public string Id { get => id; set { id = value; handler.BundleID = value; } }
+    public string Id { get => id; set { id = value; HandleID(); } }
+    void HandleID() {
+        if(handler!=null)
+            handler.BundleID = id;
+    }
     public void ActiveToken(string _TokenName) {
         bool isAllActive = true;
         for (int i = 0; i < experienceTokens.Count; i++) {

@@ -6,13 +6,18 @@ public class DailyStrikesHandler : MonoBehaviour
 {
     private DateTime unbiasedTimerEndTimestamp;
     [SerializeField] ProfileInfoContainer profile;
+    [SerializeField] AchievementHolder achievement;
+    [SerializeField] DailyStrikesPopupHandler popupHandler;
+    [SerializeField] ProfileNetworkHandler networkHandler;
+    static DailyStrikesHandler instance;
+
+    public static DailyStrikesHandler Instance { get => instance; set => instance = value; }
+
     void Awake()
     {
+        if (instance == null)
+            instance = this;
         unbiasedTimerEndTimestamp = this.ReadTimestamp("unbiasedTimer", UnbiasedTime.Instance.Now().AddDays(1));
-    }
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -20,9 +25,32 @@ public class DailyStrikesHandler : MonoBehaviour
     {
         TimeSpan unbiasedRemaining = unbiasedTimerEndTimestamp - UnbiasedTime.Instance.Now();
         if (unbiasedRemaining.TotalDays > -1 && unbiasedRemaining.TotalDays <= 0) {
-
+            profile.streaks++;
+            unbiasedTimerEndTimestamp = unbiasedTimerEndTimestamp.AddDays(1);
+            if (profile.streaks > achievement.current) {
+                achievement.UpdateCurrent();
+                Sprite badge = achievement.GetBadge();
+                if (badge != null) {
+                    AchievementManager.Instance.AddBadge(badge);
+                }
+            }
+            if (profile.streaks % 7 == 0) {
+                profile.keys++;
+                popupHandler.ShowPopup(0, 7, true);
+            }
+            else {
+                profile.points += (uint)(ScorePointsUtility.DailyStreaks * (profile.streaks % 7));
+                popupHandler.ShowPopup((ScorePointsUtility.DailyStreaks * (profile.streaks % 7)), (profile.streaks % 7), false);
+            }
+                networkHandler.UpdateProfile();
         }
-        else if (unbiasedRemaining.TotalDays <= -1) { }
+        else if (unbiasedRemaining.TotalDays <= -1) {
+            profile.streaks = 0;
+            unbiasedTimerEndTimestamp = unbiasedTimerEndTimestamp.AddDays(1);
+            networkHandler.UpdateProfile();
+        }
+
+
     }
     private DateTime ReadTimestamp(string key, DateTime defaultValue)
     {
@@ -51,5 +79,8 @@ public class DailyStrikesHandler : MonoBehaviour
     void OnApplicationQuit()
     {
        this.WriteTimestamp("unbiasedTimer", unbiasedTimerEndTimestamp);
+    }
+    public void DeleteTimestamp() {
+        PlayerPrefs.DeleteKey("unbiasedTimer");
     }
 }

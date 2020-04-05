@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AchievementUIHandler : MonoBehaviour
 {
     [SerializeField] ToolBarHandler achievementPopup;
-    [SerializeField] ToolBarHandler achievementSocreOnlyPopup;
+    [SerializeField] ScoreOnlyPopupHandler achievementSocreOnlyPopup;
     [SerializeField] RectTransform achievementPanel;
     [SerializeField] GameObject prefabeAchievementUIToken;
     [SerializeField] Text socreText;
@@ -19,7 +19,9 @@ public class AchievementUIHandler : MonoBehaviour
         else
             ShowAchievementPopup(result);
     }
-    void ShowAchievementSocreOnlyPopup(AchiemvenetResult result) { }
+    void ShowAchievementSocreOnlyPopup(AchiemvenetResult result) {
+        achievementSocreOnlyPopup.ShowPopup(result.score);
+    }
     void ShowAchievementPopup(AchiemvenetResult result) {
         socreText.text = $"{result.score.ToString()} XP";
         if (result.badges.Count > 0) {

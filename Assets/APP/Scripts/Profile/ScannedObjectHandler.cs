@@ -9,14 +9,14 @@ public class ScannedObjectHandler : MonoBehaviour
     [SerializeField] private Image lockedImage;
     [SerializeField] private Sprite unlockedImage;
     [SerializeField] private Text tittle;
-    [SerializeField] private string name;
+    [SerializeField] private string scannedName;
 
-    public string Name
+    public string ScannedName
     {
-        get => name;
+        get => scannedName;
     }
 
-    private void UnlockObject ()
+    public void UnlockObject ()
     {
         lockedImage.sprite = unlockedImage;
         tittle.gameObject.SetActive (true);

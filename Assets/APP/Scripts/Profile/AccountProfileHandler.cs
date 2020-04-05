@@ -84,6 +84,7 @@ public class AccountProfileHandler : MonoBehaviour
             streakImage.sprite = streakSprites[(profileInfo.streaks - 1) % 7];
             streakImage.gameObject.SetActive(true);
         }
+        streakText1.text = profileInfo.streaks.ToString();
     }
     void UpdateKeys()
     {
