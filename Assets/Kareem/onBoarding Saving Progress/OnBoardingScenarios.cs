@@ -232,7 +232,9 @@ public class OnBoardingScenarios : MonoBehaviour
 
     }
 
-
+    public void FinishOnBoarding() {
+        UXFlowManager.Instance.FinishOnBoarding();
+    }
     #endregion
 
 

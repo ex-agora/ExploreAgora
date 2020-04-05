@@ -136,7 +136,7 @@ public class DetectObj : MonoBehaviour
         // Encode texture into PNG
         bytes = tex.EncodeToPNG ();
         detectObjectData.bytes = bytes;
-        detectObjectData.score = "0.8";
+        detectObjectData.score = "0.7";
         detectObjectData.detectionObjectName = scanProperties.detectionObjectName.ToLower();
         NetworkManager.Instance.DetectObject (detectObjectData , OnSuscees , OnFailed);
         Destroy (tex);
@@ -164,13 +164,23 @@ public class DetectObj : MonoBehaviour
                 AchievementManager.Instance.AddScannedObject(scanProperties.detectionObjectSp, scanProperties.detectionObjectName);
             }
             AchievementManager.Instance.AddScore(ScorePointsUtility.ScanObject);
+            profile.points += ScorePointsUtility.ScanObject;
             counter++;
             inventory.SetObject(scanProperties.detectionObjectName, counter);
             UpdateProfile();
             if (scanProperties.ShouldContinueToExperience)
                 Panel.SetActive(true);
-            else
-                SceneLoader.Instance.LoadExperience("UI-UX");
+            else {
+                if (AppManager.Instance.boardingPhases != OnBoardingPhases.None)
+                {
+                    AppManager.Instance.currentBoardingIndex = 1;
+                    AppManager.Instance.isCurrentLevelDone[0] = true;
+                    AppManager.Instance.isCurrentLevelPrizeDone[0] = true;
+                    AppManager.Instance.saveOnBoardingProgress();
+                    SceneLoader.Instance.LoadExperience("UI-UX");
+                    Invoke(nameof(GoBack), 2);
+                }
+            }
         }
         else
         {
@@ -178,6 +188,7 @@ public class DetectObj : MonoBehaviour
             print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
         }
     }
+    void GoBack() { SceneLoader.Instance.LoadExperience("UI-UX"); }
     public void UpdateProfile()
     {
 

@@ -30,6 +30,16 @@ public class FinishExperiencesHandler : MonoBehaviour
         if (scenePrefabs.GetExperience().hasToken) {
             tokenHandler.UpdateBundleToken(scenePrefabs.GetExperience().token.tokenName, scenePrefabs.GetBundleID());
         }
+        if (AppManager.Instance.boardingPhases != OnBoardingPhases.None) {
+            int currentind = 0;
+            switch (scenePrefabs.GetExperience().experienceCode) {
+                case "0SS": currentind = 1; break;
+                case "0Sc": currentind = 2; break;
+                case "0M": currentind = 3; break;
+            }
+            AppManager.Instance.isCurrentLevelDone[currentind] = true;
+            AppManager.Instance.saveOnBoardingProgress();
+        }
         AchievementManager.Instance.AddScore((uint) (ScorePointsUtility.ExperienceScorePreGem * score));
         Sprite badge = null;
         if (scenePrefabs.GetExperience().subject == "Maths") {

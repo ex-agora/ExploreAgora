@@ -96,6 +96,7 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
     {
         groundIndicatorIndex = 0;
         groundIndicatorTutorialHandler.OpenIndicator();
+        AudioManager.Instance.Play("bg", "Background");
         InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
     }
     public void FinalPhase() { Invoke(nameof(ShowSummary), 2f); }

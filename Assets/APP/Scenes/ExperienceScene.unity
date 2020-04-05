@@ -771,6 +771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521725270}
   - component: {fileID: 1521725269}
+  - component: {fileID: 1521725271}
   m_Layer: 0
   m_Name: FinishExperiencesHandler
   m_TagString: Untagged
@@ -792,6 +793,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: UI-UX
   scenePrefabs: {fileID: 1116197816}
+  achievementSc: {fileID: 11400000, guid: fb0e0f3dd30658f4f89d5195a8061d59, type: 2}
+  achievementSS: {fileID: 11400000, guid: 806a7eec80c440c4b8ba8fdc0ab8b459, type: 2}
+  achievementMath: {fileID: 11400000, guid: c6581484042491142a7adff7b28ef419, type: 2}
+  profile: {fileID: 11400000, guid: ff5ffb0f349df444d93025eccac2ccee, type: 2}
+  inventory: {fileID: 11400000, guid: 966b378b65846b44da65fa3e30f1a944, type: 2}
+  tokenHandler: {fileID: 1521725271}
 --- !u!4 &1521725270
 Transform:
   m_ObjectHideFlags: 0
@@ -806,6 +813,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1521725271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521725268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc00804f397f24e47a497681d1aa1c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893287996
 GameObject:
   m_ObjectHideFlags: 0

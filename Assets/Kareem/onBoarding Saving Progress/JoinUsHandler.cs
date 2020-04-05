@@ -9,7 +9,9 @@ public class JoinUsHandler : MonoBehaviour
     [SerializeField] private Sprite interactableSprite;
     [SerializeField] private Sprite nonInteractableSprite;
     [SerializeField] private InputField nicknameField;
-
+    [SerializeField] private GenderHandler gender;
+    [SerializeField] private DOBHandler dOB;
+    [SerializeField] private ProfileInfoContainer profile;
 
     private void Start()
     {
@@ -28,5 +30,10 @@ public class JoinUsHandler : MonoBehaviour
             doneButton.interactable = true;
             doneButton.image.sprite = interactableSprite;
         }
+    }
+    void CollectData() {
+        profile.nickname = nicknameField.text;
+        profile.gender = gender.PlayerGender;
+        profile.DOB = dOB.DOB;
     }
 }
