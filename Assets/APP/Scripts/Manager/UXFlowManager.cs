@@ -18,6 +18,8 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private ExperienceRateHandler rateHandler;
     [SerializeField] private ProfileNetworkHandler _ProfileNetowrkHandler;
     [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
+    [SerializeField] private FooterPanelHandler missionFooterHandler;
+    [SerializeField] private FooterPanelManager footerManager;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -94,6 +96,12 @@ public class UXFlowManager : MonoBehaviour
             uIDefaultCanvas.gameObject.SetActive(true);
             LoginFadeIn();
         }
+    }
+    public void FinishOnBoarding() {
+        AppManager.Instance.DeleteBoardFile();
+        onBoardingCanvas.gameObject.SetActive(false);
+        uIDefaultCanvas.gameObject.SetActive(true);
+        footerManager.ActivePanel(missionFooterHandler);
     }
     public void AcceptLogin() {
         loginRootPanel.SetActive(false);
