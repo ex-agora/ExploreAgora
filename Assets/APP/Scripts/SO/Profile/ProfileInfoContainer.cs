@@ -21,5 +21,22 @@ public class ProfileInfoContainer : ScriptableObject
     public string email;
     public bool isConfirmed;
     public string playerType;
-    public List<int> achievements;
+    public List<AchievementHolder> holders;
+
+    public List<int> Achievements { get => GetAchievements(); set => SetAchievements(value); }
+
+    void SetAchievements(List<int> arr) {
+        for (int i = 0; i < arr.Count; i++)
+        {
+            holders[i].current = arr[i];
+        }
+    }
+    List<int> GetAchievements() {
+        List<int> arr = new List<int>();
+        for (int i = 0; i < holders.Count; i++)
+        {
+            arr.Add(holders[i].current);
+        }
+        return arr;
+    }
 }

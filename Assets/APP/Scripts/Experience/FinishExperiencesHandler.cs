@@ -56,7 +56,7 @@ public class FinishExperiencesHandler : MonoBehaviour
             achievementSS.UpdateCurrent();
             badge = achievementMath.GetBadge();
         }
-        achievementSc.UpdateCurrent();
+      
         if (badge != null)
         {
             AchievementManager.Instance.AddBadge(badge);
@@ -105,10 +105,10 @@ public class FinishExperiencesHandler : MonoBehaviour
         ss.dailyStreaks = profile.streaks;
         ss.points = profile.points;
         ss.powerStones = profile.stones;
-        if (profile.achievements.Count > 0)
+        if (profile.Achievements.Count > 0)
         {
             ss.achievementsData = new AchievementsData();
-            ss.achievementsData.achievements = profile.achievements;
+            ss.achievementsData.achievements = profile.Achievements;
         }
         NetworkManager.Instance.UpdateProfile(ss, OnUpdateProfileSuccess, OnUpdateProfileFailed);
     }

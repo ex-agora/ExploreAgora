@@ -7,10 +7,16 @@ public class SignupVerificationCode : MonoBehaviour
     [SerializeField] private SeperatedFields codeVerifcation;
     [SerializeField] ErrorFadingHandler error;
     [SerializeField] OnBordingHandler bordingHandler;
+    bool isSignUp;
     private void OnEnable()
     {
         codeVerifcation.ClearSeperatedFields();
     }
+    public void Open(bool _isSignUp = false) {
+        isSignUp = _isSignUp;
+        gameObject.SetActive(true);
+    }
+    
     public void VerifyMail()
     {
         VerifyEmailData v = new VerifyEmailData();
@@ -22,7 +28,8 @@ public class SignupVerificationCode : MonoBehaviour
     {
         UXFlowManager.Instance.AcceptConformation();
         UXFlowManager.Instance.LoginFadeIn();
-       //bordingHandler.StartOnBording();
+        if (isSignUp)
+            bordingHandler.StartComic();
     }
     private void OnVerifyMailFailed(NetworkParameters obj)
     {

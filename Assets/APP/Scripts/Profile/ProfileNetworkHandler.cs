@@ -7,32 +7,46 @@ public class ProfileNetworkHandler : MonoBehaviour
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] AccountProfileHandler profileHandler;
     [SerializeField] InventoryObjectHolder inventory;
-
+    bool withoutRefresh;
+    bool withoutGetProfile;
     public ProfileInfoContainer Profile { get => profile; set => profile = value; }
 
-    public void GetProfile() {
-        if(NetworkManager.Instance.CheckTokenExist())
+    public void GetProfile(bool _withoutRefresh =false) {
+        withoutRefresh = _withoutRefresh;
+        if (NetworkManager.Instance.CheckTokenExist())
             NetworkManager.Instance.GetProfile(OnGetProfileSuccess, OnGetProfileFailed);
     }
     private void OnGetProfileSuccess(NetworkParameters obj) {
         GetProfileResponse response = (GetProfileResponse)obj.responseData;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.country))
             Profile.country = response.profile.country;
+        else
+            Profile.country = string.Empty;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.email))
             Profile.email = response.profile.email;
+        else
+            Profile.email = string.Empty;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.firstName))
             Profile.fName = response.profile.firstName;
+        else
+            Profile.fName = string.Empty;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.birthDate))
             Profile.DOB.dateTime = System.DateTime.Parse(response.profile.birthDate);
+        else
+            Profile.DOB.dateTime = System.DateTime.Now;
         if (response.profile.gender != null)
         {
             var str = response.profile.gender.ToCharArray();
             str[0] = char.ToUpper(response.profile.gender[0]);
             System.Enum.TryParse(new string(str), out Profile.gender);
-        }  
+        }
+        else
+            Profile.gender = Gender.None;
         Profile.keys = response.profile.keys;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.lastName))
             Profile.lName = response.profile.lastName;
+        else
+            Profile.lName = string.Empty;
         Profile.nickname = ValidationInputUtility.IsEmptyOrNull(response.profile.nickName) ? "Agoraien" : response.profile.nickName;
         Profile.points = response.profile.points;
         Profile.stones = (int)response.profile.powerStones;
@@ -41,6 +55,8 @@ public class ProfileNetworkHandler : MonoBehaviour
         Profile.playerType = response.profile.playerType;
         if (!ValidationInputUtility.IsEmptyOrNull(response.profile.avatarId))
             Profile.profileImgIndex = int.Parse(response.profile.avatarId);
+        else
+            Profile.profileImgIndex = 0;
         StringIntDictionary _scannedObj = new StringIntDictionary();
         for (int i = 0; i < response.profile.scannedObjects.Count; i++)
         {
@@ -48,8 +64,8 @@ public class ProfileNetworkHandler : MonoBehaviour
         }
         inventory.SetObjects(_scannedObj);
         profileHandler.UpdateProfile();
-
-        UXFlowManager.Instance.FadeInProfileDellay(2f);
+        if (!withoutRefresh)
+            UXFlowManager.Instance.FadeInProfileDellay(2f);
     }
     private void OnGetProfileFailed(NetworkParameters obj) {
        
@@ -58,9 +74,9 @@ public class ProfileNetworkHandler : MonoBehaviour
 
 
 
-    public void UpdateProfile()
+    public void UpdateProfile(bool _withoutGetProfile =false)
     {
-
+        withoutGetProfile = _withoutGetProfile;
         ProfileData ss = new ProfileData();
         if (inventory.ScanedObjects.Count > 0)
         {
@@ -83,16 +99,17 @@ public class ProfileNetworkHandler : MonoBehaviour
         ss.dailyStreaks = profile.streaks;
         ss.points = profile.points;
         ss.powerStones = profile.stones;
-        if (profile.achievements.Count > 0)
+        if (profile.Achievements.Count > 0)
         {
             ss.achievementsData = new AchievementsData();
-            ss.achievementsData.achievements = profile.achievements;
+            ss.achievementsData.achievements = profile.Achievements;
         }
         NetworkManager.Instance.UpdateProfile(ss, OnUpdateProfileSuccess, OnUpdateProfileFailed);
     }
     private void OnUpdateProfileSuccess(NetworkParameters obj)
     {
-        GetProfile();
+        if (!withoutGetProfile)
+            GetProfile();
     }
     private void OnUpdateProfileFailed(NetworkParameters obj)
     {

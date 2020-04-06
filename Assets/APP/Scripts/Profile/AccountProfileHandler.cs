@@ -67,7 +67,7 @@ public class AccountProfileHandler : MonoBehaviour
     public void UpdateSettingsInfo() {
         fNameText.text = profileInfo.fName;
         lNameText.text = profileInfo.lName;
-        country.SetCountry(profileInfo.country);
+        country?.SetCountry(profileInfo.country);
     }
     public void UpdateNickname()
     {

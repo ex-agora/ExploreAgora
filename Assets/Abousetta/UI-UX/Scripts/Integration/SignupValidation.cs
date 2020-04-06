@@ -181,7 +181,7 @@ public class SignupValidation : MonoBehaviour
         isPressed = false;
         LinkAccountResponse response = (LinkAccountResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(response.token);
-        UXFlowManager.Instance.ShowConformationPanel();
+        UXFlowManager.Instance.ShowConformationPanel(true);
     }
     private void OnLinkAccountFailed(NetworkParameters obj)
     {

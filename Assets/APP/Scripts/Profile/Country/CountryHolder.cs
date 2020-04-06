@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class CountryHolder 
+public class CountryHolder :MonoBehaviour
 {
     CountriesCodedInfo countries;
-    static CountryHolder instance = new CountryHolder();
+    static CountryHolder instance;
 
     public static CountryHolder Instance { get => instance; set => instance = value; }
-
-    private CountryHolder() {
+    private void Awake()
+    {
+        if (instance == null) { instance = this; DontDestroyOnLoad(gameObject); }
+        else Destroy(gameObject);
+    }
+  
+    void CountryHolderCreating(){
         string clubDataProjectFilePath = "/StreamingAssets/countries without changes.json";
         string filePath = Application.dataPath + clubDataProjectFilePath;
         if (File.Exists(filePath))
@@ -22,6 +27,7 @@ public class CountryHolder
         }
     }
     public CountriesCodedInfo GetCountries() {
+        CountryHolderCreating();
         return countries;
     }
 }

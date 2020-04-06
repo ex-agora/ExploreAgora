@@ -8,11 +8,12 @@ public class Container
 {
     public bool[] LevelIndicators;
     public bool[] LevelPrizeIndicators;
+    public bool[] isNextPressed;
     public int LevelIndex;
     public OnBoardingPhases boardingPhases;
 }
 
-public class SaveLoadBoardingProgress 
+public class SaveLoadBoardingProgress
 {
 
     public static void Save(AppManager dc)
@@ -25,7 +26,7 @@ public class SaveLoadBoardingProgress
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(url, FileMode.Create);
             OnBoardingDataSerializer ds = new OnBoardingDataSerializer(dc);
-           // Debug.Log(ds.currentBoardingIndex + "  " + ds.doneIndicators.Length); 
+            // Debug.Log(ds.currentBoardingIndex + "  " + ds.doneIndicators.Length); 
             bf.Serialize(stream, ds);
             stream.Close();
         }
@@ -39,6 +40,7 @@ public class SaveLoadBoardingProgress
             old.currentBoardingIndex = current.currentBoardingIndex;
             old.doneIndicators = current.doneIndicators;
             old.donePrizeIndicators = current.donePrizeIndicators;
+            old.isNextPressed = current.isNextPressed;
             old.boardingPhases = current.boardingPhases;
             openStream.Close();
             FileStream appendStream = new FileStream(url, FileMode.Create);
@@ -61,6 +63,7 @@ public class SaveLoadBoardingProgress
             callBackData.LevelIndex = ds.currentBoardingIndex;
             callBackData.LevelIndicators = ds.doneIndicators;
             callBackData.LevelPrizeIndicators = ds.donePrizeIndicators;
+            callBackData.isNextPressed = ds.isNextPressed;
             callBackData.boardingPhases = ds.boardingPhases;
 
             return callBackData;
@@ -72,7 +75,7 @@ public class SaveLoadBoardingProgress
         }
     }
 
-public static void Delete()
+    public static void Delete()
     {
         File.Delete(Application.persistentDataPath + "/OnBoarding" + ".File");
     }

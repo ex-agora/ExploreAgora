@@ -22,7 +22,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Experience Data" , menuName = "SO/App/Experience/ExperienceData" , order = 0)]
 public class ExperienceContainerHolder : ScriptableObject
 {
-    public GameObject experiencePrefab;
+    public string experiencePrefab;
     public string experienceName;
     public string experienceCode;
     public string scannedObject;

@@ -12,7 +12,7 @@ public class OnBoardingScenarios : MonoBehaviour
     [SerializeField] List<Button> mapButtons;
     [SerializeField] List<GameObject> footerButtons;
     [SerializeField] List<string> onBoardingSceneNames;
-    [SerializeField] GameObject giftsPanel;
+    [SerializeField] ToolBarHandler giftsPanel;
     [SerializeField] Button backMission;
     //[SerializeField] StagesIndicator stagesIndicator;
     private int currentIndex;
@@ -95,6 +95,7 @@ public class OnBoardingScenarios : MonoBehaviour
     public void Nextbutton()
     {
         AppManager.Instance.currentBoardingIndex++;
+        AppManager.Instance.isNextPressed[currentIndex] = true;
         AppManager.Instance.saveOnBoardingProgress();
         if(AppManager.Instance.currentBoardingIndex <= 3 )
          currentIndex = AppManager.Instance.currentBoardingIndex;
@@ -173,14 +174,38 @@ public class OnBoardingScenarios : MonoBehaviour
                     Debug.Log("Gifts");
                     break;
                 }
-                else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == true)
+                else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == true && AppManager.Instance.isNextPressed[i] == true)
                 {
-                    print("HEREEEE   " + i );
+                    print("HEREEEE   " + i);
                     if (i != mapButtons.Count - 1)
                     {
                         mapButtons[i].interactable = false;
-
+                        mapButtons[i].transform.GetChild(0).gameObject.SetActive(true);
                         mapButtons[i + 1].interactable = true;
+
+                    }
+                    else
+                    {
+                        mapButtons[i].interactable = false;
+
+                        // change enum
+                        //ChangeStage(OnBoardingPhases.Book);
+                        //OnBoardingFlowStates();
+                    }
+
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().ChangeButtonSprite();
+                    mapButtons[i].GetComponent<MapButtonsBehavior>().PlayActions();
+                }
+
+                else if (AppManager.Instance.isCurrentLevelDone[i] == true && AppManager.Instance.isCurrentLevelPrizeDone[i] == true && AppManager.Instance.isNextPressed[i] == false)
+                {
+                    print("second   " + i);
+                    if (i != mapButtons.Count )
+                    {
+                        mapButtons[i].interactable = false;
+                        mapButtons[i].transform.GetChild(0).gameObject.SetActive(true);
+                        Giftbutton();
+                        //mapButtons[i + 1].interactable = true;
 
                     }
                     else
@@ -237,7 +262,7 @@ public class OnBoardingScenarios : MonoBehaviour
 
     void ShowGiftPanel(int i)
     {
-        giftsPanel.SetActive(true);
+        giftsPanel.OpenToolBar();
 
     }
 

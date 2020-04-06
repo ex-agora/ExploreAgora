@@ -36,7 +36,6 @@ public class OnBordingHandler : MonoBehaviour
     }
     public void CreateDummyAccount()
     {
-        
         CreateDummyAccountData createDummyAccountData = new CreateDummyAccountData();
         createDummyAccountData.deviceId = SystemInfo.deviceUniqueIdentifier;
         createDummyAccountData.deviceType = "Android";//Application.platform.ToString() ;
@@ -46,11 +45,15 @@ public class OnBordingHandler : MonoBehaviour
     {
         CreateDummyAccountResponse response = (CreateDummyAccountResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(response.token);
-        networkHandler.GetProfile();
+        StartComic();
+        isPressed = false;
+    }
+    public void StartComic() {
+        gameObject.SetActive(true);
+        networkHandler.GetProfile(true);
         onbordingPanel.SetActive(true);
         story.gameObject.SetActive(true);
         story.StartStories();
-        isPressed = false;
     }
     private void OnCreateDummyAccountFailed(NetworkParameters obj)
     {

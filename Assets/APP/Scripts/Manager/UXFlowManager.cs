@@ -14,7 +14,7 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private Canvas onBoardingCanvas;
     [SerializeField] private GameObject loginRootPanel;
     [SerializeField] private GameObject footerPanel;
-    [SerializeField] private GameObject conformationPanel;
+    [SerializeField] private SignupVerificationCode conformationPanel;
     [SerializeField] private ExperienceRateHandler rateHandler;
     [SerializeField] private ProfileNetworkHandler _ProfileNetowrkHandler;
     [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
@@ -101,17 +101,21 @@ public class UXFlowManager : MonoBehaviour
         AppManager.Instance.DeleteBoardFile();
         onBoardingCanvas.gameObject.SetActive(false);
         uIDefaultCanvas.gameObject.SetActive(true);
+        Invoke(nameof(ChangeFooter), 1.1f);
+    }
+    void ChangeFooter() {
+        footerManager.gameObject.SetActive(true);
         footerManager.ActivePanel(missionFooterHandler);
     }
     public void AcceptLogin() {
         loginRootPanel.SetActive(false);
         footerPanel.SetActive(true);
     }
-    public void ShowConformationPanel() {
-        conformationPanel.SetActive(true);
+    public void ShowConformationPanel(bool _isSignUp=false) {
+        conformationPanel.Open(_isSignUp);
     }
     public void AcceptConformation() {
-        conformationPanel.SetActive(false);
+        conformationPanel.gameObject.SetActive(false);
     }
 
 

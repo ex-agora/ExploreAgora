@@ -31,7 +31,7 @@ public class JoinUsHandler : MonoBehaviour
             doneButton.image.sprite = interactableSprite;
         }
     }
-    void CollectData() {
+    public void CollectData() {
         profile.nickname = nicknameField.text;
         profile.gender = gender.PlayerGender;
         profile.DOB = dOB.DOB;

@@ -64,10 +64,10 @@ public class EditeProfileHandler : MonoBehaviour
         ss.dailyStreaks = account.ProfileInfo.streaks;
         ss.points = account.ProfileInfo.points;
         ss.powerStones = account.ProfileInfo.stones;
-        if (account.ProfileInfo.achievements.Count > 0)
+        if (account.ProfileInfo.Achievements.Count > 0)
         {
             ss.achievementsData = new AchievementsData();
-            ss.achievementsData.achievements = account.ProfileInfo.achievements;
+            ss.achievementsData.achievements = account.ProfileInfo.Achievements;
         }
         NetworkManager.Instance.UpdateProfile(ss, OnUpdateProfileSuccess, OnUpdateProfileFailed);
     }

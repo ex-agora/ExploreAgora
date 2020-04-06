@@ -52,7 +52,7 @@ public class ExperienceRouteHandler : MonoBehaviour
         ExperiencePlayData s = new ExperiencePlayData(); s.status = 1;
         s.experienceCode = experienceContainerHolder.experienceCode;
         s.score = 0;
-        if (experienceContainerHolder.playedCounter > 0) {
+        if (experienceContainerHolder.playedCounter > 1) {
             achievement.UpdateCurrent();
             Sprite badge = achievement.GetBadge();
             if (badge != null)

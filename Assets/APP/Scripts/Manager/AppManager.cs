@@ -9,6 +9,7 @@ public class AppManager : MonoBehaviour
     public int currentBoardingIndex;
     public bool[] isCurrentLevelDone;
     public bool[] isCurrentLevelPrizeDone;
+    public bool[] isNextPressed;
     public OnBoardingPhases boardingPhases;
 
     bool isThereRate;
@@ -46,6 +47,7 @@ public class AppManager : MonoBehaviour
         {
             currentBoardingIndex = SaveLoadBoardingProgress.Load().LevelIndex;
             isCurrentLevelDone = SaveLoadBoardingProgress.Load().LevelIndicators;
+            isNextPressed = SaveLoadBoardingProgress.Load().isNextPressed;
             isCurrentLevelPrizeDone = SaveLoadBoardingProgress.Load().LevelPrizeIndicators;
             boardingPhases = SaveLoadBoardingProgress.Load().boardingPhases;
         }
@@ -53,6 +55,8 @@ public class AppManager : MonoBehaviour
         {
             currentBoardingIndex = 0;
             isCurrentLevelDone = new bool[4];
+            isNextPressed = new bool[4];
+            isNextPressed[0] = true;
             isCurrentLevelPrizeDone = new bool[4];
             boardingPhases = OnBoardingPhases.None;
             saveOnBoardingProgress();
