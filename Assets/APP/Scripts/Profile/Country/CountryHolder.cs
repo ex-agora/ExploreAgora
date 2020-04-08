@@ -17,8 +17,8 @@ public class CountryHolder :MonoBehaviour
     }
   
     void CountryHolderCreating(){
-        string clubDataProjectFilePath = "/StreamingAssets/countries without changes.json";
-        string filePath = Application.dataPath + clubDataProjectFilePath;
+        string clubDataProjectFilePath =Path.Combine( Application.streamingAssetsPath,"countries without changes.json");
+        string filePath = clubDataProjectFilePath;
         if (File.Exists(filePath))
         {
             string dataAsJson = File.ReadAllText(filePath);

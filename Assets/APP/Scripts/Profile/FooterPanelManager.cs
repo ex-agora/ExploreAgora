@@ -13,12 +13,18 @@ public class FooterPanelManager : MonoBehaviour
 
     private void Start()
     {
-        currentActive = profile;
-        currentActive.ActiveChoice();
+        if (currentActive == null)
+        {
+            currentActive = profile;
+            currentActive.ActiveChoice();
+        }
     }
     public void ActivePanel(FooterPanelHandler newCurrent)
     {
-        currentActive.InactiveChoice();
+        if (currentActive != null)
+            currentActive.InactiveChoice();
+        else
+            profile.InactiveChoice();
         currentActive = newCurrent;
         currentActive.ActiveChoice();
     }

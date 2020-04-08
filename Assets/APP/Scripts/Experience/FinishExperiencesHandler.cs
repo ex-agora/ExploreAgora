@@ -61,6 +61,7 @@ public class FinishExperiencesHandler : MonoBehaviour
         {
             AchievementManager.Instance.AddBadge(badge);
         }
+        scenePrefabs.GetExperience().experienceScore = Mathf.Max(score, scenePrefabs.GetExperience().experienceScore);
         ExperiencePlayData s = new ExperiencePlayData();
         s.status = 2;
         s.experienceCode = scenePrefabs.GetExperience().experienceCode;

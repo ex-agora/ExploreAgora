@@ -20,6 +20,15 @@ public class SettingUIHandler : MonoBehaviour
             createAccountPanel.SetActive(true);
         }
     }
-    public void CheckMusic() { }
-    
+    public void CheckMusic() {
+        if (sfxToggle.IsActiveCheck && bgToggle.IsActiveCheck) { AudioManager.Instance?.AudioController(0); }
+        else if (sfxToggle.IsActiveCheck && !bgToggle.IsActiveCheck) { AudioManager.Instance?.AudioController(1); }
+        else if (!sfxToggle.IsActiveCheck && bgToggle.IsActiveCheck) { AudioManager.Instance?.AudioController(2); }
+        else if (!sfxToggle.IsActiveCheck && !bgToggle.IsActiveCheck) { AudioManager.Instance?.AudioController(3); }
+    }
+    public void SetSoundSettings(bool _sfx, bool _bg) {
+        sfxToggle.IsActiveCheck = _sfx;
+        bgToggle.IsActiveCheck = _bg;
+        CheckMusic();
+    }
 }

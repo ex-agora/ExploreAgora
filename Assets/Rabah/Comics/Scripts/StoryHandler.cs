@@ -59,6 +59,7 @@ public class StoryHandler : MonoBehaviour
         currentStoryIndextText.text = "";
         storyViewer.sprite = finalStorySprite;
         HideStories ();
+        AudioManager.Instance.Play("appBG", "Background");
         Debug.Log ("5lsna ya amir");
     }
     public void TestStartStories ()
@@ -76,6 +77,8 @@ public class StoryHandler : MonoBehaviour
     {
         currentStory = null;
         StoriesIndex = 0;
+        AudioManager.Instance.Play("comicBG", "Background");
+
         startStoriesEvent.Invoke ();
     }
 }

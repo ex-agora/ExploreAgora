@@ -11,6 +11,7 @@ public class DetectObj : MonoBehaviour
     #region Fields
     //public GameObject Maincanvas, LoadingCanvas;
     public Text outputText;
+    public GameObject headerCav;
     public GameObject Maincanvas, LoadingCanvas, Panel;
     JsonData jsonvale;
     //Output from server 
@@ -19,13 +20,23 @@ public class DetectObj : MonoBehaviour
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] AchievementHolder achievement;
+    [SerializeField] Sprite objectDetectSp;
+    [SerializeField] Image outlineImg;
+    [SerializeField] Button scanBtn;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
     #region Methods
     public void Detect ()
     {
+        outputText.text = "Please Wait";
         StartCoroutine (TakePicture ());
+    }
+    private void Start()
+    {
+        outputText.text = $"Scan {scanProperties.detectionObjectName}";
+        outlineImg.sprite = scanProperties.outlineSp;
+        outlineImg.SetNativeSize();
     }
 
     //responsible of return string of response output of a JSON String
@@ -178,8 +189,11 @@ public class DetectObj : MonoBehaviour
                     AppManager.Instance.isCurrentLevelPrizeDone[0] = true;
                     AppManager.Instance.saveOnBoardingProgress();
                     SceneLoader.Instance.LoadExperience("UI-UX");
-                    Invoke(nameof(GoBack), 2);
                 }
+                outlineImg.sprite = objectDetectSp;
+                outlineImg.SetNativeSize();
+                scanBtn.gameObject.SetActive(false);
+                Invoke(nameof(GoBack), 6);
             }
         }
         else
@@ -188,7 +202,7 @@ public class DetectObj : MonoBehaviour
             print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
         }
     }
-    void GoBack() { SceneLoader.Instance.LoadExperience("UI-UX"); }
+    public void GoBack() { SceneLoader.Instance.LoadExperience("UI-UX"); }
     public void UpdateProfile()
     {
 
@@ -230,6 +244,7 @@ public class DetectObj : MonoBehaviour
     private void OnFailed (NetworkParameters obj)
     {
         print (obj.err.message);
+        outputText.text = "Poor Internet connection";
         LoadingCanvas.SetActive (false);
         Maincanvas.SetActive (true);
     }

@@ -20,6 +20,8 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
     [SerializeField] private FooterPanelHandler missionFooterHandler;
     [SerializeField] private FooterPanelManager footerManager;
+    [SerializeField] private SceneLoader loader;
+    [SerializeField] private SettingUIHandler setting;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -32,6 +34,7 @@ public class UXFlowManager : MonoBehaviour
     {
         StartCoroutine(StartUX());
         FreeAssets();
+        setting.SetSoundSettings(true, true);
     }
     IEnumerator StartUX() {
         yield return new WaitForSeconds(1.5f);
@@ -57,6 +60,7 @@ public class UXFlowManager : MonoBehaviour
         else {
             quickFadeLoginHandler.FadeIn();
         }
+        
     }
           
     public void GetProfile() => _ProfileNetowrkHandler.GetProfile();
@@ -89,6 +93,7 @@ public class UXFlowManager : MonoBehaviour
         {
             onBoardingCanvas.gameObject.SetActive(true);
             uIDefaultCanvas.gameObject.SetActive(false);
+            AudioManager.Instance.Play("appBG", "Background");
         }
         else
         {
@@ -101,15 +106,17 @@ public class UXFlowManager : MonoBehaviour
         AppManager.Instance.DeleteBoardFile();
         onBoardingCanvas.gameObject.SetActive(false);
         uIDefaultCanvas.gameObject.SetActive(true);
+        loader.ChangeInstance();
         Invoke(nameof(ChangeFooter), 1.1f);
     }
     void ChangeFooter() {
-        footerManager.gameObject.SetActive(true);
+        footerManager.transform.parent.gameObject.SetActive(true);
         footerManager.ActivePanel(missionFooterHandler);
     }
     public void AcceptLogin() {
         loginRootPanel.SetActive(false);
         footerPanel.SetActive(true);
+        AudioManager.Instance.Play("appBG", "Background");
     }
     public void ShowConformationPanel(bool _isSignUp=false) {
         conformationPanel.Open(_isSignUp);
@@ -117,6 +124,9 @@ public class UXFlowManager : MonoBehaviour
     public void AcceptConformation() {
         conformationPanel.gameObject.SetActive(false);
     }
+    public void TapSound() {
+        AudioManager.Instance.Play("UIAction", "UI");
 
+    }
 
 }

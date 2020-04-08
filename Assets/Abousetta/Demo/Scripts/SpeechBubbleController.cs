@@ -102,7 +102,7 @@ public class SpeechBubbleController : MonoBehaviour, IStateController
     /// Open speech bubble.
     /// Called in ShowNextBubble function.
     /// Called in ShowCommandBubble function.
-    void OpenBubble()
+    public void OpenBubble()
     {
         bubbleAnimator.SetTrigger("IsOpened");
         

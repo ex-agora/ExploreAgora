@@ -65,12 +65,19 @@ public class PopupExperienceHandler : MonoBehaviour
                 break;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (_placeOn.ToLower() == "ground")
+        placeOnImg.gameObject.SetActive(true);
+        placeOnTxt.gameObject.SetActive(true);
+        if (_placeOn.ToLower() == "floor")
             placeOnImg.sprite = placeOn[0];
         else if (_placeOn.ToLower() == "table")
             placeOnImg.sprite = placeOn[1];
         else if (_placeOn.ToLower() == "face")
             placeOnImg.sprite = placeOn[2];
+        else
+        {
+            placeOnImg.gameObject.SetActive(false);
+            placeOnTxt.gameObject.SetActive(false);
+        }
         placeOnTxt.text = _placeOn;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (_hasExtra)

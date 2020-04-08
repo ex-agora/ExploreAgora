@@ -116,7 +116,7 @@ public class AccountProfileHandler : MonoBehaviour
         pointsShopText.text = pointStr;
         pointsMissionText.text = pointStr;
         pointsInsideMissionText.text = pointStr;
-        float amount = (profileInfo.points - rank.Value.min) / (rank.Value.max - rank.Value.min);
+        float amount = (profileInfo.points - rank.Value.min) / (float)(rank.Value.max - rank.Value.min);
         pointsBookImg.fillAmount = amount;
         pointsShopImg.fillAmount = amount;
         pointsMissionImg.fillAmount = amount;

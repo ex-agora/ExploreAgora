@@ -16,23 +16,26 @@ public class OnBoardingFlowHandler : MonoBehaviour
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfilePictureHandler pictureHandler;
+    [SerializeField] Sprite bookOutlineSp;
     public void StartScene()
     {
         sceneLoader.LoadExperience(sceneName);
     }
     public void StartScan()
     {
-        NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
+        scanProperties.detectionObjectName = "book";
+        scanProperties.detectionObjectSp = objActiveSprite;
+        scanProperties.outlineSp = bookOutlineSp;
+        sceneLoader.LoadExperience("Scan Scene");
+        //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }
 
-    public void GoToSSEX() { route.Transit(ssEx, null,sceneLoader); }
+    public void GoToSSEX() { sceneLoader.LoadExperience("OScene"); }
     public void GoToScEX() { route.Transit(scEx, null, sceneLoader); }
     public void GoToMEX() { route.Transit(mEx, null, sceneLoader); }
     void OnSuccessScan(NetworkParameters np)
     {
-        scanProperties.detectionObjectName = "book";
-        scanProperties.detectionObjectSp = objActiveSprite;
-        sceneLoader.LoadExperience("Scan Scene");
+        
     }
     void OnFailedScan(NetworkParameters np)
     {

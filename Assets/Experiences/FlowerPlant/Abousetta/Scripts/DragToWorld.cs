@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DragToWorld : MonoBehaviour
 {
     [SerializeField] string targetLabelStr;
+    [SerializeField] bool isPosTarget;
+    [SerializeField] RectTransform posTarget;
     private RaycastHit hit;
     Ray ray;
     bool canDarg;
@@ -105,7 +107,7 @@ public class DragToWorld : MonoBehaviour
         {
             //rectTransform.offsetMax = Vector2.Lerp(rectTransform.offsetMax, Vector2.zero , (elapsedTime / duration));
             //rectTransform.offsetMin = Vector2.Lerp(rectTransform.offsetMin, Vector2.zero, (elapsedTime / duration));
-            rectTransform.position = Vector3.Lerp(rectTransform.position, initPos, (elapsedTime / duration));
+            rectTransform.position = Vector3.Lerp(rectTransform.position, isPosTarget? posTarget.position: initPos, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }

@@ -25,6 +25,9 @@ public class SceneLoader : MonoBehaviour
         if (instance == null)
             instance = this;
     }
+    public void ChangeInstance() {
+        instance = this;
+    }
     //Set Experience name and reset index
     public void LoadExperience(string SceneName)
     {

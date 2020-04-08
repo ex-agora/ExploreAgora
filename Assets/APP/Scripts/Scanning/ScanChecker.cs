@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScanChecker : MonoBehaviour
 {
     [SerializeField] private string objectToScanName;
+    [SerializeField] private Sprite outlineSp;
     [SerializeField] private List<ExperienceHandler> experiences;
     [SerializeField] private BundleHandler bundleHandler;
     [SerializeField] private Sprite unlockedState;
@@ -34,14 +35,16 @@ public class ScanChecker : MonoBehaviour
     }
     public void StartScan()
     {
-        NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
+        scanProperties.detectionObjectName = objectToScanName;
+        scanProperties.detectionObjectSp = objActiveSprite;
+        scanProperties.outlineSp = outlineSp;
+        SceneLoader.Instance.LoadExperience("Scan Scene");
+        //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }
 
     void OnSuccessScan(NetworkParameters np)
     {
-        scanProperties.detectionObjectName = objectToScanName;
-        scanProperties.detectionObjectSp = objActiveSprite;
-        SceneLoader.Instance.LoadExperience("Scan Scene");
+       
     }
     void OnFailedScan(NetworkParameters np) {
         Debug.Log(np.err.message);

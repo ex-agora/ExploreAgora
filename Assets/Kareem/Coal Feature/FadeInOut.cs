@@ -58,6 +58,7 @@ public class FadeInOut : MonoBehaviour
         }
         gameObjecMat.SetFloat("_Transparency", state ? 1 : 0);
         //onComplete
+        Debug.LogWarning(OnFadeComplete);
         if (OnFadeComplete != null)
             OnFadeComplete.Raise();
     }
