@@ -79,9 +79,18 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
         return up;
     }
 
-    public void GoTOHome ()
+    public void GoTOHome()
     {
-        //TODO
+        FinishExperiencesHandler.Instance.GotoHome();
+    }
+    public void FinishExperience()
+    {
+        FinishExperiencesHandler.Instance.FinshExperience(3);
+    }
+
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToNextBubbleState ()
@@ -95,10 +104,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
         nextState = true;
     }
 
-    public void ResetLevel ()
-    {
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-    }
+   
 
     public void ShowHint (int index)
     {
@@ -110,7 +116,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         nextState = true;
         Invoke (nameof (ShowSheild), FlowDurations.showSheild);
-        Invoke (nameof (WaitingForTab), FlowDurations.beforeStartWaitingForTap);
+        //Invoke (nameof (WaitingForTab), FlowDurations.beforeStartWaitingForTap);
     }
 
     public void StopWaitingForTab ()
@@ -123,9 +129,9 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         if (IsInvoking (nameof (CustomUpdateForTab)))
             CancelInvoke (nameof (CustomUpdateForTab));
-        elpTime = 0;
-        if (tapHintCounter <= 1)
-            InvokeRepeating (nameof (CustomUpdateForTab), 0, updateRate);
+        //elpTime = 0;
+        //if (tapHintCounter <= 1)
+        //    InvokeRepeating (nameof (CustomUpdateForTab), 0, updateRate);
     }
 
     private void Awake ()

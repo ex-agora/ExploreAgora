@@ -17,14 +17,18 @@ public class CountryHolder :MonoBehaviour
     }
   
     void CountryHolderCreating(){
-        string clubDataProjectFilePath =Path.Combine( Application.streamingAssetsPath,"countries without changes.json");
-        string filePath = clubDataProjectFilePath;
-        if (File.Exists(filePath))
-        {
-            string dataAsJson = File.ReadAllText(filePath);
-            countries = new CountriesCodedInfo();
-            countries.countries = JsonMapper.ToObject<CountryCodedInfo[]>(dataAsJson);           
-        }
+        //string clubDataProjectFilePath =Path.Combine( Application.streamingAssetsPath,"countries without changes.json");
+        //string filePath = clubDataProjectFilePath;
+        //if (File.Exists(filePath))
+        //{
+        //    string dataAsJson = File.ReadAllText(filePath);
+        //    countries = new CountriesCodedInfo();
+        //    countries.countries = JsonMapper.ToObject<CountryCodedInfo[]>(dataAsJson);           
+        //}
+        TextAsset file = Resources.Load("Countries/countries without changes") as TextAsset;
+        string dataAsJson = file.ToString();
+        countries = new CountriesCodedInfo();
+        countries.countries = JsonMapper.ToObject<CountryCodedInfo[]>(dataAsJson);    
     }
     public CountriesCodedInfo GetCountries() {
         CountryHolderCreating();

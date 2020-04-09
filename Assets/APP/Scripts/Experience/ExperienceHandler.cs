@@ -69,6 +69,8 @@ public class ExperienceHandler : MonoBehaviour
     }
 
     public void OpenPopup() {
+        if (!experienceContainerHolder.isActive)
+            return;
         bool up = false;
 
         popup.TitleStr = experienceContainerHolder.experienceName;

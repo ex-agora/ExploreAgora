@@ -59,10 +59,10 @@ public class PlantDefenceElement : MonoBehaviour
     {
         if (!isSummaryViewed)
         {
+            PlantDefenceManager.Instance.DisableAllElementsClick();
             pDInformation = PlantDefenceGameManager.Instance.InformationPanelManager.SetAnimatorController(animator);
             PlantDefenceGameManager.Instance.BubbleAnimator.SetInteger("panelState", 0);
             PlantDefenceGameManager.Instance.FeedbackHandler.ActiveIcon(animator);
-
             Invoke(nameof(PlayBubbleAfterTime), PlantDefenceGameManager.Instance.FlowDurations.beforeSummaryTime);
         }
     }
@@ -74,7 +74,7 @@ public class PlantDefenceElement : MonoBehaviour
 
         Invoke (nameof (SetBubbleInfo), 2.3f);
 
-        PlantDefenceManager.Instance.DisableAllElementsClick ();
+        
         isSummaryViewed = true;
     }
 

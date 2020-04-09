@@ -108,6 +108,7 @@ public class PopupExperienceHandler : MonoBehaviour
     }
 
     public void AcviteScan() {
+        _Scan.StartScan();
     }
     public void ClosePopup()
     {

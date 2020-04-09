@@ -29,6 +29,8 @@ public class SettingUIHandler : MonoBehaviour
     public void SetSoundSettings(bool _sfx, bool _bg) {
         sfxToggle.IsActiveCheck = _sfx;
         bgToggle.IsActiveCheck = _bg;
+        sfxToggle.KeepValue = true;
+        bgToggle.KeepValue = true;
         CheckMusic();
     }
 }

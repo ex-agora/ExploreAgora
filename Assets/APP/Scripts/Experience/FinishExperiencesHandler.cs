@@ -14,7 +14,7 @@ public class FinishExperiencesHandler : MonoBehaviour
     [SerializeField] ExperienceTokenHandler tokenHandler;
     static FinishExperiencesHandler instance;
     bool isPressed = false;
-
+    bool stayAtExperience;
     public static FinishExperiencesHandler Instance { get => instance; set => instance = value; }
     private void Awake()
     {
@@ -22,7 +22,8 @@ public class FinishExperiencesHandler : MonoBehaviour
             instance = this;
     }
 
-    public void FinshExperience(int score) {
+    public void FinshExperience(int score, bool _stayAtExperience = false) {
+        stayAtExperience = _stayAtExperience;
         if (scenePrefabs.GetExperience().experienceRate == 0) {
             AppManager.Instance.IsThereRate = true;
             AppManager.Instance.ExperienceCode = scenePrefabs.GetExperience().experienceCode;
@@ -41,6 +42,7 @@ public class FinishExperiencesHandler : MonoBehaviour
             AppManager.Instance.saveOnBoardingProgress();
         }
         AchievementManager.Instance.AddScore((uint) (ScorePointsUtility.ExperienceScorePreGem * score));
+        profile.points +=(uint) (ScorePointsUtility.ExperienceScorePreGem * score);
         Sprite badge = null;
         if (scenePrefabs.GetExperience().subject == "Maths") {
             achievementMath.UpdateCurrent();
@@ -73,12 +75,14 @@ public class FinishExperiencesHandler : MonoBehaviour
     {
         isPressed = false;
         UpdateProfile();
-        SceneLoader.Instance.LoadExperience(sceneName);
+        if (!stayAtExperience)
+            SceneLoader.Instance.LoadExperience(sceneName);
     }
     private void OntUpdateExperienceFailed(NetworkParameters obj)
     {
         isPressed = false;
-        SceneLoader.Instance.LoadExperience(sceneName);
+        if (!stayAtExperience)
+            SceneLoader.Instance.LoadExperience(sceneName);
 
     }
     public void UpdateProfile()

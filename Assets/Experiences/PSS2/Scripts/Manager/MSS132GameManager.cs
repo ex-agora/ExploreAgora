@@ -42,6 +42,7 @@ public class MSS132GameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         FinishExperiencesHandler.Instance.FinshExperience(3);
     }
+    public void FinishExperienceWithStay() { FinishExperiencesHandler.Instance.FinshExperience(3,true); }
 
     public void ResetLevel()
     {
@@ -101,6 +102,7 @@ public class MSS132GameManager : MonoBehaviour, ITriggable, IMenuHandler
         draggingManager.SetActive(true);
 
     }
+    
     public void ShowGotiTBtn() {
         Invoke(nameof(OpenGotItBtn), 1f);
     }

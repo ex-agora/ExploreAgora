@@ -11,7 +11,7 @@ public class AppManager : MonoBehaviour
     public bool[] isCurrentLevelPrizeDone;
     public bool[] isNextPressed;
     public OnBoardingPhases boardingPhases;
-
+    int bundleNum = -1;
     bool isThereRate;
     string experienceCode;
 
@@ -24,6 +24,7 @@ public class AppManager : MonoBehaviour
     public bool IsSplashScreenDone { get => isSplashScreenDone; set => isSplashScreenDone = value; }
     public bool IsThereRate { get => isThereRate; set => isThereRate = value; }
     public string ExperienceCode { get => experienceCode; set => experienceCode = value; }
+    public int BundleNum { get => bundleNum; set => bundleNum = value; }
 
     private void Awake()
     {
@@ -71,6 +72,7 @@ public class AppManager : MonoBehaviour
     public void DeleteBoardFile()
     {
         SaveLoadBoardingProgress.Delete();
+        boardingPhases = OnBoardingPhases.None;
     }
 
 

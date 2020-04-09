@@ -22,6 +22,7 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private FooterPanelManager footerManager;
     [SerializeField] private SceneLoader loader;
     [SerializeField] private SettingUIHandler setting;
+    [SerializeField] private BundleNavUIHandler bundleNavUI;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -106,6 +107,7 @@ public class UXFlowManager : MonoBehaviour
         AppManager.Instance.DeleteBoardFile();
         onBoardingCanvas.gameObject.SetActive(false);
         uIDefaultCanvas.gameObject.SetActive(true);
+        LoginFadeIn();
         loader.ChangeInstance();
         Invoke(nameof(ChangeFooter), 1.1f);
     }
@@ -116,6 +118,10 @@ public class UXFlowManager : MonoBehaviour
     public void AcceptLogin() {
         loginRootPanel.SetActive(false);
         footerPanel.SetActive(true);
+        if (AppManager.Instance.BundleNum > -1) {
+            ChangeFooter();
+            bundleNavUI.OpenCurrentBundle(AppManager.Instance.BundleNum);
+        }
         AudioManager.Instance.Play("appBG", "Background");
     }
     public void ShowConformationPanel(bool _isSignUp=false) {
@@ -128,5 +134,5 @@ public class UXFlowManager : MonoBehaviour
         AudioManager.Instance.Play("UIAction", "UI");
 
     }
-
+    public void SetCurrentBundle(int _current) => AppManager.Instance.BundleNum = _current;
 }

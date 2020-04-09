@@ -17,6 +17,7 @@ public class CountryHandler : MonoBehaviour
             countryNames.Add(countriesInfo.countries[i].country);
         }
         countryDD.AddOptions(countryNames);
+        
     }
     public void SetCountry(string _country) {
         CountriesCodedInfo countriesInfo = CountryHolder.Instance?.GetCountries();

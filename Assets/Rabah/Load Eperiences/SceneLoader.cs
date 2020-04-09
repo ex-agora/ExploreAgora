@@ -27,6 +27,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void ChangeInstance() {
         instance = this;
+        ScreenLodAnim.SetBool("StartFade", true);
     }
     //Set Experience name and reset index
     public void LoadExperience(string SceneName)
