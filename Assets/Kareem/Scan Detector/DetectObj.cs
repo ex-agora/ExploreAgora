@@ -73,6 +73,7 @@ public class DetectObj : MonoBehaviour
         tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
         tex.Apply ();
 
+
         // Encode texture into PNG
         byte [] bytes = tex.EncodeToPNG ();
         //optional step either save to image or not
@@ -129,28 +130,50 @@ public class DetectObj : MonoBehaviour
             Maincanvas.SetActive (true);
         }
     }
-    public IEnumerator TakePicture ()
+    public IEnumerator TakePicture()
     {
         Maincanvas.SetActive(false);
-        LoadingCanvas.SetActive(true);
-        yield return new WaitForEndOfFrame ();
-        string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
+        yield return new WaitForEndOfFrame();
+        string path = Application.persistentDataPath + "/Screen-Capture" + ".jpg";
+        string path2 = Application.persistentDataPath + "/Screen-Captur00" + ".jpg";
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
         int height = Screen.height;
-        var tex = new Texture2D (width , height , TextureFormat.RGB24 , false);
+        var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
         // Read screen contents into the texture
-        tex.ReadPixels (new Rect (0 , 0 , width , height) , 0 , 0);
-        tex.Apply ();
-        byte [] bytes = tex.EncodeToPNG ();
+        tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        tex.Apply();
+        byte[] bytes = tex.EncodeToJPG();
+        System.IO.File.WriteAllBytes(path, bytes);
+
+        var newTex = ScaleTexture(tex, 512, (height/width)*512);
+
+        byte[] bytesss = newTex.EncodeToJPG();
+        System.IO.File.WriteAllBytes(path2, bytesss);
 
         // Encode texture into PNG
-        bytes = tex.EncodeToPNG ();
+        bytes = tex.EncodeToPNG();
         detectObjectData.bytes = bytes;
         detectObjectData.score = "0.7";
         detectObjectData.detectionObjectName = scanProperties.detectionObjectName.ToLower();
-        NetworkManager.Instance.DetectObject (detectObjectData , OnSuscees , OnFailed);
-        Destroy (tex);
+        NetworkManager.Instance.DetectObject(detectObjectData, OnSuscees, OnFailed);
+        Destroy(tex);
+        LoadingCanvas.SetActive(true);
+    }
+    private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
+    {
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
+        Color[] rpixels = result.GetPixels(0);
+        float incX = ((float)1 / source.width) * ((float)source.width / targetWidth);
+        float incY = ((float)1 / source.height) * ((float)source.height / targetHeight);
+        for (int px = 0; px < rpixels.Length; px++)
+        {
+            rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth),
+            incY * ((float)Mathf.Floor(px / targetWidth)));
+        }
+        result.SetPixels(rpixels, 0);
+        result.Apply();
+        return result;
     }
     private void OnSuscees (NetworkParameters obj)
     {
