@@ -67,7 +67,8 @@ public class NetworkManager : MonoBehaviour
             e.status = "12001";
             e.status = "No Internet";
             np.err = e;
-            action (false);
+            np.err.errorTypes = NetworkErrorTypes.NetworkError;
+           action (false);
         }
         else
         {
@@ -110,6 +111,7 @@ public class NetworkManager : MonoBehaviour
             e.status = "12001";
             e.status = "No Internet";
             np.err = e;
+            np.err.errorTypes = NetworkErrorTypes.NetworkError;
             action (false);
         }
         else
@@ -401,12 +403,21 @@ public class NetworkManager : MonoBehaviour
     void RequestFailed (UnityWebRequest w)
     {
 
-        Debug.Log (w.downloadHandler.text);
+
         isSuccess = false;
         Debug.LogError ("isHttpError " + w.isHttpError + "\nisNetworkError " + w.isNetworkError + "\nResponse: " + w.downloadHandler.text + "\nError " + w.error);
         if ( w.isHttpError )
         {
             np.err = JsonUtility.FromJson<NetworkError> (w.downloadHandler.text);
+            if ( np.err.customCode == "T401" )
+            {
+                np.err.errorTypes = NetworkErrorTypes.AuthenticationError;
+                Debug.LogError ("UnAutorized!!!! " + np.err.errorTypes);
+            }
+            else
+            {
+                np.err.errorTypes = NetworkErrorTypes.HttpError;
+            }
             Debug.LogError (" status: " + np.err.status + " customCode: " + np.err.customCode + " message:  " + np.err.message);
         }
         else if ( w.isNetworkError )
@@ -415,6 +426,7 @@ public class NetworkManager : MonoBehaviour
             np.err.customCode = "12001";
             np.err.status = "12001";
             np.err.message = "No Internet";
+            np.err.errorTypes = NetworkErrorTypes.NetworkError;
             Debug.LogError (np.err.message);
         }
     }
@@ -446,6 +458,7 @@ public class NetworkManager : MonoBehaviour
         else
         {
             Debug.LogError ("UnAutorized!!!!");
+            np.err = new NetworkError ();
             return string.Empty;
         }
     }
