@@ -422,11 +422,11 @@ public class NetworkTester : MonoBehaviour
     public void TestLinkAccount ()
     {
         LinkAccountData linkAccountData = new LinkAccountData ();
-        linkAccountData.firstName = "7amo";
-        linkAccountData.lastName = "beeka";
-        linkAccountData.email = "7amobeeka@maharaganat.com";
+        linkAccountData.firstName = "rabah";
+        linkAccountData.lastName = "rabah";
+        linkAccountData.email = "m.rabah@exploreagora.com";
         linkAccountData.country = "omEldonia";
-        linkAccountData.password = "7amoPassword";
+        linkAccountData.password = "12345679";
         NetworkManager.Instance.LinkAccount (linkAccountData , OnLinkAccountSusccess , OnLinkAccountFailed);
     }
     private void OnLinkAccountSusccess (NetworkParameters obj)
