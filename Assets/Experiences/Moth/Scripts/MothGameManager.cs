@@ -169,7 +169,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         nextState = true;
         //Debug.LogError("sjhdjshd");
-        Invoke(nameof(ShowStaticTutorial), 12f);
+        Invoke(nameof(ShowStaticTutorial), 9f);
         //Debug.LogError("12121223");
     }
 

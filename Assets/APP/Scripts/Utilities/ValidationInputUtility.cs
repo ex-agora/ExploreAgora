@@ -26,6 +26,6 @@ public static class ValidationInputUtility
     public static bool IsAlpha(string str) => Regex.IsMatch(str, @"^[a-zA-Z]+$");
     public static bool IsDigit(string str) => Regex.IsMatch(str, @"^[0-9]+$");
     public static bool IsAlphOrDigit(string str) => Regex.IsMatch(str, @"^[a-zA-Z0-9]+$");
-
+    
 
 }

@@ -18,12 +18,12 @@ public class ExperienceHandler : MonoBehaviour
     [SerializeField] private BundleHandler bundle;
     public void UpdateUIState()
     {
-        gem.enabled = false;
+        gem.gameObject.SetActive(false);
         experienceButton.interactable = false;
 
         if (experienceContainerHolder.playedCounter > 0 && experienceContainerHolder.isReadyToPlay && experienceContainerHolder.isActive)
         {
-            gem.enabled = true;
+            gem.gameObject.SetActive(true);
             gem.sprite = gemStates[experienceContainerHolder.experienceScore];
             experienceButton.image.sprite = played;
             experienceButton.interactable = true;

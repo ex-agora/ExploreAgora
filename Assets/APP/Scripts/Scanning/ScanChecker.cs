@@ -14,7 +14,7 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] ScanProperties scanProperties;
     [SerializeField] Image objImg;
     [SerializeField] Sprite objActiveSprite;
-    private void Start()
+    private void OnEnable()
     {
         CheckScannedObject();
     }

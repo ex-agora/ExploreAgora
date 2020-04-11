@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StateMachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
 {
     #region Fields
     [SerializeField] float duration = 10f;
+    [SerializeField] StateMachineManager stateMachine;
     float elapsedTime = 0f;
     [SerializeField] int[] groundIndicatorIndecies;
     int groundIndicatorIndex;
@@ -21,6 +23,10 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
     #endregion Fields
 
     #region Methods
+    private void StartMachine()
+    {
+        stateMachine.StartSM();
+    }
     public void FoundSurface()
     {
         groundIndicatorTutorialHandler.CloseIndicator();
@@ -97,6 +103,7 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
         groundIndicatorIndex = 0;
         groundIndicatorTutorialHandler.OpenIndicator();
         AudioManager.Instance.Play("bg", "Background");
+        Invoke(nameof(StartMachine), 2f);
         InvokeRepeating(nameof(CustomUpdate), 0, updateRate);
     }
     public void FinalPhase() { Invoke(nameof(ShowSummary), 2f); }

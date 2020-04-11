@@ -229,6 +229,9 @@ public class CamouflageGameManger : MonoBehaviour, ITriggable, IMenuHandler
 
     public void FinalSummary()
     {
+        Invoke(nameof(ShowFinalSummery), 1.3f);
+    }
+    void ShowFinalSummery() {
         finalSummary.ViewSummary();
     }
     
