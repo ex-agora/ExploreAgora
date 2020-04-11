@@ -14,6 +14,7 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] ScanProperties scanProperties;
     [SerializeField] Image objImg;
     [SerializeField] Sprite objActiveSprite;
+    [SerializeField] List<DetectObjectInfo> objectInfos;
     private void OnEnable()
     {
         CheckScannedObject();
@@ -38,6 +39,7 @@ public class ScanChecker : MonoBehaviour
         scanProperties.detectionObjectName = objectToScanName;
         scanProperties.detectionObjectSp = objActiveSprite;
         scanProperties.outlineSp = outlineSp;
+        scanProperties.objectInfos = objectInfos;
         SceneLoader.Instance.LoadExperience("Scan Scene");
         //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }

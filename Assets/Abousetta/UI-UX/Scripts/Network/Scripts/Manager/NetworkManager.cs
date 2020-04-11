@@ -472,12 +472,15 @@ public class NetworkManager : MonoBehaviour
     #endregion
     public void DetectObject (DetectObjectData detectObjectData , Action<NetworkParameters> onSuccess , Action<NetworkParameters> onFailed)
     {
+        string objectsToDetect = JsonUtility.ToJson(detectObjectData.objectsToDetect);
         // Create a Web Form
         WWWForm form = new WWWForm ();
-        form.AddField ("score" , "0.8");
-        form.AddField ("objectToDetect" , detectObjectData.detectionObjectName);
-        Debug.LogError (detectObjectData.detectionObjectName);
+        //form.AddField ("score" , "0.8");
+        form.AddField ("objectsToDetect" , objectsToDetect);
+        Debug.Log(objectsToDetect);
+        //Debug.LogError (detectObjectData.detectionObjectName);
         form.AddBinaryData ("scannedImg" , detectObjectData.bytes , "screenShot.png" , "image/png");
         StartCoroutine (PostRequest<DetectObjectResponse> (networkManagerData.GetDetecObjectURL () , form , true , onSuccess , onFailed));
+        
     }
 }

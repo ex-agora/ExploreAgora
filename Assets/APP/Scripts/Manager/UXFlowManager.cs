@@ -131,8 +131,7 @@ public class UXFlowManager : MonoBehaviour
         conformationPanel.gameObject.SetActive(false);
     }
     public void TapSound() {
-        AudioManager.Instance.Play("UIAction", "UI");
-
+        AudioManager.Instance?.Play("UIAction", "UI");
     }
     public void SetCurrentBundle(int _current) => AppManager.Instance.BundleNum = _current;
 }

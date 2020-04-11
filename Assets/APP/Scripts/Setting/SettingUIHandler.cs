@@ -8,6 +8,7 @@ public class SettingUIHandler : MonoBehaviour
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] GameObject createAccountPanel;
     [SerializeField] GameObject manageAccountPanel;
+    [SerializeField] GameObject loginBtn;
     [SerializeField] CheckBoxToggle sfxToggle;
     [SerializeField] CheckBoxToggle bgToggle;
     private void OnEnable()
@@ -15,9 +16,11 @@ public class SettingUIHandler : MonoBehaviour
         if (profile.playerType == "registered") {
             manageAccountPanel.SetActive(true);
             createAccountPanel.SetActive(false);
+            loginBtn.SetActive(false);
         } else if (profile.playerType == "dummy") {
             manageAccountPanel.SetActive(false);
             createAccountPanel.SetActive(true);
+            loginBtn.SetActive(true);
         }
     }
     public void CheckMusic() {

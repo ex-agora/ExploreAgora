@@ -21,17 +21,18 @@ public class StoriesProgressBar : MonoBehaviour
 
         storiesBar = new List<Image> ();
         progressStoryImagesCounter = storyHandler.Stories.Count;
-        storyWidth = maxStoriesPanelWidth / progressStoryImagesCounter;
-        progressImagePos.x = storyWidth;
-        progressImagePos.y = storyWidth;
-        storySizeDelta = progressImagePos;
+        //storyWidth = maxStoriesPanelWidth / progressStoryImagesCounter;
+        //progressImagePos.x = storyWidth;
+        //progressImagePos.y = storyWidth;
+        //storySizeDelta = progressImagePos;
         for ( int i = 0 ; i < progressStoryImagesCounter ; i++ )
         {
             RectTransform progressImage = Instantiate (progressStoryImage , this.transform);
-            progressImage.sizeDelta = storySizeDelta;
-            progressImage.localPosition =
-                new Vector2 (progressImage.localPosition.x + ( i * storyWidth ) , progressImage.localPosition.y);
+            //progressImage.localPosition =
+            progressImage.sizeDelta = new Vector2(35,35);
+             //   new Vector2 (progressImage.localPosition.x + ( i * storyWidth ) , progressImage.localPosition.y);
             storiesBar.Add (progressImage.GetComponent<Image> ());
+            storiesBar[i].color = unSeenStoryColor;
         }
     }
     public void ActivateStory (int storyIndex)
