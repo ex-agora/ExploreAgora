@@ -15,8 +15,10 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] Image objImg;
     [SerializeField] Sprite objActiveSprite;
     [SerializeField] List<DetectObjectInfo> objectInfos;
+    [SerializeField] Text scanObjectTxt;
     private void OnEnable()
     {
+        scanObjectTxt.text = objectToScanName;
         CheckScannedObject();
     }
     public void CheckScannedObject()
