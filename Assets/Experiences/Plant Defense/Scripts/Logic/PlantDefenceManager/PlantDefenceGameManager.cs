@@ -14,7 +14,7 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
     [SerializeField] private PDInformationPanelManager informationPanelManager;
     [SerializeField] private SummaryHandler midSummary;
     private bool nextState;
-    [SerializeField] private SheildUIHander sheildCounter;
+    //[SerializeField] private SheildUIHander sheildCounter;
     [SerializeField] private CounterUIHandler sheildUI;
     [SerializeField] private StateMachineManager stateMachine;
     [SerializeField] private GameObject pdInfoManagerPrefab;
@@ -47,11 +47,11 @@ public class PlantDefenceGameManager : MonoBehaviour, ITriggable, IMenuHandler
         get => midSummary;
         set => midSummary = value;
     }
-    public SheildUIHander SheildCounter
-    {
-        get => sheildCounter;
-        set => sheildCounter = value;
-    }
+    //public SheildUIHander SheildCounter
+    //{
+    //    get => sheildCounter;
+    //    set => sheildCounter = value;
+    //}
     public CounterUIHandler SheildUI
     {
         get => sheildUI;

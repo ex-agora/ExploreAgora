@@ -38,7 +38,7 @@ public class PlantDefenceElement : MonoBehaviour
     {
         if (!isSheildUpdated)
         {
-            PlantDefenceGameManager.Instance.SheildCounter.UpdateSheildFrag ();
+            //PlantDefenceGameManager.Instance.SheildCounter.UpdateSheildFrag ();
             isSheildUpdated = true;
         }
     }

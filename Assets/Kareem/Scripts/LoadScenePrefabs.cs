@@ -22,6 +22,9 @@ public class LoadScenePrefabs : MonoBehaviour
         GameObject prefabe = Resources.Load<GameObject>(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
         Instantiate (prefabe);
         gameObject.SetActive (false);
+        //Resources.UnloadAsset(prefabe);
+        Resources.UnloadUnusedAssets();
+        System.GC.Collect();
     }
     #endregion Methods
 }
