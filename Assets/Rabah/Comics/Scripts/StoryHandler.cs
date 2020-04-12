@@ -28,7 +28,7 @@ public class StoryHandler : MonoBehaviour
             StoriesIndex++;
             currentStory = Stories [StoriesIndex];
             ShowStory (currentStory);
-            progressBar?.ActivateStory (StoriesIndex-1);
+            progressBar?.ActivateStory (StoriesIndex);
         }
         else
         {

@@ -36,6 +36,7 @@ public class OnBordingHandler : MonoBehaviour
     }
     public void CreateDummyAccount()
     {
+        ResetGameplayManager.Instance.ResetAccount();
         CreateDummyAccountData createDummyAccountData = new CreateDummyAccountData();
         createDummyAccountData.deviceId = SystemInfo.deviceUniqueIdentifier;
         createDummyAccountData.deviceType = "Android";//Application.platform.ToString() ;

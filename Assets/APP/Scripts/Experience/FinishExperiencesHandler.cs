@@ -24,9 +24,14 @@ public class FinishExperiencesHandler : MonoBehaviour
 
     public void FinshExperience(int score, bool _stayAtExperience = false) {
         stayAtExperience = _stayAtExperience;
-        if (scenePrefabs.GetExperience().experienceRate == 0) {
+        if (scenePrefabs.GetExperience().experienceRate == 0 && !scenePrefabs.GetExperience().shouldNotRate)
+        {
             AppManager.Instance.IsThereRate = true;
             AppManager.Instance.ExperienceCode = scenePrefabs.GetExperience().experienceCode;
+        }
+        else {
+            AppManager.Instance.IsThereRate = false;
+            AppManager.Instance.ExperienceCode = string.Empty;
         }
         if (scenePrefabs.GetExperience().hasToken) {
             tokenHandler.UpdateBundleToken(scenePrefabs.GetExperience().token.tokenName, scenePrefabs.GetBundleID());

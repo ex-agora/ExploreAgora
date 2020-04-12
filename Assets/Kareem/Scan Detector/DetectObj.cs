@@ -217,7 +217,7 @@ public class DetectObj : MonoBehaviour
                     AppManager.Instance.isCurrentLevelDone[0] = true;
                     AppManager.Instance.isCurrentLevelPrizeDone[0] = true;
                     AppManager.Instance.saveOnBoardingProgress();
-                    SceneLoader.Instance.LoadExperience("UI-UX");
+                    //SceneLoader.Instance.LoadExperience("UI-UX");
                 }
                
                 Invoke(nameof(GoBack), 6);

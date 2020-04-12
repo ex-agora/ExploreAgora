@@ -114,4 +114,23 @@ public class ProfileNetworkHandler : MonoBehaviour
     private void OnUpdateProfileFailed(NetworkParameters obj)
     {
     }
+    public void ResetProfile()
+    {
+        profile.fName = string.Empty;
+        profile.lName = string.Empty;
+        profile.nickname = string.Empty;
+        profile.playerType = string.Empty;
+        profile.rank = string.Empty;
+        profile.email = string.Empty;
+        profile.country = string.Empty;
+        profile.DOB = System.DateTime.Now;
+        profile.gender = Gender.None;
+        profile.isConfirmed = false;
+        profile.keys = 0;
+        profile.points = 0;
+        profile.profileImgIndex = 0;
+        profile.stones = 0;
+        profile.streaks = 0;
+        profile.Achievements = new List<int>(profile.holders.Count);       
+    }
 }

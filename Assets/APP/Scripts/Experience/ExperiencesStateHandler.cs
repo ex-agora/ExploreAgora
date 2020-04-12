@@ -28,4 +28,15 @@ public class ExperiencesStateHandler : MonoBehaviour
         
         print(obj.err.message);
     }
+    public void ResetExperiences()
+    {
+        foreach (var i in experiences)
+        {
+            i.Value.playedCounter = 0;
+            i.Value.finishedCounter = 0;
+            i.Value.experienceScore = 0;
+            i.Value.isActive = false;
+            i.Value.isReadyToPlay = false;
+        }
+    }
 }

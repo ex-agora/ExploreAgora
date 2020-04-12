@@ -49,4 +49,9 @@ public class AchievementUIHandler : MonoBehaviour
         }
         achievementPopup.OpenToolBar();
     }
+
+    private void Start()
+    {
+        Invoke(nameof(CheckAchievements), 0.5f);
+    }
 }
