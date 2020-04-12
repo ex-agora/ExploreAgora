@@ -161,9 +161,15 @@ public class SignupValidation : MonoBehaviour
 
             return;
         }
-        if (!termsCheck.IsActiveCheck || !policyCheck.IsActiveCheck)
+        if (!policyCheck.IsActiveCheck)
         {
             tremsAndPolicyError.ShowErrorMsg("Please Confirm Our Policies");
+            tremsAndPolicyError.HideErrorMsgDelay(3f);
+            return;
+        }
+        if (!termsCheck.IsActiveCheck)
+        {
+            tremsAndPolicyError.ShowErrorMsg("Please Confirm Our Terms");
             tremsAndPolicyError.HideErrorMsgDelay(3f);
             return;
         }

@@ -33,6 +33,7 @@ public class ScanChecker : MonoBehaviour
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
+
     }
     public void StartScan()
     {

@@ -50,4 +50,12 @@ public class StoriesProgressBar : MonoBehaviour
             DeactivateStory (i);
         }
     }
+    private void OnDisable()
+    {
+        for (int i = 0; i < storiesBar.Count; i++)
+         {
+            Destroy(storiesBar[i].gameObject);
+        }
+        storiesBar.Clear();
+    }
 }

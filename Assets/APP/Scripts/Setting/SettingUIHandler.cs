@@ -11,6 +11,9 @@ public class SettingUIHandler : MonoBehaviour
     [SerializeField] GameObject loginBtn;
     [SerializeField] CheckBoxToggle sfxToggle;
     [SerializeField] CheckBoxToggle bgToggle;
+    [SerializeField] GameObject createAccountPGO;
+    [SerializeField] FooterPanelManager footerManager;
+    [SerializeField] FooterPanelHandler profileFooter;
     private void OnEnable()
     {
         if (profile.playerType == "registered") {
@@ -35,5 +38,9 @@ public class SettingUIHandler : MonoBehaviour
         sfxToggle.KeepValue = true;
         bgToggle.KeepValue = true;
         CheckMusic();
+    }
+    public void LinkAccountDone() {
+        createAccountPGO.SetActive(false);
+        footerManager.ActivePanel(profileFooter);
     }
 }

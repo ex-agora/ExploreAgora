@@ -15,7 +15,7 @@ public class StoryHandler : MonoBehaviour
     [SerializeField] TMPro.TMP_Text currentStoryIndextText;
     [SerializeField] UnityEvent startStoriesEvent;
     [SerializeField] UnityEvent endStoriesEvent;
-    [SerializeField] StoriesProgressBar progressBar;
+    [SerializeField] StoriesProgressBar progressBar = null;
     public List<Sprite> Stories { get => stories; set => stories = value; }
     public int StoriesIndex { get => storiesIndex; set => storiesIndex = value; }
     int storiesIndex = -1;
@@ -28,7 +28,7 @@ public class StoryHandler : MonoBehaviour
             StoriesIndex++;
             currentStory = Stories [StoriesIndex];
             ShowStory (currentStory);
-            progressBar.ActivateStory (StoriesIndex);
+            progressBar?.ActivateStory (StoriesIndex-1);
         }
         else
         {
@@ -39,7 +39,7 @@ public class StoryHandler : MonoBehaviour
     {
         if ( storiesIndex > 0 )
         {
-            progressBar.DeactivateStory (StoriesIndex);
+            progressBar?.DeactivateStory (StoriesIndex);
             StoriesIndex--;
             currentStory = Stories [StoriesIndex];
             ShowStory (currentStory);

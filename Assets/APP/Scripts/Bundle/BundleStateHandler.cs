@@ -34,11 +34,11 @@ public class BundleStateHandler : MonoBehaviour
         }
         if (isAllActive) {
             if (!isStandAlone) {
-            comicBtn.image.sprite = comicBtnSp;
             activeTxt.SetActive(true);
             unactiveTxt.SetActive(false);
-            isComicActive = true;
+            comicBtn.image.sprite = comicBtnSp;
             }
+            isComicActive = true;
             comic.ActiveComic();
         }
     }
