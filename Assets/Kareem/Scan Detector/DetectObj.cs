@@ -23,6 +23,7 @@ public class DetectObj : MonoBehaviour
     [SerializeField] Sprite objectDetectSp;
     [SerializeField] Image outlineImg;
     [SerializeField] Button scanBtn;
+    [SerializeField] Button nextBtn;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
@@ -34,7 +35,7 @@ public class DetectObj : MonoBehaviour
     }
     private void Start()
     {
-        outputText.text = $"Scan {scanProperties.detectionObjectName}";
+        outputText.text = $"Point the camera frame at the {scanProperties.detectionObjectName} then tap SCAN to detect.";
         outlineImg.sprite = scanProperties.outlineSp;
         outlineImg.SetNativeSize();
     }
@@ -121,7 +122,7 @@ public class DetectObj : MonoBehaviour
                 }
                 else
                 {
-                    outputText.text = scanProperties.detectionObjectName + " Not Found";
+                    outputText.text = scanProperties.detectionObjectName + " not found";
                     print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
                 }
             }
@@ -188,7 +189,7 @@ public class DetectObj : MonoBehaviour
         if ( detectObjectResponse.detected.ToLower () == "true" )
         {
             print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
-            outputText.text = $"{scanProperties.detectionObjectName} is found";
+            outputText.text = $"{scanProperties.detectionObjectName} found";
             outlineImg.sprite = objectDetectSp;
             outlineImg.SetNativeSize();
             scanBtn.gameObject.SetActive(false);
@@ -219,8 +220,8 @@ public class DetectObj : MonoBehaviour
                     AppManager.Instance.saveOnBoardingProgress();
                     //SceneLoader.Instance.LoadExperience("UI-UX");
                 }
-               
-                Invoke(nameof(GoBack), 6);
+                nextBtn.gameObject.SetActive(true);
+                //Invoke(nameof(GoBack), 6);
             }
         }
         else

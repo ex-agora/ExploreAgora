@@ -31,7 +31,7 @@ public class GenderHandler : MonoBehaviour
         switch (PlayerGender)
         {
             case Gender.None:
-                break;
+                return;
             case Gender.Male:
                 currentGender = male;
                 break;
@@ -42,7 +42,7 @@ public class GenderHandler : MonoBehaviour
                 currentGender = other;
                 break;
             case Gender.PreferNotToSay:
-                break;
+                return;
         }
         currentGender.gameObject.SetActive(true);
     }

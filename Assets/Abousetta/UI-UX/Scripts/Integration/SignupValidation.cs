@@ -113,7 +113,7 @@ public class SignupValidation : MonoBehaviour
                 lNameError.HideErrorMsgDelay(3f);
                 break;
             case "user already existed":
-                emailError.ShowErrorMsg("User Already Existed");
+                emailError.ShowErrorMsg("An account already exists with this email");
                 emailError.HideErrorMsgDelay(3f);
                 break;
         }

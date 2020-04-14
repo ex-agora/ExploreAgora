@@ -12,6 +12,7 @@ public class FinishExperiencesHandler : MonoBehaviour
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ExperienceTokenHandler tokenHandler;
+    [SerializeField] ExperiencesStateHandler stateHandler;
     static FinishExperiencesHandler instance;
     bool isPressed = false;
     bool stayAtExperience;
@@ -80,6 +81,7 @@ public class FinishExperiencesHandler : MonoBehaviour
     {
         isPressed = false;
         UpdateProfile();
+        stateHandler.HandleExperiencesStates();
         if (!stayAtExperience)
             SceneLoader.Instance.LoadExperience(sceneName);
     }

@@ -18,7 +18,7 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] Text scanObjectTxt;
     private void OnEnable()
     {
-        scanObjectTxt.text = objectToScanName;
+        scanObjectTxt.text = objectToScanName;  
         CheckScannedObject();
     }
     public void CheckScannedObject()

@@ -11,11 +11,15 @@ public class OnBoradingAccountHandler : MonoBehaviour
     [SerializeField] Image profileImg;
     [SerializeField] Image shopProfileImg;
     [SerializeField] Image missionProfileImg;
+    [SerializeField] Image missionInProfileImg;
+    [SerializeField] Image bookProfileImg;
     void UpdateImgs() {
         Sprite profileSp = profilePicture.GetProfileSprite(profile.profileImgIndex);
         profileImg.sprite = profileSp;
         shopProfileImg.sprite = profileSp;
         missionProfileImg.sprite = profileSp;
+        missionInProfileImg.sprite = profileSp;
+        bookProfileImg.sprite = profileSp;
     }
     private void OnEnable()
     {

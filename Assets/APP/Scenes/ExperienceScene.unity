@@ -243,10 +243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 2244}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -846,6 +846,7 @@ GameObject:
   - component: {fileID: 1521725270}
   - component: {fileID: 1521725269}
   - component: {fileID: 1521725271}
+  - component: {fileID: 1521725272}
   m_Layer: 0
   m_Name: FinishExperiencesHandler
   m_TagString: Untagged
@@ -873,6 +874,7 @@ MonoBehaviour:
   profile: {fileID: 11400000, guid: ff5ffb0f349df444d93025eccac2ccee, type: 2}
   inventory: {fileID: 11400000, guid: 966b378b65846b44da65fa3e30f1a944, type: 2}
   tokenHandler: {fileID: 1521725271}
+  stateHandler: {fileID: 1521725272}
 --- !u!4 &1521725270
 Transform:
   m_ObjectHideFlags: 0
@@ -899,6 +901,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc00804f397f24e47a497681d1aa1c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1521725272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521725268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5820bd62b814cd042aa8048197735cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiences:
+    m_keys:
+    - 0M
+    - 0Sc
+    - 0SS
+    - MSSc111
+    - MSSc112
+    - MSSc121
+    - MSSc124
+    - MSSc131
+    - MSSc132
+    m_values:
+    - {fileID: 11400000, guid: bb92793956985d34a9a0379ebfb58f59, type: 2}
+    - {fileID: 11400000, guid: 385ccc304aa38de459936e13fc72603e, type: 2}
+    - {fileID: 11400000, guid: e718913f8308c13489bcd178814dea81, type: 2}
+    - {fileID: 11400000, guid: d536c4307d1918b4f944cdb3c84571a2, type: 2}
+    - {fileID: 11400000, guid: 9552c51079a87a746b0a186ae76b6bf2, type: 2}
+    - {fileID: 11400000, guid: 86f34953a0426754ca212e8cd8deeb11, type: 2}
+    - {fileID: 11400000, guid: d06f5551ab269c74e8f905829153cf77, type: 2}
+    - {fileID: 11400000, guid: 6831365c9249a684db41a492f0907d70, type: 2}
+    - {fileID: 11400000, guid: 6cd3e5930c5431948b69ee9c04363696, type: 2}
 --- !u!1 &1893287996
 GameObject:
   m_ObjectHideFlags: 0
