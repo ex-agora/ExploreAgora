@@ -30,6 +30,7 @@ public class DetectObj : MonoBehaviour
     #region Methods
     public void Detect ()
     {
+        AudioManager.Instance?.Play("bg", "Background");
         outputText.text = "Please Wait";
         StartCoroutine (TakePicture ());
     }

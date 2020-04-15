@@ -77,9 +77,9 @@ public class SeperatedFields : MonoBehaviour
         direction = new AxisEventData(EventSystem.current);
         direction.moveDir = MoveDirection.None;
     }
-    void LateUpdate()
+    /*void LateUpdate()
     {
         if (!TouchScreenKeyboard.visible)
             TouchScreenKeyboard.Open("");
-    }
+    }*/
 }
