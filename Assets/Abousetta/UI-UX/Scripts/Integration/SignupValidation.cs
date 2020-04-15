@@ -19,7 +19,7 @@ public class SignupValidation : MonoBehaviour
     [SerializeField] private ErrorFadingHandler pwError;
     [SerializeField] private ErrorFadingHandler pwConfirmError;
     [SerializeField] private ErrorFadingHandler tremsAndPolicyError;
-    
+    [SerializeField] private SettingUIHandler settingHandler;    
     bool isPressed = false;
     private void OnEnable()
     {
@@ -91,7 +91,7 @@ public class SignupValidation : MonoBehaviour
         isPressed = false;
         SignupResponse signupResponse = (SignupResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(signupResponse.token);
-        UXFlowManager.Instance.ShowConformationPanel();
+        UXFlowManager.Instance.ShowConformationPanel(true);
     }
     private void OnSignupFailed(NetworkParameters obj)
     {
@@ -187,7 +187,8 @@ public class SignupValidation : MonoBehaviour
         isPressed = false;
         LinkAccountResponse response = (LinkAccountResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(response.token);
-        UXFlowManager.Instance.ShowConformationPanel(true);
+        UXFlowManager.Instance.ShowConformationPanel();
+        settingHandler.LinkAccountDone();
     }
     private void OnLinkAccountFailed(NetworkParameters obj)
     {
