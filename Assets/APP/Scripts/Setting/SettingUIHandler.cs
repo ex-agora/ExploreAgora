@@ -8,16 +8,22 @@ public class SettingUIHandler : MonoBehaviour
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] GameObject createAccountPanel;
     [SerializeField] GameObject manageAccountPanel;
+    [SerializeField] GameObject loginBtn;
     [SerializeField] CheckBoxToggle sfxToggle;
     [SerializeField] CheckBoxToggle bgToggle;
+    [SerializeField] GameObject createAccountPGO;
+    [SerializeField] FooterPanelManager footerManager;
+    [SerializeField] FooterPanelHandler profileFooter;
     private void OnEnable()
     {
         if (profile.playerType == "registered") {
             manageAccountPanel.SetActive(true);
             createAccountPanel.SetActive(false);
+            loginBtn.SetActive(false);
         } else if (profile.playerType == "dummy") {
             manageAccountPanel.SetActive(false);
             createAccountPanel.SetActive(true);
+            loginBtn.SetActive(true);
         }
     }
     public void CheckMusic() {
@@ -32,5 +38,9 @@ public class SettingUIHandler : MonoBehaviour
         sfxToggle.KeepValue = true;
         bgToggle.KeepValue = true;
         CheckMusic();
+    }
+    public void LinkAccountDone() {
+        createAccountPGO.SetActive(false);
+        footerManager.ActivePanel(profileFooter);
     }
 }

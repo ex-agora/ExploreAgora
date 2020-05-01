@@ -9,6 +9,7 @@ public class AchievementManager : MonoBehaviour
     ulong score = 0;
     [HideInInspector][SerializeField]List<Sprite> badges;
     Sprite scannedObjectSp = null;
+    Sprite tokenObjectSp = null;
     string scannedName = string.Empty;
     [SerializeField] Sprite levelUpSp;
     bool isLevelup;
@@ -30,15 +31,24 @@ public class AchievementManager : MonoBehaviour
             result.scannedName = scannedName;
             result.scannedObjectSp = scannedObjectSp;
         }
-        if (badges.Count>0)
+        if (badges.Count > 0)
         {
             result.isScoreOnly = false;
             result.badges = new List<Sprite>(badges);
+        }
+        else {
+            result.badges = new List<Sprite>();
         }
         if (isLevelup) {
             result.isScoreOnly = false;
             result.isLevelUp = true;
             result.levelUpSp = levelUpSp;
+        }
+        if (tokenObjectSp !=null)
+        {
+            result.isScoreOnly = false;
+            result.isToken = true;
+            result.tokenObjectSp = tokenObjectSp;
         }
 
 
@@ -51,12 +61,14 @@ public class AchievementManager : MonoBehaviour
             badges.Clear();
             scannedName = string.Empty;
             scannedObjectSp = null;
+            tokenObjectSp = null;
             isLevelup = false;
             return result;
         }
     }
     public void AddScore(uint _score) => score += _score;
     public void AddBadge(Sprite _badge) => badges.Add(_badge);
+    public void AddToken(Sprite _token) => tokenObjectSp = _token;
     public void AddScannedObject(Sprite _scannedSp, string _scannedName) { scannedName = _scannedName; scannedObjectSp = _scannedSp; }
     public void AddLevel() => isLevelup = true;
 }
@@ -64,9 +76,11 @@ public class AchiemvenetResult {
    public ulong score;
    public List<Sprite> badges;
    public Sprite scannedObjectSp = null;
+   public Sprite tokenObjectSp = null;
    public string scannedName = string.Empty;
    public Sprite levelUpSp;
    public bool isScoreOnly;
    public bool isObjectScanned;
    public bool isLevelUp;
+   public bool isToken;
 }

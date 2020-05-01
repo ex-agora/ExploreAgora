@@ -18,4 +18,8 @@ public class InventoryObjectHolder : ScriptableObject
     }
     public void SetObjects(StringIntDictionary _ScanedObjs) => ScanedObjects = _ScanedObjs;
     public void SetObject(string _Name, int _Conter) => ScanedObjects[_Name] = _Conter;
+    public void ResetInventory()
+    {
+        ScanedObjects = new StringIntDictionary();
+    }
 }

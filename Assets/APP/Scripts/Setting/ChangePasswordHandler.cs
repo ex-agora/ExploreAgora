@@ -62,6 +62,8 @@ public class ChangePasswordHandler : MonoBehaviour
     private void OnChangePasswordFailed(NetworkParameters obj)
     {
         isPressed = false;
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         oldPWError.ShowErrorMsg("Wrong Password");
         oldPWError.HideErrorMsgDelay(3f);
     }

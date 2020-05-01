@@ -96,7 +96,11 @@ public class CamouflageGameManger : MonoBehaviour, ITriggable, IMenuHandler
     }
     public void FinishExperience()
     {
-        FinishExperiencesHandler.Instance.FinshExperience(3);
+        int gem = 0;
+        if (wellHiddenCounter >= 4) gem = 3;
+        else if (wellHiddenCounter == 3) gem = 2;
+        else  gem = 1;
+        FinishExperiencesHandler.Instance.FinshExperience(gem);
     }
 
     public void ResetLevel()

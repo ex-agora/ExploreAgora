@@ -23,18 +23,20 @@ public class DetectObj : MonoBehaviour
     [SerializeField] Sprite objectDetectSp;
     [SerializeField] Image outlineImg;
     [SerializeField] Button scanBtn;
+    [SerializeField] Button nextBtn;
     DetectObjectData detectObjectData = new DetectObjectData ();
     #endregion Fields
 
     #region Methods
     public void Detect ()
     {
+        AudioManager.Instance?.Play("UIAction", "UI");
         outputText.text = "Please Wait";
         StartCoroutine (TakePicture ());
     }
     private void Start()
     {
-        outputText.text = $"Scan {scanProperties.detectionObjectName}";
+        outputText.text = $"Point the camera frame at the {scanProperties.detectionObjectName} then tap SCAN to detect.";
         outlineImg.sprite = scanProperties.outlineSp;
         outlineImg.SetNativeSize();
     }
@@ -121,7 +123,7 @@ public class DetectObj : MonoBehaviour
                 }
                 else
                 {
-                    outputText.text = scanProperties.detectionObjectName + " Not Found";
+                    outputText.text = scanProperties.detectionObjectName + " not found";
                     print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
                 }
             }
@@ -134,8 +136,8 @@ public class DetectObj : MonoBehaviour
     {
         Maincanvas.SetActive(false);
         yield return new WaitForEndOfFrame();
-        string path = Application.persistentDataPath + "/Screen-Capture" + ".jpg";
-        string path2 = Application.persistentDataPath + "/Screen-Captur00" + ".jpg";
+        //string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
+        //string path2 = Application.persistentDataPath + "/Screen-Captur00" + ".png";
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
         int height = Screen.height;
@@ -143,21 +145,24 @@ public class DetectObj : MonoBehaviour
         // Read screen contents into the texture
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply();
-        byte[] bytes = tex.EncodeToJPG();
-        System.IO.File.WriteAllBytes(path, bytes);
+        byte[] bytes = tex.EncodeToPNG();
+        //System.IO.File.WriteAllBytes(path, bytes);
 
         var newTex = ScaleTexture(tex, 512, (height/width)*512);
 
-        byte[] bytesss = newTex.EncodeToJPG();
-        System.IO.File.WriteAllBytes(path2, bytesss);
+        byte[] bytesss = newTex.EncodeToPNG();
+        //System.IO.File.WriteAllBytes(path2, bytesss);
 
         // Encode texture into PNG
         bytes = tex.EncodeToPNG();
-        detectObjectData.bytes = bytes;
-        detectObjectData.score = "0.7";
+        detectObjectData.bytes = bytesss;
+        //detectObjectData.score = "0.69";
         detectObjectData.detectionObjectName = scanProperties.detectionObjectName.ToLower();
+        detectObjectData.objectsToDetect = new ObjectsToDetect();
+        detectObjectData.objectsToDetect.objects = scanProperties.objectInfos.ToArray();
         NetworkManager.Instance.DetectObject(detectObjectData, OnSuscees, OnFailed);
         Destroy(tex);
+        Destroy(newTex);
         LoadingCanvas.SetActive(true);
     }
     private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
@@ -185,7 +190,10 @@ public class DetectObj : MonoBehaviour
         if ( detectObjectResponse.detected.ToLower () == "true" )
         {
             print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
-            outputText.text = "Found";
+            outputText.text = $"{scanProperties.detectionObjectName} found";
+            outlineImg.sprite = objectDetectSp;
+            outlineImg.SetNativeSize();
+            scanBtn.gameObject.SetActive(false);
             int counter = inventory.GetScanedCounter(scanProperties.detectionObjectName);
             if (counter == -1)
             {
@@ -211,12 +219,10 @@ public class DetectObj : MonoBehaviour
                     AppManager.Instance.isCurrentLevelDone[0] = true;
                     AppManager.Instance.isCurrentLevelPrizeDone[0] = true;
                     AppManager.Instance.saveOnBoardingProgress();
-                    SceneLoader.Instance.LoadExperience("UI-UX");
+                    //SceneLoader.Instance.LoadExperience("UI-UX");
                 }
-                outlineImg.sprite = objectDetectSp;
-                outlineImg.SetNativeSize();
-                scanBtn.gameObject.SetActive(false);
-                Invoke(nameof(GoBack), 6);
+                nextBtn.gameObject.SetActive(true);
+                //Invoke(nameof(GoBack), 6);
             }
         }
         else
@@ -270,6 +276,10 @@ public class DetectObj : MonoBehaviour
         outputText.text = "Poor Internet connection";
         LoadingCanvas.SetActive (false);
         Maincanvas.SetActive (true);
+    }
+    public void TapSound()
+    {
+        AudioManager.Instance?.Play("UIAction", "UI");
     }
     #endregion Methods
 }

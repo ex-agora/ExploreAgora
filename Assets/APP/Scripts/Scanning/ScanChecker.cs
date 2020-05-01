@@ -14,8 +14,11 @@ public class ScanChecker : MonoBehaviour
     [SerializeField] ScanProperties scanProperties;
     [SerializeField] Image objImg;
     [SerializeField] Sprite objActiveSprite;
+    [SerializeField] List<DetectObjectInfo> objectInfos;
+    [SerializeField] Text scanObjectTxt;
     private void OnEnable()
     {
+        scanObjectTxt.text = StringUtility.LetterCapitalize(objectToScanName);  
         CheckScannedObject();
     }
     public void CheckScannedObject()
@@ -32,12 +35,14 @@ public class ScanChecker : MonoBehaviour
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
+
     }
     public void StartScan()
     {
         scanProperties.detectionObjectName = objectToScanName;
         scanProperties.detectionObjectSp = objActiveSprite;
         scanProperties.outlineSp = outlineSp;
+        scanProperties.objectInfos = objectInfos;
         SceneLoader.Instance.LoadExperience("Scan Scene");
         //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }

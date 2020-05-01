@@ -85,8 +85,10 @@ public class ExperienceRouteHandler : MonoBehaviour
     private void OntUpdateExperienceFailed(NetworkParameters obj)
     {
         isPressed = false;
-        SceneLoader.Instance.Loading();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
+        //SceneLoader.Instance.Loading();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
     #endregion Methods

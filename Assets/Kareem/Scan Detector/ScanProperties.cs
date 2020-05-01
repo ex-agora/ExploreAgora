@@ -15,6 +15,7 @@ public class ScanProperties : ScriptableObject
     public string detectionObjectName;
     public Sprite detectionObjectSp;
     public Sprite outlineSp;
+    public List<DetectObjectInfo> objectInfos;
     [SerializeField] bool shouldContinueToExperience;
 
     public bool ShouldContinueToExperience{ get => shouldContinueToExperience; set => shouldContinueToExperience = value; }

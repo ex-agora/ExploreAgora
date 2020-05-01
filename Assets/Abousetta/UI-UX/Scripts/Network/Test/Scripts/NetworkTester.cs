@@ -322,7 +322,7 @@ public class NetworkTester : MonoBehaviour
         // Encode texture into PNG
         bytes = tex.EncodeToPNG ();
         detectObjectData.bytes = bytes;
-        detectObjectData.score = "0.8";
+        //detectObjectData.score = "0.8";
         detectObjectData.detectionObjectName = "book";
         NetworkManager.Instance.DetectObject (detectObjectData , OnS , OnF);
         Destroy (tex);

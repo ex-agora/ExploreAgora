@@ -46,6 +46,8 @@ public class PopupExperienceHandler : MonoBehaviour
         switch (_experienceRequiredArea)
         {
             case ExperienceRequiredArea.None:
+                sizeImg.sprite = extra[0];
+                sizeTxt.text = "None";
                 break;
             case ExperienceRequiredArea.Small:
                 sizeImg.sprite = size[0];
@@ -75,8 +77,8 @@ public class PopupExperienceHandler : MonoBehaviour
             placeOnImg.sprite = placeOn[2];
         else
         {
-            placeOnImg.gameObject.SetActive(false);
-            placeOnTxt.gameObject.SetActive(false);
+            placeOnImg.sprite = extra[0];
+            _placeOn = "None";
         }
         placeOnTxt.text = _placeOn;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +86,7 @@ public class PopupExperienceHandler : MonoBehaviour
             extraImg.sprite = extra[1];
         else
             extraImg.sprite = extra[0];
-        extraTxt.text = _hasExtra ? "Headphone" : "Nothing";
+        extraTxt.text = _hasExtra ? "Headphone" : "None";
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         titleTxt.text = titleStr;
         headerTxt.text = headerStr;

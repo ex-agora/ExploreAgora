@@ -61,12 +61,14 @@ public class SeperatedFields : MonoBehaviour
         return int.Parse(code);
 
     }
-
+   
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
             NextField();
     }
+    */
     public void ClearSeperatedFields() {
         for (int i = 0; i < inputFields.Count; i++)
             inputFields[i].text = string.Empty;
@@ -75,9 +77,9 @@ public class SeperatedFields : MonoBehaviour
         direction = new AxisEventData(EventSystem.current);
         direction.moveDir = MoveDirection.None;
     }
-    void LateUpdate()
+    /*void LateUpdate()
     {
         if (!TouchScreenKeyboard.visible)
             TouchScreenKeyboard.Open("");
-    }
+    }*/
 }

@@ -24,8 +24,20 @@ public class ExperiencesStateHandler : MonoBehaviour
     }
     private void OnGetExperiencesFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
 
-        
         print(obj.err.message);
+    }
+    public void ResetExperiences()
+    {
+        foreach (var i in experiences)
+        {
+            i.Value.playedCounter = 0;
+            i.Value.finishedCounter = 0;
+            i.Value.experienceScore = 0;
+            i.Value.isActive = false;
+            i.Value.isReadyToPlay = false;
+        }
     }
 }

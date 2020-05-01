@@ -22,6 +22,9 @@ public class OSceneManager : MonoBehaviour
         nextBtn.OpenToolBar();
         tutorialHandler.CloseIndicator();
         noteTxt.SetActive(false);
+        Invoke(nameof(OpenBubble), 1f);
+    }
+    void OpenBubble() {
         bubbleController.OpenBubble();
     }
     public void RouteTap() {

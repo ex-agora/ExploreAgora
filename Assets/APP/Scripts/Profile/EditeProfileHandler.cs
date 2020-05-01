@@ -77,5 +77,7 @@ public class EditeProfileHandler : MonoBehaviour
     }
     private void OnUpdateProfileFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
     }
 }

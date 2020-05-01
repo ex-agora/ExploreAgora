@@ -18,8 +18,9 @@ public class SignupValidation : MonoBehaviour
     [SerializeField] private ErrorFadingHandler emailError;
     [SerializeField] private ErrorFadingHandler pwError;
     [SerializeField] private ErrorFadingHandler pwConfirmError;
-    [SerializeField] private ErrorFadingHandler tremsAndPolicyError;
-    
+    [SerializeField] private ErrorFadingHandler termError;
+    [SerializeField] private ErrorFadingHandler policyError;
+    [SerializeField] private SettingUIHandler settingHandler;    
     bool isPressed = false;
     private void OnEnable()
     {
@@ -69,10 +70,16 @@ public class SignupValidation : MonoBehaviour
 
             return;
         }
-        if (!termsCheck.IsActiveCheck || !policyCheck.IsActiveCheck)
+        if (!termsCheck.IsActiveCheck)
         {
-            tremsAndPolicyError.ShowErrorMsg("Please Confirm Our Policies");
-            tremsAndPolicyError.HideErrorMsgDelay(3f);
+            termError.ShowErrorMsg("Please Confirm Our Terms & Conditions");
+            termError.HideErrorMsgDelay(3f);
+            return;
+        }
+        if (!policyCheck.IsActiveCheck)
+        {
+            policyError.ShowErrorMsg("Please Confirm Our Privacy Policy");
+            policyError.HideErrorMsgDelay(3f);
             return;
         }
         isPressed = true;
@@ -91,7 +98,7 @@ public class SignupValidation : MonoBehaviour
         isPressed = false;
         SignupResponse signupResponse = (SignupResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(signupResponse.token);
-        UXFlowManager.Instance.ShowConformationPanel();
+        UXFlowManager.Instance.ShowConformationPanel(true);
     }
     private void OnSignupFailed(NetworkParameters obj)
     {
@@ -113,7 +120,7 @@ public class SignupValidation : MonoBehaviour
                 lNameError.HideErrorMsgDelay(3f);
                 break;
             case "user already existed":
-                emailError.ShowErrorMsg("User Already Existed");
+                emailError.ShowErrorMsg("An account already exists with this email");
                 emailError.HideErrorMsgDelay(3f);
                 break;
         }
@@ -161,10 +168,16 @@ public class SignupValidation : MonoBehaviour
 
             return;
         }
-        if (!termsCheck.IsActiveCheck || !policyCheck.IsActiveCheck)
+        if (!termsCheck.IsActiveCheck)
         {
-            tremsAndPolicyError.ShowErrorMsg("Please Confirm Our Policies");
-            tremsAndPolicyError.HideErrorMsgDelay(3f);
+            termError.ShowErrorMsg("Please Confirm Our Terms & Conditions");
+            termError.HideErrorMsgDelay(3f);
+            return;
+        }
+        if (!policyCheck.IsActiveCheck)
+        {
+            policyError.ShowErrorMsg("Please Confirm Our Privacy Policy");
+            policyError.HideErrorMsgDelay(3f);
             return;
         }
         isPressed = true;
@@ -181,7 +194,8 @@ public class SignupValidation : MonoBehaviour
         isPressed = false;
         LinkAccountResponse response = (LinkAccountResponse)obj.responseData;
         NetworkManager.Instance.SaveToken(response.token);
-        UXFlowManager.Instance.ShowConformationPanel(true);
+        UXFlowManager.Instance.ShowConformationPanel();
+        settingHandler.LinkAccountDone();
     }
     private void OnLinkAccountFailed(NetworkParameters obj)
     {

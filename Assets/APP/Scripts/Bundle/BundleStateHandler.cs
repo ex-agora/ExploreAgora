@@ -10,9 +10,12 @@ public class BundleStateHandler : MonoBehaviour
     [SerializeField] Button comicBtn;
     [SerializeField] Sprite comicBtnSp;
     [SerializeField] List<Image> tokenImgs;
-    [SerializeField] List<ExperienceToken> experienceTokens;
+    [SerializeField] List<ExperienceContainerHolder> experienceTokens;
     [SerializeField] ComicStateHandler comic;
     [SerializeField] BundleHandler handler;
+    [SerializeField] GameObject activeTxt;
+    [SerializeField] GameObject unactiveTxt;
+    [SerializeField] bool isStandAlone;
     bool isComicActive;
     public string BundleName { get => bundleName; }
     public string Id { get => id; set { id = value; HandleID(); } }
@@ -23,14 +26,18 @@ public class BundleStateHandler : MonoBehaviour
     public void ActiveToken(string _TokenName) {
         bool isAllActive = true;
         for (int i = 0; i < experienceTokens.Count; i++) {
-            if (experienceTokens[i].tokenName == _TokenName) {
-                experienceTokens[i].isCollected = true;
-                tokenImgs[i].sprite = experienceTokens[i].tokenSprite;
+            if (experienceTokens[i].token.tokenName == _TokenName) {
+                experienceTokens[i].token.isCollected = true;
+                tokenImgs[i].sprite = experienceTokens[i].token.tokenSprite;
             }
-            isAllActive &= experienceTokens[i].isCollected;
+            isAllActive &= experienceTokens[i].token.isCollected;
         }
         if (isAllActive) {
+            if (!isStandAlone) {
+            activeTxt.SetActive(true);
+            unactiveTxt.SetActive(false);
             comicBtn.image.sprite = comicBtnSp;
+            }
             isComicActive = true;
             comic.ActiveComic();
         }

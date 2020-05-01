@@ -39,7 +39,7 @@ public class PromocodeUIHandler : MonoBehaviour
     {
         isPressed = false;
         popup.CloseToolBar();
-        PromoCodeResponse promoCode = new PromoCodeResponse();
+        PromoCodeResponse promoCode = (PromoCodeResponse)obj.responseData;
         gemsTxt.text = promoCode.powerStones.ToString();
         popupGems.OpenToolBar();
     }

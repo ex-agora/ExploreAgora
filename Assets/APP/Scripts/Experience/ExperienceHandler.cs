@@ -89,7 +89,10 @@ public class ExperienceHandler : MonoBehaviour
         {
             popup._Scan = scan;
             up = true;
-           
+
+        }
+        else {
+            return;
         }
         popup.OpenPopup(experienceContainerHolder.requiredArea, experienceContainerHolder.palceOn, experienceContainerHolder.hasExtra, up);
     }
