@@ -23,6 +23,7 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private SceneLoader loader;
     [SerializeField] private SettingUIHandler setting;
     [SerializeField] private BundleNavUIHandler bundleNavUI;
+    [SerializeField] private ToolBarHandler noInternetPopup;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -134,4 +135,32 @@ public class UXFlowManager : MonoBehaviour
         AudioManager.Instance?.Play("UIAction", "UI");
     }
     public void SetCurrentBundle(int _current) => AppManager.Instance.BundleNum = _current;
+
+    void NOInternet() {
+        noInternetPopup.OpenToolBar();
+    }
+
+    void UnauthorizedAttack() {
+        NetworkManager.Instance.DeleteToken();
+        AppManager.Instance.DeleteBoardFile();
+        Application.Quit(-1);
+    }
+
+    public bool IsThereNetworkError(NetworkErrorTypes errorTypes) {
+        switch (errorTypes)
+        {
+            case NetworkErrorTypes.None:
+                return false;
+            case NetworkErrorTypes.AuthenticationError:
+               UnauthorizedAttack();
+                return true;
+            case NetworkErrorTypes.NetworkError:
+              NOInternet();
+                return true;
+            case NetworkErrorTypes.HttpError:
+              NOInternet();
+                return true;
+        }
+        return false;
+    }
 }

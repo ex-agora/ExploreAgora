@@ -34,8 +34,9 @@ public class FinishExperiencesHandler : MonoBehaviour
             AppManager.Instance.IsThereRate = false;
             AppManager.Instance.ExperienceCode = string.Empty;
         }
-        if (scenePrefabs.GetExperience().hasToken) {
+        if (scenePrefabs.GetExperience().hasToken && !scenePrefabs.GetExperience().token.isCollected) {
             tokenHandler.UpdateBundleToken(scenePrefabs.GetExperience().token.tokenName, scenePrefabs.GetBundleID());
+            AchievementManager.Instance.AddToken(scenePrefabs.GetExperience().token.tokenSprite);
         }
         if (AppManager.Instance.boardingPhases != OnBoardingPhases.None) {
             int currentind = 0;
@@ -50,21 +51,23 @@ public class FinishExperiencesHandler : MonoBehaviour
         AchievementManager.Instance.AddScore((uint) (ScorePointsUtility.ExperienceScorePreGem * score));
         profile.points +=(uint) (ScorePointsUtility.ExperienceScorePreGem * score);
         Sprite badge = null;
-        if (scenePrefabs.GetExperience().subject == "Maths") {
-            achievementMath.UpdateCurrent();
-            badge = achievementMath.GetBadge();
-        }
-        else if (scenePrefabs.GetExperience().subject == "Science")
-        {
-            achievementSc.UpdateCurrent();
-            badge = achievementMath.GetBadge();
-        }
-        else if (scenePrefabs.GetExperience().subject == "Social Studies")
-        {
-            achievementSS.UpdateCurrent();
-            badge = achievementMath.GetBadge();
-        }
-      
+        if (scenePrefabs.GetExperience().finishedCounter == 0) {
+            switch (scenePrefabs.GetExperience().subject)
+            {
+                case "Social Studies":
+                    achievementSS.UpdateCurrent();
+                    badge = achievementMath.GetBadge();
+                    break;
+                case "Science":
+                    achievementSc.UpdateCurrent();
+                    badge = achievementMath.GetBadge();
+                    break;
+                case "Maths":
+                    achievementMath.UpdateCurrent();
+                    badge = achievementMath.GetBadge();
+                    break;
+            }
+        }      
         if (badge != null)
         {
             AchievementManager.Instance.AddBadge(badge);

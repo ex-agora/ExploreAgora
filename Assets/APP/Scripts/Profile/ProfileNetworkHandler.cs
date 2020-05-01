@@ -68,7 +68,15 @@ public class ProfileNetworkHandler : MonoBehaviour
             UXFlowManager.Instance.FadeInProfileDellay(2f);
     }
     private void OnGetProfileFailed(NetworkParameters obj) {
-       
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+        {
+            StartCoroutine(RetryGetProfile());
+        }
+    }
+    IEnumerator RetryGetProfile()
+    {
+        yield return new WaitForSeconds(3);
+        GetProfile();
     }
     public bool ShouldVerify() => !Profile.isConfirmed && Profile.playerType == "registered";
 
@@ -113,6 +121,8 @@ public class ProfileNetworkHandler : MonoBehaviour
     }
     private void OnUpdateProfileFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
     }
     public void ResetProfile()
     {

@@ -26,7 +26,7 @@ public class DailyStrikesPopupHandler : MonoBehaviour
             keyImg.sprite = unactiveKey;
             ringImg.sprite = daysRing[dayNum-1];
             scorePanel.SetActive(true);
-            scoreTxt.text = AbbrevationUtility.AbbreviateNumber( _points);
+            scoreTxt.text = StringUtility.AbbreviateNumber( _points);
             dayTxt.text = $"Day {dayNum}";
             popup.OpenToolBar();
         }

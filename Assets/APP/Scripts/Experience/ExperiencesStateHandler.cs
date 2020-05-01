@@ -24,8 +24,9 @@ public class ExperiencesStateHandler : MonoBehaviour
     }
     private void OnGetExperiencesFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
 
-        
         print(obj.err.message);
     }
     public void ResetExperiences()

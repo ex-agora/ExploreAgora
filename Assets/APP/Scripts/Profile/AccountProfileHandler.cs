@@ -110,7 +110,7 @@ public class AccountProfileHandler : MonoBehaviour
         rankShopText.text = rank.Key;
         rankMissionText.text = rank.Key;
         rankInsideMissionText.text = rank.Key;
-        string pointStr = $"{AbbrevationUtility.AbbreviateNumber(profileInfo.points)}/{AbbrevationUtility.AbbreviateNumber(rank.Value.max)}";
+        string pointStr = $"{StringUtility.AbbreviateNumber(profileInfo.points)}/{StringUtility.AbbreviateNumber(rank.Value.max)}";
         pointsText.text = pointStr;
         pointsBookText.text = pointStr;
         pointsShopText.text = pointStr;

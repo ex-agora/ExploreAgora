@@ -44,7 +44,7 @@ public class BundlesNetworkHandler : MonoBehaviour
                 {
                     if (bundleMap.TryGetValue(key, out _bundle))
                     {
-                        _bundle.ActiveToken(br.bundles[i].collectedTokens[i]);
+                        _bundle.ActiveToken(br.bundles[i].collectedTokens[j]);
                     }
                 }
             }
@@ -62,6 +62,8 @@ public class BundlesNetworkHandler : MonoBehaviour
     }
     private void OntGetBundleFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         print(obj.err.message);
     }
 
@@ -90,6 +92,8 @@ public class BundlesNetworkHandler : MonoBehaviour
     }
     private void OntGetAllBundleFailed(NetworkParameters obj)
     {
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         print(obj.err.message);
     }
 }

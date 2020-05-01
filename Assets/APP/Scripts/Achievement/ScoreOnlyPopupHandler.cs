@@ -8,7 +8,7 @@ public class ScoreOnlyPopupHandler : MonoBehaviour
     [SerializeField] ToolBarHandler popup;
     [SerializeField] Text scoreTxt;
     public void ShowPopup(ulong score) {
-        scoreTxt.text = AbbrevationUtility.AbbreviateNumber(score);
+        scoreTxt.text = StringUtility.AbbreviateNumber(score);
         popup.OpenToolBar();
     }
 }

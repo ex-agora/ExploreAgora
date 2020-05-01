@@ -19,6 +19,7 @@ public class LoadScenePrefabs : MonoBehaviour
     public string GetBundleID() => sceneNavManager.bundleID;
     private void Start()
     {
+
         GameObject prefabe = Resources.Load<GameObject>(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
         Instantiate (prefabe);
         gameObject.SetActive (false);

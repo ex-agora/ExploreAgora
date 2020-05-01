@@ -47,6 +47,12 @@ public class AchievementUIHandler : MonoBehaviour
             uIToken.transform.localScale = Vector3.one;
             uIToken.SetAchievementDate(result.levelUpSp, "badge");
         }
+        if (result.isToken) {
+            AchievementUIToken uIToken = Instantiate(prefabeAchievementUIToken, achievementPanel.position, Quaternion.identity).GetComponent<AchievementUIToken>();
+            uIToken.transform.parent = achievementPanel;
+            uIToken.transform.localScale = Vector3.one;
+            uIToken.SetAchievementDate(result.tokenObjectSp, "token");
+        }
         achievementPopup.OpenToolBar();
     }
 

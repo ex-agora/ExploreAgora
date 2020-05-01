@@ -46,6 +46,8 @@ public class ResetPasswordUIHandler : MonoBehaviour
     private void OnResetPasswordRequestFailed(NetworkParameters obj)
     {
         isPressed = false;
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         emailError.ShowErrorMsg("Wrong Email");
         emailError.HideErrorMsgDelay(3f);
         print(obj.err.message);
@@ -73,6 +75,8 @@ public class ResetPasswordUIHandler : MonoBehaviour
     private void OnCheckResetPasswordTokenFailed(NetworkParameters obj)
     {
         isPressed = false;
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         codeError.ShowErrorMsg("Wrong Code");
         codeError.HideErrorMsgDelay(3f);
         print(obj.err.message);
@@ -110,6 +114,8 @@ public class ResetPasswordUIHandler : MonoBehaviour
     private void OnResetPasswordFailed(NetworkParameters obj)
     {
         isPressed = false;
+        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+            return;
         print(obj.err.message);
     }
 }
