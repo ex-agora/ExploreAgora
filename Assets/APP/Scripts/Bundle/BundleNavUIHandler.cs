@@ -32,4 +32,16 @@ public class BundleNavUIHandler : MonoBehaviour
         }
 
     }
+    public void CheckActiveBundle() {
+        if (!playNowP.activeSelf)
+            return;
+        for (int i = 0; i < bundlePanels.Count; i++)
+        {
+            if (bundlePanels[i].activeSelf) {
+                SetCurrent(i);
+                return;
+            }
+             
+        }
+    }
 }

@@ -28,7 +28,7 @@ public class BundlesNetworkHandler : MonoBehaviour
         for (int i = 0; i < br.bundles.Count; i++)
         {
 
-            print(br.bundles[i].bundleId);
+            //print(br.bundles[i].bundleId);
             BundleStateHandler _bundle = null;
             string key = string.Empty;
             if (bundleMapKey.TryGetValue(br.bundles[i].bundleId, out key))
