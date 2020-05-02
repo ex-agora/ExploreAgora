@@ -28,8 +28,10 @@ public class SignupVerificationCode : MonoBehaviour
     {
         UXFlowManager.Instance.AcceptConformation();
         UXFlowManager.Instance.LoginFadeIn();
-        if (isSignUp)
+        if (isSignUp) {
+            UXFlowManager.Instance.FadeInProfile();
             bordingHandler.StartComic();
+        }
     }
     private void OnVerifyMailFailed(NetworkParameters obj)
     {
