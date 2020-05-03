@@ -10,6 +10,7 @@ public class PromocodeUIHandler : MonoBehaviour
     [SerializeField] Text gemsTxt;
     [SerializeField] InputField promoIn;
     [SerializeField] ErrorFadingHandler error;
+    [SerializeField] ProfileNetworkHandler profile;
     bool isPressed = false;
     public void ShowPop() {
         popup.OpenToolBar();
@@ -42,6 +43,8 @@ public class PromocodeUIHandler : MonoBehaviour
         PromoCodeResponse promoCode = (PromoCodeResponse)obj.responseData;
         gemsTxt.text = promoCode.powerStones.ToString();
         popupGems.OpenToolBar();
+        profile.GetProfile(true);
+        profile.Profile.stones += promoCode.powerStones;
     }
     private void OnPromoCodeFailed(NetworkParameters obj)
     {
