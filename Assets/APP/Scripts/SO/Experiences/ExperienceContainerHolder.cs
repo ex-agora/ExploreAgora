@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 /*
  * this script handle experince data 
  * GO prefabEXper
@@ -22,7 +22,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Experience Data" , menuName = "SO/App/Experience/ExperienceData" , order = 0)]
 public class ExperienceContainerHolder : ScriptableObject
 {
-    public string experiencePrefab;
+    public  AssetReference experiencePrefab;
     public string experienceName;
     public string experienceCode;
     public string scannedObject;
