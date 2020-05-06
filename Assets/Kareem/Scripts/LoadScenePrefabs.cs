@@ -21,13 +21,9 @@ public class LoadScenePrefabs : MonoBehaviour
     private void Start()
     {
 
-        // @sceneNavManager.nextExperienceContainerHolder.experiencePrefab.InstantiateAsync().Completed += LoadDone;
-        var g =Resources.Load(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
-        Instantiate(g);
-
-        Resources.UnloadUnusedAssets();
-        System.GC.Collect();
-
+       @sceneNavManager.nextExperienceContainerHolder.experiencePrefab.InstantiateAsync().Completed += LoadDone;
+       
+       
     }
     
 
