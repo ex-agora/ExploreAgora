@@ -155,7 +155,7 @@ public class DetectObj : MonoBehaviour
 
         byte[] bytesss = tex.EncodeToPNG();
         System.IO.File.WriteAllBytes(path2, bytesss);
-
+        
         // Encode texture into PNG
         bytes = tex.EncodeToPNG();
         detectObjectData.bytes = bytesss;
