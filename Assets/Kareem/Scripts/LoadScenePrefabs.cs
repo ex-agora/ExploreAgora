@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 public class LoadScenePrefabs : MonoBehaviour
 {
     #region Fields
@@ -20,12 +21,26 @@ public class LoadScenePrefabs : MonoBehaviour
     private void Start()
     {
 
-        GameObject prefabe = Resources.Load<GameObject>(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
-        Instantiate (prefabe);
-        gameObject.SetActive (false);
-        //Resources.UnloadAsset(prefabe);
+        // @sceneNavManager.nextExperienceContainerHolder.experiencePrefab.InstantiateAsync().Completed += LoadDone;
+        var g =Resources.Load(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
+        Instantiate(g);
+
         Resources.UnloadUnusedAssets();
         System.GC.Collect();
+
+    }
+    
+
+    void LoadDone(AsyncOperationHandle<GameObject> obj)
+    {
+        //uxPrefab = obj.Result;
+        // Instantiate(uxPrefab);
+        gameObject.SetActive(false);
+        //Resources.UnloadAsset(prefabe);
+        Resources.UnloadUnusedAssets();
+        Resources.UnloadUnusedAssets();
+        System.GC.Collect();
+        Debug.Log("finish load asset");
     }
     #endregion Methods
 }

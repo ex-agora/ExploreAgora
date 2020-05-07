@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 /*
  * this script handle experince data 
  * GO prefabEXper
