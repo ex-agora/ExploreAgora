@@ -6,7 +6,6 @@ using LitJson;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using VacuumShaders.TextureExtensions;
 public class DetectObj : MonoBehaviour
 {
     #region Fields
@@ -33,7 +32,6 @@ public class DetectObj : MonoBehaviour
     {
         AudioManager.Instance?.Play("UIAction", "UI");
         outputText.text = "Please Wait";
-        Maincanvas.SetActive(false);
         StartCoroutine (TakePicture ());
     }
     private void Start()
@@ -136,10 +134,10 @@ public class DetectObj : MonoBehaviour
     }
     public IEnumerator TakePicture()
     {
-        
+        Maincanvas.SetActive(false);
         yield return new WaitForEndOfFrame();
-        string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
-        string path2 = Application.persistentDataPath + "/Screen-Captur00" + ".png";
+        //string path = Application.persistentDataPath + "/Screen-Capture" + ".png";
+        //string path2 = Application.persistentDataPath + "/Screen-Captur00" + ".png";
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
         int height = Screen.height;
@@ -148,14 +146,13 @@ public class DetectObj : MonoBehaviour
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply();
         byte[] bytes = tex.EncodeToPNG();
-        System.IO.File.WriteAllBytes(path, bytes);
+        //System.IO.File.WriteAllBytes(path, bytes);
 
-        //var newTex = ScaleTexture(tex, 512, (height/width)*512);
-        tex.ResizePro(256, (int)((height*1.0) / width) * 256);
+        var newTex = ScaleTexture(tex, 512, (height/width)*512);
 
-        byte[] bytesss = tex.EncodeToPNG();
-        System.IO.File.WriteAllBytes(path2, bytesss);
-        
+        byte[] bytesss = newTex.EncodeToPNG();
+        //System.IO.File.WriteAllBytes(path2, bytesss);
+
         // Encode texture into PNG
         bytes = tex.EncodeToPNG();
         detectObjectData.bytes = bytesss;
@@ -165,7 +162,7 @@ public class DetectObj : MonoBehaviour
         detectObjectData.objectsToDetect.objects = scanProperties.objectInfos.ToArray();
         NetworkManager.Instance.DetectObject(detectObjectData, OnSuscees, OnFailed);
         Destroy(tex);
-        //Destroy(newTex);
+        Destroy(newTex);
         LoadingCanvas.SetActive(true);
     }
     private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
