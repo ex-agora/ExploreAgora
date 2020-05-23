@@ -22,8 +22,8 @@ public class UXLoader : MonoBehaviour
 
     void LoadDone(AsyncOperationHandle<GameObject> obj)
     {
-       //uxPrefab = obj.Result;
-       // Instantiate(uxPrefab);
+        //uxPrefab = obj.Result;
+        // Instantiate(uxPrefab);
         Resources.UnloadUnusedAssets();
         System.GC.Collect();
         Debug.Log("finish load asset");
