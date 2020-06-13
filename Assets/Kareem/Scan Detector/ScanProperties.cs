@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-[CreateAssetMenu(fileName = "Required Object Name", menuName = "SO/Variable/Required Object Name", order = 0)]
+[CreateAssetMenu(fileName = "ScanProperties", menuName = "SO/Variable/Scan Properties", order = 0)]
 
 public class ScanProperties : ScriptableObject
 {
@@ -16,7 +16,4 @@ public class ScanProperties : ScriptableObject
     public Sprite detectionObjectSp;
     public Sprite outlineSp;
     public List<DetectObjectInfo> objectInfos;
-    [SerializeField] bool shouldContinueToExperience;
-
-    public bool ShouldContinueToExperience{ get => shouldContinueToExperience; set => shouldContinueToExperience = value; }
 }

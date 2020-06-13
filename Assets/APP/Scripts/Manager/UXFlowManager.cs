@@ -123,7 +123,8 @@ public class UXFlowManager : MonoBehaviour
             ChangeFooter();
             bundleNavUI.OpenCurrentBundle(AppManager.Instance.BundleNum);
         }
-        AudioManager.Instance.Play("appBG", "Background");
+        if (!AudioManager.Instance.IsPlay("appBG", "Background"))
+            AudioManager.Instance.Play("appBG", "Background");
     }
     public void ShowConformationPanel(bool _isSignUp=false) {
         conformationPanel.Open(_isSignUp);

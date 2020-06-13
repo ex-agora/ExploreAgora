@@ -7,7 +7,7 @@ using UnityEngine.XR.ARFoundation;
 public class ExperienceRouteHandler : MonoBehaviour
 {
     #region Fields
-    [SerializeField] SOTest @sceneNavManager;
+    //[SerializeField] SOTest @sceneNavManager;
     [SerializeField] string SceneName;
     [SerializeField] AchievementHolder achievement;
     SceneLoader sceneLoader;
@@ -38,7 +38,7 @@ public class ExperienceRouteHandler : MonoBehaviour
         //Debug.Log ("experienceContainerHolder subject" + experienceContainerHolder.subject);
         //Debug.Log ("experienceContainerHolder requiredArea" + experienceContainerHolder.requiredArea);
         //Debug.Log ("experienceContainerHolder token" + experienceContainerHolder.token);
-        Debug.Log("@scenesPrefabsIntializers " + @sceneNavManager);
+       // Debug.Log("@scenesPrefabsIntializers " + @sceneNavManager);
         if (experienceContainerHolder == null)
         {
             Debug.LogWarning("Transit function needs experienceContainerHolder parameter");
@@ -47,8 +47,10 @@ public class ExperienceRouteHandler : MonoBehaviour
         if (isPressed)
             return;
         isPressed = true;
-        @sceneNavManager.nextExperienceContainerHolder = experienceContainerHolder;
-        @sceneNavManager.bundleID = bundle?.BundleID;
+        //Debug.LogWarning(@sceneNavManager.nextExperienceContainerHolder + " NNNNNNNNNNNNNNNNNNN ");
+        ExperienceTransitionHolder.Instance.NextExperienceContainerHolder = experienceContainerHolder;
+        //Debug.LogWarning(@sceneNavManager.nextExperienceContainerHolder + " qqqqqqqqqqqqqqqqqq ");
+        ExperienceTransitionHolder.Instance.BundleID = bundle?.BundleID;
         ExperiencePlayData s = new ExperiencePlayData(); s.status = 1;
         s.experienceCode = experienceContainerHolder.experienceCode;
         s.score = 0;
@@ -71,7 +73,9 @@ public class ExperienceRouteHandler : MonoBehaviour
     }
 
     public void TransitTest(ExperienceContainerHolder experienceContainerHolder) {
-        @sceneNavManager.nextExperienceContainerHolder = experienceContainerHolder;
+
+        ExperienceTransitionHolder.Instance.NextExperienceContainerHolder = experienceContainerHolder;
+
         SceneLoader.Instance.LoadExperience(SceneName);
     }
     private void OntUpdateExperienceSuccess(NetworkParameters obj)

@@ -185,4 +185,17 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
+    public bool IsPlay(string audioClipName, string sfxName) {
+        if (!HandleAudioSource(sfxName))
+             return false;
+
+        if (tempAudioContainer.sfx.TryGetValue(audioClipName, out tempAudioClip))
+        {
+            
+            tempAudioSource.clip = tempAudioClip;
+            if (tempAudioSource.isPlaying && tempAudioSource.clip == tempAudioClip)
+                return true;
+        }
+        return false;
+    }
 }

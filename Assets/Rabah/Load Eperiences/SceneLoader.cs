@@ -55,7 +55,10 @@ public class SceneLoader : MonoBehaviour
     public void LoadExperienceTrigger()
     {
         if (_scene != string.Empty)
-            SceneManager.LoadSceneAsync(_scene);
+        {
+            //SceneManager.LoadSceneAsync(_scene);
+            AddressableScenesManager.Instance.LoadScene(_scene);
+        }
         else if (_index != -1)
             SceneManager.LoadSceneAsync(_index);
 
