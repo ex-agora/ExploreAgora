@@ -19,24 +19,39 @@ public class BundleStateHandler : MonoBehaviour
     bool isComicActive;
     public string BundleName { get => bundleName; }
     public string Id { get => id; set { id = value; HandleID(); } }
-    void HandleID() {
-        if(handler!=null)
+
+    private void Awake()
+    {
+        for (int i = 0; i < experienceTokens.Count; i++)
+        {
+            experienceTokens[i].token.isCollected = false;
+        }
+    }
+    void HandleID()
+    {
+        if (handler != null)
             handler.BundleID = id;
     }
-    public void ActiveToken(string _TokenName) {
+    public void ActiveToken(string _TokenName)
+    {
         bool isAllActive = true;
-        for (int i = 0; i < experienceTokens.Count; i++) {
-            if (experienceTokens[i].token.tokenName == _TokenName) {
+        for (int i = 0; i < experienceTokens.Count; i++)
+        {
+            if (experienceTokens[i].token.tokenName == _TokenName)
+            {
                 experienceTokens[i].token.isCollected = true;
                 tokenImgs[i].sprite = experienceTokens[i].token.tokenSprite;
             }
+
             isAllActive &= experienceTokens[i].token.isCollected;
         }
-        if (isAllActive) {
-            if (!isStandAlone) {
-            activeTxt.SetActive(true);
-            unactiveTxt.SetActive(false);
-            comicBtn.image.sprite = comicBtnSp;
+        if (isAllActive)
+        {
+            if (!isStandAlone)
+            {
+                activeTxt.SetActive(true);
+                unactiveTxt.SetActive(false);
+                comicBtn.image.sprite = comicBtnSp;
             }
             isComicActive = true;
             comic.ActiveComic();
@@ -46,12 +61,11 @@ public class BundleStateHandler : MonoBehaviour
     {
         ActiveToken(string.Empty);
     }
-    public void PlayComic() {
+    public void PlayComic()
+    {
         if (!isComicActive)
             return;
         comic.PlayComic();
     }
     public int GetTokensNumber() => experienceTokens.Count;
-
-
 }
