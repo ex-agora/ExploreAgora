@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class DragToWorld : MonoBehaviour
 {
     private DragObjectInstantiate dragObjectInstantiate = null;
+    private DragToWorldEventPlace worldEventPlace = null;
     [SerializeField] string targetLabelStr;
     [SerializeField] bool isPosTarget;
+    [SerializeField] bool keepAlive;
     [SerializeField] RectTransform posTarget;
     private RaycastHit hit;
     Ray ray;
@@ -34,7 +36,8 @@ public class DragToWorld : MonoBehaviour
         rectTransform = transform.GetComponent<RectTransform>();
         canDarg = true;
         initPos = rectTransform.position;
-        PlantPartsGameManager.Instance.MaxQuizPart++;
+        if (PlantPartsGameManager.Instance != null)
+            PlantPartsGameManager.Instance.MaxQuizPart++;
     }
 
     public void BeginDrag()
@@ -91,6 +94,17 @@ public class DragToWorld : MonoBehaviour
                 else
                     rightPlace = true;
             }
+            else if (placingType == PlacingType.Event) {
+                worldEventPlace = hit.collider.GetComponent<DragToWorldEventPlace>();
+
+                if (worldEventPlace == null)
+                    return;
+
+                if (worldEventPlace.TargetString != targetLabelStr)
+                    rightPlace = false;
+                else
+                    rightPlace = true;
+            }
         }
     }
 
@@ -113,11 +127,14 @@ public class DragToWorld : MonoBehaviour
                 dragObjectInstantiate.PlaceObject(objectToBePlaced);
                 TruePos?.Raise();
             }
-            else
+            else if(placingType == PlacingType.Event)
             {
                 TruePos?.Raise();
             }
-            this.gameObject.SetActive(false);
+            if (!keepAlive)
+                this.gameObject.SetActive(false);
+            else
+                StartCoroutine(MoveToPosition(0.4f));
         }
         else
         {

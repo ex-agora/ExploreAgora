@@ -89,7 +89,7 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
             {
                 if (ingredientsButtons[i].IngredientBarButtonType == CurrentPlate.Ingredients[j].IngredientType)
                 {
-                    ingredientsButtons[i].GetComponent<Button>().interactable = true;
+                    ingredientsButtons[i].gameObject.SetActive(true);
                 }
             }
         }
@@ -98,7 +98,7 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
     {
         for (int i = 0; i < ingredientsButtons.Count; i++)
         {
-            ingredientsButtons[i].GetComponent<Button>().interactable = false;
+            ingredientsButtons[i].gameObject.SetActive(false);
         }
     }
     public void AddCounter(IngredientsBarButton ingredientsBarButton)
