@@ -8,13 +8,14 @@ public class LabelWorldHandler : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] TMP_Text labelText;
+    [SerializeField] string labelString;
     [SerializeField] bool hasExtraInfo;
     [SerializeField] string extraInfoText;
     [SerializeField] Canvas canvas;
     [SerializeField] bool isTabDisabled;
     [SerializeField] GameObject extraLabalIcon;
     bool isOpen;
-    public string LabelTextStr { get => labelText.text; }
+    public string LabelTextStr { get => labelText == null ? labelString : labelText.text; }
     public bool HasExtraInfo { get => hasExtraInfo; }
     public string ExtraInfoText { get => extraInfoText; }
     private void Start ()
