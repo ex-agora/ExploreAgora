@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DragToWorld : MonoBehaviour
 {
+    private DragObjectInstantiate dragObjectInstantiate = null;
     [SerializeField] string targetLabelStr;
     [SerializeField] bool isPosTarget;
     [SerializeField] RectTransform posTarget;
@@ -24,6 +25,7 @@ public class DragToWorld : MonoBehaviour
     // world space Model that will appear if dragging of UI element completed successfully
     [SerializeField] GameObject objectToBePlaced;
     RectTransform rectTransform;
+    [SerializeField] GameEvent TruePos;
     LabelWorldHandler label;
     Vector3 initPos;
     private void Start()
@@ -35,12 +37,13 @@ public class DragToWorld : MonoBehaviour
         PlantPartsGameManager.Instance.MaxQuizPart++;
     }
 
-    public void BeginDrag() {
+    public void BeginDrag()
+    {
         AudioManager.Instance.Play("UIAction", "UI");
     }
     //wihin dragging
-    public void OnDrag ()
-	{
+    public void OnDrag()
+    {
         // UI element image position changes according to current finger position on screen (mousePosition)
         if (canDarg)
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -49,24 +52,44 @@ public class DragToWorld : MonoBehaviour
     //    rectTransform.offsetMax = Vector2.zero;
     //    rectTransform.offsetMin= Vector2.zero;
     //}
-	public void CheckDrag ()
-	{
-       
-        ray = PlantPartsGameManager.Instance.ArCamera.ScreenPointToRay(transform.position);
+    public void CheckDrag()
+    {
+
+        ray = interactions.Instance.SessionOrigin.camera.ScreenPointToRay(transform.position);
         //if current finger position hits the dedicated target 
         if (Physics.Raycast(ray, out hit))
         {
-            label = hit.collider.gameObject.GetComponentInParent<LabelWorldHandler>();
-            if (label == null) return;
-            if (label.LabelTextStr == targetLabelStr)
+
+            if (placingType == PlacingType.UI)
             {
-                rightPlace = true;
-                PlantPartsGameManager.Instance.CorrectAnswer++;
+                label = hit.collider.gameObject.GetComponentInParent<LabelWorldHandler>();
+                if (label == null) return;
+                if (label.LabelTextStr == targetLabelStr)
+                {
+                    rightPlace = true;
+                    if (PlantPartsGameManager.Instance != null)
+                        PlantPartsGameManager.Instance.CorrectAnswer++;
+
+                }
+                else
+                {
+                    rightPlace = false;
+                    if (PlantPartsGameManager.Instance != null)
+                        PlantPartsGameManager.Instance.WrongTrialCount++;
+                }
             }
-            else
+            else if (placingType == PlacingType.Object)
             {
-                rightPlace = false;
-                PlantPartsGameManager.Instance.WrongTrialCount++;
+
+                dragObjectInstantiate = hit.collider.GetComponent<DragObjectInstantiate>();
+
+                if (dragObjectInstantiate == null)
+                    return;
+
+                if (dragObjectInstantiate.TargetString != targetLabelStr)
+                    rightPlace = false;
+                else
+                    rightPlace = true;
             }
         }
     }
@@ -85,9 +108,14 @@ public class DragToWorld : MonoBehaviour
                 label.RightAnswer();
                 label.enabled = false;
             }
+            else if (placingType == PlacingType.Object)
+            {
+                dragObjectInstantiate.PlaceObject(objectToBePlaced);
+                TruePos?.Raise();
+            }
             else
             {
-                Instantiate(objectToBePlaced, objectToBePlaced.transform.position, Quaternion.identity);
+                TruePos?.Raise();
             }
             this.gameObject.SetActive(false);
         }
@@ -101,13 +129,13 @@ public class DragToWorld : MonoBehaviour
     // return ui element back to its starting pos smoothly
     IEnumerator MoveToPosition(float duration)
     {
-        
+
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
             //rectTransform.offsetMax = Vector2.Lerp(rectTransform.offsetMax, Vector2.zero , (elapsedTime / duration));
             //rectTransform.offsetMin = Vector2.Lerp(rectTransform.offsetMin, Vector2.zero, (elapsedTime / duration));
-            rectTransform.position = Vector3.Lerp(rectTransform.position, isPosTarget? posTarget.position: initPos, (elapsedTime / duration));
+            rectTransform.position = Vector3.Lerp(rectTransform.position, isPosTarget ? posTarget.position : initPos, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
