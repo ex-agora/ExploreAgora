@@ -66,7 +66,7 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
         AudioManager.Instance.Play("bg", "Background");
         Invoke(nameof(StartMachine), 2f);
         currentIngredientTypes = new HashSet<IngredientType>();
-        toolBar.OpenToolBar();
+        
         //PreparePlateIngrdientButton();
     }
 
@@ -160,5 +160,9 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
     void HidePreviousComponent()
     {
         CurrentPlate?.IngrdientComponent.gameObject.SetActive(false);
+    }
+    public void ShowUI()
+    {
+        toolBar.OpenToolBar();
     }
 }

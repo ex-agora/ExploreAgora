@@ -20,6 +20,7 @@ public class M35Manager : MonoBehaviour
     }
     private void Start()
     {
+        M35GameManager.Instance.ShowUI();
         M35GameManager.Instance.PreparePlateIngrdientButton();
     }
     public M35PlateRatioBaking GetSelectedPlate()
