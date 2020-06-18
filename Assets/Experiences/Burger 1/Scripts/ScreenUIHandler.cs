@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ScreenUIHandler : MonoBehaviour
 {
     static ScreenUIHandler instance;
-    [SerializeField] Text correctScore, wrongScore , bigScore , scoreOfPanel ;
-    [SerializeField] List<Image> panelStars , recapStars;
+    [SerializeField] Text correctScore, wrongScore, bigScore, scoreOfPanel;
+    [SerializeField] List<Image> panelStars, recapStars;
     [SerializeField] List<Sprite> stars;
-   
+
     public static ScreenUIHandler Instance { get => instance; set => instance = value; }
 
     [SerializeField] int firstStar, secondStar, thirdStar;
@@ -30,7 +30,7 @@ public class ScreenUIHandler : MonoBehaviour
         scoreOfPanel.text = SandwichComponentsHandler.Instance.CorrectCounter.ToString();
         bigScore.text = scoreOfPanel.text;
         correctScore.text = scoreOfPanel.text;
-        wrongScore.text = scoreOfPanel.text;
+        wrongScore.text = SandwichComponentsHandler.Instance.WrongCounter.ToString();
 
         if (SandwichComponentsHandler.Instance.CorrectCounter > 4)
         {
@@ -46,8 +46,17 @@ public class ScreenUIHandler : MonoBehaviour
         Debug.Log("on Failure");
         if (SandwichComponentsHandler.Instance.CorrectCounter > 4)
             bigScore.color = Color.red;
+
         if (SandwichComponentsHandler.Instance.CorrectCounter < 4)
             scoreOfPanel.color = Color.red;
+
+        Invoke(nameof(ReturnColorWhite), 2);
+    }
+
+    void ReturnColorWhite()
+    {
+        bigScore.color = Color.white;
+        scoreOfPanel.color = Color.white;
     }
 
     public void ResetUI()
@@ -67,29 +76,31 @@ public class ScreenUIHandler : MonoBehaviour
 
     #endregion
 
-    void UpdateStars(int score) {
-        if(score > 0  && score < firstStar)
+    void UpdateStars(int score)
+    {
+        if (score > 0 && score < firstStar)
         {
             panelStars[0].sprite = stars[1];
             recapStars[0].sprite = stars[1];
         }
-        else if (score > firstStar  && score < secondStar)
+        else if (score > firstStar && score < secondStar)
         {
             panelStars[1].sprite = stars[1];
             recapStars[1].sprite = stars[1];
         }
-        else if (score > secondStar  && score < thirdStar)
+        else if (score > secondStar && score < thirdStar)
         {
             panelStars[2].sprite = stars[1];
             recapStars[2].sprite = stars[1];
         }
-            
+
     }
 
 
-     void ScoreAnimation() {
+    void ScoreAnimation()
+    {
         Debug.Log("ScoreAnimation");
     }
-   
-    
+
+
 }

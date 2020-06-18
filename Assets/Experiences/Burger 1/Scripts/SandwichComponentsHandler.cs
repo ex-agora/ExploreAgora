@@ -226,7 +226,7 @@ public class SandwichComponentsHandler : MonoBehaviour
             EnableDisableCheckButton();
             CorrectCounter++;
 
-            RandomOrder = UnityEngine.Random.Range(0, 6);
+            RandomOrder = UnityEngine.Random.Range(0, 5);
             randomOrder = (EOrders)RandomOrder;
             SetCorrectAnswersForOrders(randomOrder);
             AudioManager.Instance?.Play("correctAnswer", "Activity");
