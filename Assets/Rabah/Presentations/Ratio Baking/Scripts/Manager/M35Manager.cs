@@ -8,6 +8,7 @@ public class M35Manager : MonoBehaviour
     static M35Manager instance;
     [SerializeField] List<M35PlateRatioBaking> plates;
     [SerializeField] IngredientLabelText ingrdientLabelText;
+    [SerializeField] Animator mixerAnim;
     int plateCounter = -1;
     public static M35Manager Instance { get => instance; set => instance = value; }
     public IngredientLabelText IngrdientLabelText { get => ingrdientLabelText; set => ingrdientLabelText = value; }
@@ -22,6 +23,7 @@ public class M35Manager : MonoBehaviour
     {
         M35GameManager.Instance.ShowUI();
         M35GameManager.Instance.PreparePlateIngrdientButton();
+        mixerAnim.keepAnimatorControllerStateOnDisable = true;
     }
     public M35PlateRatioBaking GetSelectedPlate()
     {
@@ -57,6 +59,8 @@ public class M35Manager : MonoBehaviour
     {
         return a / b;
     }
+    public void CloseMixer() => mixerAnim.SetTrigger("IsClose");
+    public void OpenMixer() => mixerAnim.SetTrigger("IsOpen");
     public List<float> GetRaioIngredients(float a, float b, float c)
     {
         List<float> ratios = new List<float>();

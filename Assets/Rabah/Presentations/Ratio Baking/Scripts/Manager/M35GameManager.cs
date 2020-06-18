@@ -58,6 +58,7 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
     void ShowBubble() { nextState = true; }
     public void ShowFinalSummery()
     {
+        toolBar.CloseToolBar();
         finalSummary.ViewSummary();
     }
     // Start is called before the first frame update
@@ -106,6 +107,7 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
         M35Manager.Instance.AddCounter(ingredientsBarButton.IngredientBarButtonType);
         CurrentIngredientTypes.Add(ingredientsBarButton.IngredientBarButtonType);
         if (CurrentIngredientTypes.Count == CurrentPlate.Ingredients.Count) checkBtn.interactable = true;
+        AudioManager.Instance?.Play("placeObject", "Activity");
 
     }
     public void ResetCounters()
@@ -143,18 +145,32 @@ public class M35GameManager : MonoBehaviour, ITriggable, IMenuHandler
     void CorrectRatio()
     {
         print("CorrectRatio");
-        CurrentPlate.Result.SetActive(true);
+        ResetIngrdientButtons();
+        M35Manager.Instance.CloseMixer();
+        M35Manager.Instance.IngrdientLabelText.HideLabel();
+        CurrentPlate.HideCounter();
+        Invoke(nameof(StartMix), 2.6f);
+    }
+    void StartMix() {
+        AudioManager.Instance?.Play("mixer", "Activity");
+        Invoke(nameof(MixDone), 19.9f);
+    }
+    void MixDone() {
+        CurrentPlate.ShowResult();
+        M35Manager.Instance.OpenMixer();
         Invoke(nameof(HidePreviousComponent), 0.5f);
         PreparePlateIngrdientButton();
-        if(M35Manager.Instance.PlateCounter > 2)
+        if (M35Manager.Instance.PlateCounter > 2)
         {
-            toolBar.CloseToolBar();
-            ShowFinalSummery();
+            Invoke(nameof(ShowFinalSummery), 4f);
+
         }
     }
+   
     void InCorrectRatio()
     {
         print("InCorrectRatio");
+        ResetCounters();
         TryAgain();
     }
     void HidePreviousComponent()

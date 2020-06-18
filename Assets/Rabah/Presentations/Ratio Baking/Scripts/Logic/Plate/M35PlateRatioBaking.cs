@@ -10,13 +10,14 @@ public class M35PlateRatioBaking : MonoBehaviour
     [SerializeField] IngredientCounterHandler ingredientCounterHandler;
     [SerializeField] List<int> ingredientsQuantity;
     [SerializeField] [TextArea] string ingrdientLabelData;
-    [SerializeField] GameObject result;
+    [SerializeField] FadeInOut result;
+    [SerializeField] ParticleSystem vfx;
     List<float> answerRatios;
 
     public List<Ingredient> Ingredients { get => ingredients; set => ingredients = value; }
     public IngrdientComponent IngrdientComponent { get => ingrdientComponent; set => ingrdientComponent = value; }
     public List<int> IngredientsQuantity { get => ingredientsQuantity; set => ingredientsQuantity = value; }
-    public GameObject Result { get => result; set => result = value; }
+    public FadeInOut Result { get => result; set => result = value; }
 
     //public IngredientCounterHandler IngredientCounterHandler { get => ingredientCounterHandler; set => ingredientCounterHandler = value; }
 
@@ -31,6 +32,7 @@ public class M35PlateRatioBaking : MonoBehaviour
         ingredientCounterHandler.ShowComponentWithFade(ingrdientComponent , ingredients);
         M35GameManager.Instance.CurrentIngredientTypes.Clear();
     }
+    public void HideCounter() => ingredientCounterHandler.HideLabel();
     public void ReloadPlate()
     {
         plateState = RatioBakingPlateStates.Unlocked;
@@ -48,5 +50,11 @@ public class M35PlateRatioBaking : MonoBehaviour
             answerRatios = M35Manager.Instance.GetRaioIngredients(ingredientsQuantity[0], ingredientsQuantity[1], ingredientsQuantity[2]);
         }
         return answerRatios;
+    }
+    public void ShowResult() {
+        result.gameObject.SetActive(true);
+        result.fadeInOut(true);
+        vfx.Play(true);
+        AudioManager.Instance?.Play("revealObject", "Activity");
     }
 }

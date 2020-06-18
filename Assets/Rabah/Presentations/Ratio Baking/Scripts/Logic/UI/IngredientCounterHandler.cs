@@ -10,12 +10,9 @@ public class IngredientCounterHandler : MonoBehaviour
     [SerializeField] List<IngrdientComponent> ingrdientComponents;
     public void HideLabel()
     {
-        if (M35Manager.Instance.PlateCounter > 0)
-        {
-            counterAnimator.SetBool("fadeIn", false);
-            counterAnimator.SetBool("fadeOut", true);
-            Invoke(nameof(DisableCounter), 0.5f);
-        }
+        counterAnimator.SetBool("fadeIn", false);
+        counterAnimator.SetBool("fadeOut", true);
+        Invoke(nameof(DisableCounter), 0.5f);
     }
     public void ShowLabel()
     {

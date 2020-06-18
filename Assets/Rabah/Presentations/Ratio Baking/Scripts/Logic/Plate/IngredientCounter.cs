@@ -23,11 +23,12 @@ public class IngredientCounter : MonoBehaviour
         {
             if (Counter == 0) UpdateCounterImg(counterImg);
             Counter++;
-            counterText.text = Counter + "";
+            counterText.text = Counter.ToString();
         }
     }
     public void UpdateCounterImg(Sprite counterImg)
     {
         GetComponent<Image>().sprite = counterImg;
+        counterText.text = string.Empty;
     }
 }
