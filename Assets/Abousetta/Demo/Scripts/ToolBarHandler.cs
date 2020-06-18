@@ -6,9 +6,14 @@ public class ToolBarHandler : MonoBehaviour
 {
     #region Fields
     [SerializeField] Animator uiSnapAnimator;
+    [SerializeField] bool keepAnimAliveOnDisable =false;
     #endregion Fields
 
     #region Methods
+    private void Start()
+    {
+        uiSnapAnimator.keepAnimatorControllerStateOnDisable = keepAnimAliveOnDisable;
+    }
     public void CloseToolBar()
     {
         HideToolBar();

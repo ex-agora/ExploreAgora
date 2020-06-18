@@ -59,7 +59,7 @@ public class DraggingPossibility : MonoBehaviour
         if (trueAnswer)
         {
             TrueAnswer?.Raise();
-           
+            AudioManager.Instance?.Play("placeObject", "Activity");
             var fadeOutList = gameObject.GetComponentsInChildren<FadeInOut>();
             for (int i = 0; i < fadeOutList.Length; i++)
             {

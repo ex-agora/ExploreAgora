@@ -211,6 +211,7 @@ public class SandwichComponentsHandler : MonoBehaviour
             BurgerWorldUIHandler.Instance?.UpdateScoreLockFlowUIColor(Color.red);
             Invoke(nameof(SetDefaultColor), 2f);
             // oggi message 
+            MatchClothesGameManager.Instance?.TryAgainBubble();
             // make sure undo button is on 
         }
         

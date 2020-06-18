@@ -13,6 +13,7 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
     [SerializeField] GameObject cheeseHolder;
     [SerializeField] GameObject extrasHolder;
     FadeInOut[] fadeOutList = null;
+    ToolBarHandler[] toolBarsList = null;
     //[SerializeField] List<GameObject> burger;
     //[SerializeField] List<GameObject> bread;
     //[SerializeField] List<GameObject> cheese;
@@ -53,6 +54,16 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
                 }
             }
 
+            toolBarsList = previousHolder.GetComponentsInChildren<ToolBarHandler>();
+            for (int i = 0; i < toolBarsList.Length; i++)
+            {
+                if (toolBarsList[i].gameObject.activeInHierarchy)
+                {
+
+                    toolBarsList[i].CloseToolBar();
+                }
+            }
+
         }
 
 
@@ -65,6 +76,15 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
                 {
                     fadeOutList[i].StopAllCoroutines();
                     fadeOutList[i].fadeInOut(false);
+                }
+            }
+            toolBarsList = nextHolder.GetComponentsInChildren<ToolBarHandler>();
+            for (int i = 0; i < toolBarsList.Length; i++)
+            {
+                if (toolBarsList[i].gameObject.activeInHierarchy)
+                {
+
+                    toolBarsList[i].CloseToolBar();
                 }
             }
         }
@@ -83,10 +103,21 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
                     fadeOutList[i].fadeInOut(true);
                 }
             }
+            toolBarsList = currentHolder.GetComponentsInChildren<ToolBarHandler>();
+            for (int i = 0; i < toolBarsList.Length; i++)
+            {
+                if (toolBarsList[i].gameObject.activeInHierarchy)
+                {
+
+                    toolBarsList[i].OpenToolBar();
+                }
+            }
+
         }
         
         Invoke(nameof(HideHolders), 0.7f);
     }
+    public void TapSound() => AudioManager.Instance?.Play("UIAction", "UI");
     void HideHolders() {
         
         previousHolder?.SetActive(false);
