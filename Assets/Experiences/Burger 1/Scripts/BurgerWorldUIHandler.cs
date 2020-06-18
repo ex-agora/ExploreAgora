@@ -42,7 +42,6 @@ public class BurgerWorldUIHandler : MonoBehaviour
 
     public void BackButtonBehavior()
     {
-
         SandwichComponentsHandler.Instance.BackwardBehavior();
     }
     public void CheckButtonBehavior()

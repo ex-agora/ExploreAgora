@@ -142,20 +142,25 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
             switch (SandwichComponentsHandler.Instance.Orders)
             {
                 case EOrders.Regular:
+
                     break;
                 case EOrders.Diabetic:
                         breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].ModelPanelsHandlers();
+                        breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].LockHandler(false);
                     break;
                 case EOrders.Cholestrol:
                     breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].HidePanel();
+                    cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].LockHandler(false);
                     cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].ModelPanelsHandlers();
                     break;
                 case EOrders.Gluten_Free:
                     cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].HidePanel();
+                    breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].LockHandler(false);
                     breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].ModelPanelsHandlers();
                     break;
                 case EOrders.Lactose_Intolerance:
                     breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].HidePanel();
+                    cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].LockHandler(false);
                     cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].ModelPanelsHandlers();
                     break;
             }
