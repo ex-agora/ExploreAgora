@@ -400,6 +400,14 @@ MonoBehaviour:
     textInfo: dumy dumy dumy
   - bubbleType: 1
     textInfo: Check the order and review your choices.
+  - bubbleType: 1
+    textInfo: The clue will help us turn the coal into powder.
+  - bubbleType: 1
+    textInfo: Now we have the coal powder. TAP to take it to our next mission.
+  - bubbleType: 2
+    textInfo: You are too close. STEP back to see everything in the exploratory zone.
+  - bubbleType: 2
+    textInfo: You are too far. STEP forward to see everything in the exploratory zone.
 --- !u!4 &72801671
 Transform:
   m_ObjectHideFlags: 0
@@ -937,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a0afe0158033f40912649c8c9fca2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBtn: {fileID: 0}
   timerDuration: 0
   correctCounter: 0
   wrongCounter: 0

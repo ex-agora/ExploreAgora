@@ -9,6 +9,7 @@ public class SandwichComponentsHandler : MonoBehaviour
 {
 
     #region Fields
+    [SerializeField] ToolBarHandler startBtn;
     [SerializeField] int timerDuration;
     [SerializeField] int correctCounter, wrongCounter;
     [SerializeField] EOrders orders;
@@ -19,6 +20,8 @@ public class SandwichComponentsHandler : MonoBehaviour
     [SerializeField] List<GameObject> lastComponent;
     [SerializeField] private TimerUIHandler timerUIHandler;
     [SerializeField] BurgerSandwichScenariosHandler currentFlow;
+    int counterOrder;
+    bool isTimerRepeted = false;
     private GameObject lastPanel;
     
 
@@ -53,6 +56,7 @@ public class SandwichComponentsHandler : MonoBehaviour
     public int CorrectCounter { get => correctCounter; set => correctCounter = value; }
     public int WrongCounter { get => wrongCounter; set => wrongCounter = value; }
     public GameObject LastPanel { get => lastPanel; set => lastPanel = value; }
+    public int CounterOrder { get => counterOrder; set => counterOrder = value; }
     #endregion
 
 
@@ -239,21 +243,31 @@ public class SandwichComponentsHandler : MonoBehaviour
         {
             WrongCounter++;
             ScreenUIHandler.Instance.onFailure();
-            //oggi message
-            //back enabled
+            RandomOrder = UnityEngine.Random.Range(0, 5);
+            randomOrder = (EOrders)RandomOrder;
+            SetCorrectAnswersForOrders(randomOrder);
+            AudioManager.Instance?.Play("wrongAnswer", "Activity");
+            SandwichComponentsBehavior.Instance.ResetPlate();
+            SandwichStages = ESandwichStages.Bread;
+            SetFlowHolders();
         }
+        CounterOrder++;
+        BurgerWorldUIHandler.Instance.UpdateScoreUnLockFlowUI();
         ScreenUIHandler.Instance.UpdateUIScore();
     }
 
     public void OnTimerEndBehavior()
     {
-        if (CorrectCounter >= 5)
+        if (ScreenUIHandler.Instance.IsPass(CorrectCounter))
         {
             //sfx
             FinishExperience();
         }
         else
         {
+            MatchClothesGameManager.Instance.BubbleController.SetHintText(3);
+            MatchClothesGameManager.Instance.NextState = true;
+            startBtn.OpenToolBar();
             ReplayExperienceOnFailure();
         }
     }
@@ -288,7 +302,14 @@ public class SandwichComponentsHandler : MonoBehaviour
     public void StartTimer()
     {
         timerUIHandler.Duration = timerDuration;
+        if (!isTimerRepeted)
+        {
+            ScreenUIHandler.Instance.ScoreCounter.OpenToolBar();
+            MatchClothesGameManager.Instance.NextState = true;
+            isTimerRepeted = true;
+        }
         timerUIHandler.ViewBar();
+        CounterOrder = 0;
         timerUIHandler.StartTimer();
     }
 
@@ -297,7 +318,12 @@ public class SandwichComponentsHandler : MonoBehaviour
         timerUIHandler.HideBar();
        
     }
-
+    public void OpenTimer() {
+        if (isTimerRepeted)
+            ReplayExperienceOnFailure();
+        else
+            StartTimer();
+    }
     public void ReplayExperienceOnFailure()
     {
         ResetSetting();
@@ -311,7 +337,7 @@ public class SandwichComponentsHandler : MonoBehaviour
         StartTimer();
         Debug.Log("Replay");
     }
-
+    public void ShowStartBtn() => startBtn.OpenToolBar();
     public void StartSummary()
     {
         MatchClothesGameManager.Instance.FinalSummary.ViewSummary();

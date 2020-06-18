@@ -30,6 +30,7 @@ public class SandwichComponentsBehavior : MonoBehaviour
         else
         {
             unLockedFlow.SetActive(true);
+            BurgerWorldUIHandler.Instance.UpdateScoreUnLockFlowUI();
             SandwichComponentsHandler.Instance.CurrentFlow = unLockedFlow.GetComponent<BurgerSandwichScenariosHandler>();
         }
 

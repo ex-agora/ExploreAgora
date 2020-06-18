@@ -24,9 +24,14 @@ public class BurgerWorldUIHandler : MonoBehaviour
             Instance = this;
     }
     public void UpdateScoreLockFlowUI() => scoreLockFlow.text = $"{SandwichComponentsHandler.Instance.CorrectCounter+1}/5";
+    public void UpdateScoreUnLockFlowUI() => scoreLockFlow.text = $"{SandwichComponentsHandler.Instance.CounterOrder}";
     public void UpdateScoreLockFlowUIColor(Color c) => scoreLockFlow.color = c;
     public void UpdateUI(int currentOrderNumber, int lastOrderNumber, int burgerRandomNumber, int extrasRandomNumber)
     {
+        for (int i = 0; i < orders.Count; i++)
+        {
+            orders[i].SetActive(false);
+        }
         Debug.LogWarning(burgerRandomNumber + "    " + extrasRandomNumber);
         burgerImg.sprite = burgerExtrasIMG[burgerRandomNumber];
         extrasImg.sprite = burgerExtrasIMG[extrasRandomNumber];

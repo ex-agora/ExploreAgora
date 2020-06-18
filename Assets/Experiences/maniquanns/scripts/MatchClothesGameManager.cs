@@ -14,6 +14,8 @@ public class MatchClothesGameManager : MonoBehaviour, ITriggable, IMenuHandler
     public static MatchClothesGameManager Instance { get => instance; set => instance = value; }
     public SummaryHandler FinalSummary { get => finalSummary; set => finalSummary = value; }
     public TryAgainHandler TryAgain { get => tryAgain; set => tryAgain = value; }
+    public bool NextState { get => nextState; set => nextState = value; }
+    public SpeechBubbleController BubbleController { get => bubbleController; set => bubbleController = value; }
 
     private bool nextState;
     [SerializeField] StateMachineManager stateMachine;
@@ -47,8 +49,8 @@ public class MatchClothesGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     public bool GetTrigger()
     {
-        bool up = nextState;
-        nextState = false;
+        bool up = NextState;
+        NextState = false;
         return up;
     }
 
@@ -72,7 +74,7 @@ public class MatchClothesGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     void StartTutorial()
     {
-        tutorial.TutorialTextStr = bubbleController.NextBubble();
+        tutorial.TutorialTextStr = BubbleController.NextBubble();
         tutorial.OpenTutorial();
     }
     public void Tutorial()
@@ -105,14 +107,14 @@ public class MatchClothesGameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void FarAlert()
     {
-        bubbleController.SetHintText(6);
-        nextState = true;
+        BubbleController.SetHintText(6);
+        NextState = true;
     }
 
     public void NearAlert()
     {
-        bubbleController.SetHintText(5);
-        nextState = true;
+        BubbleController.SetHintText(5);
+        NextState = true;
     }
 
 
