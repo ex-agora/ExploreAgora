@@ -14,14 +14,13 @@ public class SandwichComponentsHandler : MonoBehaviour
     [SerializeField] EOrders orders;
     [SerializeField] ESandwichStages sandwichStages;
     [SerializeField] EBurgerExperineceType burgerExperineceType;
-
     [SerializeField] List<string> correctAnswers;
     [SerializeField] List<string> playerAnswer;
     [SerializeField] List<GameObject> lastComponent;
     [SerializeField] private TimerUIHandler timerUIHandler;
-
     [SerializeField] BurgerSandwichScenariosHandler currentFlow;
-
+    private GameObject lastPanel;
+    
 
 
     int RandomOrder;
@@ -53,6 +52,7 @@ public class SandwichComponentsHandler : MonoBehaviour
 
     public int CorrectCounter { get => correctCounter; set => correctCounter = value; }
     public int WrongCounter { get => wrongCounter; set => wrongCounter = value; }
+    public GameObject LastPanel { get => lastPanel; set => lastPanel = value; }
     #endregion
 
 
@@ -79,7 +79,7 @@ public class SandwichComponentsHandler : MonoBehaviour
     public void EnableDisableBackButtonLogic()
     {
         int index = (int)sandwichStages;
-        if (index > 0 && index <= 3)
+        if (index > 0 && index <= 4)
             BurgerWorldUIHandler.Instance.EnableDisableBackButton(true);
         //backButton.interactable = true;
         else
@@ -128,8 +128,8 @@ public class SandwichComponentsHandler : MonoBehaviour
                 currentFlow.LockUnLockBehavior(new ESandwichStages[] { ESandwichStages.Bread, ESandwichStages.Cheese }, new int[] { }, new int[] { 1 }, new int[] { 2 }, new int[] { 2 });
 
                 AnswersFilling(
-                   ESandwichComponents.Bun2.ToString(),
-                   ESandwichComponents.Cheese1.ToString(),
+                   ESandwichComponents.Bun1.ToString(),
+                   ESandwichComponents.Cheese2.ToString(),
                    burger.ToString(),
                    extras.ToString()
                    );
@@ -139,7 +139,7 @@ public class SandwichComponentsHandler : MonoBehaviour
                 currentFlow.LockUnLockBehavior(new ESandwichStages[] { ESandwichStages.Bread, ESandwichStages.Cheese }, new int[] { 2 }, new int[] { }, new int[] { }, new int[] { 2 });
 
                 AnswersFilling(
-                  ESandwichComponents.Bun2.ToString(),
+                  ESandwichComponents.Bun3.ToString(),
                   ESandwichComponents.Cheese1.ToString(),
                  burger.ToString(),
                     extras.ToString()
@@ -150,8 +150,8 @@ public class SandwichComponentsHandler : MonoBehaviour
                 currentFlow.LockUnLockBehavior(new ESandwichStages[] { ESandwichStages.Bread, ESandwichStages.Cheese }, new int[] { }, new int[] { 2 }, new int[] { }, new int[] { });
 
                 AnswersFilling(
-                  ESandwichComponents.Bun2.ToString(),
-                  ESandwichComponents.Cheese1.ToString(),
+                  ESandwichComponents.Bun1.ToString(),
+                  ESandwichComponents.Cheese3.ToString(),
                     burger.ToString(),
                     extras.ToString()
                   );
@@ -180,8 +180,10 @@ public class SandwichComponentsHandler : MonoBehaviour
     {
         DeletePreviousAnswer();     
         EnableDisableCheckButton();
+        BurgerWorldUIHandler.Instance.BackButtonInteractable.enabled = false;
+        Invoke(nameof(EnableUndoBtn), 1.4f);
     }
-
+    void EnableUndoBtn()=> BurgerWorldUIHandler.Instance.BackButtonInteractable.enabled = true;
     public void CheckAnswers()
     {
 
@@ -192,7 +194,7 @@ public class SandwichComponentsHandler : MonoBehaviour
             EnableDisableCheckButton();
             OrdersHandler();
             SetCorrectAnswersForOrders(Orders);
-            // play sfx 
+            AudioManager.Instance?.Play("correctAnswer", "Activity");
 
 
             SandwichComponentsBehavior.Instance.ResetPlate();
@@ -200,20 +202,21 @@ public class SandwichComponentsHandler : MonoBehaviour
             SetFlowHolders();
 
             CorrectCounter++;
+            BurgerWorldUIHandler.Instance?.UpdateScoreLockFlowUI();
         }
         else
         {
             //wrongCounter ++ 
             WrongCounter++;
-
-
+            BurgerWorldUIHandler.Instance?.UpdateScoreLockFlowUIColor(Color.red);
+            Invoke(nameof(SetDefaultColor), 2f);
             // oggi message 
             // make sure undo button is on 
         }
-
+        
 
     }
-
+    void SetDefaultColor()=> BurgerWorldUIHandler.Instance?.UpdateScoreLockFlowUIColor(Color.white);
     public void CheckAnswersForUnLocked()
     {
         if (AnswersComparison() == 4)
@@ -225,7 +228,7 @@ public class SandwichComponentsHandler : MonoBehaviour
             RandomOrder = UnityEngine.Random.Range(0, 6);
             randomOrder = (EOrders)RandomOrder;
             SetCorrectAnswersForOrders(randomOrder);
-
+            AudioManager.Instance?.Play("correctAnswer", "Activity");
             SandwichComponentsBehavior.Instance.ResetPlate();
             SandwichStages = ESandwichStages.Bread;
             SetFlowHolders();
@@ -261,7 +264,7 @@ public class SandwichComponentsHandler : MonoBehaviour
         if (state == 1)
         {
 
-            if (index != 3)
+            if (index != 4)
                 index++;
 
         }
@@ -339,17 +342,27 @@ public class SandwichComponentsHandler : MonoBehaviour
 
     private void DeletePreviousAnswer()
     {
-
+        FadeInOut[] fadeList = null;
         if (SandwichStages == ESandwichStages.Cheese)
         {
             if (playerAnswer[1] != "")
             {
+                fadeList= LastComponent[1].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[1].SetActive(false);
                 PlayerAnswer[1] = "";
-                LastComponent.RemoveAt(1);             
+                LastComponent.RemoveAt(1);
             }
             else
             {
+                fadeList = LastComponent[0].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[0].SetActive(false);
                 PlayerAnswer[0] = "";
                 LastComponent.RemoveAt(0);
@@ -361,12 +374,22 @@ public class SandwichComponentsHandler : MonoBehaviour
         {
             if (playerAnswer[2] != "")
             {
+                fadeList = LastComponent[2].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[2].SetActive(false);
                 PlayerAnswer[2] = "";
                 LastComponent.RemoveAt(2);
             }
             else
             {
+                fadeList = LastComponent[1].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[1].SetActive(false);
                 PlayerAnswer[1] = "";
                 LastComponent.RemoveAt(1);
@@ -380,15 +403,41 @@ public class SandwichComponentsHandler : MonoBehaviour
             if (playerAnswer[3] != "")
             {
                 SandwichComponentsBehavior.Instance.CompleteOrderState(false);
+                fadeList = LastComponent[3].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[3].SetActive(false);
                 PlayerAnswer[3] = "";
                 LastComponent.RemoveAt(3);
             }
             else
             {
+                fadeList = LastComponent[2].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
                 LastComponent[2].SetActive(false);
                 PlayerAnswer[2] = "";
                 LastComponent.RemoveAt(2);
+                ChangeSandwichStagesInHandler(-1);
+                SetFlowHolders();
+            }
+        }
+        else if (SandwichStages == ESandwichStages.Done) {
+            if (playerAnswer[3] != "")
+            {
+                SandwichComponentsBehavior.Instance.CompleteOrderState(false);
+                fadeList = LastComponent[3].GetComponentsInChildren<FadeInOut>();
+                for (int i = 0; i < fadeList.Length; i++)
+                {
+                    fadeList[i].SetFadeAmount(0);
+                }
+                LastComponent[3].SetActive(false);
+                PlayerAnswer[3] = "";
+                LastComponent.RemoveAt(3);
                 ChangeSandwichStagesInHandler(-1);
                 SetFlowHolders();
             }

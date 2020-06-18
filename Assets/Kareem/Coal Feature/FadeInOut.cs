@@ -12,6 +12,7 @@ public class FadeInOut : MonoBehaviour
     MeshRenderer meshRenderer;
     [SerializeField] GameEvent onFadeComplete;
     SkinnedMeshRenderer skinnedMeshRenderer;
+    bool currentState;
     #endregion Fields
 
     #region Properties
@@ -22,9 +23,10 @@ public class FadeInOut : MonoBehaviour
     // false means fade out  
     public void fadeInOut(bool state)
     {
+        currentState = state;
         StartCoroutine(startFading(state, fadeDuration));
     }
-
+    public void SetFadeAmount(float amount) => gameObjecMat?.SetFloat("_Transparency", amount);
     private void Awake()
     {
 

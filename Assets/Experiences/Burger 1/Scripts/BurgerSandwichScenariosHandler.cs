@@ -12,6 +12,7 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
     [SerializeField] GameObject breadHolder;
     [SerializeField] GameObject cheeseHolder;
     [SerializeField] GameObject extrasHolder;
+    FadeInOut[] fadeOutList = null;
     //[SerializeField] List<GameObject> burger;
     //[SerializeField] List<GameObject> bread;
     //[SerializeField] List<GameObject> cheese;
@@ -26,26 +27,71 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
 
     void FadeInOutHolders()
     {
-        //fade out last holder components 
+        if (currentHolder != null)
+        {
+            fadeOutList = currentHolder.GetComponentsInChildren<FadeInOut>();
+            for (int i = 0; i < fadeOutList.Length; i++)
+            {
 
+                fadeOutList[i].StopAllCoroutines();
+                fadeOutList[i].SetFadeAmount(0);
+            }
 
-        Debug.Log("fade in current");
+            Debug.Log("fade in current");
 
-        currentHolder.SetActive(true);
-
+            currentHolder.SetActive(true);
+        }
         if (previousHolder != null)
-            previousHolder.SetActive(false);
-     
+        {
+            fadeOutList = previousHolder.GetComponentsInChildren<FadeInOut>();
+            for (int i = 0; i < fadeOutList.Length; i++)
+            {
+                if (fadeOutList[i].gameObject.activeInHierarchy)
+                {
+                    fadeOutList[i].StopAllCoroutines();
+                    fadeOutList[i].fadeInOut(false);
+                }
+            }
+
+        }
 
 
         if (nextHolder != null)
-            nextHolder.SetActive(false);
-      
+        {
+            fadeOutList = nextHolder.GetComponentsInChildren<FadeInOut>();
+            for (int i = 0; i < fadeOutList.Length; i++)
+            {
+                if (fadeOutList[i].gameObject.activeInHierarchy)
+                {
+                    fadeOutList[i].StopAllCoroutines();
+                    fadeOutList[i].fadeInOut(false);
+                }
+            }
+        }
+        Invoke(nameof(ShowHolder), 0.5f);
 
-
-    
+        
     }
-
+    void ShowHolder() {
+        if(currentHolder !=null ){
+            fadeOutList = currentHolder.GetComponentsInChildren<FadeInOut>();
+            for (int i = 0; i < fadeOutList.Length; i++)
+            {
+                if (fadeOutList[i].gameObject.activeInHierarchy)
+                {
+                    fadeOutList[i].StopAllCoroutines();
+                    fadeOutList[i].fadeInOut(true);
+                }
+            }
+        }
+        
+        Invoke(nameof(HideHolders), 0.7f);
+    }
+    void HideHolders() {
+        
+        previousHolder?.SetActive(false);
+        nextHolder?.SetActive(false);
+    }
     public void SetHolders()
     {
         switch (SandwichComponentsHandler.Instance.SandwichStages)
@@ -69,7 +115,11 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
                 previousHolder = burgerHolder;
                 currentHolder = extrasHolder;
                 nextHolder = breadHolder;
-                
+                break;
+            case ESandwichStages.Done:
+                previousHolder = extrasHolder;
+                currentHolder = null;
+                nextHolder = null;
                 break;
         }
         FadeInOutHolders();
@@ -89,11 +139,27 @@ public class BurgerSandwichScenariosHandler : MonoBehaviour
     {
         if (SandwichComponentsHandler.Instance.BurgerExperineceType == EBurgerExperineceType.WithLocking)
         {
-            for (int k = 0; k < BreadToBeEnabled.Length; k++)
-                breadHolder.transform.GetChild(BreadToBeEnabled[k]).GetComponent<ModelsHandlers>().ModelPanelsHandlers();
-
-            for (int i = 0; i < CheeseToBeEnabled.Length; i++)
-                cheeseHolder.transform.GetChild(CheeseToBeEnabled[i]).GetComponent<ModelsHandlers>().ModelPanelsHandlers();
+            switch (SandwichComponentsHandler.Instance.Orders)
+            {
+                case EOrders.Regular:
+                    break;
+                case EOrders.Diabetic:
+                        breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].ModelPanelsHandlers();
+                    break;
+                case EOrders.Cholestrol:
+                    breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].HidePanel();
+                    cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].ModelPanelsHandlers();
+                    break;
+                case EOrders.Gluten_Free:
+                    cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[1].HidePanel();
+                    breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].ModelPanelsHandlers();
+                    break;
+                case EOrders.Lactose_Intolerance:
+                    breadHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].HidePanel();
+                    cheeseHolder.transform.GetComponentsInChildren<ModelsHandlers>()[2].ModelPanelsHandlers();
+                    break;
+            }
+            
 
             for (int k = 0; k < BreadToBeDisabled.Length; k++)
                 breadHolder.transform.GetChild(BreadToBeDisabled[k]).GetComponent<ModelsHandlers>().ModelColliders();

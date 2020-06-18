@@ -11,6 +11,9 @@ public class ModelsHandlers : MonoBehaviour
         modelPanel.SetActive(true);
         this.GetComponent<BoxCollider>().enabled = true;
     }
+    public void HidePanel() {
+        modelPanel.SetActive(false);
+    }
 
     public void ModelColliders()
     {

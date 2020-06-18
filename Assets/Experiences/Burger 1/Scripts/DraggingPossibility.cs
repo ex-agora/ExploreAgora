@@ -39,6 +39,7 @@ public class DraggingPossibility : MonoBehaviour
         if (SandwichComponentsHandler.Instance.LastComponent.Count != 4)
             SandwichComponentsHandler.Instance.LastComponent.Add(myReleventObj);
         myReleventObj.SetActive(true);
+        myReleventObj.GetComponent<FadeInOut>()?.SetFadeAmount(1);
         SandwichComponentsHandler.Instance.ChangeSandwichStagesInHandler(1);
         SandwichComponentsHandler.Instance.EnableDisableCheckButton();
 
@@ -56,9 +57,18 @@ public class DraggingPossibility : MonoBehaviour
         ReturnToOrignalPos();
 
         if (trueAnswer)
+        {
             TrueAnswer?.Raise();
-    }
+           
+            var fadeOutList = gameObject.GetComponentsInChildren<FadeInOut>();
+            for (int i = 0; i < fadeOutList.Length; i++)
+            {
 
+                fadeOutList[i].StopAllCoroutines();
+                fadeOutList[i].SetFadeAmount(0);
+            }
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         Debug.Log(other.name);

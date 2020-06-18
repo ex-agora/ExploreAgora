@@ -40,17 +40,40 @@ public class SandwichComponentsBehavior : MonoBehaviour
 
     public void ResetPlate()
     {
+        FadeInOut[] fadeList = null;
         Debug.Log("Reset Plate");
         for (int i = 0; i < platecomponents.Count; i++)
         {
-            platecomponents[i].SetActive(false);
-        }     
+            
+            fadeList = platecomponents[i].GetComponentsInChildren<FadeInOut>();
+            for (int j = 0; j < fadeList.Length; j++)
+            {
+                fadeList[j].SetFadeAmount(0);
+            }
+        }
+        Invoke(nameof(HidePlat), 0.7f);
     }
-
+    void HidePlat() {
+        for (int i = 0; i < platecomponents.Count; i++)
+        {
+            platecomponents[i].SetActive(false);
+        }
+    }
     public void CompleteOrderState(bool CompleteState)
     {
-         platecomponents[0].SetActive(CompleteState);    
+        var f = platecomponents[0].GetComponent<FadeInOut>();
+        if (CompleteState)
+        {
+            platecomponents[0].SetActive(CompleteState);
+            f?.SetFadeAmount(CompleteState ? 1 : 0);
+        }
+        else {
+            f?.SetFadeAmount(CompleteState ? 1 : 0);
+            platecomponents[0].SetActive(CompleteState);
+        }
+
     }
+
 
     
 }

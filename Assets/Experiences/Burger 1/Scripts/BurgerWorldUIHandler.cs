@@ -13,15 +13,18 @@ public class BurgerWorldUIHandler : MonoBehaviour
     [SerializeField] List<Sprite> burgerExtrasIMG;
     [SerializeField] List<Sprite> enableDisableIMG;
     [SerializeField] TMP_Text score;
-
+    [SerializeField] TMP_Text scoreLockFlow;
     public static BurgerWorldUIHandler Instance { get => instance; set => instance = value; }
+    public BoxCollider BackButtonInteractable { get => backButtonInteractable; set => backButtonInteractable = value; }
+    public BoxCollider CheckButtonInteractable { get => checkButtonInteractable; set => checkButtonInteractable = value; }
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
     }
-
+    public void UpdateScoreLockFlowUI() => scoreLockFlow.text = $"{SandwichComponentsHandler.Instance.CorrectCounter+1}/5";
+    public void UpdateScoreLockFlowUIColor(Color c) => scoreLockFlow.color = c;
     public void UpdateUI(int currentOrderNumber, int lastOrderNumber, int burgerRandomNumber, int extrasRandomNumber)
     {
         Debug.LogWarning(burgerRandomNumber + "    " + extrasRandomNumber);
@@ -55,12 +58,12 @@ public class BurgerWorldUIHandler : MonoBehaviour
         if (state)
         {
             backButton.sprite = enableDisableIMG[1];
-            backButtonInteractable.enabled = true;
+            BackButtonInteractable.enabled = true;
         }
         else
         {
             backButton.sprite = enableDisableIMG[0];
-            backButtonInteractable.enabled = false;
+            BackButtonInteractable.enabled = false;
         }
     }
     public void EnableDisableCheckButton(bool state)
@@ -68,12 +71,12 @@ public class BurgerWorldUIHandler : MonoBehaviour
         if (state)
         {
             checkButton.sprite = enableDisableIMG[3];
-            checkButtonInteractable.enabled = true;
+            CheckButtonInteractable.enabled = true;
         }
         else
         {
             checkButton.sprite = enableDisableIMG[2];
-            checkButtonInteractable.enabled = false;
+            CheckButtonInteractable.enabled = false;
         }
     }
 }

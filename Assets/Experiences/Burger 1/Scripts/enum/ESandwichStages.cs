@@ -3,5 +3,6 @@
     Bread ,
     Cheese ,
     Burger ,
-    Extras 
+    Extras ,
+    Done
 }
