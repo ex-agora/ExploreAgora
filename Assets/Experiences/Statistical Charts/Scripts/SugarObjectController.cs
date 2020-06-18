@@ -34,4 +34,10 @@ public class SugarObjectController : MonoBehaviour
         }
     }
 
+
+    public void HiddingSugar()
+    {
+        for (int i = 0; i < sugars.Count; i++)
+            sugars[i].SetActive(false);
+    }
 }

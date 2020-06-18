@@ -11,11 +11,14 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
     [SerializeField] private GraphSlider sliderValue;
     [SerializeField] private GameObject slider;
     [SerializeField] private GameObject ValueBackground;
-    [SerializeField] private Material mat;
+    [SerializeField] private MeshRenderer graphMesh;
     [SerializeField] private Text nameTxt;
     [SerializeField] private Image nameLabelImage;
     [SerializeField] private string nameLabel;
     [SerializeField] private int labelSize;
+    [SerializeField] private bool isEquationed;
+    [SerializeField] private string equationStr;
+
     private Color defualtColor;
     private Color correctChoiceColor;
     private Color wrongChoiceColor;
@@ -44,27 +47,28 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
         ValueBackground.SetActive(false);
         Invoke(nameof(CloseSlider), 0.2f);
     }
-    
+
     private void CloseSlider()
     {
         sliderValue.Slider.interactable = false;
 
     }
+
     public void DefualtChoice()
     {
         if (sliderValue.Slider.interactable)
-            mat.color = DefualtColor;
+            graphMesh.material.color = DefualtColor;
     }
 
     public void CorrectChoice()
     {
-        mat.color = CorrectChoiceColor;
+        graphMesh.material.color = CorrectChoiceColor;
         sliderValue.Slider.interactable = false;
     }
 
     public void WrongChoice()
     {
-        mat.color = WrongChoiceColor;
+        graphMesh.material.color = WrongChoiceColor;
     }
 
     public bool CheckResult() => sliderValue.SliderCheckResult == result;
@@ -84,5 +88,18 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
     public void ShowSugar()
     {
         sugarObjectController.ShowingSugar();
+    }
+
+    public void HideSugar()
+    {
+        sugarObjectController.HiddingSugar();
+    }
+
+    public void ShowResultLabel()
+    {
+        if (isEquationed)
+            nameTxt.text = equationStr;
+        else
+            nameTxt.text = result.ToString();
     }
 }

@@ -24,10 +24,13 @@ public class GraphSlider : MonoBehaviour
 
     public void SetSliderValue()
     {
-        Slider3DBar.transform.localScale = new Vector3(Slider3DBar.transform.localScale.x, Slider.value/2, Slider3DBar.transform.localScale.z);
+        Slider3DBar.transform.localScale = new Vector3(Slider3DBar.transform.localScale.x, Slider.value / 2, Slider3DBar.transform.localScale.z);
         float BarTopPosition = Target.GetComponent<MeshRenderer>().bounds.extents.y;
         SliderOffsetParent.position = new Vector3(SliderOffsetParent.position.x, Target.position.y + BarTopPosition, SliderOffsetParent.position.z);
+
+        AudioManager.Instance?.Play("barTik", "Activity");
+
         SliderCheckResult = Slider.value * 5;
-        SliderValueText.text = (Slider.value*5).ToString();
+        SliderValueText.text = (Slider.value * 5).ToString();
     }
 }
