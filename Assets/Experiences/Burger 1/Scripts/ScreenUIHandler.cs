@@ -7,43 +7,89 @@ public class ScreenUIHandler : MonoBehaviour
 {
     static ScreenUIHandler instance;
     [SerializeField] Text correctScore, wrongScore , bigScore , scoreOfPanel ;
-    [SerializeField] List<GameObject> panelStars , recapStars;  
+    [SerializeField] List<Image> panelStars , recapStars;
+    [SerializeField] List<Sprite> stars;
    
     public static ScreenUIHandler Instance { get => instance; set => instance = value; }
 
-
+    [SerializeField] int firstStar, secondStar, thirdStar;
 
     // Start is called before the first frame update
     void Awake()
     {
         if (Instance == null)
             Instance = this;
+
+        ResetUI();
     }
 
-    public void UpdateUIScore(int correctScore , int wrongScore)
+    #region Public_Methods
+
+    public void UpdateUIScore()
     {
-        if (correctScore > 4)
-            ScoreAnimation();
+        scoreOfPanel.text = SandwichComponentsHandler.Instance.CorrectCounter.ToString();
+        bigScore.text = scoreOfPanel.text;
+        correctScore.text = scoreOfPanel.text;
+        wrongScore.text = scoreOfPanel.text;
 
-    }
-     void UpdateRecapScore() {
-        Debug.Log("UpdateRecapScore");
-    }
-     void ScoreAnimation() {
-        Debug.Log("ScoreAnimation");
-    }
-    void UpdateStars() {
-        Debug.Log("UpdateStars");
-    }
+        if (SandwichComponentsHandler.Instance.CorrectCounter > 4)
+        {
+            scoreOfPanel.gameObject.SetActive(false);
+            bigScore.gameObject.SetActive(true);
+        }
 
+        UpdateStars(SandwichComponentsHandler.Instance.CorrectCounter);
+    }
 
     public void onFailure()
     {
         Debug.Log("on Failure");
+        if (SandwichComponentsHandler.Instance.CorrectCounter > 4)
+            bigScore.color = Color.red;
+        if (SandwichComponentsHandler.Instance.CorrectCounter < 4)
+            scoreOfPanel.color = Color.red;
     }
 
     public void ResetUI()
     {
-
+        for (int i = 0; i < panelStars.Count; i++)
+        {
+            panelStars[i].sprite = stars[0];
+            recapStars[i].sprite = stars[0];
+        }
+        correctScore.text = "0";
+        wrongScore.text = "0";
+        bigScore.text = "0";
+        scoreOfPanel.text = "0";
+        scoreOfPanel.gameObject.SetActive(true);
+        bigScore.gameObject.SetActive(false);
     }
+
+    #endregion
+
+    void UpdateStars(int score) {
+        if(score > 0  && score < firstStar)
+        {
+            panelStars[0].sprite = stars[1];
+            recapStars[0].sprite = stars[1];
+        }
+        else if (score > firstStar  && score < secondStar)
+        {
+            panelStars[1].sprite = stars[1];
+            recapStars[1].sprite = stars[1];
+        }
+        else if (score > secondStar  && score < thirdStar)
+        {
+            panelStars[2].sprite = stars[1];
+            recapStars[2].sprite = stars[1];
+        }
+            
+    }
+
+
+     void ScoreAnimation() {
+        Debug.Log("ScoreAnimation");
+    }
+   
+    
 }

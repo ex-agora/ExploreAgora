@@ -15,7 +15,7 @@ public class DraggingPossibility : MonoBehaviour
     {
         myOriginalPos = this.transform.localPosition;
     }
-    
+
 
     public void UpdateAnswers()
     {
@@ -31,13 +31,13 @@ public class DraggingPossibility : MonoBehaviour
                 SandwichComponentsHandler.Instance.PlayerAnswer[2] = this.GetComponent<ComponentsData>().SandwichComponents.ToString();
                 break;
             case ESandwichStages.Extras:
-                if(SandwichComponentsHandler.Instance.PlayerAnswer[3] == "")
-                SandwichComponentsHandler.Instance.PlayerAnswer[3] = this.GetComponent<ComponentsData>().SandwichComponents.ToString();
+                if (SandwichComponentsHandler.Instance.PlayerAnswer[3] == "")
+                    SandwichComponentsHandler.Instance.PlayerAnswer[3] = this.GetComponent<ComponentsData>().SandwichComponents.ToString();
                 break;
         }
         myReleventObj = this.GetComponent<ComponentsData>().MyReleventComponent;
-        if(SandwichComponentsHandler.Instance.LastComponent.Count != 4)
-        SandwichComponentsHandler.Instance.LastComponent.Add(myReleventObj);
+        if (SandwichComponentsHandler.Instance.LastComponent.Count != 4)
+            SandwichComponentsHandler.Instance.LastComponent.Add(myReleventObj);
         myReleventObj.SetActive(true);
         SandwichComponentsHandler.Instance.ChangeSandwichStagesInHandler(1);
         SandwichComponentsHandler.Instance.EnableDisableCheckButton();
@@ -53,10 +53,10 @@ public class DraggingPossibility : MonoBehaviour
 
     public void OnDeselect()
     {
+        ReturnToOrignalPos();
+
         if (trueAnswer)
             TrueAnswer?.Raise();
-        
-            ReturnToOrignalPos();
     }
 
     private void OnTriggerStay(Collider other)

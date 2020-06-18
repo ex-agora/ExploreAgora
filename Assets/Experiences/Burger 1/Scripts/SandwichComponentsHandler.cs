@@ -50,6 +50,9 @@ public class SandwichComponentsHandler : MonoBehaviour
         }
 
     }
+
+    public int CorrectCounter { get => correctCounter; set => correctCounter = value; }
+    public int WrongCounter { get => wrongCounter; set => wrongCounter = value; }
     #endregion
 
 
@@ -186,6 +189,7 @@ public class SandwichComponentsHandler : MonoBehaviour
         {
 
             ResetSetting();
+            EnableDisableCheckButton();
             OrdersHandler();
             SetCorrectAnswersForOrders(Orders);
             // play sfx 
@@ -195,12 +199,12 @@ public class SandwichComponentsHandler : MonoBehaviour
             SandwichStages = ESandwichStages.Bread;
             SetFlowHolders();
 
-            correctCounter++;
+            CorrectCounter++;
         }
         else
         {
             //wrongCounter ++ 
-            wrongCounter++;
+            WrongCounter++;
 
 
             // oggi message 
@@ -214,7 +218,9 @@ public class SandwichComponentsHandler : MonoBehaviour
     {
         if (AnswersComparison() == 4)
         {
-            correctCounter++;
+            ResetSetting();
+            EnableDisableCheckButton();
+            CorrectCounter++;
 
             RandomOrder = UnityEngine.Random.Range(0, 6);
             randomOrder = (EOrders)RandomOrder;
@@ -227,17 +233,17 @@ public class SandwichComponentsHandler : MonoBehaviour
         }
         else
         {
-            wrongCounter++;
+            WrongCounter++;
             ScreenUIHandler.Instance.onFailure();
             //oggi message
             //back enabled
         }
-        ScreenUIHandler.Instance.UpdateUIScore(correctCounter, wrongCounter);
+        ScreenUIHandler.Instance.UpdateUIScore();
     }
 
     public void OnTimerEndBehavior()
     {
-        if (correctCounter >= 5)
+        if (CorrectCounter >= 5)
         {
             //sfx
             FinishExperience();
@@ -285,10 +291,12 @@ public class SandwichComponentsHandler : MonoBehaviour
     public void EndTimer()
     {
         timerUIHandler.HideBar();
+       
     }
 
     public void ReplayExperienceOnFailure()
     {
+        ResetSetting();
         RandomOrder = UnityEngine.Random.Range(0, 6);
         randomOrder = (EOrders)RandomOrder;
         SetCorrectAnswersForOrders(randomOrder);
