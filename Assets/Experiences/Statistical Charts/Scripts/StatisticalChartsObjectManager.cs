@@ -11,11 +11,12 @@ public class StatisticalChartsObjectManager : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private List<Sprite> labelBackground;
-
+    [SerializeField] private List<DragObjectInstantiate> dragObjectInstantiates;
     [SerializeField] private Color defualtColor;
     [SerializeField] private Color correctChoiceColor;
     [SerializeField] private Color wrongChoiceColor;
 
+    [SerializeField] private bool isStatisticalCharts2 = false;
     private bool isSodaClicked = false;
     private bool isSecondPhase = false;
 
@@ -29,13 +30,16 @@ public class StatisticalChartsObjectManager : MonoBehaviour
 
     private void Start()
     {
-        StatisticalChartsManager.Instance.StartFirstQuiz();
+        if (isStatisticalCharts2)
+            StatisticalCharts2GameManager.Instance.FirstPhase();
+        else
+            StatisticalChartsManager.Instance.StartFirstQuiz();
     }
 
     public void AddObjectHandler(StatisticalChartsObjectHandler _statisticalChartsObjectHandlers)
     {
         statisticalChartsObjects.Add(_statisticalChartsObjectHandlers);
-        
+
         switch (_statisticalChartsObjectHandlers.LabelSize)
         {
             case 0:
@@ -53,6 +57,13 @@ public class StatisticalChartsObjectManager : MonoBehaviour
 
         if (isSecondPhase)
             _statisticalChartsObjectHandlers.ShowSugar();
+    }
+
+    public void RemoveObjectHandler(StatisticalChartsObjectHandler _statisticalChartsObjectHandlers)
+    {
+        if (statisticalChartsObjects.Contains(_statisticalChartsObjectHandlers))
+            statisticalChartsObjects.Remove(_statisticalChartsObjectHandlers);
+
     }
 
     public bool CompareResult()
@@ -88,6 +99,8 @@ public class StatisticalChartsObjectManager : MonoBehaviour
             statisticalChartsObjects[i].ShowResultLabel();
         }
 
+        for (int i = 0; i < dragObjectInstantiates.Count; i++)
+            dragObjectInstantiates[i].UnEnableObject();
     }
 
     public void CloseModels()

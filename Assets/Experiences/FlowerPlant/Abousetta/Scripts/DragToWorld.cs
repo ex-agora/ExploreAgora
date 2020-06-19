@@ -30,6 +30,8 @@ public class DragToWorld : MonoBehaviour
     [SerializeField] GameEvent TruePos;
     LabelWorldHandler label;
     Vector3 initPos;
+
+
     private void Start()
     {
         //set starting pos of UI Element
@@ -94,7 +96,8 @@ public class DragToWorld : MonoBehaviour
                 else
                     rightPlace = true;
             }
-            else if (placingType == PlacingType.Event) {
+            else if (placingType == PlacingType.Event)
+            {
                 worldEventPlace = hit.collider.GetComponent<DragToWorldEventPlace>();
 
                 if (worldEventPlace == null)
@@ -127,7 +130,7 @@ public class DragToWorld : MonoBehaviour
                 dragObjectInstantiate.PlaceObject(objectToBePlaced);
                 TruePos?.Raise();
             }
-            else if(placingType == PlacingType.Event)
+            else if (placingType == PlacingType.Event)
             {
                 TruePos?.Raise();
             }
@@ -170,5 +173,16 @@ public class DragToWorld : MonoBehaviour
             isPlacingUI = true;
             isPlacingObject = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        rightPlace = false;
+        canDarg = true;
+        label = null;
+        dragObjectInstantiate = null;
+        worldEventPlace = null;
+
+        rectTransform.position = isPosTarget ? posTarget.position : initPos;
     }
 }

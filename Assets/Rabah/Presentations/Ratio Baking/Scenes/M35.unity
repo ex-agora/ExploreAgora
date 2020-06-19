@@ -1118,85 +1118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &282084531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 282084532}
-  - component: {fileID: 282084534}
-  - component: {fileID: 282084533}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &282084532
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282084531}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1698273107}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &282084533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282084531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 073fbc4b9a10f454bb4e8629b93c029c, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 64
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Reset
---- !u!222 &282084534
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282084531}
-  m_CullTransparentMesh: 0
 --- !u!1 &336316029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,31 +5522,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 1.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8731610426393159203, guid: 1e2e8f503748622429623909fa188f46,
         type: 3}
       propertyPath: backgroundSources.Array.size
@@ -5651,6 +5547,31 @@ PrefabInstance:
       propertyPath: sfxSources.Array.data[1]
       value: 
       objectReference: {fileID: 1341607886}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426915854372, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731610426850127698, guid: 1e2e8f503748622429623909fa188f46,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2e8f503748622429623909fa188f46, type: 3}
 --- !u!82 &1341607886 stripped
@@ -5725,6 +5646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiSnapAnimator: {fileID: 1381731878}
+  keepAnimAliveOnDisable: 0
 --- !u!95 &1381731878
 Animator:
   serializedVersion: 3
@@ -7696,15 +7618,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.42645, y: 0.42645, z: 0.42645}
-  m_Children:
-  - {fileID: 282084532}
+  m_Children: []
   m_Father: {fileID: 2075454565}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447, y: -44}
-  m_SizeDelta: {x: 438, y: 216}
+  m_AnchoredPosition: {x: -447, y: -62.9}
+  m_SizeDelta: {x: 413, y: 413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698273108
 MonoBehaviour:
@@ -7782,7 +7703,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 469efa17e942d5646aa564cdd17b0551, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 571a1e5af06a83f41a6a3caf58dc1a86, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9320,6 +9241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiSnapAnimator: {fileID: 2075454569}
+  keepAnimAliveOnDisable: 0
 --- !u!95 &2075454569
 Animator:
   serializedVersion: 3

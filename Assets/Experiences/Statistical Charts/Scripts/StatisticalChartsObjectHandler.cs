@@ -18,7 +18,10 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
     [SerializeField] private int labelSize;
     [SerializeField] private bool isEquationed;
     [SerializeField] private string equationStr;
+    [SerializeField] private Collider objectCollider = null;
+    [SerializeField] private int indexButton;
 
+    private bool isDragged = false;
     private Color defualtColor;
     private Color correctChoiceColor;
     private Color wrongChoiceColor;
@@ -39,6 +42,11 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
         slider.SetActive(true);
         ValueBackground.SetActive(true);
         sliderValue.Slider.interactable = true;
+
+        if (objectCollider != null)
+            objectCollider.enabled = true;
+
+        isDragged = true;
     }
 
     public void CloseDragging()
@@ -101,5 +109,13 @@ public class StatisticalChartsObjectHandler : MonoBehaviour
             nameTxt.text = equationStr;
         else
             nameTxt.text = result.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        StatisticalChartsObjectManager.Instance?.RemoveObjectHandler(this);
+
+        if (!isDragged)
+            DragToWorldUIHandler.Instance?.RestoreButton(indexButton);
     }
 }

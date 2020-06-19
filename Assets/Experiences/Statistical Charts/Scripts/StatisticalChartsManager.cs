@@ -123,6 +123,7 @@ public class StatisticalChartsManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void Check()
     {
+        AudioManager.Instance?.Play("UIAction", "UI");
         var finalResult = StatisticalChartsObjectManager.Instance.CompareResult();
         if (finalResult)
         {
