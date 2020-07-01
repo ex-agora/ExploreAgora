@@ -54,7 +54,7 @@ public class OnBoardingSocialStudyGameManager : MonoBehaviour, ITriggable, IMenu
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FinishExperiencesHandler.Instance.Reload();
     }
 
     public void StartFirstPhase()

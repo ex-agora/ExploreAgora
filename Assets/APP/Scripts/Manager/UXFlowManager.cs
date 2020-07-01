@@ -5,11 +5,8 @@ using UnityEngine;
 public class UXFlowManager : MonoBehaviour
 {
     public static UXFlowManager Instance;
-
-    [SerializeField] private SplashScreenHandler splashScreenHandler;
     [SerializeField] private QuickFadeHandler quickFadeLoginHandler;
     [SerializeField] private QuickFadeHandler quickFadeProfileHandler;
-    [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private Canvas uIDefaultCanvas;
     [SerializeField] private Canvas onBoardingCanvas;
     [SerializeField] private GameObject loginRootPanel;
@@ -20,10 +17,8 @@ public class UXFlowManager : MonoBehaviour
     [SerializeField] private ExperiencesStateHandler  _ExperiencesStates;
     [SerializeField] private FooterPanelHandler missionFooterHandler;
     [SerializeField] private FooterPanelManager footerManager;
-    [SerializeField] private SceneLoader loader;
     [SerializeField] private SettingUIHandler setting;
     [SerializeField] private BundleNavUIHandler bundleNavUI;
-    [SerializeField] private ToolBarHandler noInternetPopup;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -42,13 +37,7 @@ public class UXFlowManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         uIDefaultCanvas.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        if (!AppManager.Instance.IsSplashScreenDone)
-        {
-            splashScreenHandler.PlayAnim();
-            AppManager.Instance.IsSplashScreenDone = true;
-        }
-        else
-            splashScreenHandler.DeactiveAnim();
+        CanvasChecker();
     }
     public void LoginFadeIn()
     {
@@ -109,7 +98,6 @@ public class UXFlowManager : MonoBehaviour
         onBoardingCanvas.gameObject.SetActive(false);
         uIDefaultCanvas.gameObject.SetActive(true);
         LoginFadeIn();
-        loader.ChangeInstance();
         Invoke(nameof(ChangeFooter), 1.1f);
     }
     void ChangeFooter() {
@@ -138,7 +126,7 @@ public class UXFlowManager : MonoBehaviour
     public void SetCurrentBundle(int _current) => AppManager.Instance.BundleNum = _current;
 
     void NOInternet() {
-        noInternetPopup.OpenToolBar();
+        InternetPopupHandler.Instance.OpenPopup();
     }
 
     void UnauthorizedAttack() {

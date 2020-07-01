@@ -11,6 +11,9 @@ public class CoalObjHandler : MonoBehaviour
     [SerializeField] FadeInOut grinderPart;
     public void CoalFade()
     {
+        Invoke(nameof(FadeGrinder), 0.15f);
+    }
+    void FadeGrinder() {
         pestal.fadeInOut(true);
         grinderPart.fadeInOut(true);
         hand.fadeInOut(true);

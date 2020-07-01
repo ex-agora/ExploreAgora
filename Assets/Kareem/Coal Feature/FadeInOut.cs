@@ -44,6 +44,7 @@ public class FadeInOut : MonoBehaviour
     }
     IEnumerator startFading(bool state, float duration)
     {
+        yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.5f);
         float elapsedTime = 0;
 

@@ -17,13 +17,19 @@ public class ScanChecker : MonoBehaviour
     //[SerializeField] Sprite objActiveSprite;
     //[SerializeField] List<DetectObjectInfo> objectInfos;
     [SerializeField] Text scanObjectTxt;
+    bool isLoaded;
     private void OnEnable()
     {
-        scanObjectTxt.text = StringUtility.LetterCapitalize(objectToScanName);  
-        CheckScannedObject();
+        scanObjectTxt.text = StringUtility.LetterCapitalize(objectToScanName);
+        if(isLoaded)
+            CheckScannedObject();
     }
     public void CheckScannedObject()
     {
+        if (!gameObject.activeInHierarchy) {
+            isLoaded = true;
+            return;
+        }
         int counter = bundleHandler.GetScannedCounter(objectToScanName);
 
         for (int i = 0; i < experiences.Count; i++)
@@ -36,7 +42,7 @@ public class ScanChecker : MonoBehaviour
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
-
+        isLoaded = false;
     }
     public void StartScan()
     {

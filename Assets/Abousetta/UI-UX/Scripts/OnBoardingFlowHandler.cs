@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class OnBoardingFlowHandler : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
-    [SerializeField] private SceneLoader sceneLoader;
     //[SerializeField] ScanProperties scanProperties;
     [SerializeField] Sprite objActiveSprite;
     [SerializeField] ExperienceContainerHolder ssEx;
@@ -17,20 +15,16 @@ public class OnBoardingFlowHandler : MonoBehaviour
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfilePictureHandler pictureHandler;
     [SerializeField] Sprite bookOutlineSp;
-    public void StartScene()
-    {
-        sceneLoader.LoadExperience(sceneName);
-    }
-    public void StartScan()
+       public void StartScan()
     {
         ScanPropertiesHolder.Instance.DetectionObjectName = "book";
-        sceneLoader.LoadExperience("Scan Scene");
+        SceneLoader.Instance.LoadExperience("Scan Scene");
         //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }
 
-    public void GoToSSEX() { sceneLoader.LoadExperience("OScene"); }
-    public void GoToScEX() { route.Transit(scEx, null, sceneLoader); }
-    public void GoToMEX() { route.Transit(mEx, null, sceneLoader); }
+    public void GoToSSEX() { SceneLoader.Instance.LoadExperience("OScene"); }
+    public void GoToScEX() { route.Transit(scEx, null); }
+    public void GoToMEX() { route.Transit(mEx, null); }
     void OnSuccessScan(NetworkParameters np)
     {
         

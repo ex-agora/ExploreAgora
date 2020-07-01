@@ -35,12 +35,30 @@ public class AddressableScenesManager : MonoBehaviour
             }
         }
     }
+    public void ReloadScene()
+    {
+        if (currentScene.Equals(default))
+            return;
+        AssetReference sceneRef = null;
+        if (scenes.TryGetValue(currentScene.Scene.name, out sceneRef))
+        {
+            //if (!currentScene.Equals(default))
+            //    Addressables.UnloadSceneAsync(currentScene);
+            Addressables.LoadSceneAsync(sceneRef,priority:10000).Completed += LoadDone;
+        }
+        else
+        {
+            // Wrong Scene name 
+        }
+    }
     public void LoadScene(string sceneName) {
+        if (ValidationInputUtility.IsEmptyOrNull(sceneName))
+            return;
         AssetReference sceneRef = null;
         if (scenes.TryGetValue(sceneName, out sceneRef))
         {
-            if (!currentScene.Equals(default))
-                Addressables.UnloadSceneAsync(currentScene);
+            //if (!currentScene.Equals(default))
+            //    Addressables.UnloadSceneAsync(currentScene);
             Addressables.LoadSceneAsync(sceneRef).Completed += LoadDone;
         }
         else {

@@ -22,7 +22,8 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu (fileName = "Experience Data" , menuName = "SO/App/Experience/ExperienceData" , order = 0)]
 public class ExperienceContainerHolder : ScriptableObject
 {
-    public  AssetReference experiencePrefab;
+    public AssetReference experiencePrefab;
+    public string experiencePrefabPath;
     public string experienceName;
     public string experienceCode;
     public string scannedObject;

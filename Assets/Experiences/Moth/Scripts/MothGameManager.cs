@@ -209,7 +209,7 @@ public class MothGameManager : MonoBehaviour, ITriggable, IMenuHandler
     }
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FinishExperiencesHandler.Instance.Reload();
     }
 
     public void ShowFirstSummary()

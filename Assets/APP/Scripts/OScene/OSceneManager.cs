@@ -12,6 +12,7 @@ public class OSceneManager : MonoBehaviour
     [SerializeField] ExperienceRouteHandler routeHandler;
     void Start()
     {
+        SceneLoader.Instance.HideLoading();
         Invoke(nameof(ShowHand), 2f);
         
     }

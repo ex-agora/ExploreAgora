@@ -10,11 +10,22 @@ public class WarningTransitionHandler : MonoBehaviour
     
     private void Start()
     {
-        Resources.UnloadUnusedAssets();
-        quickFadeHandler.FadeIn();
-        Invoke(nameof(NextScene), 3f);
+        Invoke(nameof(ShowSplashScreen), 0.5f);  
     }
 
+    private void ShowSplashScreen() {
+        SplashScreenHandler.Instance.PlayAnim();
+    }
+    public void ShowWarning() {
+        Resources.UnloadUnusedAssets();
+        Invoke(nameof(OpenWarning), 1f);
+        Invoke(nameof(HideWarning), 4f);
+    }
+    private void OpenWarning() => quickFadeHandler.FadeIn();
+    private void HideWarning() {
+        quickFadeHandler.FadeOut();
+        Invoke(nameof(NextScene), 1f);
+    }
     private void NextScene()
     {
         Application.backgroundLoadingPriority = ThreadPriority.High;

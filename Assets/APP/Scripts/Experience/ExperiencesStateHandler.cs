@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExperiencesStateHandler : MonoBehaviour
 {
     [SerializeField] StringExperienceContainerHolderDictionary experiences;
+    [SerializeField] GameEvent experienceLoadedEvent = null;
     public void HandleExperiencesStates()
     {
         NetworkManager.Instance.GetExperienceStatus(OnGetExperiencesSuccess, OnGetExperiencesFailed);
@@ -13,6 +14,7 @@ public class ExperiencesStateHandler : MonoBehaviour
     {
         string key;
         ExperienceResponse getExperienceResponse = (ExperienceResponse)obj.responseData;
+        ResetExperiences();
         for (int i = 0; i < getExperienceResponse.experience.Length; i++)
         {
             key = getExperienceResponse.experience[i].experienceCode;
@@ -21,6 +23,7 @@ public class ExperiencesStateHandler : MonoBehaviour
             experiences[key].playedCounter = (uint)getExperienceResponse.experience[i].playedTimesCounter;
             experiences[key].finishedCounter = (uint)getExperienceResponse.experience[i].finishedTimesCounter;
         }
+        experienceLoadedEvent?.Raise();
     }
     private void OnGetExperiencesFailed(NetworkParameters obj)
     {
