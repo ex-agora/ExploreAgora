@@ -37,6 +37,7 @@ public class DetectObj : MonoBehaviour
     }
     private void Start()
     {
+        SceneLoader.Instance.HideLoading();
         scanProperties = ScanPropertiesHolder.Instance.GetPropertie();
         outputText.text = $"Point the camera frame at the { scanProperties.detectionObjectName} then tap SCAN to detect.";
         outlineImg.sprite = scanProperties.outlineSp;

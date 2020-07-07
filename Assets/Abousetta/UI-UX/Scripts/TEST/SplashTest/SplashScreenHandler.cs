@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class SplashScreenHandler : MonoBehaviour
 {
+    private static SplashScreenHandler instance;
     public Animator splashAnimator;
     public Animator stonesAnimator;
     public Animator fadeAnimator;
+    [SerializeField] WarningTransitionHandler warning;
+    public static SplashScreenHandler Instance { get => instance; set => instance = value; }
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
     public void PlayAnim()
     {
         splashAnimator.SetTrigger("PlayLogoAnim");
@@ -31,9 +39,9 @@ public class SplashScreenHandler : MonoBehaviour
     }
     public void DeactiveAnim()
     {
+        warning.ShowWarning();
+        this.gameObject.SetActive(false);
         splashAnimator.gameObject.SetActive(false);
         stonesAnimator.gameObject.SetActive(false);
-        UXFlowManager.Instance.CanvasChecker();
-        this.gameObject.SetActive(false);
     }
 }

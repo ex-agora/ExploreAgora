@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PromocodeUIHandler : MonoBehaviour
 {
+
+    private static PromocodeUIHandler instance;
+    public static PromocodeUIHandler Instance { get => instance; set => instance = value; }
+    
     [SerializeField] ToolBarHandler popup;
     [SerializeField] ToolBarHandler popupGems;
     [SerializeField] Text gemsTxt;
@@ -12,6 +16,14 @@ public class PromocodeUIHandler : MonoBehaviour
     [SerializeField] ErrorFadingHandler error;
     [SerializeField] ProfileNetworkHandler profile;
     bool isPressed = false;
+
+
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
     public void ShowPop() {
         popup.OpenToolBar();
     }
@@ -36,13 +48,16 @@ public class PromocodeUIHandler : MonoBehaviour
         promoCodeData.hash = code;
         NetworkManager.Instance.PromoCode(promoCodeData, OnPromoCodeSusccess, OnPromoCodeFailed);
     }
+    public void SetCoins(int powerStones) {
+        gemsTxt.text = powerStones.ToString(); 
+        popupGems.OpenToolBar();
+    }
     private void OnPromoCodeSusccess(NetworkParameters obj)
     {
         isPressed = false;
         popup.CloseToolBar();
         PromoCodeResponse promoCode = (PromoCodeResponse)obj.responseData;
-        gemsTxt.text = promoCode.powerStones.ToString();
-        popupGems.OpenToolBar();
+        SetCoins(promoCode.powerStones);
         profile.GetProfile(true);
         profile.Profile.stones += promoCode.powerStones;
     }

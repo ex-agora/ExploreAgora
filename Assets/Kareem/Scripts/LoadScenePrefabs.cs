@@ -37,11 +37,15 @@ public class LoadScenePrefabs : MonoBehaviour
         //    Debug.Log("Pre");
         //    return;
         //}
+        SceneLoader.Instance.Loading(true);
         Resources.UnloadUnusedAssets();
         GameObject.Destroy(new Object());
         System.GC.Collect();
         yield return new WaitForEndOfFrame();
-        ExperienceTransitionHolder.Instance.NextExperienceContainerHolder.experiencePrefab.InstantiateAsync().Completed += LoadDone;
+        //ExperienceTransitionHolder.Instance.NextExperienceContainerHolder.experiencePrefab.InstantiateAsync().Completed += LoadDone;
+        asyncOperation = Addressables.LoadAssetAsync<GameObject>(ExperienceTransitionHolder.Instance.NextExperienceContainerHolder.experiencePrefabPath);
+        asyncOperation.Completed += LoadDone;
+        //StartCoroutine(updateLoading());
         //var g = Resources.Load(@sceneNavManager.nextExperienceContainerHolder.experiencePrefab);
         //Instantiate(g);
 
@@ -49,13 +53,21 @@ public class LoadScenePrefabs : MonoBehaviour
         //System.GC.Collect();
 
     }
-
+    IEnumerator updateLoading()
+    {
+        while (!asyncOperation.IsDone)
+        {
+            SceneLoader.Instance.UpdatePrecent(asyncOperation.PercentComplete);
+            yield return null;
+        }
+    }
 
     void LoadDone(AsyncOperationHandle<GameObject> obj)
     {
         //uxPrefab = obj.Result;
         Debug.Log("finish load asset");
-        //Instantiate(obj.Result);
+        Instantiate(obj.Result);
+        SceneLoader.Instance.HideLoading();
         //gameObject.SetActive(false);
         //Resources.UnloadAsset(prefabe);
         //Addressables.Release(obj);

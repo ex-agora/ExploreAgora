@@ -18,13 +18,14 @@ public class AppManager : MonoBehaviour
 
     private static AppManager instance;
     private bool isSplashScreenDone;
- 
+    private bool isRemainderDone;
 
     public static AppManager Instance { get => instance; set => instance = value; }
     public bool IsSplashScreenDone { get => isSplashScreenDone; set => isSplashScreenDone = value; }
     public bool IsThereRate { get => isThereRate; set => isThereRate = value; }
     public string ExperienceCode { get => experienceCode; set => experienceCode = value; }
     public int BundleNum { get => bundleNum; set => bundleNum = value; }
+    public bool IsRemainderDone { get => isRemainderDone; set => isRemainderDone = value; }
 
     private void Awake()
     {
