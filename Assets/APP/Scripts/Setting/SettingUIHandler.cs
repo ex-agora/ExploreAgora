@@ -23,7 +23,7 @@ public class SettingUIHandler : MonoBehaviour
         } else if (profile.playerType == "dummy") {
             manageAccountPanel.SetActive(false);
             createAccountPanel.SetActive(true);
-            loginBtn.SetActive(true);
+            loginBtn.SetActive(false); //True 
         }
     }
     public void CheckMusic() {

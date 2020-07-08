@@ -48,7 +48,7 @@ public class MSS132GameManager : MonoBehaviour, ITriggable, IMenuHandler
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FinishExperiencesHandler.Instance.Reload();
     }
 
     private void Awake()

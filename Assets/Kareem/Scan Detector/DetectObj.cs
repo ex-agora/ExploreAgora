@@ -16,7 +16,7 @@ public class DetectObj : MonoBehaviour
     JsonData jsonvale;
     //Output from server 
     string output;
-    [SerializeField] ScanProperties scanProperties;
+    //[SerializeField] ScanProperties scanProperties;
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfileInfoContainer profile;
     [SerializeField] AchievementHolder achievement;
@@ -25,6 +25,7 @@ public class DetectObj : MonoBehaviour
     [SerializeField] Button scanBtn;
     [SerializeField] Button nextBtn;
     DetectObjectData detectObjectData = new DetectObjectData ();
+    ScanProperties scanProperties;
     #endregion Fields
 
     #region Methods
@@ -36,7 +37,9 @@ public class DetectObj : MonoBehaviour
     }
     private void Start()
     {
-        outputText.text = $"Point the camera frame at the {scanProperties.detectionObjectName} then tap SCAN to detect.";
+        SceneLoader.Instance.HideLoading();
+        scanProperties = ScanPropertiesHolder.Instance.GetPropertie();
+        outputText.text = $"Point the camera frame at the { scanProperties.detectionObjectName} then tap SCAN to detect.";
         outlineImg.sprite = scanProperties.outlineSp;
         outlineImg.SetNativeSize();
     }
@@ -112,19 +115,19 @@ public class DetectObj : MonoBehaviour
                 //For Example
                 if ( output.ToLower () == "true" )
                 {
-                    print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
+                    print (output + " true   " + ScanPropertiesHolder.Instance.DetectionObjectName.ToLower ());
                     outputText.text = "Found";
                    
-                    if (scanProperties.ShouldContinueToExperience)
-                        Panel.SetActive(true);
-                    else
-                        SceneManager.LoadScene("first Scene");
+                    //if (ScanPropertiesHolder.Instance.ShouldContinueToExperience)
+                    //    Panel.SetActive(true);
+                    //else
+                    //    SceneManager.LoadScene("first Scene");
 
                 }
                 else
                 {
-                    outputText.text = scanProperties.detectionObjectName + " not found";
-                    print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
+                    outputText.text = ScanPropertiesHolder.Instance.DetectionObjectName + " not found";
+                    print (output + "  Not found  " + ScanPropertiesHolder.Instance.DetectionObjectName.ToLower ());
                 }
             }
             // hide loading Canvas and show mainCanvas
@@ -157,7 +160,7 @@ public class DetectObj : MonoBehaviour
         bytes = tex.EncodeToPNG();
         detectObjectData.bytes = bytesss;
         //detectObjectData.score = "0.69";
-        detectObjectData.detectionObjectName = scanProperties.detectionObjectName.ToLower();
+        detectObjectData.detectionObjectName = ScanPropertiesHolder.Instance.DetectionObjectName.ToLower();
         detectObjectData.objectsToDetect = new ObjectsToDetect();
         detectObjectData.objectsToDetect.objects = scanProperties.objectInfos.ToArray();
         NetworkManager.Instance.DetectObject(detectObjectData, OnSuscees, OnFailed);
@@ -189,12 +192,12 @@ public class DetectObj : MonoBehaviour
 
         if ( detectObjectResponse.detected.ToLower () == "true" )
         {
-            print (output + " true   " + scanProperties.detectionObjectName.ToLower ());
-            outputText.text = $"{scanProperties.detectionObjectName} found";
+            print (output + " true   " + ScanPropertiesHolder.Instance.DetectionObjectName.ToLower ());
+            outputText.text = $"{ ScanPropertiesHolder.Instance.DetectionObjectName} found";
             outlineImg.sprite = objectDetectSp;
             outlineImg.SetNativeSize();
             scanBtn.gameObject.SetActive(false);
-            int counter = inventory.GetScanedCounter(scanProperties.detectionObjectName);
+            int counter = inventory.GetScanedCounter(ScanPropertiesHolder.Instance.DetectionObjectName);
             if (counter == -1)
             {
                 counter = 0;
@@ -203,14 +206,14 @@ public class DetectObj : MonoBehaviour
                 if (badge != null) {
                     AchievementManager.Instance.AddBadge(badge);
                 }
-                AchievementManager.Instance.AddScannedObject(scanProperties.detectionObjectSp, scanProperties.detectionObjectName);
+                AchievementManager.Instance.AddScannedObject(scanProperties.detectionObjectSp, ScanPropertiesHolder.Instance.DetectionObjectName);
             }
             AchievementManager.Instance.AddScore(ScorePointsUtility.ScanObject);
             profile.points += ScorePointsUtility.ScanObject;
             counter++;
-            inventory.SetObject(scanProperties.detectionObjectName, counter);
+            inventory.SetObject(ScanPropertiesHolder.Instance.DetectionObjectName, counter);
             UpdateProfile();
-            if (scanProperties.ShouldContinueToExperience)
+            if (ScanPropertiesHolder.Instance.ShouldContinueToExperience)
                 Panel.SetActive(true);
             else {
                 if (AppManager.Instance.boardingPhases != OnBoardingPhases.None)
@@ -227,8 +230,8 @@ public class DetectObj : MonoBehaviour
         }
         else
         {
-            outputText.text = scanProperties.detectionObjectName + " Not Found";
-            print (output + "  Not found  " + scanProperties.detectionObjectName.ToLower ());
+            outputText.text = ScanPropertiesHolder.Instance.DetectionObjectName + " Not Found";
+            print (output + "  Not found  " + ScanPropertiesHolder.Instance.DetectionObjectName.ToLower ());
         }
     }
     public void GoBack() { SceneLoader.Instance.LoadExperience("UI-UX"); }

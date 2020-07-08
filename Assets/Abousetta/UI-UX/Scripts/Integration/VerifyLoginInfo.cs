@@ -38,7 +38,12 @@ public class VerifyLoginInfo : MonoBehaviour
         LoginData l = new LoginData();
         l.email = emailInputField.text;
         l.password = passwordInputField.text;
+#if UNITY_ANDROID
         l.deviceType = "Android";//Application.platform.ToString() ;
+#endif
+#if UNITY_IOS
+        l.deviceType = "IOS";//Application.platform.ToString() ;
+#endif
         l.deviceId = SystemInfo.deviceUniqueIdentifier;
         NetworkManager.Instance.Login(l, OnLoginSuccess, OnLoginFailed);
     }

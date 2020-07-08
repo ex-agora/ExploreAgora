@@ -15,9 +15,9 @@ public class ShopUIHandler : MonoBehaviour
             noteText.SetActive(false);
     }
     public void Buy(int index) {
-        if (profile.playerType == "registered" && profile.isConfirmed) {
+        //if (profile.playerType == "registered" && profile.isConfirmed) {
             verification.ShowPopup(items[index]);
-        }
+        //}
     }
 
 }

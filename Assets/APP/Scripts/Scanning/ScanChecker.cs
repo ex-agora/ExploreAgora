@@ -6,23 +6,30 @@ using UnityEngine.UI;
 public class ScanChecker : MonoBehaviour
 {
     [SerializeField] private string objectToScanName;
-    [SerializeField] private Sprite outlineSp;
+    //[SerializeField] private Sprite outlineSp;
     [SerializeField] private List<ExperienceHandler> experiences;
+    [SerializeField] private ScanProperties properties;
     [SerializeField] private BundleHandler bundleHandler;
     [SerializeField] private Sprite unlockedState;
     [SerializeField] private Image stateImage;
-    [SerializeField] ScanProperties scanProperties;
+    //[SerializeField] ScanProperties scanProperties;
     [SerializeField] Image objImg;
-    [SerializeField] Sprite objActiveSprite;
-    [SerializeField] List<DetectObjectInfo> objectInfos;
+    //[SerializeField] Sprite objActiveSprite;
+    //[SerializeField] List<DetectObjectInfo> objectInfos;
     [SerializeField] Text scanObjectTxt;
+    bool isLoaded;
     private void OnEnable()
     {
-        scanObjectTxt.text = StringUtility.LetterCapitalize(objectToScanName);  
-        CheckScannedObject();
+        scanObjectTxt.text = StringUtility.LetterCapitalize(objectToScanName);
+        if(isLoaded)
+            CheckScannedObject();
     }
     public void CheckScannedObject()
     {
+        if (!gameObject.activeInHierarchy) {
+            isLoaded = true;
+            return;
+        }
         int counter = bundleHandler.GetScannedCounter(objectToScanName);
 
         for (int i = 0; i < experiences.Count; i++)
@@ -31,18 +38,15 @@ public class ScanChecker : MonoBehaviour
         if (counter > 0)
         {
             stateImage.sprite = unlockedState;
-            objImg.sprite = objActiveSprite;
+            objImg.sprite = properties.detectionObjectSp;
             for (int i = 0; i < experiences.Count; i++)
                 experiences[i].UnlockExperience();
         }
-
+        isLoaded = false;
     }
     public void StartScan()
     {
-        scanProperties.detectionObjectName = objectToScanName;
-        scanProperties.detectionObjectSp = objActiveSprite;
-        scanProperties.outlineSp = outlineSp;
-        scanProperties.objectInfos = objectInfos;
+        ScanPropertiesHolder.Instance.DetectionObjectName = objectToScanName;
         SceneLoader.Instance.LoadExperience("Scan Scene");
         //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }

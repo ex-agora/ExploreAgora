@@ -105,7 +105,7 @@ public class CamouflageGameManger : MonoBehaviour, ITriggable, IMenuHandler
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FinishExperiencesHandler.Instance.Reload();
     }
     #endregion
 

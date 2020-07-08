@@ -18,8 +18,8 @@ public class ManageAccountUIHandler : MonoBehaviour
     public void Logout()
     {
         NetworkManager.Instance.DeleteToken();
-        DailyStrikesHandler.Instance.DeleteTimestamp();
-        SceneLoader.Instance.LoadExperience(1);
+        //DailyStrikesHandler.Instance.DeleteTimestamp();
+        AddressableScenesManager.Instance.ReloadScene();
     }
     
 }

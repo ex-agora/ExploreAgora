@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class OnBoardingFlowHandler : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
-    [SerializeField] private SceneLoader sceneLoader;
-    [SerializeField] ScanProperties scanProperties;
+    //[SerializeField] ScanProperties scanProperties;
     [SerializeField] Sprite objActiveSprite;
     [SerializeField] ExperienceContainerHolder ssEx;
     [SerializeField] ExperienceContainerHolder scEx;
@@ -17,36 +15,16 @@ public class OnBoardingFlowHandler : MonoBehaviour
     [SerializeField] InventoryObjectHolder inventory;
     [SerializeField] ProfilePictureHandler pictureHandler;
     [SerializeField] Sprite bookOutlineSp;
-    public void StartScene()
+       public void StartScan()
     {
-        sceneLoader.LoadExperience(sceneName);
-    }
-    public void StartScan()
-    {
-        scanProperties.detectionObjectName = "book";
-        scanProperties.detectionObjectSp = objActiveSprite;
-        scanProperties.outlineSp = bookOutlineSp;
-        List<DetectObjectInfo> detects = new List<DetectObjectInfo>();
-        DetectObjectInfo detect1 = new DetectObjectInfo();
-        detect1.name = "book";
-        detect1.score = "0.5";
-        DetectObjectInfo detect2 = new DetectObjectInfo();
-        detect2.name = "paper";
-        detect2.score = "0.5";
-        DetectObjectInfo detect3 = new DetectObjectInfo();
-        detect3.name = "text";
-        detect3.score = "0.5";
-        detects.Add(detect1);
-        detects.Add(detect2);
-        detects.Add(detect3);
-        scanProperties.objectInfos = detects;
-        sceneLoader.LoadExperience("Scan Scene");
+        ScanPropertiesHolder.Instance.DetectionObjectName = "book";
+        SceneLoader.Instance.LoadExperience("Scan Scene");
         //NetworkManager.Instance.CheckInternetConnectivity(OnSuccessScan, OnFailedScan);
     }
 
-    public void GoToSSEX() { sceneLoader.LoadExperience("OScene"); }
-    public void GoToScEX() { route.Transit(scEx, null, sceneLoader); }
-    public void GoToMEX() { route.Transit(mEx, null, sceneLoader); }
+    public void GoToSSEX() { SceneLoader.Instance.LoadExperience("OScene"); }
+    public void GoToScEX() { route.Transit(scEx, null); }
+    public void GoToMEX() { route.Transit(mEx, null); }
     void OnSuccessScan(NetworkParameters np)
     {
         

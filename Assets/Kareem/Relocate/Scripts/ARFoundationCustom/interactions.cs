@@ -61,6 +61,9 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.rotation = targetPose.rotation;
             GameObject obj = Instantiate (objectToPlace, targetPose.position, targetPose.rotation);
             //obj.transform.localScale = new Vector3(targetSize.x, 0.2f, targetSize.y);
+            objectToPlace = null;
+            Destroy(new GameObject());
+            Resources.UnloadUnusedAssets();
             obj.transform.parent = objectToPlaceParent.transform;
             firstTime = false;
             objectedPlaced.Raise ();
@@ -81,6 +84,8 @@ public class interactions : MonoBehaviour
 
     private void UpdateTargetPoSe ()
     {
+        if (SessionOrigin == null || arOrigin == null)
+            return;
         var screenCenter = SessionOrigin.camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f));
         var hits = new List<ARRaycastHit> ();
         arOrigin.Raycast (screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
@@ -97,7 +102,7 @@ public class interactions : MonoBehaviour
             planeTarget.transform.SetPositionAndRotation (targetPose.position, targetPose.rotation);
             //Debug.Log(planeFound);
             targetPose = hits [0].pose;
-            var cameraForward = Camera.current.transform.forward;
+            var cameraForward = SessionOrigin.camera.transform.forward;
             var cameraBearing = new Vector3 (cameraForward.x, 0, cameraForward.z).normalized;
             targetPose.rotation = Quaternion.LookRotation (cameraBearing);
             ARPlane rrr = aRPlaneManager.GetPlane (hits [0].trackableId);
@@ -124,7 +129,7 @@ public class interactions : MonoBehaviour
 
     public void hideShowArComponents (bool state)
     {
-        objectToPlace.SetActive (state);
+        //objectToPlace.SetActive (state);
         planeTarget.SetActive (state);
     }
 }

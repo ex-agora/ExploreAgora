@@ -80,6 +80,7 @@ public class FinishExperiencesHandler : MonoBehaviour
         NetworkManager.Instance.UpdateExperienceStatus(s, OntUpdateExperienceSuccess, OntUpdateExperienceFailed);
     }
     public void GotoHome() { SceneLoader.Instance.LoadExperience(sceneName); }
+    public void Reload() { AddressableScenesManager.Instance.ReloadScene(); }
     private void OntUpdateExperienceSuccess(NetworkParameters obj)
     {
         isPressed = false;
