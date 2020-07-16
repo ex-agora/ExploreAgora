@@ -23,7 +23,7 @@ public class SignUpNotesHandler : MonoBehaviour
         }
     }
     public void RemindSignup() {
-        if (profile.playerType != "registered" || !profile.isConfirmed) {
+        if (profile.playerType != "registered") {
             reminderPopup.OpenToolBar();
         }
     }

@@ -53,21 +53,33 @@ namespace SIS
                 NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
             }
         }
-        public void Checkout(string p, receipt r)
+        public void Checkout(string p, receipt r, IPurchaseReceipt purchaseReceipt =null)
         {
-            //GooglePlayReceipt googlePlay = p as GooglePlayReceipt;
-            //if (p != null)
-            //{
-            //    CompleteCheckoutData checkoutData = new CompleteCheckoutData();
-            //    checkoutData.packageName = googlePlay.packageName;
-            //    checkoutData.transactionID = googlePlay.transactionID;
-            //    checkoutData.productId = googlePlay.productID;
-            //    checkoutData.purchaseToken = googlePlay.purchaseToken;
-            //    checkoutData.storeType = AndroidStore.GooglePlay.ToString();
-            //    NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
-            //}
-            
-            if (p == "IOS")
+            if (purchaseReceipt != null)
+            {
+                GooglePlayReceipt googlePlay = purchaseReceipt as GooglePlayReceipt;
+                if (purchaseReceipt != null)
+                {
+                    CompleteCheckoutData checkoutData = new CompleteCheckoutData();
+                    checkoutData.packageName = googlePlay.packageName;
+                    checkoutData.transactionID = googlePlay.transactionID;
+                    checkoutData.productId = googlePlay.productID;
+                    checkoutData.purchaseToken = googlePlay.purchaseToken;
+                    checkoutData.storeType = AndroidStore.GooglePlay.ToString();
+                    NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
+                }
+            }
+            else if (p == "Android")
+            {
+                CompleteCheckoutData checkoutData = new CompleteCheckoutData();
+                checkoutData.packageName = "Pouch of Power Stones";
+                checkoutData.productId = "5ps1ex1000";
+                checkoutData.purchaseToken = r.Payload;
+                checkoutData.storeType = AndroidStore.GooglePlay.ToString();
+                checkoutData.transactionID = r.TransactionID;
+                NetworkManager.Instance.CompleteCheckout(checkoutData, OnCheckoutSuccess, OnCheckoutFailed);
+            }
+            else if (p == "IOS")
             {
                 CompleteCheckoutData checkoutData = new CompleteCheckoutData();
                 checkoutData.packageName = "Pouch of Power Stones";
@@ -126,7 +138,8 @@ namespace SIS
                 //we found a receipt for this product on the device, initiate client receipt verification.
                 //if we haven't found a receipt for this item, yet it is set to purchased. This can't be,
                 //maybe the database contains fake data. Only pass the id to verification so it will fail
-            Checkout("IOS", r);
+
+                //Checkout("Android", r);
                 try
                 {
                     // On Google Play, result will have a single product Id.
@@ -135,7 +148,7 @@ namespace SIS
                     IAPManager.GetInstance().PurchaseVerified(products[i].definition.id);
 
                     foreach (var receiptResult in receiptResults) {
-                           // Checkout(receiptResult, r);
+                        Checkout("Android", r, receiptResult);
                     }
                    // StartCoroutine(ValidateServerTest(products[i].receipt));
                     // StartCoroutine(ValidateServerTest(products[i].definition.id));
