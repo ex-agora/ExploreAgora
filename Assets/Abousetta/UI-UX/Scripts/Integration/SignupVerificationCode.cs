@@ -35,8 +35,8 @@ public class SignupVerificationCode : MonoBehaviour
     }
     private void OnVerifyMailFailed(NetworkParameters obj)
     {
-        if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
-            return;
+        //if (UXFlowManager.Instance.IsThereNetworkError(obj.err.errorTypes))
+        //    return;
         error.ShowErrorMsg("Invalid Code");
         error.HideErrorMsgDelay(3f);
         codeVerifcation.ClearSeperatedFields();

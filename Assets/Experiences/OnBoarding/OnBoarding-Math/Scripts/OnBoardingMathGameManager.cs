@@ -276,7 +276,7 @@ public class OnBoardingMathGameManager : MonoBehaviour, ITriggable, IMenuHandler
         bubbleController.StopSpeech();
         menu.StopMenuInteraction();
         finalSummary.ViewSummary();
-        Invoke(nameof(StartAnim), 2f);
+        //Invoke(nameof(StartAnim), 2f);
     }
     //public void testttt()
     //{
