@@ -30,6 +30,7 @@ public class interactions : MonoBehaviour
     [SerializeField] bool isFoundedOnce;
     [SerializeField] QuickFadeHandler fadeHandler = null;
     static interactions instance;
+    private MeshRenderer meshRenderer;
 
     public ARSessionOrigin SessionOrigin { get => sessionOrigin; set => sessionOrigin = value; }
     public static interactions Instance { get => instance; set => instance = value; }
@@ -42,12 +43,14 @@ public class interactions : MonoBehaviour
     }
     private void Start ()
     {
+        meshRenderer = planeTarget.GetComponentInChildren<MeshRenderer> ();
         /*  arOrigin = FindObjectOfType<ARRaycastManager> ();
           aRPlaneManager = FindObjectOfType<ARPlaneManager> ();*/
         // Arcamera.transform.localScale = new Vector3 (targetSize.x, targetSize.y, Arcamera.transform.localScale.z);
         indicator.transform.localScale = new Vector3 (targetSize.x, targetSize.y, indicator.transform.localScale.z);
     }
-    void Update ()
+
+    private void Update ()
     {
         UpdateTargetPoSe ();
     }
@@ -74,17 +77,32 @@ public class interactions : MonoBehaviour
             objectToPlaceParent.transform.rotation = targetPose.rotation;
         }
         objectToPlaceParent.SetActive(true);
-        fadeHandler?.FadeOut();
+        if (fadeHandler)
+            fadeHandler.FadeOut();
         planeDetectionController.TogglePlaneDetection ();
         planeTarget.SetActive (false);
-        relocate.interactable = true;
-        relocate.GetComponent<RelocateEventEnableDisableAction>()?.FireEvent();
+        if (!(relocate is null))
+        {
+            relocate.interactable = true;
+            relocate.GetComponent<RelocateEventEnableDisableAction>()?.FireEvent();
+        }
+
         AudioManager.Instance.Play ("placeObject", "Activity");
     }
 
+    public void OpenDetection()
+    { 
+        planeDetectionController.TogglePlaneDetection ();
+        planeTarget.SetActive (true);
+    }
+    public void CloseDetection()
+    { 
+        planeDetectionController.TogglePlaneDetection ();
+        planeTarget.SetActive (false);
+    }
     private void UpdateTargetPoSe ()
     {
-        if (SessionOrigin == null || arOrigin == null)
+        if (SessionOrigin is null || arOrigin is null)
             return;
         var screenCenter = SessionOrigin.camera.ViewportToScreenPoint (new Vector3 (0.5f, 0.5f));
         var hits = new List<ARRaycastHit> ();
@@ -93,10 +111,11 @@ public class interactions : MonoBehaviour
 
         if (planeFound)
         {
-            if ((!isFoundedOnce || !isSurfaceFound) && foundSurface != null)
+            if ((!isFoundedOnce || !isSurfaceFound) && !(foundSurface is null))
             {
                 isSurfaceFound = true;
-                foundSurface?.Raise ();
+                if (foundSurface)
+                    foundSurface.Raise();
             }
             //planeTarget.SetActive(true);
             planeTarget.transform.SetPositionAndRotation (targetPose.position, targetPose.rotation);
@@ -110,18 +129,19 @@ public class interactions : MonoBehaviour
             {
                 // state.text = "Found";
                 if (!isPlaced)
-                    fadeHandler?.FadeIn();
-                planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [0];
+                    if ((fadeHandler))
+                        fadeHandler.FadeIn();
+                meshRenderer.material = mats [0];
                 canSet = true;
             }
             else
             {
                 //Debug.Log(rrr.size);
                 // state.text = "Lost";
-
-                fadeHandler?.FadeOut();
+                if ((fadeHandler))
+                    fadeHandler.FadeOut();
                 canSet = false;
-                planeTarget.GetComponentInChildren<MeshRenderer> ().material = mats [1];
+                meshRenderer.material = mats [1];
             }
 
         }

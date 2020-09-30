@@ -24,6 +24,13 @@ public class FinishExperiencesHandler : MonoBehaviour
     }
 
     public void FinshExperience(int score, bool _stayAtExperience = false) {
+        if (TestingManager.Instance.IsTestStart)
+        {
+            if (!stayAtExperience)
+                SceneLoader.Instance.LoadExperience(sceneName);
+            return;
+        }
+
         stayAtExperience = _stayAtExperience;
         if (scenePrefabs.GetExperience().experienceRate == 0 && !scenePrefabs.GetExperience().shouldNotRate)
         {

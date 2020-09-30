@@ -67,9 +67,15 @@ public class ExperienceRouteHandler : MonoBehaviour
             }
         }
         sceneLoader = _sceneLoader;
-        NetworkManager.Instance.UpdateExperienceStatus(s, OntUpdateExperienceSuccess, OntUpdateExperienceFailed);
-        // Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
-
+        if (TestingManager.Instance.IsTestStart)
+        {
+            OntUpdateExperienceSuccess(null);
+        }
+        else
+        {
+            NetworkManager.Instance.UpdateExperienceStatus(s, OntUpdateExperienceSuccess, OntUpdateExperienceFailed);
+            // Debug.Log ("@scenesPrefabsIntializers.nextExperienceContainerHolder" + @sceneNavManager.nextExperienceContainerHolder);
+        }
     }
 
     public void TransitTest(ExperienceContainerHolder experienceContainerHolder) {
@@ -81,7 +87,7 @@ public class ExperienceRouteHandler : MonoBehaviour
     private void OntUpdateExperienceSuccess(NetworkParameters obj)
     {
         isPressed = false;
-        if (sceneLoader == null)
+        if (sceneLoader is null)
             SceneLoader.Instance.LoadExperience(SceneName);
         else
             sceneLoader.LoadExperience(SceneName);

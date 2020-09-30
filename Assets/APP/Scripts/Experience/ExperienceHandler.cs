@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,17 @@ public class ExperienceHandler : MonoBehaviour
     [SerializeField] private PopupExperienceHandler popup;
     [SerializeField] private ScanChecker scan;
     [SerializeField] private BundleHandler bundle;
+  
+
+    private void Start()
+    {
+        if (TestingManager.Instance.IsTestStart)
+        {
+            UnlockExperience();
+            ActiveExperience();
+        }
+    }
+
     public void UpdateUIState()
     {
         gem.gameObject.SetActive(false);
