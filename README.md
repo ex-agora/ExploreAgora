@@ -1,31 +1,21 @@
 # Explore Agora
 
-## What is Agora?
+Explore Agora is an educational mobile application using augmented reality, that allows children to learn from the real world in a way that is interactive and engaging. Our product was inspired by children's desire to learn more about the world around them.
+We aim to nurture and grow children's curiosity by equipping them with a tool that answers their abundant questions. The application uses adaptive learning to curate customised learning experiences for children. 
 
-AgoRa is an application that connects K-12 education to the real world through a learner-directed approach that offers Gamified Learning Experiences to guarantee increased engagement and excitement while learning.
+Core subjects such as science, geography and mathematics, are mainly taught  theoretically or with laboratory experiments in schools that have equipment. Meanwhile, the world around us presents tangible real life examples to engage with.
 
-## How it works?
-* First the learner scans an object through the mobile camera.
-* Then an interactive Augmented Reality learning experience that is related to that object starts.
-* Through interacting and playing the learner reaches the learning outcome intended from the experience.
+## FRONTIER TECHNOLOGY 
+The mobile application enables children to learn by using their mobile camera to scan objects around them. The application uses machine learning technology to determine the object that a child is scanning, such as a football. The application then compiles different topics from curricula connected to the object and adds an interactive augmented layer to offer different learning paths. For example, once the football is identified by the application, the child would continue to learn about the topic of their choice. Explore Agora could help the child learn how to calculate the volume and surface area of a sphere, share details about the history of football by  showing historical versions in particular countries, and related physics, such as Newton Law, by interacting with the football.
 
-![Moths_GP (1242px 2208px)](https://user-images.githubusercontent.com/21194977/65815603-fd076900-e1f1-11e9-92bb-1630c68c9a5b.png)
-![Scan_key_GP(1242px 2208px)](https://user-images.githubusercontent.com/21194977/65815604-fd9fff80-e1f1-11e9-833e-5f37843434a9.png)
-![Statistical_chart_GP(1242px 2208px)](https://user-images.githubusercontent.com/21194977/65815597-f24cd400-e1f1-11e9-8219-f7513ff0960e.png)
-![world_map_food_GP(1242px 2208px)](https://user-images.githubusercontent.com/21194977/65815598-f24cd400-e1f1-11e9-9091-bcfd527d005f.png)
+![Interaction_SC(1280px 720px)](https://user-images.githubusercontent.com/52660858/102087758-ad2ab700-3e22-11eb-9fc5-292f2bb68d3a.jpeg)
 
 
+## OPEN SOURCE 
 
+The reason we decided to utilize augmented reality was to support underserved schools with the resources they need. Many schools lack basic resources needed for teaching, such as science labs and different devices and models. Sustainability is one of the most important limitations for making quality education accessible for all children. By utilizing innovative technologies we can deliver quality educational resources needed for children around the world by simply writing code inside the application. For example, if a teacher wants to explain the anatomy of the human body, but does not have a human body model, we can utilize augmented reality to bring a 3D model of a human body inside the classroom to smoothly deliver the lesson.
 
-
-## Why scan Objects?
-
-### From an academic perspective
-* When children scan an object that they see and use everyday, then the learning outcome delivered through that objects will be familiar to them. This will help children connect education to the real world and gain solid knowledge.
-
-* Through the process of contextualizing the information learned, learners are able to associate their newly found knowledge with references that make sense to them individually. Creating learning environments where learners can relate content to relevant contexts addresses the students innate curiosity about the world and how things work.
-### From a technological perspective
-* Using real life objects as triggers for augmented reality gives children more freedom. The alternative is buying or printing QR codes and that is very limiting. Scanning real life objects gives children the ability to learn anywhere and anytime without any restrictions.
+Furthermore, for our application to create great impact, we require large amounts of content and our solution adapts to each child’s unique environment. Contributions from the open source community would enable us to develop diverse content for children around the world, and scale faster.
 
 ## Deployment
 
@@ -42,12 +32,8 @@ The app was developed by :
 Unity is a cross-platform game engine developed by Unity Technologies. The engine can be used to create three-dimensional, 
 two-dimensional, virtual reality, and augmented reality games, as well as simulations and other experiences.
 
-
-## Machine Learning
-Agora uses everyday objects to trigger an Augmented Reality learning experience. That’s why we use a special Machine Learning construct called Convolutional Neural Networks (CNNs) to detect the presence of these objects in the current scenery. The presence of each specific object triggers a certain learning experience thus linking our everyday life to the app’s learning experience.
-
 ## App Architecture
 ![AR app Arch Agora](https://user-images.githubusercontent.com/21194977/72618176-36034f00-3943-11ea-8d00-23a8bc984d84.jpg)
 ### Notes
-* This version of agora is working on Unity3d 2019.2.2f1
-* AR-Foundation version : 3.0.1
+* The requried version of Unity3d: 2019.4.3f1 or later
+* AR-Foundation version: 3.0.1
