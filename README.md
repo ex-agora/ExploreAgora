@@ -35,5 +35,5 @@ two-dimensional, virtual reality, and augmented reality games, as well as simula
 ## App Architecture
 ![AR app Arch Agora](https://user-images.githubusercontent.com/21194977/72618176-36034f00-3943-11ea-8d00-23a8bc984d84.jpg)
 ### Notes
-* The requried version of Unity3d: 2019.4.3f1 or later
+* The required version of Unity3d: 2019.4.3f1 or later
 * AR-Foundation version: 3.0.1
