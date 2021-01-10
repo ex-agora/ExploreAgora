@@ -14,10 +14,10 @@ namespace KDemo.D1.Scripts.Scripts
         [HideInInspector] [SerializeField] private List<SeekPath> nodesInPath;
         [HideInInspector] [SerializeField] private List<SeekPath> nodesFinished;
         
-        private void Start()
-        {
-            PlaySim();
-        }
+        //private void Start()
+        //{
+        //    PlaySim();
+        //}
 
         private void CreateNodes()
         {
