@@ -29,6 +29,16 @@ public class OutlineHandler : MonoBehaviour
             outlineSpript.enabled = true;
         }
     }
+    public void HideOutlineWithoutFade() {
+        if (isMaterialBased) {
+            mesh.material = defaultMat;
+        }
+        else
+        {
+            outlineSpript.OutlineWidth = 0.0f;
+            outlineSpript.enabled = false;
+        }
+    }
     public void HideOutline() {
         if (isMaterialBased) {
             mesh.material = defaultMat;

@@ -9,35 +9,57 @@ namespace KDemo.D1.Scripts.Scripts
     {
         [SerializeField] PathsHandler pathsHandler;
         [SerializeField] Button doneBtn;
-        public PathsHandler PathsHandler { get => pathsHandler; set => pathsHandler = value; }
-        public static KDManager Instance { get; set; }
+        [SerializeField] private Image playBtn;
+        [SerializeField] private Image muteBtn;
+        [SerializeField] private Sprite[] playSp;
+        [SerializeField] private Sprite[] muteSp;
+        [SerializeField] private Text instruction;
+        [SerializeField] private Animator flashAnim;
+        private int indexMute = 0;
+        private bool isStarted;
+       public static KDManager Instance { get; set; }
         private void Awake()
         {
             if (Instance == null) Instance = this;
         }
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
+            isStarted = false;
             EnableDoneBtn(false);
         }
         public void StartExperience()
         {
-            PathsHandler.StartSimulation();
+            instruction.text = string.Empty;
+            if (isStarted)
+            {
+                playBtn.sprite = playSp[0];
+                KDPrefabManager.Instance.StopSim();
+            }
+            else
+            {
+                playBtn.sprite = playSp[1];
+                KDPrefabManager.Instance.StartSim();
+            }
+
+            isStarted = !isStarted;
         }
         public void ToggleMute()
         {
-            AudioManager.Instance.ToggleMute("Background");
+            muteBtn.sprite = muteSp[++indexMute % 2];
+            KDPrefabManager.Instance.ToggleFireSound();
         }
         public void Done()
         {
             KDPrefabManager.Instance.KDRecapManager.ShowRecap();
-            PathsHandler.StopSimulation();
+            KDPrefabManager.Instance.StopSim();
         }
         public void FinishExperience()
         {
             EnableDoneBtn(true);
         }
-        public void EnableDoneBtn(bool isEnabled)
+
+        private void EnableDoneBtn(bool isEnabled)
         {
             doneBtn.interactable = isEnabled;
         }

@@ -13,20 +13,24 @@ namespace KDemo.D1.Scripts.Scripts
         [SerializeField] private int maxNodeNum = 10;
         [HideInInspector] [SerializeField] private List<SeekPath> nodesInPath;
         [HideInInspector] [SerializeField] private List<SeekPath> nodesFinished;
-        
+
+        private bool isStarted;
         //private void Start()
         //{
         //    PlaySim();
         //}
+        private void Start()
+        {
+            isStarted = false;
+        }
 
         private void CreateNodes()
         {
             if((nodesFinished.Count + nodesInPath.Count)<maxNodeNum)
-                Invoke(nameof(CreateNode),0);
+                CreateNode();
             else if(IsInvoking(nameof(CreateNodes)))
-            {
                 CancelInvoke(nameof(CreateNodes));
-            }
+            
         }
 
         private void CreateNode()
@@ -58,6 +62,9 @@ namespace KDemo.D1.Scripts.Scripts
         
         public void PlaySim()
         {
+            if (isStarted)
+                return;
+            isStarted = true;
             var size = nodesFinished.Count;
             for (var i = 0; i < size; i++)
             {
@@ -68,14 +75,17 @@ namespace KDemo.D1.Scripts.Scripts
 
         public void StopSim()
         {
+            if (!isStarted)
+                return;
+            isStarted = false;
             var size = nodesInPath.Count;
             if(IsInvoking(nameof(CreateNodes)))
             {
                 CancelInvoke(nameof(CreateNodes));
             }
-            for (var i = 0; i < size; i++)
+            while(nodesInPath.Count !=0)
             {
-                NodeFinished(nodesInPath[i], false);
+                NodeFinished(nodesInPath[0], false);
             }   
         }
     }

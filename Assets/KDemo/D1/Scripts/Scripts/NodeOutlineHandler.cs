@@ -8,10 +8,17 @@ namespace KDemo.D1.Scripts.Scripts
     {
         [SerializeField] private bool isActive;
         [SerializeField] private bool isLastState;
+
+        public bool IsActive
+        {
+            get => isActive;
+            set => isActive = value;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (isLastState) KDManager.Instance.FinishExperience();
-            if (!isActive) 
+            if (!IsActive) 
                 return;
             var outline = other.GetComponent<OutlineHandler>();
             if (outline)

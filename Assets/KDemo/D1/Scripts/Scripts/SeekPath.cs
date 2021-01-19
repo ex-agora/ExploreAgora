@@ -30,7 +30,7 @@ namespace KDemo.D1.Scripts.Scripts
         {
             isFinish = false;
             target = FollowingHandler.Path[currentNode];
-            outline.HideOutline();
+            outline.HideOutlineWithoutFade();
         }
 
         private bool IsArrive() {
