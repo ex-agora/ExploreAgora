@@ -25,7 +25,7 @@ namespace KDemo.D1.Scripts.Scripts
         {
             ResetNode();
         }
-
+        
         public void ResetNode()
         {
             isFinish = false;

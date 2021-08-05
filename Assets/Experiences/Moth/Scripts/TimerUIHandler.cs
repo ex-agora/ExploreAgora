@@ -11,7 +11,7 @@ public class TimerUIHandler : MonoBehaviour
     bool isOpen = false;
     [SerializeField] Animator timerAnim;
     [SerializeField] Image timerImgae;
-    [SerializeField] GameEvent onTimerEnd;
+    [SerializeField] GameEvent onTimerEnd = null;
 
     public float Duration { get => duration; set => duration = value; }
 
@@ -37,7 +37,8 @@ public class TimerUIHandler : MonoBehaviour
         timerImgae.fillAmount = Mathf.Clamp(((duration - elapseTime) / duration), 0f, 1f);
         if (elapseTime >= duration)
         {
-            onTimerEnd.Raise();
+            if(onTimerEnd)
+                onTimerEnd.Raise();
             CancelInvoke(nameof(CustomUpdate));
         }
     }

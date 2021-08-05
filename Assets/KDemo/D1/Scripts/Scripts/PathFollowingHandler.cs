@@ -25,6 +25,7 @@ public class PathFollowingHandler : MonoBehaviour
         get => isCircle;
         private set => isCircle = value;
     }
+    public Color GizmosColor { get => gizmosColor; private set => gizmosColor = value; }
 
     private void Start()
     {
@@ -63,7 +64,7 @@ public class PathFollowingHandler : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = gizmosColor;
+        Gizmos.color = GizmosColor;
         for(int i = 0; i < this.transform.childCount; i++) {
             Gizmos.DrawSphere(this.transform.GetChild(i).position, gizmosRadius);
             if(isCircle)

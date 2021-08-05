@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using KDemo.D1.Scripts.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DragToWorld : MonoBehaviour
@@ -30,7 +32,7 @@ public class DragToWorld : MonoBehaviour
     [SerializeField] GameEvent TruePos;
     LabelWorldHandler label;
     Vector3 initPos;
-
+    private WordPlacingHandler word;
 
     private void Start()
     {
@@ -59,7 +61,18 @@ public class DragToWorld : MonoBehaviour
     //}
     public void CheckDrag()
     {
-
+        if (placingType == PlacingType.UI2D)
+        {
+            var pointerEventData = new PointerEventData(EventSystem.current) {position = transform.position};
+            var raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+            if (raycastResults.Count <= 0) return;
+            word = raycastResults[0].gameObject.GetComponentInParent<WordPlacingHandler>();
+            if (word == null) return;
+            rightPlace = word.IsEmpty;
+            return;
+        }
+        
         ray = interactions.Instance.SessionOrigin.camera.ScreenPointToRay(transform.position);
         //if current finger position hits the dedicated target 
         if (Physics.Raycast(ray, out hit))
@@ -108,6 +121,7 @@ public class DragToWorld : MonoBehaviour
                 else
                     rightPlace = true;
             }
+            
         }
     }
 
@@ -134,6 +148,11 @@ public class DragToWorld : MonoBehaviour
             {
                 TruePos?.Raise();
             }
+            else if (placingType == PlacingType.UI2D)
+            {
+                word.SetAnswer(targetLabelStr);
+            }
+
             if (!keepAlive)
                 this.gameObject.SetActive(false);
             else

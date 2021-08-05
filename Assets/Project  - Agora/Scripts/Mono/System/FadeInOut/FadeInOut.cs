@@ -9,6 +9,7 @@ public class FadeInOut : MonoBehaviour
     private Material gameObjecMat;
     [SerializeField] bool isMaterialPlaced;
     [SerializeField] Material mat;
+    [Range(00.000001f,1f)][SerializeField] float maxValue = 1;
     MeshRenderer meshRenderer;
     [SerializeField] GameEvent onFadeComplete;
     SkinnedMeshRenderer skinnedMeshRenderer;
@@ -21,6 +22,8 @@ public class FadeInOut : MonoBehaviour
 
     #region Methods
     // false means fade out  
+    public void Show() { StopAllCoroutines(); gameObjecMat.SetFloat("_Transparency", 1f); }
+    public void Hide() { StopAllCoroutines(); gameObjecMat.SetFloat("_Transparency", 0f); }
     public void fadeInOut(bool state)
     {
         currentState = state;
@@ -53,13 +56,13 @@ public class FadeInOut : MonoBehaviour
         while (elapsedTime < duration)
         {
             if (state)
-                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(0, 1f, (elapsedTime / duration)));
+                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(0, maxValue, (elapsedTime / duration)));
             else
-                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(1f, 0, (elapsedTime / duration)));
+                gameObjecMat.SetFloat("_Transparency", Mathf.Lerp(maxValue, 0, (elapsedTime / duration)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        gameObjecMat.SetFloat("_Transparency", state ? 1 : 0);
+        gameObjecMat.SetFloat("_Transparency", state ? maxValue : 0);
         //onComplete
         //Debug.LogWarning(OnFadeComplete);
         yield return new WaitForEndOfFrame();

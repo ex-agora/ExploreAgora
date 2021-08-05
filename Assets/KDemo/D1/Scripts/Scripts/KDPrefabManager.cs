@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using KDemo.D2.Scripts;
 using UnityEngine;
 namespace KDemo.D1.Scripts.Scripts
 {
@@ -28,24 +29,32 @@ namespace KDemo.D1.Scripts.Scripts
         [SerializeField] private ParticleSystem steamPS;
         [SerializeField] private AudioSource fireAudio;
         [SerializeField] private AudioSource waterDropAudio;
+        [SerializeField] private GameObject waterDrop;
+        [SerializeField] private AudioSource waterBoilingAudio;
         [SerializeField] private List<NodeOutlineHandler> nodeOutlineHandlers;
-        private float updateRate = 1f;
+        [SerializeField] private Animator iceCube;
+        [SerializeField] private FadeInOut water;
+        private float updateRate = 0.5f;
         private float elpTime;
-        private float daley = 4f;
+        private float daley = 1f;
         private void Awake()
         {
             if (Instance == null) Instance = this;
         }
-
+        private void Start()
+        {
+            water.SetFadeAmount(0);
+        }
+        public void HideModel() { gameObject.SetActive(false); }
         public void StartSim()
         {
             pathsHandler.StartSimulation();
             firePS.Play(true);
-            steamPS.Play(true);
+            firePS.gameObject.SetActive(true);
             fireAudio.Play(1284);
             if (IsInvoking(nameof(CustomUpdate))) return;
-            elpTime = daley;
-            manager.StartTemp();
+            elpTime = 0;
+            //manager.StartTemp();
             InvokeRepeating(nameof(CustomUpdate), daley, updateRate);
         }
         public void StopSim()
@@ -53,12 +62,19 @@ namespace KDemo.D1.Scripts.Scripts
             HandleOutline(-1);
             pathsHandler.StopSimulation();
             firePS.Stop(true);
-            steamPS.Play(false);
+            firePS.gameObject.SetActive(false);
+            steamPS.Stop(false);
+            waterBoilingAudio.Stop();
+            waterDropAudio.Stop();
+            waterDrop.gameObject.SetActive(false);
             fireAudio.Stop();
-            if (!IsInvoking(nameof(CustomUpdate))) return;
+            state =  Kd1State.None;
             manager.StopTemp();
+            if (!IsInvoking(nameof(CustomUpdate))) return;
+            iceCube.SetBool("IsMelting", false);
+            water.fadeInOut(false);
             CancelInvoke(nameof(CustomUpdate));
-            manager.HandleRecap(-1, false, 00.00f);
+            StartCoroutine(manager.HandleRecap(-1, false, 3f));
         }
 
         private void CustomUpdate()
@@ -68,24 +84,44 @@ namespace KDemo.D1.Scripts.Scripts
             {
                 case Kd1State.None:
                     HandleOutline(-1);
-                    if (elpTime >= (daley + 1)) state = Kd1State.S1;
+                    if (elpTime >= (1))
+                    {
+                        
+                        state = Kd1State.S1;
+                        manager.StartTemp(-5,0,0.8f);
+                        iceCube.SetBool("IsMelting", true);
+
+                    }
                     break;
                 case Kd1State.S1:
                     HandleOutline(0);
-                    manager.HandleRecap(0,true,2f);
-                    if (elpTime >= (daley + 7)) state = Kd1State.S2;
+                    StartCoroutine(manager.HandleRecap(0, true, 1.5f));
+                    if (elpTime >= (4.5))
+                    {
+                        state = Kd1State.S2;
+                        manager.StartTemp(1,80,0.15f);
+                        water.fadeInOut(true);
+                    }
                     break;
                 case Kd1State.S2:
                     HandleOutline(1);
-                    manager.HandleRecap(1,true,2f);
-                    if (elpTime >= (daley + 11)) state = Kd1State.S3;
+                    StartCoroutine(manager.HandleRecap(1, true, 2f, 1.5f));
+                    if (elpTime >= (16.5))
+                    {
+                        SetBoiling();
+                        manager.StartTemp(81,100,0.15f);
+                        state = Kd1State.S3;
+                        
+                    }
                     break;
                 case Kd1State.S3:
                     HandleOutline(2);
-                    manager.HandleRecap(2,true,2f);
-                    if (elpTime >= (daley + 18)) {
-                        state = Kd1State.None;
-                        elpTime = daley;
+                    StartCoroutine(manager.HandleRecap(2, true, 2f, 4f));
+                    if (elpTime >= (23)) {
+                        waterDrop.gameObject.SetActive(true);
+                        waterDropAudio.Play();
+                        if (!IsInvoking(nameof(CustomUpdate))) return;
+                        CancelInvoke(nameof(CustomUpdate));
                     }
                     break;
                 case Kd1State.End:
@@ -95,19 +131,66 @@ namespace KDemo.D1.Scripts.Scripts
             }  
         }
 
+        private void SetBoiling()
+        {
+            waterBoilingAudio.volume = 0;
+            waterBoilingAudio.Play();
+            StartCoroutine(FadeAudioSource.StartFade(waterBoilingAudio, 10f, 1f));
+            
+            StartCoroutine(FadeInPS(steamPS,20f));
+            steamPS.Play(true);
+        }
+        IEnumerator FadeInPS(ParticleSystem particle, float duration) {
+            yield return new WaitForEndOfFrame();
+            float currentTime = 0;
+            var colorOverLifetime = steamPS.colorOverLifetime;
+            List<ParticleSystem> mains = new List<ParticleSystem>();
+           // colorOverLifetime.enabled = false;
+            var pss = particle.GetComponentsInChildren<ParticleSystem>();
+            Debug.Log($"pss:{pss.Length}");
+            for (int i = 0; i < pss.Length; i++)
+            {
+
+                pss[i].startColor = new Color(pss[i].startColor.r, pss[i].startColor.g, pss[i].startColor.b, 0);
+                mains.Add(pss[i]);
+
+
+            }
+                
+            
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                foreach (var item in mains){
+
+                    var a = Mathf.Lerp(0, 1, currentTime / duration);
+                    item.startColor = new Color(item.startColor.r, item.startColor.g, item.startColor.b, a);
+                  
+                }
+                yield return null;
+            }
+            //colorOverLifetime.enabled = true;
+            yield break;
+
+        }
+        
+
         private void HandleOutline(int index)
         {
-            for (var i = 0; i < nodeOutlineHandlers.Count; i++)
-            {
-                nodeOutlineHandlers[i].IsActive = index == i;
-            }
+            //for (var i = 0; i < nodeOutlineHandlers.Count; i++)
+            //{
+            //    nodeOutlineHandlers[i].IsActive = index == i;
+            //}
         }
 
         public void ToggleFireSound()
         {
-            fireAudio.mute = !fireAudio.mute;
+            var mute = fireAudio.mute;
+            mute = !mute;
+            fireAudio.mute = mute;
             waterDropAudio.mute = !waterDropAudio.mute;
-            AudioManager.Instance.AudioController(fireAudio.mute ? 3 : 0);
+            waterBoilingAudio.mute = !waterBoilingAudio.mute;
+            AudioManager.Instance.AudioController(mute ? 3 : 0);
         }
 
     }

@@ -1,6 +1,7 @@
 public enum PlacingType
 {
     UI,
-    Object ,
-    Event
+    Object,
+    Event,
+    UI2D
 }
